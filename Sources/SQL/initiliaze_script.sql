@@ -1,0 +1,93 @@
+CREATE DATABASE IF NOT EXISTS `data`;
+
+USE `data`;
+
+CREATE TABLE category (
+	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(45) UNIQUE NOT NULL,
+	`code` VARCHAR(15) UNIQUE NOT NULL,
+	`description` TEXT NULL,
+	`position` INT(11) NOT NULL,
+	`status` TINYINT NOT NULL
+);
+
+CREATE TABLE `language`(
+	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`language` VARCHAR(30) NOT NULL,
+	`country` VARCHAR(30) NOT NULL,
+	`i18n` VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE category_language (
+	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`category_id` INT,
+	`language_id` INT(11),
+	`name` NVARCHAR(50) UNIQUE NOT NULL,
+	`description` NVARCHAR(100),
+	CONSTRAINT fk_CLLang FOREIGN KEY (language_id) REFERENCES `language`(id),
+	CONSTRAINT fk_CLCate FOREIGN KEY (category_id) REFERENCES `category`(id)
+);
+
+CREATE TABLE badge (
+	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`code` VARCHAR(15) UNIQUE NOT NULL,
+	`status` INT NOT NULL,
+	`eligibility` VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE badge_language(
+	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`badge_id` INT(11),
+	`language_id` INT(11),
+	`name` NVARCHAR(100) NOT NULL,
+	`description` NVARCHAR(300) NOT NULL,
+	CONSTRAINT fk_BLLang FOREIGN KEY (language_id) REFERENCES `language`(id),
+	CONSTRAINT fk_BLBadge FOREIGN KEY (badge_id) REFERENCES `badge`(id)
+);
+
+CREATE TABLE role (
+	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(30)
+);
+
+CREATE TABLE user (
+	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`role_id` INT(11),
+	`username` VARCHAR(30) UNIQUE NOT NULL,
+	`password` VARCHAR(30) NOT NULL,
+	`first_name` VARCHAR(45) NOT NULL,
+	`sex` INT(2),
+	`point` INT(11) NOT NULL DEFAULT 0
+);
+
+CREATE TABLE permission (
+	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`role_id` INT,
+	`regional` VARCHAR(30) NOT NULL,
+	CONSTRAINT fk_PerRole FOREIGN KEY(role_id) REFERENCES `role`(id)
+);
+
+CREATE TABLE achievement (
+	`user_id` MEDIUMINT,
+	`badge_id` INT(11),
+	`achived_time` DATETIME DEFAULT NULL,
+	CONSTRAINT fk_AchieUser FOREIGN KEY(user_id) REFERENCES `user`(id),
+	CONSTRAINT fk_AchieBadge FOREIGN KEY(badge_id) REFERENCES `badge`(id)
+);
+
+CREATE TABLE task (
+	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`user_id` MEDIUMINT,
+	`category_id` INT,
+	`name` NVARCHAR(50) NOT NULL,
+	`description` NVARCHAR(100) NULL,
+	`complete_time` DATETIME NOT NULL,
+	`start_time` DATETIME NULL,
+	`difficulty_level` INT(11) NOT NULL,
+	`status` INT(11) NOT NULL,
+	`point` INT NOT NULL,
+	CONSTRAINT fk_TaskUser FOREIGN KEY(user_id) REFERENCES `user`(id),
+	CONSTRAINT fk_TaskCate FOREIGN KEY(category_id) REFERENCES `category`(id)
+);
+
+
