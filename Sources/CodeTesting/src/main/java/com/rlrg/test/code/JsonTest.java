@@ -11,7 +11,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import com.rlrg.dataserver.category.dto.CategoryDTO;
+import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.utillities.json.JsonExporter;
 
 public class JsonTest {

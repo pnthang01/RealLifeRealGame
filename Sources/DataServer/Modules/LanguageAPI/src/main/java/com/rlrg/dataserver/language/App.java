@@ -1,4 +1,4 @@
-package com.rlrg.dataserver;
+package com.rlrg.dataserver.language;
 
 /**
  * Hello world!

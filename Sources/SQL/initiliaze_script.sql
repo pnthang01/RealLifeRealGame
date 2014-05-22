@@ -53,13 +53,15 @@ CREATE TABLE user (
 	`role_id` INT(11),
 	`username` VARCHAR(30) UNIQUE NOT NULL,
 	`password` VARCHAR(30) NOT NULL,
+	`email` VARCHAR(50) NOT NULL UNIQUE,
 	`first_name` VARCHAR(45) NOT NULL,
 	`last_name` VARCHAR(45),
 	`create_date` DATETIME NOT NULL,
 	`last_login` DATETIME,
 	`sex` TINYINT(4),
 	`point` INT NOT NULL DEFAULT 0,
-	`status` TINYINT(4) 
+	`status` TINYINT(4) NOT NULL,
+	`token` VARCHAR(45) NULL
 );
 
 CREATE TABLE permission (

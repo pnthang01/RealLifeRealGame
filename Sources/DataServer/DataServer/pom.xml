@@ -19,7 +19,7 @@
 		</dependency>
     	<dependency>
             <groupId>com.rlrg.dataserver</groupId>
-            <artifactId>category</artifactId>
+            <artifactId>task-api</artifactId>
             <version>${rlrg-version}</version>
         </dependency>
         <dependency>
