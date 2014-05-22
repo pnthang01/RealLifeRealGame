@@ -26,9 +26,9 @@ import com.team.exeption.VException;
  * @author Trong 24-11-2013 - 01:13:27
  */
 @Controller
-public abstract class VController {
+public abstract class BaseController {
 	private static final Logger LOG = LoggerFactory
-			.getLogger(VController.class);
+			.getLogger(BaseController.class);
 
 	@SuppressWarnings("static-access")
 	@ExceptionHandler

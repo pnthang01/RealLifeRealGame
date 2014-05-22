@@ -4,9 +4,7 @@ USE `data`;
 
 CREATE TABLE category (
 	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(45) UNIQUE NOT NULL,
 	`code` VARCHAR(15) UNIQUE NOT NULL,
-	`description` TEXT NULL,
 	`position` INT(11) NOT NULL,
 	`status` TINYINT NOT NULL
 );
@@ -15,7 +13,7 @@ CREATE TABLE `language`(
 	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`language` VARCHAR(30) NOT NULL,
 	`country` VARCHAR(30) NOT NULL,
-	`i18n` VARCHAR(10) NOT NULL
+	`i18n` VARCHAR(10) NOT NULL UNIQUE
 );
 
 CREATE TABLE category_language (
@@ -56,8 +54,12 @@ CREATE TABLE user (
 	`username` VARCHAR(30) UNIQUE NOT NULL,
 	`password` VARCHAR(30) NOT NULL,
 	`first_name` VARCHAR(45) NOT NULL,
-	`sex` INT(2),
-	`point` INT(11) NOT NULL DEFAULT 0
+	`last_name` VARCHAR(45),
+	`create_date` DATETIME NOT NULL,
+	`last_login` DATETIME,
+	`sex` TINYINT(4),
+	`point` INT NOT NULL DEFAULT 0,
+	`status` TINYINT(4) 
 );
 
 CREATE TABLE permission (
@@ -68,6 +70,7 @@ CREATE TABLE permission (
 );
 
 CREATE TABLE achievement (
+	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`user_id` MEDIUMINT,
 	`badge_id` INT(11),
 	`achived_time` DATETIME DEFAULT NULL,

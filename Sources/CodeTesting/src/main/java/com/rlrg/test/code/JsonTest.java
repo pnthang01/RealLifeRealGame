@@ -2,7 +2,9 @@ package com.rlrg.test.code;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
@@ -10,7 +12,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import com.rlrg.dataserver.category.dto.CategoryDTO;
-import com.rlrg.dataserver.category.entity.Category;
 import com.rlrg.utillities.json.JsonExporter;
 
 public class JsonTest {
@@ -58,7 +59,7 @@ public class JsonTest {
 		c.setName("Name");
 		c.setPosition(1);
 		//
-		String temp = JsonExporter.encodeObjectToJson(c, CategoryDTO.class);
+		String temp = jsonExporter.encodeObjectToJson(c, CategoryDTO.class);
 		System.out.println(temp);
 	}
 
@@ -88,17 +89,63 @@ public class JsonTest {
 		obj = JSONValue.parse(s);
 		System.out.println(obj);
 	}
+	
+	private static JsonExporter jsonExporter = new JsonExporter();
 
 	public static void main(String[] args) throws Exception {
 //		decodeExample();
 //		encodeCategoryObject();
-		testDecode();
+		encodeCategoryObjects();
+		System.out.println("\n=============\n");
+//		testDecode();
+		
+		testDecodeObjects();
 	}
 	
 	public static void testDecode(){
-		String json = "{\"Code\":\"Category Code\",\"Name\":\"Name\",\"Description\":\"Description\",\"Position\":1}";
-		CategoryDTO c = JsonExporter.decodeJsonToObject(json, CategoryDTO.class);
+		String json = "{\"Category\":{\"Code\":\"Category Code\",\"Name\":\"Name\",\"Description\":\"Description\",\"Position\":1}}";
+		CategoryDTO c = jsonExporter.decodeJsonToObject(json, CategoryDTO.class);
 		System.out.println(c);
+	}
+	
+	public static void testDecodeObjects(){
+		String json = "{\"Categories\":[" +
+				"{\"Code\":\"Category Code 1\",\"Name\":\"Name 1\",\"Description\":\"Description 1\",\"Position\":1}," +
+				"{\"Code\":\"Category Code 2\",\"Name\":\"Name 2\",\"Description\":\"Description 2\",\"Position\":2}," +
+				"{\"Code\":\"Category Code 3\",\"Name\":\"Name 3\",\"Description\":\"Description 3\",\"Position\":3}]}";
+		
+		List<CategoryDTO> cateList = jsonExporter.decodeJsonToObjects(json, CategoryDTO.class);
+		for(CategoryDTO c : cateList){
+			System.out.println(c);
+		}
+	}
+	
+	public static void encodeCategoryObjects() {
+		CategoryDTO c1 = new CategoryDTO();
+		c1.setCode("Category Code 1");
+		c1.setDescription("Description 1");
+		c1.setName("Name 1");
+		c1.setPosition(1);
+		//          
+		CategoryDTO c2 = new CategoryDTO();
+		c2.setCode("Category Code 2");
+		c2.setDescription("Description 2");
+		c2.setName("Name 2");
+		c2.setPosition(2);
+		//
+		CategoryDTO c3 = new CategoryDTO();
+		c3.setCode("Category Code 3");
+		c3.setDescription("Description 3");
+		c3.setName("Name 3");
+		c3.setPosition(3);
+		//
+		final ArrayList test = new ArrayList<CategoryDTO>();
+		test.add(c1);
+		test.add(c2);
+		test.add(c3);
+		
+		String temp = jsonExporter.encodeObjectsToJson(test, CategoryDTO.class);
+		System.out.println(temp);
 	}
 
 }
