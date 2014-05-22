@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+	
+
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <bean
+                class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+            <bean
+                class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+            <bean
+                class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+            <bean
+                class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter" />
+            <bean
+                class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="org.codehaus.jackson.map.ObjectMapper">
+                        <property name="serializationInclusion">
+                            <value
+                                type="org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion">NON_NULL</value>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <mvc:resources mapping="/resources/**" location="/resources/theme/" />
+    <mvc:resources mapping="/download/**" location="file:///C:/barcode/" />
+    <context:annotation-config />
+    <context:component-scan base-package="com.team" />
+    <context:component-scan base-package="com.team.dao" />
+    <!-- ******************************************************************** -->
+    <!-- Mark bean transactions as annotation driven -->
+    <!-- ******************************************************************** -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+<!--    <task:annotation-driven scheduler="myScheduler"/>
+    <task:scheduler id="myScheduler" pool-size="1"/>-->
+    <!--<bean id="task" class="com.dliverypal.service.TimeTaskServiceImpl"/>-->
+
+    <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+    in the /WEB-INF/views directory -->
+
+    <!--<bean name="starter" init-method="setTokenTest" class="com.iteller.business"/> -->
+
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean id="multipartResolver"
+              class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- Max size in bytes. -->
+        <property name="maxUploadSize" value="100000000" />
+    </bean>
+</beans>
+
+
