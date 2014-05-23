@@ -1,8 +1,10 @@
 package com.rlrg.test.code;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +12,11 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.rlrg.dataserver.task.dto.CategoryDTO;
+import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.utillities.json.JsonExporter;
 
 public class JsonTest {
@@ -95,11 +100,87 @@ public class JsonTest {
 	public static void main(String[] args) throws Exception {
 //		decodeExample();
 //		encodeCategoryObject();
-		encodeCategoryObjects();
-		System.out.println("\n=============\n");
+//		encodeCategoryObjects();
+//		System.out.println("\n=============\n");
 //		testDecode();
+//		
+//		testDecodeObjects();
+		//
+		testEncodeTasks();
+		System.out.println("\n=============\n");
+		testDecodeTasks();
+	}
+	
+	public static void testDecodeTask() throws IOException, ParseException{
+		FileReader fr = new FileReader("E:\\test.json");
+		JSONParser jp = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jp.parse(fr);
 		
-		testDecodeObjects();
+		//System.out.println(jsonObject.toJSONString());
+		TaskDTO task = jsonExporter.decodeJsonToObject(jsonObject.toJSONString(), TaskDTO.class);
+		System.out.println(task);
+	}
+	
+	public static void testDecodeTasks() throws IOException, ParseException{
+		FileReader fr = new FileReader("E:\\tests.json");
+		JSONParser jp = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jp.parse(fr);
+		
+		//System.out.println(jsonObject.toJSONString());
+		TaskDTO task = jsonExporter.decodeJsonToObject(jsonObject.toJSONString(), TaskDTO.class);
+		System.out.println(task);
+	}
+	
+	public static void testEncodeTask(){
+		TaskDTO task = new TaskDTO();
+		//
+		CategoryDTO c = new CategoryDTO();
+		c.setCode("Category Code");
+		c.setDescription("Description");
+		c.setName("Name");
+		c.setPosition(1);
+		//
+		task.setCategory(c);
+		task.setCompleteTime(new Date());
+		task.setDescription("Description");
+		task.setDifficultyLevel(1);
+		task.setId(3l);
+		task.setName("Task Name");
+		task.setPoint(12);
+		task.setStartTime(new Date());
+		task.setStatus(2);
+		//
+		String temp = jsonExporter.encodeObjectToJson(task, TaskDTO.class);
+		System.out.println(temp);
+	}
+	
+	public static void testEncodeTasks(){
+		TaskDTO task = new TaskDTO();
+		//
+		List<CategoryDTO> list = new ArrayList<CategoryDTO>();
+		for(int i=0; i<3;i++){
+			CategoryDTO c = new CategoryDTO();
+			c.setCode("Category Code " + i);
+			c.setDescription("Description" + i);
+			c.setName("Name" + i );
+			c.setPosition(i + 1);
+			list.add(c);
+		}
+		task.setCategories(list);
+		
+		//
+		//task.setCategory(c);
+		task.setCompleteTime(new Date());
+		task.setDescription("Description");
+		task.setDifficultyLevel(1);
+		task.setId(3l);
+		task.setName("Task Name");
+		task.setPoint(12);
+		task.setStartTime(new Date());
+		task.setStatus(2);
+		//
+		String temp = jsonExporter.encodeObjectToJson(task, TaskDTO.class);
+		System.out.println(temp);
 	}
 	
 	public static void testDecode(){
