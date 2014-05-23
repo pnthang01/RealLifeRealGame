@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <color name="background">#f2f2f2</color>
+    <color name="background_white">#ffff</color>
+    <color name="button_seleted">#444e5d</color>
+    <color name="border_view">#d9d9d9</color>
+    <color name="line">#c8c7cc</color>
+    <color name="button">#71839b</color>
+    <color name="button_text_color_pressed">#ffff</color>
+
+    <!-- Start -->
+    <color name="start_button_register">#71839b</color>
+
+    <!-- Action bar -->
+    <color name="bar_bg">#000</color>
+    <color name="bar_title_home">#ffb303</color>
+    <color name="bar_title">#ffff</color>
+    <color name="bar_text_left">#ffb303</color>
+    <color name="bar_text_right">#ffb303</color>
+    <color name="bar_text_hide">#515356</color>
+
+    <!-- Navigation -->
+    <color name="navigation_bg">#323232</color>
+    <color name="navigation_item">#ffff</color>
+    <color name="navigation_item_pressed">#32809c</color>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <string name="font_button">@string/theme_font_proxima_nova_light</string>
+
+    <!-- Action bar -->
+    <string name="font_start_button_register">@string/theme_font_proxima_nova_light</string>
+
+    <!-- Action bar -->
+    <string name="font_bar_text_left">@string/theme_font_helvetica_neue_light</string>
+    <string name="font_bar_title">@string/theme_font_helvetica_neue_light</string>
+    <string name="font_bar_title_home">@string/theme_font_helvetica_neue_light</string>
+    <string name="font_bar_text_right">@string/theme_font_helvetica_neue_light</string>
+
+    <!-- Navigation -->
+    <string name="font_navigation_item">@string/theme_font_proxima_nova_light</string>
+
+</resources>
