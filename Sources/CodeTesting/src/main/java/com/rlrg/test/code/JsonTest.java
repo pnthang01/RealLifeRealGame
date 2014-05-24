@@ -106,7 +106,9 @@ public class JsonTest {
 //		
 //		testDecodeObjects();
 		//
+		long start = System.currentTimeMillis();
 		testEncodeTasks();
+		System.out.println("It requires " + (System.currentTimeMillis() - start) + " miliseconds to complete");
 		System.out.println("\n=============\n");
 		testDecodeTasks();
 	}
