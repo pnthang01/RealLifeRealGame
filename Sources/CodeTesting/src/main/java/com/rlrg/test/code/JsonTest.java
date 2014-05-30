@@ -168,7 +168,7 @@ public class JsonTest {
 			c.setPosition(i + 1);
 			list.add(c);
 		}
-		task.setCategories(list);
+		//task.setCategories(list);
 		
 		//
 		//task.setCategory(c);

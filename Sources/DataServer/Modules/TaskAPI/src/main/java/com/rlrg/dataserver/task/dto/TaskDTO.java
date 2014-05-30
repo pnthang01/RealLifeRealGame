@@ -15,9 +15,6 @@ public class TaskDTO {
 
 	@JsonObject
 	private CategoryDTO category;
-	
-	@JsonObject
-	private List<CategoryDTO> categories;
 
 	@JsonExport(name = "Name")
 	private String name;
@@ -39,14 +36,6 @@ public class TaskDTO {
 
 	@JsonExport(name = "Point")
 	private Integer point;
-
-	public List<CategoryDTO> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<CategoryDTO> categories) {
-		this.categories = categories;
-	}
 
 	public Long getId() {
 		return id;

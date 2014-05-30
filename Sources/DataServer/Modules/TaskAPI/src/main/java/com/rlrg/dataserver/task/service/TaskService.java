@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.Task;
-import com.rlrg.dataserver.task.repository.CategoryRepository;
 import com.rlrg.dataserver.task.repository.TaskRepository;
 import com.rlrg.utillities.json.JsonExporter;
 
@@ -31,7 +30,7 @@ public class TaskService {
 	private JsonExporter jsonExporter;
 	
 	public Task findById(Long id){
-		return taskRepo.getOne(id);
+		return taskRepo.findOne(id);
 	}
 	
 	public Task saveTask(Task task){

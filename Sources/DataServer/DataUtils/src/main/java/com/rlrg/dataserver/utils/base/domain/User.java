@@ -5,14 +5,13 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "user", catalog = "rlrg")
-@NamedQuery(name = "user.Update", query = "UPDATE User u SET u.token = :token WHERE u.id = :id")
+@Entity(name="domain.User")
+@Table(name = "user")
+//@NamedQuery(name = "user.Update", query = "UPDATE User u SET u.token = :token WHERE u.id = :id")
 public class User {
 	@Id
 	@Column(name = "id", unique = true, nullable = false, insertable = false)

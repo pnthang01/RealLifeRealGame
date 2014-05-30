@@ -17,6 +17,8 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import com.rlrg.utillities.json.JsonExporter;
+
 @ComponentScan
 @EnableAutoConfiguration
 @PropertySources({
@@ -27,7 +29,12 @@ public class Application {
 	@Bean
 	public PathMatchingResourcePatternResolver resourcePatternResolver() {
 		return new PathMatchingResourcePatternResolver();
-	}	
+	}
+	
+	@Bean
+	public JsonExporter initJsonExporter(){
+		return new JsonExporter();
+	}
 	
 	@Bean
     public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
@@ -48,7 +55,7 @@ public class Application {
 							
 							for (Resource r : res) {
 								String path = r.getFile().getAbsolutePath();
-								path = path.substring(0, path.indexOf("/META-INF"));
+								path = path.substring(0, path.indexOf("\\META-INF"));
 								System.out.print("Add to ResourceDirContext: " + path);
 								VirtualDirContext dirContext = new VirtualDirContext();
 								dirContext.setDocBase(path);

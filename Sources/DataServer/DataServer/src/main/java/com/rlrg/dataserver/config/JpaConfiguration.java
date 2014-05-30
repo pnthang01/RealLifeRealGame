@@ -52,9 +52,9 @@ public class JpaConfiguration implements EnvironmentAware {
             return new SimpleDriverDataSource() {
                 {
                     setDriverClass(driverClass);
-                    setUsername(environment.getProperty("username", "root"));
+                    setUsername(environment.getProperty("username"));
                     setUrl(environment.getProperty("url"));
-                    setPassword(environment.getProperty("password", ""));
+                    setPassword(environment.getProperty("password"));
                 }
             };
         } catch (ClassNotFoundException cnfe) {

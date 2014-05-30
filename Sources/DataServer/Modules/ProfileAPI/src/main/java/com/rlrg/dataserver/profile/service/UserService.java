@@ -26,7 +26,7 @@ public class UserService implements IUserService{
     @Autowired
     private CommonService commonService;
 
-    @Transactional
+    //@Transactional
     @Override
     public UserDTO login(LoginForm loginForm) throws RepositoryException, LoginException, InvalidParamExeption {
         if (!StringUtils.isEmpty(loginForm.getUsername()) && !StringUtils.isEmpty(loginForm.getPassword())) {

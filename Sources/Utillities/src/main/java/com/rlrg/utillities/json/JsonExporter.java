@@ -35,7 +35,7 @@ public class JsonExporter {
 				field.setAccessible(true);
 				//if this field is primitive type, parse this value to string and add it to json
 				JsonExport jsonAnno = field.getAnnotation(JsonExport.class);
-				if(null != jsonAnno){
+				if(null != jsonAnno && null != field.get(value)){
 					jsonValue.put(jsonAnno.name().toString(), parseValueToString(field.get(value)));
 				}
 				//if this field is object type, it will check if it is an object or a list of object
@@ -43,7 +43,7 @@ public class JsonExporter {
 				if(null != jsonObj){				
 					Class objClass = field.getType();
 					//This field is a list, so it would be parse each object from the list to json
-					if(objClass.getName().equals("java.util.List")){
+					if(objClass.getName().equals("java.util.List") && null != field.get(value)){
 						List list = (List) objClass.cast(field.get(value));
 						JsonDTO objAnno = (JsonDTO) getGenericClassOfList(field).getAnnotation(JsonDTO.class);
 						JSONArray array = new JSONArray();
