@@ -1,4 +1,4 @@
-package com.team.common;
+package com.rlrg.dataserver.common;
 
 public enum ExceptionCodeEnum {
 
