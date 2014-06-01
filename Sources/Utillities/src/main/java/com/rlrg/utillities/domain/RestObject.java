@@ -1,10 +1,19 @@
-package com.rlrg.dataserver.utils.base.domain;
+package com.rlrg.utillities.domain;
+
+import com.rlrg.utillities.annotation.JsonExport;
+import com.rlrg.utillities.annotation.JsonObject;
 
 public class RestObject {
 	public static final int ERROR = 1;
 	public static final int OK = 0;
+
+	@JsonExport(name = "ErrorCode")
 	private int errorCode;
+
+	@JsonExport(name = "Msg")
 	private String msg;
+
+	@JsonObject
 	private Object data;
 
 	/**

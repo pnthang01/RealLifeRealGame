@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.Task;
 import com.rlrg.dataserver.task.repository.TaskRepository;
+import com.rlrg.dataserver.utils.base.service.BaseService;
 import com.rlrg.utillities.json.JsonExporter;
 
 @Service
-public class TaskService {
+public class TaskService extends BaseService<Task, TaskDTO>{
 	
 	@Transient
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -48,24 +49,21 @@ public class TaskService {
 	public List<Task> getTaskByCategoryAndUser(Integer categoryId, Long userId){
 		return taskRepo.getTasksByCategoryAndUser(categoryId, userId);
 	}	
-	
-	public TaskDTO convertTaskToDTO(Task task){
+
+
+	@Override
+	public TaskDTO convertEntityToDTO(Task data) {
 		TaskDTO dto = new TaskDTO();
-		dto.setCategory(cateService.convertCategoryToDTO(task.getCategory()));
-		dto.setCompleteTime(task.getCompleteTime());
-		dto.setDescription(task.getDescription());
-		dto.setDifficultyLevel(task.getDifficultyLevel());
-		dto.setId(task.getId());
-		dto.setName(task.getName());
-		dto.setPoint(task.getPoint());
-		dto.setStartTime(task.getStartTime());
-		dto.setStatus(task.getStatus());
+		dto.setCategory(cateService.convertEntityToDTO(data.getCategory()));
+		dto.setCompleteTime(data.getCompleteTime());
+		dto.setDescription(data.getDescription());
+		dto.setDifficultyLevel(data.getDifficultyLevel());
+		dto.setId(data.getId());
+		dto.setName(data.getName());
+		dto.setPoint(data.getPoint());
+		dto.setStartTime(data.getStartTime());
+		dto.setStatus(data.getStatus());
 		//
 		return dto;
-	}
-	
-	public String encodeTask(Task task){
-		TaskDTO dto = this.convertTaskToDTO(task);
-		return jsonExporter.encodeObjectToJson(dto, dto.getClass());
 	}
 }

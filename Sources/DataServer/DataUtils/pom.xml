@@ -12,9 +12,15 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<rlrg-version>0.0.1-SNAPSHOT</rlrg-version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.rlrg</groupId>
+			<artifactId>utillities</artifactId>
+			<version>${rlrg-version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>

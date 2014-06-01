@@ -25,18 +25,18 @@ public class Category implements Serializable, Comparable<Category> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@NotNull
-	@Size(min = 3, max = 45)
-	@Column(name = "name")
-	private String name;
+//	@NotNull
+//	@Size(min = 3, max = 45)
+//	@Column(name = "name")
+//	private String name;
 
 	@NotNull
 	@Column(name = "code")
 	private String code;
-
-	@Size(min = 0, max = 500)
-	@Column(name = "description")
-	private String description;
+//
+//	@Size(min = 0, max = 500)
+//	@Column(name = "description")
+//	private String description;
 
 	@Column(name = "position")
 	private int position;
@@ -52,13 +52,13 @@ public class Category implements Serializable, Comparable<Category> {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public String getCode() {
 		return code;
@@ -68,13 +68,13 @@ public class Category implements Serializable, Comparable<Category> {
 		this.code = code;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+//	public String getDescription() {
+//		return description;
+//	}
+//
+//	public void setDescription(String description) {
+//		this.description = description;
+//	}
 
 	public int getPosition() {
 		return position;
@@ -84,7 +84,7 @@ public class Category implements Serializable, Comparable<Category> {
 		this.position = position;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 

@@ -4,7 +4,7 @@ import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
 
 @JsonDTO(singularName="Category", pluralName="Categories")
-public class CategoryDTO {
+public class CategoryDTO{
 	@JsonExport(name="Code")
 	private String code;
 	
@@ -16,6 +16,17 @@ public class CategoryDTO {
 	
 	@JsonExport(name="Position")
 	private Integer position;
+	
+	@JsonExport(name="status")
+	private boolean status;
+	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
 	public String getCode() {
 		return code;
@@ -56,8 +67,8 @@ public class CategoryDTO {
 		str.append(",[Name:").append(name).append("]");
 		str.append(",[Description:").append(description).append("]");
 		str.append(",[Position:").append(position).append("]");
+		str.append(",[Status:").append(status).append("]");
 		return str.toString();
 	}
-	
 	
 }

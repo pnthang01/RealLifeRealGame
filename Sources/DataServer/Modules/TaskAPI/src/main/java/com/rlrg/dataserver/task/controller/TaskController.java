@@ -31,6 +31,6 @@ public class TaskController extends BaseController{
 	public String getTask(@RequestParam("taskId") Long taskId, HttpServletRequest request, HttpServletResponse response){
 		Task task = taskService.findById(taskId);
 		//
-		return taskService.encodeTask(task);
+		return taskService.encodeSingleObject(task);
 	}
 }

@@ -64,7 +64,7 @@ public class JsonTest {
 		c.setName("Name");
 		c.setPosition(1);
 		//
-		String temp = jsonExporter.encodeObjectToJson(c, CategoryDTO.class);
+		String temp = jsonExporter.encodeObjectToJson(c);
 		System.out.println(temp);
 	}
 
@@ -100,17 +100,17 @@ public class JsonTest {
 	public static void main(String[] args) throws Exception {
 //		decodeExample();
 //		encodeCategoryObject();
-//		encodeCategoryObjects();
+		encodeCategoryObjects();
 //		System.out.println("\n=============\n");
 //		testDecode();
 //		
 //		testDecodeObjects();
 		//
-		long start = System.currentTimeMillis();
-		testEncodeTasks();
-		System.out.println("It requires " + (System.currentTimeMillis() - start) + " miliseconds to complete");
-		System.out.println("\n=============\n");
-		testDecodeTasks();
+//		long start = System.currentTimeMillis();
+//		testEncodeTasks();
+//		System.out.println("It requires " + (System.currentTimeMillis() - start) + " miliseconds to complete");
+//		System.out.println("\n=============\n");
+//		testDecodeTasks();
 	}
 	
 	public static void testDecodeTask() throws IOException, ParseException{
@@ -152,7 +152,7 @@ public class JsonTest {
 		task.setStartTime(new Date());
 		task.setStatus(2);
 		//
-		String temp = jsonExporter.encodeObjectToJson(task, TaskDTO.class);
+		String temp = jsonExporter.encodeObjectToJson(task);
 		System.out.println(temp);
 	}
 	
@@ -181,7 +181,7 @@ public class JsonTest {
 		task.setStartTime(new Date());
 		task.setStatus(2);
 		//
-		String temp = jsonExporter.encodeObjectToJson(task, TaskDTO.class);
+		String temp = jsonExporter.encodeObjectToJson(task);
 		System.out.println(temp);
 	}
 	
@@ -222,12 +222,12 @@ public class JsonTest {
 		c3.setName("Name 3");
 		c3.setPosition(3);
 		//
-		final ArrayList test = new ArrayList<CategoryDTO>();
+		final List test = new ArrayList<CategoryDTO>();
 		test.add(c1);
 		test.add(c2);
 		test.add(c3);
 		
-		String temp = jsonExporter.encodeObjectsToJson(test, CategoryDTO.class);
+		String temp = jsonExporter.encodeObjectsToJson(test);
 		System.out.println(temp);
 	}
 
