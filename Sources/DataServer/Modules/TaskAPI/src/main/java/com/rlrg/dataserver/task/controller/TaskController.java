@@ -1,5 +1,7 @@
 package com.rlrg.dataserver.task.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,6 +33,34 @@ public class TaskController extends BaseController{
 	public String getTask(@RequestParam("taskId") Long taskId, HttpServletRequest request, HttpServletResponse response){
 		Task task = taskService.findById(taskId);
 		//
-		return taskService.encodeSingleObject(task);
+		return taskService.encodeSingleObjectFromTdata(task);
+	}
+	
+	/**
+	 * Get All tasks bases on categoryID and UserId
+	 * @param categoryId
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/getTasksByCategoryAndUser", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String getTasksByCategoryAndUser(@RequestParam("categoryId") Integer categoryId, @RequestParam("userId") Long userId){
+		List<Task> tasks = taskService.getTaskByCategoryAndUser(categoryId, userId);
+		//
+		return taskService.encodeMutipleObjectsFromListT(tasks);
+	}
+	
+	/**
+	 * Get All tasks bases on their name and userID
+	 * @param name
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/getTasksByNameAndUser", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String getTasksByNameAndUser(@RequestParam("name") String name, @RequestParam("userId") Long userId){
+		List<Task> tasks = taskService.getTasksByNameAndUser(name, userId);
+		//
+		return taskService.encodeMutipleObjectsFromListT(tasks);
 	}
 }

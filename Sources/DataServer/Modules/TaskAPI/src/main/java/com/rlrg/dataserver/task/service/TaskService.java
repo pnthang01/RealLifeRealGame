@@ -38,10 +38,6 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 		return taskRepo.save(task);
 	}
 	
-	public void deleteTask(Long taskId){
-		taskRepo.delete(taskId);
-	}
-	
 	public List<Task> getTasksByNameAndUser(String name, Long userId){
 		return taskRepo.getTasksByNameAndUser(name, userId);
 	}
@@ -65,5 +61,16 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 		dto.setStatus(data.getStatus());
 		//
 		return dto;
+	}
+
+	@Override
+	public Task revertDTOToEntity(TaskDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<TaskDTO> getVClass() {
+		return TaskDTO.class;
 	}
 }

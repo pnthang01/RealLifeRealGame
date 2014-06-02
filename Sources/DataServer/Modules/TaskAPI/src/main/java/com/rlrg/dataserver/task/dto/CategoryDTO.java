@@ -20,7 +20,18 @@ public class CategoryDTO{
 	@JsonExport(name="status")
 	private boolean status;
 	
-	public boolean isStatus() {
+	public CategoryDTO(){
+	}
+	
+	public CategoryDTO(String code, String name, String description, Integer position, boolean status){
+		this.code = code;
+		this.name = name;
+		this.description = description;
+		this.position = position;
+		this.status = status;
+	}
+	
+	public boolean getStatus() {
 		return status;
 	}
 

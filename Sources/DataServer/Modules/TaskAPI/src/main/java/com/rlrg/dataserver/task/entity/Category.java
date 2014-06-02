@@ -1,15 +1,20 @@
 package com.rlrg.dataserver.task.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import com.rlrg.dataserver.language.entity.CategoryLanguage;
+
 
 @Entity
 @Table(name = "category")
@@ -43,6 +48,9 @@ public class Category implements Serializable, Comparable<Category> {
 
 	@Column(name = "status")
 	private boolean status;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	private List<CategoryLanguage> cateLangs;
 
 	public int getId() {
 		return id;
@@ -59,6 +67,14 @@ public class Category implements Serializable, Comparable<Category> {
 //	public void setName(String name) {
 //		this.name = name;
 //	}
+
+	public List<CategoryLanguage> getCateLangs() {
+		return cateLangs;
+	}
+
+	public void setCateLangs(List<CategoryLanguage> cateLangs) {
+		this.cateLangs = cateLangs;
+	}
 
 	public String getCode() {
 		return code;

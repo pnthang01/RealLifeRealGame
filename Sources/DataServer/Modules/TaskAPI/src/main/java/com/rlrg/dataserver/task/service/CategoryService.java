@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rlrg.dataserver.language.entity.Language;
+import com.rlrg.dataserver.language.service.CategoryLanguageService;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.repository.CategoryRepository;
@@ -26,6 +28,12 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 
 	@Autowired
 	private CategoryRepository cateRepo;
+	
+	@Autowired
+	private Language DEFAULT_LANGUAGE;
+	
+	@Autowired
+	private CategoryLanguageService langCateService;
 
 	@Autowired
 	private JsonExporter jsonExporter;
@@ -36,39 +44,92 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 	}
 	
 	@Transactional
-	public Category updateStatus(Integer id, boolean status){
-		Category c = cateRepo.findOne(id);
+	public Category updateStatus(String code, boolean status){
+		Category c = cateRepo.getCategoryByCode(code);
 		c.setStatus(status);
 		//
 		return cateRepo.saveAndFlush(c);
 	}
 	
-	public Category getCategoryById(Integer id){
-		return cateRepo.findOne(id);
+	public Category update(CategoryDTO dto){
+		Category c = cateRepo.getCategoryByCode(dto.getCode());
+		c.setPosition(dto.getPosition());
+		c.setStatus(dto.getStatus());
+		return null;
 	}
 	
-	public List<Category> getAllCategories(Integer pageNumber){
+	/**
+	 * Search a list of category base on keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<CategoryDTO> searchCategoriesByKeyword(String keyword, Integer pageNumber){
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
 		//
-		return cateRepo.getAllCategories(pageRequest);
+		return cateRepo.searchCategoriesDTOByKeyword(keyword, DEFAULT_LANGUAGE.getId(), pageRequest);
+	}
+	
+	/**
+	 * Get all categories
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<CategoryDTO> getAllCategories(Integer pageNumber){
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		//
+		return cateRepo.getAllCategoriesDTO(DEFAULT_LANGUAGE.getId(), pageRequest);
+	}
+	
+	/**
+	 * Get a category bases on their code
+	 * @param code
+	 * @return
+	 */
+	public CategoryDTO getCategoryByCode(String code){
+		return cateRepo.getCategoryDTOByCode(code, DEFAULT_LANGUAGE.getId());
 	}
 
-	public List<Category> getCategoriesByStatus(boolean status, Integer pageNumber) {
+	/**
+	 * Get categories by their status
+	 * @param status
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<CategoryDTO> getCategoriesByStatus(boolean status, Integer pageNumber) {
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
 		//
-		return cateRepo.getCategoriesByStatus(status, pageRequest);
+		return cateRepo.getCategoriesDTOByStatus(status, pageRequest);
 	}
 
 	@Override
 	public CategoryDTO convertEntityToDTO(Category data) {
 		CategoryDTO dto = new CategoryDTO();
 		dto.setCode(data.getCode());
-//		dto.setDescription(data.getDescription());
-//		dto.setName(data.getName());
 		dto.setPosition(data.getPosition());
 		dto.setStatus(data.getStatus());
 		//
 		return dto;
+	}
+
+	@Override
+	public Category revertDTOToEntity(CategoryDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<CategoryDTO> getVClass() {
+		return CategoryDTO.class;
 	}
 	
 }

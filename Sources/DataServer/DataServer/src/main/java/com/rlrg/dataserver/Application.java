@@ -30,7 +30,7 @@ public class Application {
 	public PathMatchingResourcePatternResolver resourcePatternResolver() {
 		return new PathMatchingResourcePatternResolver();
 	}
-	
+
 	@Bean
 	public JsonExporter initJsonExporter(){
 		return new JsonExporter();

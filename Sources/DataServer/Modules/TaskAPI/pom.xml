@@ -28,8 +28,13 @@
 			<version>${rlrg-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.rlrg</groupId>
-			<artifactId>utillities</artifactId>
+			<groupId>com.rlrg.dataserver</groupId>
+			<artifactId>language-api</artifactId>
+			<version>${rlrg-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rlrg.dataserver</groupId>
+			<artifactId>dataserver-utils</artifactId>
 			<version>${rlrg-version}</version>
 		</dependency>
 		<dependency>
