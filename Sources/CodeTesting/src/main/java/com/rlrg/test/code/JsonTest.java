@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
+import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.json.JsonExporter;
 
 public class JsonTest {
@@ -99,8 +100,8 @@ public class JsonTest {
 
 	public static void main(String[] args) throws Exception {
 //		decodeExample();
-//		encodeCategoryObject();
-		encodeCategoryObjects();
+	//	encodeCategoryObject();
+//		encodeCategoryObjects();
 //		System.out.println("\n=============\n");
 //		testDecode();
 //		
@@ -111,6 +112,14 @@ public class JsonTest {
 //		System.out.println("It requires " + (System.currentTimeMillis() - start) + " miliseconds to complete");
 //		System.out.println("\n=============\n");
 //		testDecodeTasks();
+		//testDecodeTask();
+		testEncodeBlankRestObject();
+	}
+	
+	public static void testEncodeBlankRestObject(){
+		RestObject test = RestObject.successBlank();
+		String result = jsonExporter.encodeBlankRestObject(test);
+		System.out.println(result);
 	}
 	
 	public static void testDecodeTask() throws IOException, ParseException{
@@ -119,7 +128,8 @@ public class JsonTest {
 		JSONObject jsonObject = (JSONObject) jp.parse(fr);
 		
 		//System.out.println(jsonObject.toJSONString());
-		TaskDTO task = jsonExporter.decodeJsonToObject(jsonObject.toJSONString(), TaskDTO.class);
+		RestObject test = jsonExporter.decodeJsonToRestObject(jsonObject.toJSONString());
+		CategoryDTO task = jsonExporter.decodeJsonToObject(test.getData().toString(), CategoryDTO.class);
 		System.out.println(task);
 	}
 	

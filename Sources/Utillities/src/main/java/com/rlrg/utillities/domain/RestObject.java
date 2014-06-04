@@ -13,7 +13,7 @@ public class RestObject {
 	@JsonExport(name = "Msg")
 	private String msg;
 
-	@JsonObject
+	@JsonObject(name = "data")
 	private Object data;
 
 	/**
@@ -71,13 +71,20 @@ public class RestObject {
 
 	public static RestObject successBlank() {
 		RestObject ret = new RestObject();
-
 		ret.errorCode = OK;
 		ret.msg = "Success";
-
+		//
 		return ret;
 	}
-
+	
+	
+	public static RestObject failBank(String errMessage){
+		RestObject rest = new RestObject();
+		rest.errorCode = ERROR;
+		rest.msg = errMessage;
+		//
+		return rest;
+	}
 	/**
      *
      */

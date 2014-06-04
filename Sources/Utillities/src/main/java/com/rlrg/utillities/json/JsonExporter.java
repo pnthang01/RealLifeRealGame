@@ -39,17 +39,17 @@ public class JsonExporter {
 				// and add it to json
 				JsonExport jsonAnno = field.getAnnotation(JsonExport.class);
 				if (null != jsonAnno && null != field.get(value)) {
-					jsonValue.put(jsonAnno.name().toString(),
-							parseValueToString(field.get(value)));
+					jsonValue.put(jsonAnno.name().toString(), parseValueToString(field.get(value)));
 				}
 				// if this field is object type, it will check if it is an
 				// object or a list of object
-				JsonObject jsonObj = field.getAnnotation(JsonObject.class);
-				if (null != jsonObj) {
+				JsonObject jsonObjAnno = field.getAnnotation(JsonObject.class);
+				if (null != jsonObjAnno && null != field.get(value)) {
 					final Object fieldValue = field.get(value);
 					final Class objClass = fieldValue.getClass();
 					// This field is a list, so it would be parse each object
 					// from the list to json
+					Object storedValue = null;
 					if(objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")) {
 						List list = (List) objClass.cast(fieldValue);
 						if(!list.isEmpty()){
@@ -60,16 +60,29 @@ public class JsonExporter {
 							}
 							//
 							JsonDTO objAnno = list.get(0).getClass().getAnnotation(JsonDTO.class);
-							jsonValue.put(objAnno.pluralName(), array);
+							if(null != jsonObjAnno && !jsonObjAnno.name().isEmpty()){
+								Map<String, Object> jsonObj = new LinkedHashMap<String, Object>();
+								jsonObj.put(objAnno.pluralName(), array);
+								jsonValue.put(jsonObjAnno.name(), jsonObj);
+							} else {
+								jsonValue.put(objAnno.pluralName(), array);
+							}
 						}
 					} else {
 						// This field is an object, it will put this field to
 						// recursive method.
+						Map<String, Object> objTempValue = null;
 						JsonDTO objAnno = (JsonDTO) objClass.getAnnotation(JsonDTO.class);
 						if (null != objAnno) {
-							Map<String, Object> objTempValue = putObjectToJSONMap(
-									field.get(value), objClass);
-							jsonValue.put(objAnno.singularName(), objTempValue);
+							objTempValue = putObjectToJSONMap(field.get(value), objClass);
+							//jsonValue.put(objAnno.singularName(), objTempValue);
+						}
+						if(null != jsonObjAnno && !jsonObjAnno.name().isEmpty()){
+							Map<String, Object> jsonObj = new LinkedHashMap<String, Object>();
+							jsonObj.put(objAnno.pluralName(), objTempValue);
+							jsonValue.put(jsonObjAnno.name(), jsonObj);
+						} else {
+							jsonValue.put(objAnno.pluralName(), objTempValue);
 						}
 					}
 				}
@@ -84,6 +97,11 @@ public class JsonExporter {
 		}
 	}
 
+	public String encodeBlankRestObject(RestObject restObj){
+		final Map<String, Object> jsonValue = putObjectToJSONMap(restObj, RestObject.class);
+		return JSONValue.toJSONString(jsonValue);
+	}
+	
 	/**
 	 * Encode an object to a json string
 	 * 
@@ -149,30 +167,27 @@ public class JsonExporter {
 				JsonObject jsonObj = field.getAnnotation(JsonObject.class);
 				if (null != jsonObj) {
 					Class objClass = field.getType();
-					if (objClass.getName().equals("java.util.List")) {
+					if (objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")) {
 						List list = new ArrayList();
 						Class genericClass = getGenericClassOfList(field);
-						JsonDTO objAnno = (JsonDTO) genericClass
-								.getAnnotation(JsonDTO.class);
+						JsonDTO objAnno = (JsonDTO) genericClass.getAnnotation(JsonDTO.class);
 						if (null != jObj.get(objAnno.pluralName())) {
 							JSONArray array = (JSONArray) jObj.get(objAnno
 									.pluralName());
 							//
 							for (Object obj : array) {
-								list.add(getObjectFromJSONString(
-										obj.toString(), genericClass));
+								list.add(getObjectFromJSONString(obj.toString(), genericClass));
 							}
 							//
 							field.set(returnedObj, list);
 						}
+					} else if(objClass.getName().equals("java.lang.Object")){
+						field.set(returnedObj, jObj.get(jsonObj.name()).toString());
 					} else {
-						JsonDTO objAnno = (JsonDTO) objClass
-								.getAnnotation(JsonDTO.class);
-						if (null != jObj.get(objAnno.singularName())) {
-							String valueTmp = jObj.get(objAnno.singularName())
-									.toString();
-							Object objTmp = getObjectFromJSONString(valueTmp,
-									objClass);
+						JsonDTO objAnno = (JsonDTO) objClass.getAnnotation(JsonDTO.class);
+						if (null != objAnno && null != jObj.get(objAnno.singularName())) {
+							String valueTmp = jObj.get(objAnno.singularName()).toString();
+							Object objTmp = getObjectFromJSONString(valueTmp, objClass);
 							//
 							field.set(returnedObj, objTmp);
 						}
@@ -199,6 +214,16 @@ public class JsonExporter {
 		}
 	}
 
+
+	/**
+	 * Decode json string to #RestObject
+	 * @param jsonStr
+	 * @return
+	 */
+	public RestObject decodeJsonToRestObject(String jsonStr){
+		return getObjectFromJSONString(jsonStr, RestObject.class);
+	}
+	
 	/**
 	 * Decode a json String to a list of object
 	 * 
@@ -224,7 +249,7 @@ public class JsonExporter {
 			return null;
 		}
 	}
-
+	
 	/**
 	 * Decode a json string to an object
 	 * 
@@ -233,14 +258,14 @@ public class JsonExporter {
 	 * @return
 	 */
 	public <T> T decodeJsonToObject(final String jsonStr, final Class<T> clazz) {
-
+		//final RestObject restObject = getObjectFromJSONString(jsonStr, RestObject.class);
 		final JSONObject jObj = (JSONObject) JSONValue.parse(jsonStr);
+	
 		final JsonDTO dtoAnno = clazz.getAnnotation(JsonDTO.class);
 		//
 		final String singularName = dtoAnno.singularName();
 		if (null != jObj.get(singularName)) {
-			return getObjectFromJSONString(jObj.get(singularName).toString(),
-					clazz);
+			return getObjectFromJSONString(jObj.get(singularName).toString(), clazz);
 		}
 		//
 		//
@@ -264,12 +289,14 @@ public class JsonExporter {
 	 * @throws ParseException
 	 */
 	private Object castValue(Class type, String value) throws ParseException {
-		if (type.getName().equals("java.lang.Integer")) {
+		if (type.getName().equals("java.lang.Integer") || int.class.equals(type)) {
 			return Integer.valueOf(value);
-		} else if (type.getName().equals("java.lang.Long")) {
+		} else if (type.getName().equals("java.lang.Long") || long.class.equals(type)) {
 			return Long.valueOf(value);
-		} else if (type.getName().equals("java.lang.Double")) {
+		} else if (type.getName().equals("java.lang.Double") || double.class.equals(type)) {
 			return Double.valueOf(value);
+		} else if(type.getName().equals("java.lang.Boolean") || boolean.class.equals(type)){
+			return Boolean.valueOf(value);
 		} else if (type.getName().equals("java.util.Date")) {
 			return new Date(Long.valueOf(value));
 		} else {

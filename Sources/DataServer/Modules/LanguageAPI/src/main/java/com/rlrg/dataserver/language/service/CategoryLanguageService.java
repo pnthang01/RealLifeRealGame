@@ -19,7 +19,15 @@ public class CategoryLanguageService extends BaseService<CategoryLanguage, CateL
 	
 	@Autowired
 	private CategoryLanguageRepository cateLangRepo;
+	
+	public CategoryLanguage getCateLangByCateIdAndLangId(Integer categoryId, Integer languageId){
+		return cateLangRepo.getCateLangByCateIdAndLangId(categoryId, languageId);
+	}
 
+	public CategoryLanguage save(CategoryLanguage cl){
+		return cateLangRepo.save(cl);
+	}
+	
 	@Override
 	public CateLangDTO convertEntityToDTO(CategoryLanguage data) {
 		// TODO Auto-generated method stub

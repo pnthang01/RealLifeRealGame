@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rlrg.dataserver.language.entity.CategoryLanguage;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.language.service.CategoryLanguageService;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
@@ -33,12 +34,11 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 	private Language DEFAULT_LANGUAGE;
 	
 	@Autowired
-	private CategoryLanguageService langCateService;
+	private CategoryLanguageService cateLangService;
 
 	@Autowired
 	private JsonExporter jsonExporter;
-	
-	@Transactional
+
 	public Category saveCategory(Category c){
 		return cateRepo.save(c);
 	}
@@ -51,11 +51,24 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 		return cateRepo.saveAndFlush(c);
 	}
 	
-	public Category update(CategoryDTO dto){
-		Category c = cateRepo.getCategoryByCode(dto.getCode());
-		c.setPosition(dto.getPosition());
-		c.setStatus(dto.getStatus());
-		return null;
+	@Transactional
+	public String update(CategoryDTO dto){
+		try {
+			Category c = cateRepo.getCategoryByCode(dto.getCode());
+			//
+			CategoryLanguage cateLang = cateLangService.getCateLangByCateIdAndLangId(c.getId(), DEFAULT_LANGUAGE.getId());
+			cateLang.setCateName(dto.getName());
+			cateLang.setDescription(dto.getDescription());
+			cateLangService.save(cateLang);
+			//
+			c.setPosition(dto.getPosition());
+			c.setStatus(dto.getStatus());
+			cateRepo.saveAndFlush(c);
+			//
+			return null;
+		} catch(Exception e){
+			return e.getMessage();
+		}
 	}
 	
 	/**

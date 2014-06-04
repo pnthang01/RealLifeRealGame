@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.badge.entity.Badge;
-import com.rlrg.dataserver.badge.entity.User;
+import com.rlrg.dataserver.profile.entity.User;
 
 public interface AchievementServiceInterface {
 	public List<Achievement> getAchievementByUser(User user);

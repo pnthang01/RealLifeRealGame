@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.json.JsonExporter;
 
 
@@ -17,6 +18,15 @@ public abstract class BaseService <T, V>{
 	public abstract T revertDTOToEntity(V dto);
 	
 	public abstract Class<V> getVClass();
+	
+	/**
+	 * If the client just needs the result without data, 
+	 * we can encode a blank RestOjbect to make the result
+	 * @param restObject
+	 */
+	public String encodeBlankRestObject(RestObject restObject){
+		return jsonExporter.encodeBlankRestObject(restObject);
+	}
 	
 	/**
 	 * Convert T data to V dto and encode V dto to json string
@@ -67,7 +77,9 @@ public abstract class BaseService <T, V>{
 	 * @return
 	 */
 	public V decodeSingleObject(String json){
-		return jsonExporter.decodeJsonToObject(json, getVClass());
+		RestObject test = jsonExporter.decodeJsonToRestObject(json);
+		System.out.println(test);
+		return jsonExporter.decodeJsonToObject(test.getData().toString(), getVClass());
 	}
 	
 	/**

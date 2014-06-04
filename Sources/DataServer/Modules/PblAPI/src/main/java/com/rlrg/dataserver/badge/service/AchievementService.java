@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.badge.entity.Badge;
-import com.rlrg.dataserver.badge.entity.User;
 import com.rlrg.dataserver.badge.repository.AchievementRepository;
+import com.rlrg.dataserver.profile.entity.User;
 
 @Service
 public class AchievementService implements AchievementServiceInterface {

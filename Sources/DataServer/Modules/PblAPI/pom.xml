@@ -23,6 +23,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.rlrg.dataserver</groupId>
+			<artifactId>profile-api</artifactId>
+			<version>${rlrg-version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>1.0.0.RC4</version>

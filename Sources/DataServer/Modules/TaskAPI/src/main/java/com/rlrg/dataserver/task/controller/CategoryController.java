@@ -16,6 +16,7 @@ import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.service.CategoryService;
 import com.rlrg.dataserver.utils.base.controller.BaseController;
+import com.rlrg.utillities.domain.RestObject;
 
 @RequestMapping("/category")
 @Controller
@@ -90,10 +91,17 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "/update", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
 	public String update(@RequestParam(value="restobject", required=true) String json){
-		CategoryDTO dto = cateService.decodeSingleObject(json);//TODO
-		Category c = cateService.update(dto);
+		System.out.println("Begin");
+		CategoryDTO dto = cateService.decodeSingleObject(json);
+		String result = cateService.update(dto);
+		RestObject restObject = null;
+		if(null == result){
+			restObject = RestObject.successBlank();
+		} else {
+			restObject = RestObject.failBank(result);
+		}
 		//
-		return cateService.encodeSingleObjectFromTdata(c);
+		return cateService.encodeBlankRestObject(restObject);
 	}
 	
 	/**
