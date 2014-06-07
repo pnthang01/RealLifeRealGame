@@ -58,10 +58,10 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * If they are null, #RepositoryException will be thrown
 	 * @param dto
 	 * @return
-	 * @throws RepositoryException
+	 * @throws Exception 
 	 */
 	@Transactional
-	public void create(TaskDTO dto) throws RepositoryException{
+	public void create(TaskDTO dto) throws Exception{
 		try {
 			Category c = cateService.getCategoryByCode(dto.getCategory().getCode());
 			User u = userService.getUserById(dto.getUserId());
@@ -92,10 +92,10 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * If they are null, #RepositoryException will be thrown
 	 * @param dto
 	 * @return
-	 * @throws RepositoryException
+	 * @throws Exception 
 	 */
 	@Transactional
-	public void update(TaskDTO dto) throws RepositoryException{
+	public void update(TaskDTO dto) throws Exception{
 		try {
 			Task t = taskRepo.getTaskByIdAndUser(dto.getId(), dto.getUserId());
 			Category c = cateService.getCategoryByCode(dto.getCategory().getCode());
@@ -125,9 +125,9 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @param taskId
 	 * @param taskStatus
 	 * @param userId
-	 * @throws RepositoryException
+	 * @throws Exception 
 	 */
-	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, Long userId) throws RepositoryException{
+	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, Long userId) throws Exception{
 		try {
 			Task t = taskRepo.getTaskByIdAndUser(taskId, userId);
 			if(null == t){

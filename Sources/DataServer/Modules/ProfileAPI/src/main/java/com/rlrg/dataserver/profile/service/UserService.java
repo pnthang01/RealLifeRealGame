@@ -43,6 +43,10 @@ public class UserService extends BaseService<User, UserDTO>{
     	return userRepo.findOne(userId);
     }
     
+    public User getUserByUsername(String username){
+    	return userRepo.findUserByUsername(username);
+    }
+    
     @Transactional
     public void signup(UserDTO dto) throws Exception{
     	try{

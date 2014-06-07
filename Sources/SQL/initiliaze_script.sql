@@ -28,7 +28,6 @@ CREATE TABLE category_language (
 
 CREATE TABLE badge (
 	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`code` VARCHAR(15) UNIQUE NOT NULL,
 	`status` INT NOT NULL,
 	`eligibility` VARCHAR(100) NOT NULL
 );
@@ -75,7 +74,7 @@ CREATE TABLE achievement (
 	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`user_id` MEDIUMINT,
 	`badge_id` INT(11),
-	`achived_time` DATETIME DEFAULT NULL,
+	`achieved_time` DATETIME DEFAULT NULL,
 	CONSTRAINT fk_AchieUser FOREIGN KEY(user_id) REFERENCES `user`(id),
 	CONSTRAINT fk_AchieBadge FOREIGN KEY(badge_id) REFERENCES `badge`(id)
 );

@@ -37,6 +37,9 @@ public class LanguageController extends BaseController{
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = langService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = langService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /language/getAllLanguages");
 		return result;

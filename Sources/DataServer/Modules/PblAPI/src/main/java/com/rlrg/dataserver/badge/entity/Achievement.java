@@ -47,16 +47,16 @@ public class Achievement implements java.io.Serializable {
 	private Badge badge;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "achived_time", nullable = false, length = 19)
-	private Date achivedTime;
+	@Column(name = "achieved_time", nullable = false, length = 19)
+	private Date achievedTime;
 
 	public Achievement() {
 	}
 
-	public Achievement(User user, Badge badge, Date achivedTime) {
+	public Achievement(User user, Badge badge, Date achievedTime) {
 		this.user = user;
 		this.badge = badge;
-		this.achivedTime = achivedTime;
+		this.achievedTime = achievedTime;
 	}
 
 	public Integer getId() {
@@ -83,12 +83,12 @@ public class Achievement implements java.io.Serializable {
 		this.badge = badge;
 	}
 
-	public Date getAchivedTime() {
-		return this.achivedTime;
+	public Date getAchievedTime() {
+		return achievedTime;
 	}
 
-	public void setAchivedTime(Date achivedTime) {
-		this.achivedTime = achivedTime;
+	public void setAchievedTime(Date achievedTime) {
+		this.achievedTime = achievedTime;
 	}
 
 }

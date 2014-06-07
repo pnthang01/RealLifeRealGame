@@ -14,8 +14,7 @@ import com.rlrg.dataserver.utils.base.service.BaseService;
 @Service
 public class RoleService extends BaseService<Role, RoleDTO> {
 
-	private static final Logger LOG = LoggerFactory
-			.getLogger(RoleService.class);
+	private static final Logger LOG = LoggerFactory.getLogger(RoleService.class);
 
 	@Autowired
 	private RoleRepository roleRepo;

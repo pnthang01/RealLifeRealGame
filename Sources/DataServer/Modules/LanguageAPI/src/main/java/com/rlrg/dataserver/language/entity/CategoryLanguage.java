@@ -30,9 +30,7 @@ public class CategoryLanguage implements java.io.Serializable {
 	@JoinColumn(name = "language_id", nullable = false)
 	private Language language;
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "category_id", nullable = false)
-	@Column(name = "category_id", length = 45)
+	@Column(name = "category_id", nullable = false)
 	private Integer category;
 
 	@Column(name = "name", length = 45)
