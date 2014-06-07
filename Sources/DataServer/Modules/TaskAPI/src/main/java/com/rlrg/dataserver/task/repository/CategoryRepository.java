@@ -32,7 +32,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Jp
 			" LEFT OUTER JOIN c.cateLangs cl" +
 			" WHERE cl.language.id = :languageId" + 
 			" AND c.status = :status")
-	public List<CategoryDTO> getCategoriesDTOByStatus(@Param("status") boolean status, Pageable pageable);
+	public List<CategoryDTO> getCategoriesDTOByStatus(@Param("status") boolean status, @Param("languageId") Integer languageId, Pageable pageable);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.CategoryDTO(" +
 			"c.code, cl.cateName, cl.description, c.position, c.status)" + 

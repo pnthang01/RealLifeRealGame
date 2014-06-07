@@ -1,6 +1,5 @@
-package com.rlrg.dataserver.utils.base.exception;
+package com.rlrg.utillities.exception;
 
-import com.rlrg.dataserver.utils.common.ExceptionCodeEnum;
 
 public class BaseException extends Exception{
 	private static final long serialVersionUID = 1L;

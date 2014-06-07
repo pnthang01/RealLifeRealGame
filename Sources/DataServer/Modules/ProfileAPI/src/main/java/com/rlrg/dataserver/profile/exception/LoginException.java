@@ -1,7 +1,7 @@
 package com.rlrg.dataserver.profile.exception;
 
-import com.rlrg.dataserver.utils.base.exception.BaseException;
-import com.rlrg.dataserver.utils.common.ExceptionCodeEnum;
+import com.rlrg.utillities.exception.BaseException;
+import com.rlrg.utillities.exception.ExceptionCodeEnum;
 
 /**
  * 

@@ -58,7 +58,7 @@ CREATE TABLE user (
 	`last_name` VARCHAR(45),
 	`create_date` DATETIME NOT NULL,
 	`last_login` DATETIME,
-	`sex` TINYINT(4),
+	`gender` TINYINT(4),
 	`point` INT NOT NULL DEFAULT 0,
 	`status` TINYINT(4) NOT NULL,
 	`token` VARCHAR(45) NULL

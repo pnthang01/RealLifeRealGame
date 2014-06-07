@@ -18,9 +18,14 @@ public class CategoryDTO{
 	private Integer position;
 	
 	@JsonExport(name="status")
-	private boolean status;
+	private Boolean status;
 	
 	public CategoryDTO(){
+	}
+	
+	public CategoryDTO(String code, String name){
+		this.code = code;
+		this.name = name;
 	}
 	
 	public CategoryDTO(String code, String name, String description, Integer position, boolean status){
@@ -31,11 +36,11 @@ public class CategoryDTO{
 		this.status = status;
 	}
 	
-	public boolean getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 

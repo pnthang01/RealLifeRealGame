@@ -2,13 +2,15 @@ package com.rlrg.dataserver.profile.entity;
 
 // Generated May 22, 2014 3:25:47 PM by Hibernate Tools 3.6.0
 
-import java.util.HashSet;
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,23 +22,29 @@ import javax.persistence.Table;
 @Table(name = "role")
 public class Role implements java.io.Serializable {
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
+
+	@Column(name = "name", length = 45)
 	private String name;
-	private Set<User> users = new HashSet<User>(0);
-	private Set<Permission> permissions = new HashSet<Permission>(0);
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+	private List<User> users;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+	private List<Permission> permissions;
 
 	public Role() {
 	}
 
-	public Role(String name, Set<User> users, Set<Permission> permissions) {
+	public Role(String name, List<User> users, List<Permission> permissions) {
 		this.name = name;
 		this.users = users;
 		this.permissions = permissions;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
 	}
@@ -45,7 +53,6 @@ public class Role implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "name", length = 45)
 	public String getName() {
 		return this.name;
 	}
@@ -54,21 +61,19 @@ public class Role implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	public Set<User> getUsers() {
+	public List<User> getUsers() {
 		return this.users;
 	}
 
-	public void setUsers(Set<User> users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	public Set<Permission> getPermissions() {
+	public List<Permission> getPermissions() {
 		return this.permissions;
 	}
 
-	public void setPermissions(Set<Permission> permissions) {
+	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
 	}
 

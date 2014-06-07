@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.rlrg.dataserver.utils.base.exception.BaseException;
+import com.rlrg.utillities.exception.BaseException;
 
 public abstract class BaseController {
 	private static final Logger LOG = LoggerFactory.getLogger(BaseController.class);

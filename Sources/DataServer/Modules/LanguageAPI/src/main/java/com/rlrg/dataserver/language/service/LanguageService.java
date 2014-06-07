@@ -1,5 +1,7 @@
 package com.rlrg.dataserver.language.service;
 
+import java.util.List;
+
 import javax.persistence.Transient;
 
 import org.slf4j.Logger;
@@ -30,11 +32,20 @@ public class LanguageService extends BaseService<Language, LanguageDTO>{
 	public Language getLanguageByI18N(String i18n){
 		return langRepo.getLanguageByI18N(i18n);
 	}
+	
+	public List<Language> getAllLanguage(){
+		return langRepo.getAllLanguages();
+	}
 
 	@Override
 	public LanguageDTO convertEntityToDTO(Language data) {
-		// TODO Auto-generated method stub
-		return null;
+		LanguageDTO dto = new LanguageDTO();
+		dto.setCountry(data.getCountry());
+		dto.setI18n(data.getI18n());
+		dto.setId(data.getId());
+		dto.setLanguage(data.getLanguage());
+		//
+		return dto;
 	}
 
 	@Override

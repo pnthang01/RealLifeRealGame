@@ -32,6 +32,7 @@
 			<artifactId>language-api</artifactId>
 			<version>${rlrg-version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.rlrg.dataserver</groupId>
 			<artifactId>dataserver-utils</artifactId>

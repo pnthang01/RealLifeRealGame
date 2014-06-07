@@ -1,5 +1,7 @@
 package com.rlrg.dataserver.language.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -13,4 +15,7 @@ public interface LanguageRepository extends JpaRepository<Language, Integer>, Jp
 	
 	@Query("SELECT l FROM Language l WHERE l.i18n = :i18n")
 	public Language getLanguageByI18N(@Param("i18n") String i18n);
+	
+	@Query("SELECT l FROM Language l")
+	public List<Language> getAllLanguages();
 }

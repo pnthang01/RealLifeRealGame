@@ -1,4 +1,4 @@
-package com.rlrg.dataserver.utils.common;
+package com.rlrg.utillities.exception;
 
 public enum ExceptionCodeEnum {
 	// Common error

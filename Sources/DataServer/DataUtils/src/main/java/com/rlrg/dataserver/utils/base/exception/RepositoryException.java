@@ -1,6 +1,7 @@
 package com.rlrg.dataserver.utils.base.exception;
 
-import com.rlrg.dataserver.utils.common.ExceptionCodeEnum;
+import com.rlrg.utillities.exception.BaseException;
+import com.rlrg.utillities.exception.ExceptionCodeEnum;
 
 public class RepositoryException extends BaseException{
 	private static final long serialVersionUID = 1L;

@@ -19,8 +19,16 @@ import javax.persistence.Table;
 @Table(name = "permission")
 public class Permission implements java.io.Serializable {
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
+
+	@Column(name = "regional", length = 45)
 	private String regional;
 
 	public Permission() {
@@ -35,9 +43,6 @@ public class Permission implements java.io.Serializable {
 		this.regional = regional;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
 	}
@@ -46,8 +51,6 @@ public class Permission implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id", nullable = false)
 	public Role getRole() {
 		return this.role;
 	}
@@ -56,7 +59,6 @@ public class Permission implements java.io.Serializable {
 		this.role = role;
 	}
 
-	@Column(name = "regional", length = 45)
 	public String getRegional() {
 		return this.regional;
 	}

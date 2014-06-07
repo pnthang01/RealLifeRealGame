@@ -12,14 +12,18 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
 import com.rlrg.utillities.annotation.JsonObject;
 import com.rlrg.utillities.domain.RestObject;
+import com.rlrg.utillities.exception.ConvertException;
 
 public class JsonExporter {
-
+	private static Logger LOG = LoggerFactory.getLogger(JsonExporter.class);
+	
 	/**
 	 * Put an object to Map for encoding to json, it also encodes a list of
 	 * parameted object
@@ -27,8 +31,9 @@ public class JsonExporter {
 	 * @param value
 	 * @param clazz
 	 * @return
+	 * @throws IllegalAccessException 
 	 */
-	private Map<String, Object> putObjectToJSONMap(final Object value,final Class clazz) {
+	private Map<String, Object> putObjectToJSONMap(final Object value,final Class<?> clazz){
 		final Map<String, Object> jsonValue = new LinkedHashMap<String, Object>();
 		final Field[] fields = clazz.getDeclaredFields();
 		//
@@ -46,7 +51,7 @@ public class JsonExporter {
 				JsonObject jsonObjAnno = field.getAnnotation(JsonObject.class);
 				if (null != jsonObjAnno && null != field.get(value)) {
 					final Object fieldValue = field.get(value);
-					final Class objClass = fieldValue.getClass();
+					final Class<?> objClass = fieldValue.getClass();
 					// This field is a list, so it would be parse each object
 					// from the list to json
 					Object storedValue = null;
@@ -79,24 +84,33 @@ public class JsonExporter {
 						}
 						if(null != jsonObjAnno && !jsonObjAnno.name().isEmpty()){
 							Map<String, Object> jsonObj = new LinkedHashMap<String, Object>();
-							jsonObj.put(objAnno.pluralName(), objTempValue);
+							jsonObj.put(objAnno.singularName(), objTempValue);
 							jsonValue.put(jsonObjAnno.name(), jsonObj);
 						} else {
-							jsonValue.put(objAnno.pluralName(), objTempValue);
+							jsonValue.put(objAnno.singularName(), objTempValue);
 						}
 					}
 				}
 			}
 			return jsonValue;
-		} catch (NullPointerException npe) {
+		} catch (NullPointerException e) {
+			LOG.error("Error while encode object to json for class: " + clazz.getName(), e);
 			return null;
 		} catch (IllegalArgumentException e) {
+			LOG.error("Error while encode object to json for class: " + clazz.getName(), e);
 			return null;
 		} catch (IllegalAccessException e) {
+			LOG.error("Error while encode object to json for class: " + clazz.getName(), e);
 			return null;
 		}
 	}
 
+	/**
+	 * Encode a blank data #RestObject to json
+	 * @param restObj
+	 * @return
+	 * @throws IllegalAccessException 
+	 */
 	public String encodeBlankRestObject(RestObject restObj){
 		final Map<String, Object> jsonValue = putObjectToJSONMap(restObj, RestObject.class);
 		return JSONValue.toJSONString(jsonValue);
@@ -108,11 +122,13 @@ public class JsonExporter {
 	 * @param value
 	 * @param clazz
 	 * @return
+	 * @throws ConvertException 
+	 * @throws IllegalAccessException 
 	 */
-	public <T> String encodeObjectToJson(final T value) {
+	public <T> String encodeObjectToJson(final T value) throws ConvertException{
  		JsonDTO dtoAnno = (JsonDTO) value.getClass().getAnnotation(JsonDTO.class);
 		if(null == dtoAnno){
-			return null;
+			throw new ConvertException("This DTO doesn't containt JsonDTO annotation.");
 		}
 		final RestObject restObject = RestObject.fromData(value);
 		//
@@ -126,14 +142,16 @@ public class JsonExporter {
 	 * @param values
 	 * @param clazz
 	 * @return
+	 * @throws ConvertException 
+	 * @throws IllegalAccessException 
 	 */
-	public <T> String encodeObjectsToJson(final List<T> values) {
-		if(null == values){
-			return null;
+	public <T> String encodeObjectsToJson(final List<T> values) throws ConvertException {
+		if(null == values || values.isEmpty() || null == values.get(0)){
+			throw new ConvertException("The list of T values is null or empty.");
 		}
 		final JsonDTO dtoAnno = (JsonDTO) values.get(0).getClass().getAnnotation(JsonDTO.class);
 		if (null == dtoAnno) {
-			return null;
+			throw new ConvertException("This DTO doesn't containt JsonDTO annotation.");
 		}
 		final RestObject restObject = RestObject.fromData(values);
 		final Map<String, Object> jsonValue = putObjectToJSONMap(restObject, RestObject.class);
@@ -150,23 +168,26 @@ public class JsonExporter {
 	 */
 	private <T> T getObjectFromJSONString(final String jsonStr,
 			final Class<T> clazz) {
-
+		//Parse json string to JSON Object to manage
 		final JSONObject jObj = (JSONObject) JSONValue.parse(jsonStr);
 		final Field[] fields = clazz.getDeclaredFields();
 		try {
 			final T returnedObj = clazz.newInstance();
 			for (Field field : fields) {
 				field.setAccessible(true);
-				//
+				// If this field is primitive type, it will have JsonExport annotation
+				// We will cast string to their type and set value
 				JsonExport jsonAnno = field.getAnnotation(JsonExport.class);
-				if (null != jsonAnno) {
+				if (null != jsonAnno && null != jObj.get(jsonAnno.name())) {
 					String valueTmp = jObj.get(jsonAnno.name()).toString();
 					field.set(returnedObj, castValue(field.getType(), valueTmp));
 				}
-				//
+				// Otherwise, this field is a object type.
 				JsonObject jsonObj = field.getAnnotation(JsonObject.class);
 				if (null != jsonObj) {
-					Class objClass = field.getType();
+					Class<?> objClass = field.getType();
+					//If this object type is a list, we will get generic class of this list.
+					//After that, do a recursive loop of this method to decode json to this class and set value.
 					if (objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")) {
 						List list = new ArrayList();
 						Class genericClass = getGenericClassOfList(field);
@@ -182,8 +203,12 @@ public class JsonExporter {
 							field.set(returnedObj, list);
 						}
 					} else if(objClass.getName().equals("java.lang.Object")){
-						field.set(returnedObj, jObj.get(jsonObj.name()).toString());
+						// If this class is just a Object class, no need to cast value. Instead set json string directly
+						if(null != jObj.get(jsonObj.name())){
+							field.set(returnedObj, jObj.get(jsonObj.name()).toString());
+						}
 					} else {
+						//If this is just an object type, do a recursive method to decode json string to this class and set value.
 						JsonDTO objAnno = (JsonDTO) objClass.getAnnotation(JsonDTO.class);
 						if (null != objAnno && null != jObj.get(objAnno.singularName())) {
 							String valueTmp = jObj.get(objAnno.singularName()).toString();
@@ -196,20 +221,20 @@ public class JsonExporter {
 			}
 			return returnedObj;
 
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
+		} catch (NullPointerException e) {
+			LOG.error("Error while decode json to object for class: " + clazz.getName(), e);
 			return null;
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			LOG.error("Error while decode json to object for class: " + clazz.getName(), e);
 			return null;
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			LOG.error("Error while decode json to object for class: " + clazz.getName(), e);
 			return null;
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			LOG.error("Error while decode json to object for class: " + clazz.getName(), e);
 			return null;
 		} catch (ParseException e) {
-			e.printStackTrace();
+			LOG.error("Error while decode json to object for class: " + clazz.getName(), e);
 			return null;
 		}
 	}
@@ -258,7 +283,6 @@ public class JsonExporter {
 	 * @return
 	 */
 	public <T> T decodeJsonToObject(final String jsonStr, final Class<T> clazz) {
-		//final RestObject restObject = getObjectFromJSONString(jsonStr, RestObject.class);
 		final JSONObject jObj = (JSONObject) JSONValue.parse(jsonStr);
 	
 		final JsonDTO dtoAnno = clazz.getAnnotation(JsonDTO.class);
@@ -288,7 +312,7 @@ public class JsonExporter {
 	 * @return
 	 * @throws ParseException
 	 */
-	private Object castValue(Class type, String value) throws ParseException {
+	private Object castValue(Class<?> type, String value) throws ParseException {
 		if (type.getName().equals("java.lang.Integer") || int.class.equals(type)) {
 			return Integer.valueOf(value);
 		} else if (type.getName().equals("java.lang.Long") || long.class.equals(type)) {
@@ -299,12 +323,18 @@ public class JsonExporter {
 			return Boolean.valueOf(value);
 		} else if (type.getName().equals("java.util.Date")) {
 			return new Date(Long.valueOf(value));
+		} else if (type.isEnum()){
+			for(Object obj : type.getEnumConstants()){
+				if(obj.toString().equals(value))
+					return obj;
+			}
+			return null;
 		} else {
 			return value;
 		}
 	}
 
-	private Class getGenericClassOfList(Field field) {
+	private Class<?> getGenericClassOfList(Field field) {
 		ParameterizedType stringListType = (ParameterizedType) field.getGenericType();
 		Class<?> genericClass = (Class<?>) stringListType.getActualTypeArguments()[0];
 		return genericClass;

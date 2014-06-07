@@ -2,6 +2,7 @@ package com.rlrg.dataserver.task.dto;
 
 import java.util.Date;
 
+import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
 import com.rlrg.utillities.annotation.JsonObject;
@@ -11,6 +12,9 @@ public class TaskDTO {
 
 	@JsonExport(name = "ID")
 	private Long id;
+	
+	@JsonExport(name = "UserID")
+	private Long userId;
 
 	@JsonObject
 	private CategoryDTO category;
@@ -31,10 +35,36 @@ public class TaskDTO {
 	private Integer difficultyLevel;
 
 	@JsonExport(name = "Status")
-	private Integer status;
+	private TaskStatus status;
 
 	@JsonExport(name = "Point")
 	private Integer point;
+	
+	public TaskDTO(){
+	}
+	
+	public TaskDTO(Long id, String cateCode, String cateName, String name, String description, 
+			Date completeTime, Date startTime, Integer diffcultyLevel,
+			TaskStatus status, Integer point){
+		this.id = id;
+		CategoryDTO cate = new CategoryDTO(cateCode, cateName);
+		this.category = cate;
+		this.name = name;
+		this.description = description;
+		this.completeTime = completeTime;
+		this.startTime = startTime;
+		this.difficultyLevel = diffcultyLevel;
+		this.status = status;
+		this.point = point;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
 	public Long getId() {
 		return id;
@@ -92,11 +122,11 @@ public class TaskDTO {
 		this.difficultyLevel = difficultyLevel;
 	}
 
-	public Integer getStatus() {
+	public TaskStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(TaskStatus status) {
 		this.status = status;
 	}
 
@@ -118,7 +148,7 @@ public class TaskDTO {
 		sb.append(" [Name = ").append(name).append("]");
 		sb.append(" [Complete Time = ").append(completeTime).append("]");
 		sb.append(" [Point = ").append(point).append("]");
-		sb.append(" [Status = ").append(status).append("]");
+		sb.append(" [Status = ").append(status.name()).append("]");
 		//
 		return sb.toString();
 	}

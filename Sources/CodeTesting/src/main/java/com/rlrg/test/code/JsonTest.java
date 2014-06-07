@@ -17,7 +17,9 @@ import org.json.simple.parser.ParseException;
 
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
+import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.utillities.domain.RestObject;
+import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
 
 public class JsonTest {
@@ -58,7 +60,7 @@ public class JsonTest {
 		System.out.print(jsonText);
 	}
 
-	public static void encodeCategoryObject() {
+	public static void encodeCategoryObject() throws ConvertException {
 		CategoryDTO c = new CategoryDTO();
 		c.setCode("Category Code");
 		c.setDescription("Description");
@@ -143,7 +145,7 @@ public class JsonTest {
 		System.out.println(task);
 	}
 	
-	public static void testEncodeTask(){
+	public static void testEncodeTask() throws ConvertException{
 		TaskDTO task = new TaskDTO();
 		//
 		CategoryDTO c = new CategoryDTO();
@@ -160,13 +162,13 @@ public class JsonTest {
 		task.setName("Task Name");
 		task.setPoint(12);
 		task.setStartTime(new Date());
-		task.setStatus(2);
+		task.setStatus(TaskStatus.COMPLETED);
 		//
 		String temp = jsonExporter.encodeObjectToJson(task);
 		System.out.println(temp);
 	}
 	
-	public static void testEncodeTasks(){
+	public static void testEncodeTasks() throws ConvertException{
 		TaskDTO task = new TaskDTO();
 		//
 		List<CategoryDTO> list = new ArrayList<CategoryDTO>();
@@ -189,7 +191,7 @@ public class JsonTest {
 		task.setName("Task Name");
 		task.setPoint(12);
 		task.setStartTime(new Date());
-		task.setStatus(2);
+		task.setStatus(TaskStatus.CANCELLED);
 		//
 		String temp = jsonExporter.encodeObjectToJson(task);
 		System.out.println(temp);
@@ -213,7 +215,7 @@ public class JsonTest {
 		}
 	}
 	
-	public static void encodeCategoryObjects() {
+	public static void encodeCategoryObjects() throws ConvertException {
 		CategoryDTO c1 = new CategoryDTO();
 		c1.setCode("Category Code 1");
 		c1.setDescription("Description 1");

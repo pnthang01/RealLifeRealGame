@@ -35,6 +35,16 @@
 			<version>${rlrg-version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.rlrg.dataserver</groupId>
+			<artifactId>profile-api</artifactId>
+			<version>${rlrg-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rlrg.dataserver</groupId>
+			<artifactId>pbl-api</artifactId>
+			<version>${rlrg-version}</version>
+		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.3.3</version>

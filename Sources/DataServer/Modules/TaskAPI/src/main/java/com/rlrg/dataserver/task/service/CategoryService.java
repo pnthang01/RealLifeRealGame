@@ -18,6 +18,7 @@ import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.repository.CategoryRepository;
 import com.rlrg.dataserver.utils.base.controller.WebVariables;
+import com.rlrg.dataserver.utils.base.exception.RepositoryException;
 import com.rlrg.dataserver.utils.base.service.BaseService;
 import com.rlrg.utillities.json.JsonExporter;
 
@@ -25,7 +26,7 @@ import com.rlrg.utillities.json.JsonExporter;
 public class CategoryService extends BaseService<Category, CategoryDTO>{
 
 	@Transient
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private final static Logger LOG = LoggerFactory.getLogger(CategoryService.class);
 
 	@Autowired
 	private CategoryRepository cateRepo;
@@ -44,15 +45,20 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 	}
 	
 	@Transactional
-	public Category updateStatus(String code, boolean status){
-		Category c = cateRepo.getCategoryByCode(code);
-		c.setStatus(status);
-		//
-		return cateRepo.saveAndFlush(c);
+	public void updateStatus(String code, boolean status) throws RepositoryException{
+		try {
+			Category c = cateRepo.getCategoryByCode(code);
+			c.setStatus(status);
+			cateRepo.save(c);
+			//
+		} catch(Exception e){
+			LOG.error("<< Error occurs when updating category'status with code: " + code, e);
+			throw new RepositoryException("Error occurs when updating category.");
+		}
 	}
 	
 	@Transactional
-	public String update(CategoryDTO dto){
+	public void update(CategoryDTO dto) throws RepositoryException{
 		try {
 			Category c = cateRepo.getCategoryByCode(dto.getCode());
 			//
@@ -63,11 +69,11 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 			//
 			c.setPosition(dto.getPosition());
 			c.setStatus(dto.getStatus());
-			cateRepo.saveAndFlush(c);
+			cateRepo.save(c);
 			//
-			return null;
 		} catch(Exception e){
-			return e.getMessage();
+			LOG.error("<< Error occurs when updating category'status with code: " + dto.getCode(), e);
+			throw new RepositoryException("Error occurs when updating category.");
 		}
 	}
 	
@@ -101,11 +107,20 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 	}
 	
 	/**
-	 * Get a category bases on their code
+	 * Get #Category bases on their code
 	 * @param code
 	 * @return
 	 */
-	public CategoryDTO getCategoryByCode(String code){
+	public Category getCategoryByCode(String code){
+		return cateRepo.getCategoryByCode(code);
+	}
+	
+	/**
+	 * Get a #CategoryDTO bases on their code
+	 * @param code
+	 * @return
+	 */
+	public CategoryDTO getCategoryDTOByCode(String code){
 		return cateRepo.getCategoryDTOByCode(code, DEFAULT_LANGUAGE.getId());
 	}
 
@@ -121,7 +136,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 		}
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
 		//
-		return cateRepo.getCategoriesDTOByStatus(status, pageRequest);
+		return cateRepo.getCategoriesDTOByStatus(status, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
 
 	@Override

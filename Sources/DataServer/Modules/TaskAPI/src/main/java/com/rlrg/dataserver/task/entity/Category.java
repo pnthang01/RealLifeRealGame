@@ -29,19 +29,10 @@ public class Category implements Serializable, Comparable<Category> {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
-//	@NotNull
-//	@Size(min = 3, max = 45)
-//	@Column(name = "name")
-//	private String name;
-
+	
 	@NotNull
 	@Column(name = "code")
 	private String code;
-//
-//	@Size(min = 0, max = 500)
-//	@Column(name = "description")
-//	private String description;
 
 	@Column(name = "position")
 	private int position;
