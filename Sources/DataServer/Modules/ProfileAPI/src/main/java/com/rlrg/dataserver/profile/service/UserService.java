@@ -84,12 +84,14 @@ public class UserService extends BaseService<User, UserDTO>{
 				throw new RepositoryException("Cannot find entity");
     		}
 	    	User user = new User();
-	    	user.setCreateDate(new Date());
+	    	user.setUsername(dto.getUsername());
+	    	user.setPassword(dto.getPassword());
 	    	user.setEmail(dto.getEmail());
 	    	user.setFirstName(dto.getFirstName());
+	    	user.setCreateDate(new Date());
 	    	user.setRole(defaultRole);
 	    	user.setStatus(UserStatus.CONFIRM);
-	    	user.setUsername(dto.getUsername());
+	    	user.setPoint(0);
 	    	//
 	    	userRepo.save(user);
     	} catch(Exception e){
@@ -101,9 +103,9 @@ public class UserService extends BaseService<User, UserDTO>{
     @Transactional
     public void updateProfile(UserDTO dto) throws Exception{
     	try{
-    		User user = userRepo.getUserByUsernameAndToken(dto.getUsername(), dto.getToken());
+    		User user = this.getUserByToken(dto.getToken());
     		if(null == user){
-				LOG.error("Cannot find User with Username: {} and Token:{}", dto.getUsername(), dto.getToken());
+				LOG.error("Cannot find User with Token:{}", dto.getToken());
 				throw new RepositoryException("Cannot find entity");
     		}
     		user.setFirstName(dto.getFirstName());
@@ -118,13 +120,20 @@ public class UserService extends BaseService<User, UserDTO>{
     	}
     }
     
+    /**
+     * Update #User's Role with token, which is can help to retrieve User's Id from Token System
+     * @param username
+     * @param token
+     * @param roleId
+     * @throws Exception
+     */
     @Transactional
-    public void updateUserRole(String username, String token, Integer roleId) throws Exception{
+    public void updateUserRole(String token, Integer roleId) throws Exception{
     	try{
-    		User user = userRepo.getUserByUsernameAndToken(username, token);
+    		User user = this.getUserByToken(token);
     		Role role = roleService.getRoleById(roleId);
     		if(null == user || null == role){
-				LOG.error("Cannot find User with Username: {} and Token:{} And/Or Cannot find Role with Id:{}", username, token, roleId);
+				LOG.error("Cannot find User with Token:{} And/Or Cannot find Role with Id:{}", token, roleId);
 				throw new RepositoryException("Cannot find entity");
     		}
     		user.setRole(role);
@@ -157,12 +166,18 @@ public class UserService extends BaseService<User, UserDTO>{
         }
     }
     
+    /**
+     * Update #User's point bases on token, which is can retrieve UserId from UserSystem
+     * @param token
+     * @param point
+     * @throws Exception
+     */
     @Transactional
-    public void updateUserPoint(String username, String token, Integer point) throws Exception{
+    public void updateUserPoint(String token, Integer point) throws Exception{
     	try{
-    		User user = userRepo.getUserByUsernameAndToken(username, token);
+    		User user = this.getUserByToken(token);
     		if(null == user){
-				LOG.error("Cannot find User with Username: {} and Token:{}", username, token);
+				LOG.error("Cannot find User with Token:{}", token);
 				throw new RepositoryException("Cannot find entity");
     		}
     		user.setPoint(user.getPoint() + point);

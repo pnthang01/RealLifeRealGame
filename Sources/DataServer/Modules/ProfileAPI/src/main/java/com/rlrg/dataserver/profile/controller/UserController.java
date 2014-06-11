@@ -72,9 +72,9 @@ public class UserController extends BaseController {
 		return result;
     }
 	
-	@RequestMapping(value = "/getAllUser", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/getAllUser", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-    public String getAllUser(@RequestParam("pageNumber") Integer pageNumber){
+    public String getAllUser(@RequestParam(value="pageNumber", required=false) Integer pageNumber){
 		String result = null;
 		LOG.info("<< Starting webservice /user/getAllUser with parameter: pageNumber={}", pageNumber);
 		try {
@@ -113,10 +113,23 @@ public class UserController extends BaseController {
 //		return result;
 //    }
     
-    @RequestMapping(value = "/login", method = POST)
+    @RequestMapping(value = "/login", produces = "application/json", method=RequestMethod.POST)
     @ResponseBody
-    public RestObject login(@RequestBody LoginForm loginParam) throws BaseException {
-        UserDTO userDTO = userService.login(loginParam);
-        return RestObject.fromData(userDTO);
+    public String login(@RequestBody LoginForm loginParam) throws BaseException {
+		String result = null;
+		LOG.info("<< Starting webservice /user/getAllUser with parameter: loginParam={}", loginParam);
+		try {
+			UserDTO userDTO = userService.login(loginParam);
+			//
+			result = userService.encodeSingleObjectFromVdto(userDTO);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = userService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = userService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /user/getAllUser");
+		return result;
     }
 }
