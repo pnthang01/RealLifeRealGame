@@ -11,6 +11,6 @@ import com.rlrg.dataserver.language.entity.BadgeLanguage;
 @Repository
 public interface BadgeLanguageRepository  extends JpaRepository<BadgeLanguage, Integer>, JpaSpecificationExecutor<BadgeLanguage>{
 	
-	@Query("SELECT bl FROM BadgeLanguage bl WHERE bl.badge = :badgeId AND cl.language.id = :languageId")
+	@Query("SELECT bl FROM BadgeLanguage bl WHERE bl.badge = :badgeId AND bl.language.id = :languageId")
 	public BadgeLanguage getBadgeLangByBadgeIdAndLangId(@Param("badgeId") Integer badgeId, @Param("languageId") Integer languageId);
 }

@@ -56,8 +56,7 @@ public class LanguageService extends BaseService<Language, LanguageDTO>{
 
 	@Override
 	public Class<LanguageDTO> getVClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return LanguageDTO.class;
 	}
 
 }

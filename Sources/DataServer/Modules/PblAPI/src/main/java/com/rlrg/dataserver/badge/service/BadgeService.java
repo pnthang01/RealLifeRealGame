@@ -60,14 +60,22 @@ public class BadgeService extends BaseService<Badge, BadgeDTO>{
 	public void update(BadgeDTO dto) throws RepositoryException{
 		try {
 			Badge b = badgeRepo.findOne(dto.getId());
+			if(null == b){
+				LOG.error("Cannot find entity Badge with BadgeID:{}", dto.getId());
+				throw new RepositoryException("Cannot find entity");				
+			}
 			//
 			BadgeLanguage badgeLang = badgeLangService.getBadgeLangByBadgeIdAndLangId(b.getId(), DEFAULT_LANGUAGE.getId());
+			if(null == badgeLang){
+				LOG.error("Cannot find entity BadgeLanguage with BadgeID:{}", dto.getId());
+				throw new RepositoryException("Cannot find entity");		
+			}
 			badgeLang.setName(dto.getName());
 			badgeLang.setDescription(dto.getDescription());
 			badgeLangService.save(badgeLang);
 			//
 			b.setStatus(dto.getStatus());
-			b.setStatus(dto.getStatus());
+			b.setEligibility(dto.getEligibility());
 			badgeRepo.save(b);
 			//
 		} catch(Exception e){
@@ -91,8 +99,7 @@ public class BadgeService extends BaseService<Badge, BadgeDTO>{
 
 	@Override
 	public Class<BadgeDTO> getVClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return BadgeDTO.class;
 	}
 
 }

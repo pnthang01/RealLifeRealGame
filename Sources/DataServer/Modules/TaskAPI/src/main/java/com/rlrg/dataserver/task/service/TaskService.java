@@ -20,9 +20,11 @@ import com.rlrg.dataserver.task.entity.Task;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
 import com.rlrg.dataserver.utils.base.controller.WebVariables;
+import com.rlrg.dataserver.utils.base.domain.UserToken;
 import com.rlrg.dataserver.utils.base.exception.RepositoryException;
+import com.rlrg.dataserver.utils.base.exception.UserTokenException;
 import com.rlrg.dataserver.utils.base.service.BaseService;
-import com.rlrg.utillities.json.JsonExporter;
+import com.rlrg.dataserver.utils.base.service.CommonService;
 
 @Service
 public class TaskService extends BaseService<Task, TaskDTO>{
@@ -43,7 +45,7 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	private UserService userService;
 	
 	@Autowired
-	private JsonExporter jsonExporter;
+	private CommonService commonService;
 	
 	public Task findById(Long id){
 		return taskRepo.findOne(id);
@@ -127,11 +129,13 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @param userId
 	 * @throws Exception 
 	 */
-	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, Long userId) throws Exception{
+	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, String token) throws Exception {
 		try {
-			Task t = taskRepo.getTaskByIdAndUser(taskId, userId);
+			UserToken userToken = commonService.getUserToken(token);
+			//
+			Task t = taskRepo.getTaskByIdAndUser(taskId, userToken.getId());
 			if(null == t){
-				LOG.error("Cannot find entity Task with TaskId:{} and UserId:{}", taskId, userId);
+				LOG.error("Cannot find entity Task with TaskId:{} and UserId:{}", taskId, userToken.getId());
 				throw new RepositoryException("Cannot find entity");
 			} 
 			t.setStatus(taskStatus);
@@ -158,13 +162,15 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @param userId
 	 * @param pageNumber
 	 * @return
+	 * @throws UserTokenException 
 	 */
-	public List<TaskDTO> getTasksByNameAndUser(String name, Long userId, Integer pageNumber){
+	public List<TaskDTO> getTasksByNameAndUser(String name, String token, Integer pageNumber) throws UserTokenException{
+		UserToken userToken = commonService.getUserToken(token);
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
-		return taskRepo.getTasksByNameAndUser(name, userId, DEFAULT_LANGUAGE.getId(), pageRequest);
+		return taskRepo.getTasksByNameAndUser(name, userToken.getId(), DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
 	
 	/**
@@ -173,13 +179,15 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @param categoryId
 	 * @param userId
 	 * @return
+	 * @throws UserTokenException 
 	 */
-	public List<TaskDTO> getTaskByCategoryAndUser(Integer categoryId, Long userId, Integer pageNumber){
+	public List<TaskDTO> getTaskByCategoryAndUser(String categoryCode, String token, Integer pageNumber) throws UserTokenException{
+		UserToken userToken = commonService.getUserToken(token);
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
-		return taskRepo.getTasksByCategoryAndUser(categoryId, userId, DEFAULT_LANGUAGE.getId(), pageRequest);
+		return taskRepo.getTasksByCategoryAndUser(categoryCode, userToken.getId(), DEFAULT_LANGUAGE.getId(), pageRequest);
 	}	
 
 

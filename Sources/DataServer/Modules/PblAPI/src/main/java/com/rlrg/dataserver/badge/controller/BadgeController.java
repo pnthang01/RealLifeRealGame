@@ -60,9 +60,10 @@ public class BadgeController extends BaseController{
 	 */
 	@RequestMapping(value = "/getBadgesByStatus", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-	public String getBadgesByStatus(@RequestParam(value="status", required=true) BadgeStatus status, @RequestParam(value="pageNumber") Integer pageNumber){
+	public String getBadgesByStatus(@RequestParam(value="status", required=true) BadgeStatus status,
+			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
 		String result = null;
-		LOG.info("<< Starting webservice /badge/getBadgesByStatus with parameters: pageNumber={}", pageNumber);
+		LOG.info("<< Starting webservice /badge/getBadgesByStatus with parameters: status={}, pageNumber={}", status.name(), pageNumber);
 		try {
 			List<BadgeDTO> listDto = badgeService.getBadgesByStatus(status, pageNumber);
 			//

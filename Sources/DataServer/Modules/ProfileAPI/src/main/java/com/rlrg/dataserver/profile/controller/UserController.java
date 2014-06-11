@@ -92,27 +92,26 @@ public class UserController extends BaseController {
 		return result;
     }
     
-	
-	@RequestMapping(value = "/updateUserRole", produces = "application/json", method=RequestMethod.POST)
-	@ResponseBody
-    public String updateUserRole(@RequestParam("username") String username, @RequestParam("token") String token,
-    		@RequestParam("roleId") Integer roleId){
-		String result = null;
-		LOG.info("<< Starting webservice /user/updateUserRole with parameters: username={}, token={}, roleId={}", username, token, roleId);
-		try {
-			userService.updateUserRole(username, token, roleId);
-			RestObject restObject = RestObject.successBlank();
-			result = userService.encodeBlankRestObject(restObject);
-		} catch(BaseException e){
-			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = userService.encodeBlankRestObject(restObject);
-		} catch(Exception e){
-			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = userService.encodeBlankRestObject(restObject);
-		}
-		LOG.info("<< End webservice /user/updateUserRole");
-		return result;
-    }
+//	
+//	@RequestMapping(value = "/updateUserRole", produces = "application/json", method=RequestMethod.POST)
+//	@ResponseBody
+//    public String updateUserRole(@RequestParam("token") String token, @RequestParam("roleId") Integer roleId){
+//		String result = null;
+//		LOG.info("<< Starting webservice /user/updateUserRole with parameters: token={}, roleId={}", token, roleId);
+//		try {
+//			userService.updateUserRole(token, roleId);
+//			RestObject restObject = RestObject.successBlank();
+//			result = userService.encodeBlankRestObject(restObject);
+//		} catch(BaseException e){
+//			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+//			result = userService.encodeBlankRestObject(restObject);
+//		} catch(Exception e){
+//			RestObject restObject = RestObject.failBank(e.getMessage());
+//			result = userService.encodeBlankRestObject(restObject);
+//		}
+//		LOG.info("<< End webservice /user/updateUserRole");
+//		return result;
+//    }
     
     @RequestMapping(value = "/login", method = POST)
     @ResponseBody

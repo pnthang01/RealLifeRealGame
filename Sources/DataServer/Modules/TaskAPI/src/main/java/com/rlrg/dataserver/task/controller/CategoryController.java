@@ -37,7 +37,7 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/getCategoriesByStatus", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-	public String getCategoriesByStatus(@RequestParam(value="status",required=true) boolean status, @RequestParam(value="pageNumber",required=true) int pageNumber){
+	public String getCategoriesByStatus(@RequestParam(value="status",required=true) boolean status, @RequestParam(value="pageNumber",required=false) int pageNumber){
 		String result = null;
 		LOG.info("<< Starting webservice /category/getCategoriesByStatus with parameters: status={}, pageNumber={}", status, pageNumber);
 		try {
@@ -64,7 +64,7 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/getAllCategories", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-	public String getAllCategories(@RequestParam(value="pageNumber") int pageNumber, HttpServletRequest request, HttpServletResponse response){
+	public String getAllCategories(@RequestParam(value="pageNumber", required=false) int pageNumber, HttpServletRequest request, HttpServletResponse response){
 		String result = null;
 		LOG.info("<< Starting webservice /category/getAllCategories with parameters: pageNumber={}", pageNumber);
 		try {
@@ -171,7 +171,8 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/searchCategories", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-	public String searchCategoriesByKeyword(@RequestParam(value="keyword", required=true) String keyword, @RequestParam(value="pageNumber") Integer pageNumber){
+	public String searchCategoriesByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
+			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
 		String result = null;
 		LOG.info("<< Starting webservice /category/searchCategories with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
 		try {

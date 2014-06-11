@@ -61,8 +61,16 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 	public void update(CategoryDTO dto) throws RepositoryException{
 		try {
 			Category c = cateRepo.getCategoryByCode(dto.getCode());
+			if(null == c){
+				LOG.error("Cannot find entity Category with code:{}.", dto.getCode());
+				throw new RepositoryException("Cannot find entity");
+			}
 			//
 			CategoryLanguage cateLang = cateLangService.getCateLangByCateIdAndLangId(c.getId(), DEFAULT_LANGUAGE.getId());
+			if(null == cateLang){
+				LOG.error("Cannot find entity CategoryLanguage with code:{}.", dto.getCode());
+				throw new RepositoryException("Cannot find entity");
+			}
 			cateLang.setCateName(dto.getName());
 			cateLang.setDescription(dto.getDescription());
 			cateLangService.save(cateLang);

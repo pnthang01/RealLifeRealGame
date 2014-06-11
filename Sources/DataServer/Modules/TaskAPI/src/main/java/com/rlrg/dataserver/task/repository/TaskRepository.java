@@ -30,8 +30,8 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 			" t.completeTime, t.startTime, t.difficultyLevel, t.status, t.point"	+
 			")"  +
 			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl" +
-			" WHERE c.id = :categoryId AND t.user.id = :userId AND cl.language.id = :languageId")
-	public List<TaskDTO> getTasksByCategoryAndUser(@Param("categoryId") Integer categoryId, @Param("userId") Long userId
+			" WHERE c.code = :categoryCode AND t.user.id = :userId AND cl.language.id = :languageId")
+	public List<TaskDTO> getTasksByCategoryAndUser(@Param("categoryCode") String categoryCode, @Param("userId") Long userId
 			, @Param("languageId") Integer languageId, Pageable pageable);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.TaskDTO(" +

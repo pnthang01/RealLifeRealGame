@@ -25,9 +25,9 @@ public class AchievementController extends BaseController {
 	@Autowired
 	private AchievementService achievementService;
 	
-	@RequestMapping(value = "/getCategoriesByStatus", produces = "application/json", method = RequestMethod.GET)
+	@RequestMapping(value = "/getUserAchivements", produces = "application/json", method = RequestMethod.GET)
 	@ResponseBody
-	public String getUserAchivements(@RequestParam("username") String username, @RequestParam("pageNumber") Integer pageNumber) {
+	public String getUserAchivements(@RequestParam(value="username", required=true) String username, @RequestParam("pageNumber") Integer pageNumber) {
 		String result = null;
 		LOG.info("<< Starting webservice /achievement/getUserAchivements with parameters: username={}, pageNumber={}", username, pageNumber);
 		try {
@@ -48,7 +48,7 @@ public class AchievementController extends BaseController {
 	
 	@RequestMapping(value = "/addAchievement", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
-	public String addAchievement(@RequestParam("restobject") String json){
+	public String addAchievement(@RequestParam(value="restobject", required=true) String json){
 		LOG.info("<< Starting webservice /achievement/addAchievement with parameters: restobject={}", json);
 		String result = null;
 		try{
@@ -64,6 +64,26 @@ public class AchievementController extends BaseController {
 			result = achievementService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /achievement/addAchievement");
+		return result;
+	}
+	
+	@RequestMapping(value = "/countTimeBadgeBeAchieved", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String countTimeBadgeBeAchieved(@RequestParam(value="badgeId", required=true) Integer badgeId){
+		LOG.info("<< Starting webservice /achievement/countTimeBadgeBeAchieved with parameters: badgeId={}", badgeId);
+		String result = null;
+		try{
+			Long count = achievementService.countTimeBadgeBeAchieved(badgeId);
+			//
+			result = achievementService.encodeCountingRestObject(count, "/achievement/countTimeBadgeBeAchieved");
+		} catch (BaseException e) {
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = achievementService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = achievementService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /achievement/countTimeBadgeBeAchieved");
 		return result;
 	}
 }

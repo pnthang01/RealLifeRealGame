@@ -16,12 +16,17 @@ import com.rlrg.dataserver.badge.entity.Achievement;
 public interface AchievementRepository extends JpaRepository<Achievement, Long>, JpaSpecificationExecutor<Achievement> {
 	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.AchievementDTO(" +
-				"a.id, b.id, b.name, b.description, a.achievedTime" +
+				"a.id, b.id, bl.name, bl.description, a.achievedTime" +
 				")" +
 			" FROM Achievement a INNER JOIN a.badge b" +
+			" INNER JOIN b.badgeLangs bl" +
 			" INNER JOIN a.user u" +
-			" WHERE u.username = :username")
-	public List<AchievementDTO> getUserAchievementDTOs(@Param("username") String username, Pageable pageable);
+			" WHERE u.username = :username AND bl.language.id = :languageId")
+	public List<AchievementDTO> getUserAchievementDTOs(@Param("username") String username, 
+			@Param("languageId") Integer languageId, Pageable pageable);
+	
+	@Query("SELECT COUNT(a) FROM Achievement a WHERE a.badge.id = :badgeId")
+	public Long countTimeBadgeBeAchieved(@Param("badgeId") Integer badgeId);
 
 	@Query("SELECT a FROM Achievement a WHERE a.user.id = :userId")
 	public List<Achievement> getAchievementByUser(@Param("userId") Long userId);
@@ -30,7 +35,7 @@ public interface AchievementRepository extends JpaRepository<Achievement, Long>,
 	public List<Achievement> getAchievementByUserAndBadge(
 			@Param("userId") Long userId, @Param("badgeId") Integer badgeId);
 
-	@Query("SELECT a FROM Achievement a WHERE a.user.id = :userId AND a.achivedTime LIKE :dateYear")
+	@Query("SELECT a FROM Achievement a WHERE a.user.id = :userId AND a.achievedTime LIKE :dateYear")
 	public List<Achievement> getAchievementByUserAndDate(
 			@Param("userId") Long userId, @Param("dateYear") Integer dateYear);
 }

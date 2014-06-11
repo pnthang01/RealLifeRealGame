@@ -12,7 +12,7 @@ public enum ExceptionCodeEnum {
 			"param_error"), EMAIL_SEND_FALSE("Email send error"), TIME_OUT(
 			"time_out"), TRANSACTION_ERROR("tran_error"), IMAGE_SHOW(
 			"image_show"), ACCESS_DENIED("access.denied"), FIND_EX("find.exep"), PAY_MENT_EX(
-			"payment.exep");
+			"payment.exep"), TOKEN_NOT_EXISTS("Token doesn't exist in system");
 
 	private ExceptionCodeEnum(String errorCode) {
 		this.errorCode = errorCode;

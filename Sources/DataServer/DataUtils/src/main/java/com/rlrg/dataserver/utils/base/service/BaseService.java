@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.rlrg.dataserver.utils.base.domain.CountableDTO;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
@@ -20,6 +21,20 @@ public abstract class BaseService <T, V>{
 	public abstract T revertDTOToEntity(V dto);
 	
 	public abstract Class<V> getVClass();
+	
+	/**
+	 * Encode counting services for statistic to json.
+	 * @param count
+	 * @param controllerName
+	 * @return
+	 * @throws ConvertException
+	 */
+	public String encodeCountingRestObject(Long count, String controllerName) throws ConvertException{
+		CountableDTO dto = new CountableDTO();
+		dto.setCount(count);
+		dto.setControllerName(controllerName);
+		return jsonExporter.encodeObjectToJson(dto);
+	}
 	
 	/**
 	 * If the client just needs the result without data, 
@@ -85,10 +100,11 @@ public abstract class BaseService <T, V>{
 	 * Decode json string to a V dto
 	 * @param json
 	 * @return
+	 * @throws ConvertException 
 	 */
-	public V decodeSingleObject(String json){
-		RestObject test = jsonExporter.decodeJsonToRestObject(json);
-		return jsonExporter.decodeJsonToObject(test.getData().toString(), getVClass());
+	public V decodeSingleObject(String json) throws ConvertException{
+		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
+		return jsonExporter.decodeJsonToObject(restobject.getData().toString(), getVClass());
 	}
 	
 	/**

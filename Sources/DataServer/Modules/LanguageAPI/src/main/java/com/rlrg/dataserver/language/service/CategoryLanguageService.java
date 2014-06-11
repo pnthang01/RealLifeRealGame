@@ -42,7 +42,6 @@ public class CategoryLanguageService extends BaseService<CategoryLanguage, CateL
 
 	@Override
 	public Class<CateLangDTO> getVClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return CateLangDTO.class;
 	}
 }

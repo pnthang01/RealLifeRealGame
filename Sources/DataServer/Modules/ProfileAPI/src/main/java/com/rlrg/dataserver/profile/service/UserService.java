@@ -20,8 +20,10 @@ import com.rlrg.dataserver.profile.form.LoginForm;
 import com.rlrg.dataserver.profile.repository.UserRepository;
 import com.rlrg.dataserver.utils.base.controller.BaseUtils;
 import com.rlrg.dataserver.utils.base.controller.WebVariables;
+import com.rlrg.dataserver.utils.base.domain.UserToken;
 import com.rlrg.dataserver.utils.base.exception.InvalidParamExeption;
 import com.rlrg.dataserver.utils.base.exception.RepositoryException;
+import com.rlrg.dataserver.utils.base.exception.UserTokenException;
 import com.rlrg.dataserver.utils.base.service.BaseService;
 import com.rlrg.dataserver.utils.base.service.CommonService;
 
@@ -38,15 +40,41 @@ public class UserService extends BaseService<User, UserDTO>{
     
     @Autowired
     private CommonService commonService;
+
+    /**
+     * Get UserToken from system, then retrieve User in database bases on UserToken
+     * @param token
+     * @return
+     * @throws UserTokenException
+     */
+    public User getUserByToken(String token) throws UserTokenException{
+    	UserToken userToken = commonService.getUserToken(token);
+    	return userRepo.findOne(userToken.getId());
+    }
     
+    /**
+     * Get User by Id
+     * @param userId
+     * @return
+     */
     public User getUserById(Long userId){
     	return userRepo.findOne(userId);
     }
     
+    /**
+     * Get User by Username
+     * @param username
+     * @return
+     */
     public User getUserByUsername(String username){
     	return userRepo.findUserByUsername(username);
     }
     
+    /**
+     * Create new User with data input is #UserDTO
+     * @param dto
+     * @throws Exception
+     */
     @Transactional
     public void signup(UserDTO dto) throws Exception{
     	try{
@@ -193,7 +221,6 @@ public class UserService extends BaseService<User, UserDTO>{
 
 	@Override
 	public Class<UserDTO> getVClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return UserDTO.class;
 	}
 }

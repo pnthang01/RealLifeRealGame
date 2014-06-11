@@ -1,5 +1,7 @@
 package com.rlrg.dataserver.profile.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,10 @@ public class RoleService extends BaseService<Role, RoleDTO> {
 
 	@Autowired
 	private RoleRepository roleRepo;
+	
+	public List<RoleDTO> getAllRoleDTO(){
+		return roleRepo.getAllRoleDTO();
+	}
 
 	public Role getRoleById(Integer roleId) {
 		return roleRepo.findOne(roleId);
@@ -41,8 +47,7 @@ public class RoleService extends BaseService<Role, RoleDTO> {
 
 	@Override
 	public Class<RoleDTO> getVClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return RoleDTO.class;
 	}
 
 }

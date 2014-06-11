@@ -5,6 +5,6 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface JsonDTO {
-	public String singularName();
-	public String pluralName();
+	public String singularName() default "";
+	public String pluralName() default "";
 }

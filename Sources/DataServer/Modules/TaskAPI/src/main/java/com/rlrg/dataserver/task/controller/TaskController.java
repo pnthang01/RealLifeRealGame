@@ -32,7 +32,7 @@ public class TaskController extends BaseController{
 
 	@RequestMapping(value = "/updateTask", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateTask(@RequestParam("restobject") String json){
+	public String updateTask(@RequestParam(value="restobject", required=true) String json){
 		String result = null;
 		LOG.info("<< Starting webservice /task/updateTask with parameters: restobject={}", json);
 		try {
@@ -53,7 +53,7 @@ public class TaskController extends BaseController{
 	
 	@RequestMapping(value = "/createTask", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
-	public String createTask(@RequestParam("restobject") String json){
+	public String createTask(@RequestParam(value="restobject", required=true) String json){
 		LOG.info("<< Starting webservice /task/createTask with parameters: restobject={}", json);
 		String result = null;
 		try{
@@ -74,12 +74,12 @@ public class TaskController extends BaseController{
 	
 	@RequestMapping(value = "/updateTaskStatus", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateTaskStatus(@RequestParam("taskId") Long taskId, @RequestParam("status") TaskStatus taskStatus,
-			@RequestParam("userId") Long userId){
-		LOG.info("<< Starting webservice /task/updateTaskStatus with parameters: taskID={}, status={}, userId{}", taskId, taskStatus, userId);
+	public String updateTaskStatus(@RequestParam(value="taskId", required=true) Long taskId, @RequestParam(value="status", required=true) TaskStatus taskStatus,
+			@RequestParam("token") String token){
+		LOG.info("<< Starting webservice /task/updateTaskStatus with parameters: taskID={}, status={}, token{}", taskId, taskStatus, token);
 		String result = null;
 		try{
-			taskService.updateTaskStatus(taskId, taskStatus, userId);
+			taskService.updateTaskStatus(taskId, taskStatus, token);
 			RestObject restObject = RestObject.successBlank();
 			result = taskService.encodeBlankRestObject(restObject);
 		} catch (BaseException e) {
@@ -127,13 +127,13 @@ public class TaskController extends BaseController{
 	 */
 	@RequestMapping(value = "/getTasksByCategoryAndUser", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-	public String getTasksByCategoryAndUser(@RequestParam("categoryId") Integer categoryId, @RequestParam("userId") Long userId,
+	public String getTasksByCategoryAndUser(@RequestParam("categoryCode") String categoryCode, @RequestParam("token") String token,
 			@RequestParam("pageNumber") Integer pageNumber){
 		String result = null;
 		LOG.info("<< Starting webservice /task/getTasksByCategoryAndUser with parameters: " +
-				"categoryId={}, userId={}, pageNumber={}", categoryId, userId, pageNumber);
+				"categoryCode={}, token={}, pageNumber={}", categoryCode, token, pageNumber);
 		try{
-			List<TaskDTO> tasks = taskService.getTaskByCategoryAndUser(categoryId, userId, pageNumber);
+			List<TaskDTO> tasks = taskService.getTaskByCategoryAndUser(categoryCode, token, pageNumber);
 			//
 			result = taskService.encodeMutipleObjectsFromListV(tasks);
 		} catch (BaseException e) {
@@ -155,13 +155,13 @@ public class TaskController extends BaseController{
 	 */
 	@RequestMapping(value = "/getTasksByNameAndUser", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-	public String getTasksByNameAndUser(@RequestParam("name") String name, @RequestParam("userId") Long userId,
+	public String getTasksByNameAndUser(@RequestParam("name") String name, @RequestParam("token") String token,
 			@RequestParam("pageNumber") Integer pageNumber){
 		String result = null;
 		LOG.info("<< Starting webservice /task/getTasksByNameAndUser with parameters: " +
-				"name={}, userId={}, pageNumber={}", name, userId, pageNumber);
+				"name={}, token={}, pageNumber={}", name, token, pageNumber);
 		try {
-			List<TaskDTO> tasks = taskService.getTasksByNameAndUser(name, userId, pageNumber);
+			List<TaskDTO> tasks = taskService.getTasksByNameAndUser(name, token, pageNumber);
 			//
 			result = taskService.encodeMutipleObjectsFromListV(tasks);
 		} catch (BaseException e) {

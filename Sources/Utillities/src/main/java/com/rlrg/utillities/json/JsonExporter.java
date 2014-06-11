@@ -281,10 +281,17 @@ public class JsonExporter {
 	 * @param jsonStr
 	 * @param clazz
 	 * @return
+	 * @throws ConvertException 
 	 */
-	public <T> T decodeJsonToObject(final String jsonStr, final Class<T> clazz) {
+	public <T> T decodeJsonToObject(final String jsonStr, final Class<T> clazz) throws ConvertException {
+		if(null == jsonStr || jsonStr.isEmpty()){
+			throw new ConvertException("Json string to be parsed is null or empty.");
+		}
+		if(null == clazz){
+			throw new ConvertException("Class is needed to convert Json string to object.");
+		}
+		//
 		final JSONObject jObj = (JSONObject) JSONValue.parse(jsonStr);
-	
 		final JsonDTO dtoAnno = clazz.getAnnotation(JsonDTO.class);
 		//
 		final String singularName = dtoAnno.singularName();

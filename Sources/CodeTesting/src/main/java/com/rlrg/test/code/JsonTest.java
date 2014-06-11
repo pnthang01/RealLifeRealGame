@@ -124,7 +124,7 @@ public class JsonTest {
 		System.out.println(result);
 	}
 	
-	public static void testDecodeTask() throws IOException, ParseException{
+	public static void testDecodeTask() throws IOException, ParseException, ConvertException{
 		FileReader fr = new FileReader("E:\\test.json");
 		JSONParser jp = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jp.parse(fr);
@@ -135,7 +135,7 @@ public class JsonTest {
 		System.out.println(task);
 	}
 	
-	public static void testDecodeTasks() throws IOException, ParseException{
+	public static void testDecodeTasks() throws IOException, ParseException, ConvertException{
 		FileReader fr = new FileReader("E:\\tests.json");
 		JSONParser jp = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jp.parse(fr);
@@ -197,7 +197,7 @@ public class JsonTest {
 		System.out.println(temp);
 	}
 	
-	public static void testDecode(){
+	public static void testDecode() throws ConvertException{
 		String json = "{\"Category\":{\"Code\":\"Category Code\",\"Name\":\"Name\",\"Description\":\"Description\",\"Position\":1}}";
 		CategoryDTO c = jsonExporter.decodeJsonToObject(json, CategoryDTO.class);
 		System.out.println(c);

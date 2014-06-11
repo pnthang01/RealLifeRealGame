@@ -40,8 +40,7 @@ public class BadgeLanguageService extends BaseService<BadgeLanguage, BadgeLangDT
 
 	@Override
 	public Class<BadgeLangDTO> getVClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return BadgeLangDTO.class;
 	}
 	
 }

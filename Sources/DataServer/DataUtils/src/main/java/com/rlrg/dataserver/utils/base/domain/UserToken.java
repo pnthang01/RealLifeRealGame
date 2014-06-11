@@ -7,6 +7,15 @@ public class UserToken {
     private String name;
     private long time;
 
+    public UserToken(){
+    }
+    
+    public UserToken(Long id, String name, long time){
+    	this.id = id;
+    	this.name = name;
+    	this.time = time;
+    }
+    
     public Long getId() {
         return id;
     }

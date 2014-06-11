@@ -37,8 +37,7 @@ public class PermissionService extends BaseService<Permission, PermissionDTO>{
 
 	@Override
 	public Class<PermissionDTO> getVClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return PermissionDTO.class;
 	}
 
 	@Override
