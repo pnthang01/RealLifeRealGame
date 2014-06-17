@@ -12,7 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<rlrg-version>0.0.1-SNAPSHOT</rlrg-version>
 		<spring.boot.version>0.5.0.M1</spring.boot.version>
-		<start-class>com.simsol.ct4.Application</start-class>
+		<start-class>com.rlrg.dataserver.StartApplication</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -115,21 +115,6 @@
 			<version>1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.simsol.ct4</groupId>
-			<artifactId>json-api</artifactId>
-			<version>0.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.simsol.ct4</groupId>
-			<artifactId>grid-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.simsol.ct4</groupId>
-			<artifactId>configure-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<!-- <version>5.0.1.Final</version> -->
@@ -183,6 +168,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>data</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
