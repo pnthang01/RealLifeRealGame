@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background_solid">#00D000</color>
+    <color name="background_transparent">#9000D000</color>
+
+</resources>
