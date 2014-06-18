@@ -56,7 +56,8 @@ public final class R {
         public static final int logo=0x7f090000;
         public static final int main_view=0x7f090006;
         public static final int navigation=0x7f090008;
-        public static final int textView=0x7f090009;
+        public static final int navigation_list=0x7f090009;
+        public static final int title=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_start=0x7f030000;

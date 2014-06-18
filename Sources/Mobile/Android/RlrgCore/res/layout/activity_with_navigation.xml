@@ -18,9 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionbar_height"
             android:background="@color/background_transparent"
-            android:padding="@dimen/actionbar_padding"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:padding="@dimen/actionbar_padding" >
 
             <ImageButton
                 android:id="@+id/actionbar_btn_left"
@@ -60,14 +60,32 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/navigation"
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="left"
         android:background="@color/background_solid"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp" />
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_size_xlarge_34"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/navigation_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/actionbar_padding" />
+    </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

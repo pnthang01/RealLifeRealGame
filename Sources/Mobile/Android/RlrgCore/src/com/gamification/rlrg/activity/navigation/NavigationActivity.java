@@ -1,5 +1,8 @@
-package com.gamification.rlrg.activity;
+package com.gamification.rlrg.activity.navigation;
 
+import java.util.List;
+
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -8,36 +11,66 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
 
+import com.gamification.rlrg.activity.BaseActivity;
 import com.gamification.rlrg.gen.R;
 
 public class NavigationActivity extends BaseActivity
 {
+	private class NavigationAdapter extends ArrayAdapter<NavigationData>
+	{
+		public NavigationAdapter(Context context, int resource)
+		{
+			super(context, resource, mNavigationData);
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent)
+		{
+			View currentView = convertView;
+			TextView title = (TextView) currentView.findViewById(R.id.title);
+			title.setText(mNavigationData[position].getTitle());
+			return super.getView(position, convertView, parent);
+		}
+	}
+	
+	private static final String TAG = NavigationActivity.class.getName();
+	
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	
-	private FrameLayout mMainView, mNavigation;
-	private LinearLayout mActionBar;
+	private FrameLayout mMainView;
+	private LinearLayout mActionBar, mNavigation;
 	
+	private ListView mNavigationList;
 	private TextView mActionBarTitle;
 	private ImageButton mBtnActionBarLeft, mBtnActionBarRightOne, mBtnActionBarRightTwo;
+	
+	protected NavigationData[] mNavigationData = {};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		super.setContentView(R.layout.activity_with_navigation);
+		mNavigation = (LinearLayout) findViewById(R.id.navigation);
 		
-		mNavigation = (FrameLayout) findViewById(R.id.navigation);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer_black, R.string.drawer_open, R.string.drawer_close);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
+		
+		mNavigationList = (ListView) findViewById(R.id.navigation_list);
 		
 		mActionBar = (LinearLayout) findViewById(R.id.actionbar);
 		mMainView = (FrameLayout) findViewById(R.id.main_view);
@@ -65,6 +98,25 @@ public class NavigationActivity extends BaseActivity
 	protected void onPostCreate(Bundle savedInstanceState)
 	{
 		super.onPostCreate(savedInstanceState);
+		mNavigationList.setAdapter(new ArrayAdapter<NavigationData>(this, R.layout.navigation_item, mNavigationData)
+		{
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent)
+			{
+				TextView title = (TextView) convertView;
+				title.setText(mNavigationData[position].getTitle());
+				toast(mNavigationData[position].getTitle());
+				return title;
+			}
+		});
+		mNavigationList.setOnItemClickListener(new OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View view, int position, long id)
+			{
+				onNavigationItemClick((ListView) adapter, view, position, id);
+			}
+		});
 		mDrawerToggle.syncState();
 	}
 	
@@ -79,6 +131,21 @@ public class NavigationActivity extends BaseActivity
 	public void setContentView(int layoutResID)
 	{
 		inflate(layoutResID, mMainView);
+	}
+	
+	protected void setNavigationData(List<NavigationData> data)
+	{
+		mNavigationData = data.toArray(new NavigationData[data.size()]);
+	}
+	
+	protected void setNavigationTitles(NavigationData[] data)
+	{
+		mNavigationData = data;
+	}
+	
+	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
+	{
+		log(TAG, "Navigation Item Clicked!");
 	}
 	
 	protected void showActionBar()
