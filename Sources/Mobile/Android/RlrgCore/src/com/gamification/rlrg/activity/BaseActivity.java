@@ -1,42 +1,34 @@
 package com.gamification.rlrg.activity;
 
-import com.gamification.rlrg.gen.BuildConfig;
-import com.gamification.rlrg.gen.R;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
-public class BaseActivity extends ActionBarActivity
+import com.gamification.rlrg.gen.BuildConfig;
+import com.gamification.rlrg.gen.R;
+
+public class BaseActivity extends FragmentActivity
 {
 	public static final String DIALOG_NETWORK_NOT_AVAILABLE = "NETWORK_NOT_AVAILABLE";
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
-	
-	protected ActionBar mActionBar;
-	
-	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		mActionBar = getSupportActionBar();
-		mActionBar.setHomeButtonEnabled(true);
-		mActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99009900")));
-		mActionBar.hide();
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+	}
+	
+	protected void inflate(int layoutResID, ViewGroup viewGroup)
+	{
+		getLayoutInflater().inflate(layoutResID, viewGroup);
 	}
 	
 	protected void showDialog(String dialogType, boolean isCancelable)
@@ -106,6 +98,22 @@ public class BaseActivity extends ActionBarActivity
 		if (BuildConfig.DEBUG)
 		{
 			Log.e(tag, msg);
+		}
+	}
+	
+	protected void toast(CharSequence msg)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	protected void toast(int resId)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
 		}
 	}
 }

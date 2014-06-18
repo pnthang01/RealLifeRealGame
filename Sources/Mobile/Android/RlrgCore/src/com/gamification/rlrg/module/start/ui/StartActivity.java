@@ -3,16 +3,15 @@ package com.gamification.rlrg.module.start.ui;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.gamification.rlrg.activity.BaseActivity;
+import com.gamification.rlrg.activity.NavigationActivity;
 import com.gamification.rlrg.core.app.CoreApp;
 import com.gamification.rlrg.gen.R;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 
-public class StartActivity extends BaseActivity implements Runnable
+public class StartActivity extends NavigationActivity implements Runnable
 {
 	private View mLogoText;
 	
@@ -22,8 +21,18 @@ public class StartActivity extends BaseActivity implements Runnable
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
 		
+		setBtnActionBarRightOne(android.R.drawable.ic_search_category_default, new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				showDialog(DIALOG_SEARCH, true);
+			}
+		});
+		
 		if (CoreApp.isStart)
 		{
+			hideActionBar();
 			mLogoText = findViewById(R.id.logo);
 			new Timer().schedule(new TimerTask()
 			{
@@ -36,40 +45,16 @@ public class StartActivity extends BaseActivity implements Runnable
 		}
 		else
 		{
-			mActionBar.show();
+			showActionBar();
+			mLogoText.setVisibility(View.GONE);
 		}
 	}
 	
 	@Override
 	public void run()
 	{
+		showActionBar();
 		mLogoText.setVisibility(View.GONE);
-		mActionBar.show();
 		CoreApp.isStart = false;
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.start_option, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-			case android.R.id.home:
-				showDialog(DIALOG_SEARCH, true);
-				break;
-			case R.id.action_search:
-				showDialog(DIALOG_SEARCH, true);
-				break;
-			default:
-				break;
-		}
-
-		return super.onOptionsItemSelected(item);
 	}
 }
