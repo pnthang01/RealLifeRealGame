@@ -1,0 +1,127 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flDetail"
+    style="@style/full_screen" >
+
+    <ScrollView
+        style="@style/full_screen"
+        android:background="@drawable/detail_cross" >
+
+        <LinearLayout style="@style/full_width_vertical" >
+
+            <HorizontalScrollView style="@style/full_width_vertical" >
+
+                <LinearLayout style="@style/wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/ivPreview1"
+                        style="@style/preview"
+                        android:contentDescription="@string/image_des" />
+
+                    <ImageView
+                        android:id="@+id/ivPreview2"
+                        style="@style/preview"
+                        android:contentDescription="@string/image_des" />
+
+                    <ImageView
+                        android:id="@+id/ivPreview3"
+                        style="@style/preview"
+                        android:contentDescription="@string/image_des" />
+
+                    <ImageView
+                        android:id="@+id/ivPreview4"
+                        style="@style/preview"
+                        android:contentDescription="@string/image_des" />
+
+                    <ImageView
+                        android:id="@+id/ivPreview5"
+                        style="@style/preview"
+                        android:contentDescription="@string/image_des" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <LinearLayout
+                style="@style/full_width_vertical_margin_2dp"
+                android:background="@color/light_grey" >
+
+                <TextView
+                    android:id="@+id/tvDetailTitle"
+                    style="@style/wrap_content_docking_left"
+                    android:background="@drawable/menu_bar"
+                    android:textColor="@android:color/white"
+                    android:textIsSelectable="false"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/rtbVoteDetail"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:stepSize="1.0" />
+
+                <TextView
+                    android:id="@+id/tvDetailAddress"
+                    style="@style/full_width_text_darker_grey_12sp"
+                    android:textIsSelectable="false" />
+
+                <TextView
+                    android:id="@+id/tvDetailEmail"
+                    style="@style/full_width_text_darker_grey_12sp"
+                    android:textIsSelectable="false" />
+
+                <TextView
+                    android:id="@+id/tvDetailPhone"
+                    style="@style/full_width_text_darker_grey_12sp"
+                    android:textIsSelectable="false" />
+
+                <TextView
+                    android:id="@+id/tvDetailFanpage"
+                    style="@style/full_width_text_darker_grey_12sp"
+                    android:textIsSelectable="false" />
+
+                <Button
+                    android:id="@+id/btMap"
+                    style="@style/wrap_content_docking_center"
+                    android:background="@drawable/menu_bar"
+                    android:onClick="openMap"
+                    android:text="@string/show_map"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/full_screen_vertical_margin_2dp"
+                android:background="@color/light_grey" >
+
+                <TextView
+                    style="@style/wrap_content_docking_left"
+                    android:background="@drawable/menu_bar"
+                    android:text="@string/detail"
+                    android:textColor="@android:color/white"
+                    android:textIsSelectable="false"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDetailDescription"
+                    style="@style/full_width_text_darker_grey_12sp"
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="3"
+                    android:textIsSelectable="false"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDetail"
+                    style="@style/full_width_text_darker_grey_12sp"
+                    android:textIsSelectable="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent" />
+
+</FrameLayout>

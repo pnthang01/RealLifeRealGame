@@ -1,0 +1,163 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme">
+        <item name="android:background">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="full_screen">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="wrap_content">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="wrap_content_margin_5dp" parent="wrap_content">
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="wrap_content_docking_left" parent="wrap_content">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+
+    <style name="wrap_content_docking_center" parent="wrap_content_docking_left">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="wrap_content_margin_5dp_padding_5dp" parent="wrap_content_margin_5dp">
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="full_width">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="full_width_text_darker_grey" parent="full_width">
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="full_width_text_darker_grey_12sp" parent="full_width_text_darker_grey">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="full_width_text_darker_grey_16sp" parent="full_width_text_darker_grey">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="full_width_text_darker_grey_16sp_bold" parent="full_width_text_darker_grey_16sp">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="full_width_text_white" parent="full_width">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="dynamic_width">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dip</item>
+    </style>
+
+    <style name="dynamic_height">
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="dynamic_width_margin_5dp" parent="dynamic_width">
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="equal_width_margin_5dp" parent="dynamic_width_margin_5dp">
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="equal_width" parent="dynamic_width">
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="equal_height" parent="dynamic_height">
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="equal_height_vertical" parent="equal_height">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="equal_height_vertical_margin_2dp" parent="equal_height_vertical">
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+    <style name="half_width_margin_5dp" parent="dynamic_width_margin_5dp">
+        <item name="android:layout_weight">0.5</item>
+    </style>
+
+    <style name="full_width_vertical" parent="full_width">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="full_width_vertical_margin_2dp" parent="full_width_vertical">
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+    <style name="full_screen_vertical_margin_2dp" parent="full_screen_vertical">
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+    <style name="full_height_vertical" parent="full_height">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="full_width_right" parent="full_width">
+        <item name="android:gravity">right</item>
+    </style>
+
+    <style name="full_screen_vertical" parent="full_screen">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="full_width_margin_5dp" parent="full_width">
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="full_width_margin_5dp_center" parent="full_width_margin_5dp">
+        <item name="android:layout_gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <style name="full_width_margin_5dp_bottom" parent="full_width_margin_5dp">
+        <item name="android:layout_gravity">center_vertical|bottom</item>
+    </style>
+
+    <style name="full_width_margin_2dp" parent="full_width">
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+    </style>
+
+    <style name="full_width_margin_5dp_invisible" parent="full_width_margin_5dp">
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="full_width_margin_2dp_invisible" parent="full_width_margin_2dp">
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="full_height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="preview">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_gravity">left|center_vertical</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+</resources>

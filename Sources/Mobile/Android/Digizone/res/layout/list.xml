@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/full_screen_vertical" >
+
+    <ListView
+        android:id="@android:id/list"
+        style="@style/full_width"
+        android:divider="@color/grey"
+        android:dividerHeight="3dip" />
+
+    <TextView
+        android:id="@android:id/empty"
+        style="@style/full_screen"
+        android:background="@color/grey"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/list_empty" />
+
+</LinearLayout>

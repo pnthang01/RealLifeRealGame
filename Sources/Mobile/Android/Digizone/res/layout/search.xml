@@ -1,0 +1,192 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/full_screen" >
+
+    <FrameLayout
+        android:id="@+id/map"
+        style="@style/full_screen" />
+
+    <LinearLayout
+        android:id="@+id/llSearch"
+        style="@style/full_width_vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/semi_transparent_red" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_margin="2dp" >
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="7dp"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:hint="@string/search_hint"
+                android:padding="1dp" />
+
+            <Button
+                android:id="@+id/btDoSearch"
+                style="@style/full_height"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="6dp"
+                android:onClick="doSearch"
+                android:text="@string/search" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spnType"
+            style="@style/full_width_margin_2dp"
+            android:entries="@array/type"
+            android:prompt="@string/type" />
+
+        <Spinner
+            android:id="@+id/spnDistrict"
+            style="@style/full_width_margin_2dp"
+            android:entries="@array/district"
+            android:prompt="@string/district" />
+
+        <RelativeLayout
+            android:id="@+id/llWard"
+            style="@style/full_width" >
+
+            <Spinner
+                android:id="@+id/spnDistrict0"
+                style="@style/full_width_margin_2dp"
+                android:entries="@array/district0"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict1"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district1"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict2"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district2"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict3"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district3"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict4"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district4"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict5"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district5"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict6"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district6"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict7"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district7"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict8"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district8"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict9"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district9"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict10"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district10"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict11"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district11"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnDistrict12"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/district12"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnBinhTan"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/binh_tan"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnBinhThanh"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/binh_thanh"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnGoVap"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/go_vap"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnPhuNhuan"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/phu_nhuan"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnTanBinh"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/tan_binh"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnTanPhu"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/tan_phu"
+                android:prompt="@string/ward" />
+
+            <Spinner
+                android:id="@+id/spnThuDuc"
+                style="@style/full_width_margin_2dp_invisible"
+                android:entries="@array/thu_duc"
+                android:prompt="@string/ward" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btExpand"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:contentDescription="@string/search"
+        android:onClick="doExpand"
+        android:scaleType="fitXY"
+        android:src="@drawable/top_button"
+        android:visibility="invisible" />
+
+</RelativeLayout>
