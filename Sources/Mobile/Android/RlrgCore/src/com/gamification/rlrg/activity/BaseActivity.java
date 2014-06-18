@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -20,15 +21,18 @@ public class BaseActivity extends FragmentActivity
 	public static final String DIALOG_NETWORK_NOT_AVAILABLE = "NETWORK_NOT_AVAILABLE";
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
 	
+	protected LayoutInflater mInflater;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		mInflater = getLayoutInflater();
 	}
 	
 	protected void inflate(int layoutResID, ViewGroup viewGroup)
 	{
-		getLayoutInflater().inflate(layoutResID, viewGroup);
+		mInflater.inflate(layoutResID, viewGroup);
 	}
 	
 	protected void showDialog(String dialogType, boolean isCancelable)

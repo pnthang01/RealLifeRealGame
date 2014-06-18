@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -20,17 +20,19 @@ public class StartActivity extends NavigationActivity implements Runnable
 {
 	private View mLogoText;
 	
+	private String[] mNavigationTitles;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
 		
-		String[] navigationTitles = getResources().getStringArray(R.array.navigation);
+		mNavigationTitles = getResources().getStringArray(R.array.navigation);
 		List<NavigationData> list = new ArrayList<NavigationData>();
-		for (String title : navigationTitles)
+		for (String title : mNavigationTitles)
 		{
-			list.add(new NavigationData(title, null));
+			list.add(new NavigationData(title, getResources().getDrawable(R.drawable.ic_drawer_black)));
 		}
 		setNavigationData(list);
 		
@@ -64,11 +66,16 @@ public class StartActivity extends NavigationActivity implements Runnable
 	}
 	
 	@Override
-	@SuppressLint("DefaultLocale")
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
 		super.onNavigationItemClick(adapter, view, position, id);
-		toast("Item " + position + " clicked!");
+		
+		Bundle args = new Bundle();
+		args.putString("title", mNavigationTitles[position]);
+		
+		Fragment detail = new GameFagment();
+		detail.setArguments(args);
+		getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, detail).commit();
 	}
 	
 	@Override

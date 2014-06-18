@@ -16,6 +16,7 @@ public final class R {
     public static final class color {
         public static final int background_solid=0x7f050000;
         public static final int background_transparent=0x7f050001;
+        public static final int divider=0x7f050002;
     }
     public static final class dimen {
         public static final int actionbar_button_height=0x7f070004;
@@ -47,23 +48,25 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int actionbar=0x7f090001;
-        public static final int actionbar_btn_left=0x7f090002;
-        public static final int actionbar_btn_right_1=0x7f090005;
-        public static final int actionbar_btn_right_2=0x7f090004;
-        public static final int actionbar_title=0x7f090003;
-        public static final int drawer_layout=0x7f090007;
-        public static final int logo=0x7f090000;
-        public static final int main_view=0x7f090006;
-        public static final int navigation=0x7f090008;
-        public static final int navigation_list=0x7f090009;
-        public static final int title=0x7f09000a;
+        public static final int actionbar=0x7f090002;
+        public static final int actionbar_btn_left=0x7f090003;
+        public static final int actionbar_btn_right_1=0x7f090006;
+        public static final int actionbar_btn_right_2=0x7f090005;
+        public static final int actionbar_title=0x7f090004;
+        public static final int drawer_layout=0x7f090008;
+        public static final int fragment_container=0x7f090000;
+        public static final int logo=0x7f090001;
+        public static final int main_view=0x7f090007;
+        public static final int navigation=0x7f090009;
+        public static final int navigation_list=0x7f09000a;
+        public static final int title=0x7f09000b;
     }
     public static final class layout {
         public static final int activity_start=0x7f030000;
         public static final int activity_with_actionbar=0x7f030001;
         public static final int activity_with_navigation=0x7f030002;
-        public static final int navigation_item=0x7f030003;
+        public static final int list=0x7f030003;
+        public static final int navigation_item=0x7f030004;
     }
     public static final class string {
         public static final int action_bar=0x7f060000;
@@ -76,6 +79,7 @@ public final class R {
         public static final int close=0x7f06000f;
         public static final int drawer_close=0x7f060005;
         public static final int drawer_open=0x7f060004;
+        public static final int list_empty=0x7f060010;
         public static final int message_no_internet_connection=0x7f06000d;
         public static final int no=0x7f06000a;
         public static final int no_internet_connection=0x7f06000c;
@@ -87,5 +91,19 @@ public final class R {
         /**  Application theme. 
          */
         public static final int app_theme=0x7f080000;
+        public static final int dynamic_height=0x7f080006;
+        public static final int dynamic_width=0x7f080005;
+        public static final int equal_height=0x7f080008;
+        public static final int equal_height_vertical=0x7f080009;
+        public static final int equal_width=0x7f080007;
+        public static final int full_height=0x7f08000e;
+        public static final int full_height_vertical=0x7f08000b;
+        public static final int full_screen=0x7f080001;
+        public static final int full_screen_vertical=0x7f08000d;
+        public static final int full_width=0x7f080004;
+        public static final int full_width_right=0x7f08000c;
+        public static final int full_width_vertical=0x7f08000a;
+        public static final int wrap_content=0x7f080002;
+        public static final int wrap_content_docking_center=0x7f080003;
     }
 }

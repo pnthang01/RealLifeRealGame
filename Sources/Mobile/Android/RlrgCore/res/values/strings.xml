@@ -11,5 +11,6 @@
     <string name="message_no_internet_connection">You can continue, but news and information can\'t be updated until a stable internet connection is made.</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="list_empty">Empty</string>
 
 </resources>

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".StartActivity" >
+    style="@style/full_screen" >
 
     <LinearLayout
         android:id="@+id/actionbar"
@@ -26,10 +23,11 @@
             android:layout_width="0dip"
             android:layout_height="@dimen/actionbar_button_height"
             android:layout_weight="1"
-            android:textSize="@dimen/font_size_large_23"
-            android:textStyle="bold"
+            android:background="@android:color/transparent"
             android:gravity="center"
-            android:background="@android:color/transparent" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_size_large_23"
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/actionbar_btn_right_2"
@@ -52,7 +50,6 @@
 
     <FrameLayout
         android:id="@+id/main_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        style="@style/full_screen" />
 
 </RelativeLayout>

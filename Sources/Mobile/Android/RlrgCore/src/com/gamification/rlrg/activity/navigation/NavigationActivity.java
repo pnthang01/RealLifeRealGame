@@ -2,7 +2,6 @@ package com.gamification.rlrg.activity.navigation;
 
 import java.util.List;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,8 +10,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -20,8 +19,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
 
 import com.gamification.rlrg.activity.BaseActivity;
 import com.gamification.rlrg.gen.R;
@@ -30,22 +29,26 @@ public class NavigationActivity extends BaseActivity
 {
 	private class NavigationAdapter extends ArrayAdapter<NavigationData>
 	{
-		public NavigationAdapter(Context context, int resource)
+		public NavigationAdapter()
 		{
-			super(context, resource, mNavigationData);
+			super(NavigationActivity.this, android.R.layout.simple_list_item_1, mNavigationData);
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
-			View currentView = convertView;
-			TextView title = (TextView) currentView.findViewById(R.id.title);
-			title.setText(mNavigationData[position].getTitle());
-			return super.getView(position, convertView, parent);
+			View view = convertView;
+			if (view == null)
+			{
+				view = mInflater.inflate(R.layout.navigation_item, parent, false);
+			}
+			TextView title = (TextView) view;
+			title.setText(getItem(position).getTitle());
+			title.setCompoundDrawables(getItem(position).getIcon(), null, null, null);
+			
+			return view;
 		}
 	}
-	
-	private static final String TAG = NavigationActivity.class.getName();
 	
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -98,17 +101,7 @@ public class NavigationActivity extends BaseActivity
 	protected void onPostCreate(Bundle savedInstanceState)
 	{
 		super.onPostCreate(savedInstanceState);
-		mNavigationList.setAdapter(new ArrayAdapter<NavigationData>(this, R.layout.navigation_item, mNavigationData)
-		{
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent)
-			{
-				TextView title = (TextView) convertView;
-				title.setText(mNavigationData[position].getTitle());
-				toast(mNavigationData[position].getTitle());
-				return title;
-			}
-		});
+		mNavigationList.setAdapter(new NavigationAdapter());
 		mNavigationList.setOnItemClickListener(new OnItemClickListener()
 		{
 			@Override
@@ -145,7 +138,7 @@ public class NavigationActivity extends BaseActivity
 	
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
-		log(TAG, "Navigation Item Clicked!");
+		setActionBarTitle(mNavigationData[position].getTitle());
 	}
 	
 	protected void showActionBar()
@@ -164,10 +157,12 @@ public class NavigationActivity extends BaseActivity
 		if (isOverlay)
 		{
 			params.topMargin = 0;
+			mActionBar.setBackgroundColor(getResources().getColor(R.color.background_transparent));
 		}
 		else
 		{
 			params.topMargin = getResources().getDimensionPixelSize(R.dimen.actionbar_height);
+			mActionBar.setBackgroundColor(getResources().getColor(R.color.background_solid));
 		}
 		mMainView.setLayoutParams(params);
 	}

@@ -3,5 +3,6 @@
 
     <color name="background_solid">#00D000</color>
     <color name="background_transparent">#9000D000</color>
+    <color name="divider">#AAAAAA</color>
 
 </resources>
