@@ -1,4 +1,4 @@
-package com.gamification.rlrg.activity;
+package com.gamification.rlrg.core.activity;
 
 import com.gamification.rlrg.gen.R;
 

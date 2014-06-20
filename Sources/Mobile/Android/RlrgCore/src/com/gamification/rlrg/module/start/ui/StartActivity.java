@@ -11,10 +11,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
-import com.gamification.rlrg.activity.navigation.NavigationActivity;
-import com.gamification.rlrg.activity.navigation.NavigationData;
+import com.gamification.rlrg.core.activity.NavigationActivity;
 import com.gamification.rlrg.core.app.CoreApp;
+import com.gamification.rlrg.core.data.NavigationData;
 import com.gamification.rlrg.gen.R;
+import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
 
 public class StartActivity extends NavigationActivity implements Runnable
 {
@@ -61,8 +62,11 @@ public class StartActivity extends NavigationActivity implements Runnable
 		else
 		{
 			showActionBar();
+			setActionBarOverLay(false);
 			mLogoText.setVisibility(View.GONE);
 		}
+		
+		addFragment(R.id.fragment_container, ShowRoomFragment.newInstance());
 	}
 	
 	@Override
@@ -70,18 +74,34 @@ public class StartActivity extends NavigationActivity implements Runnable
 	{
 		super.onNavigationItemClick(adapter, view, position, id);
 		
+		if (position == 0)
+		{
+			setActionBarOverLay(false);
+		}
+		else
+		{
+			setActionBarOverLay(true);
+		}
+		/*
 		Bundle args = new Bundle();
 		args.putString("title", mNavigationTitles[position]);
 		
 		Fragment detail = new GameFagment();
 		detail.setArguments(args);
-		getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, detail).commit();
+		replaceFragment(detail);
+		*/
+	}
+	
+	protected void replaceFragment(Fragment child)
+	{
+		replaceFragment(R.id.fragment_container, child);
 	}
 	
 	@Override
 	public void run()
 	{
 		showActionBar();
+		setActionBarOverLay(false);
 		mLogoText.setVisibility(View.GONE);
 		CoreApp.isStart = false;
 	}

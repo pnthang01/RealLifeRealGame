@@ -14,8 +14,10 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int angel=0x7f050003;
         public static final int background_solid=0x7f050000;
         public static final int background_transparent=0x7f050001;
+        public static final int devil=0x7f050004;
         public static final int divider=0x7f050002;
     }
     public static final class dimen {
@@ -53,39 +55,45 @@ public final class R {
         public static final int actionbar_btn_right_1=0x7f090006;
         public static final int actionbar_btn_right_2=0x7f090005;
         public static final int actionbar_title=0x7f090004;
+        public static final int angel_bar=0x7f09000d;
+        public static final int devil_bar=0x7f09000c;
         public static final int drawer_layout=0x7f090008;
         public static final int fragment_container=0x7f090000;
+        public static final int layout_devil_angel=0x7f09000b;
+        public static final int layout_showroom=0x7f09000e;
         public static final int logo=0x7f090001;
         public static final int main_view=0x7f090007;
         public static final int navigation=0x7f090009;
         public static final int navigation_list=0x7f09000a;
-        public static final int title=0x7f09000b;
+        public static final int title=0x7f09000f;
     }
     public static final class layout {
         public static final int activity_start=0x7f030000;
         public static final int activity_with_actionbar=0x7f030001;
         public static final int activity_with_navigation=0x7f030002;
-        public static final int list=0x7f030003;
-        public static final int navigation_item=0x7f030004;
+        public static final int fragment_showroom=0x7f030003;
+        public static final int list_item_navigation=0x7f030004;
+        public static final int list_view=0x7f030005;
     }
     public static final class string {
         public static final int action_bar=0x7f060000;
         public static final int action_bar_btn_left=0x7f060001;
         public static final int action_bar_btn_right_1=0x7f060002;
         public static final int action_bar_btn_right_2=0x7f060003;
-        public static final int action_search=0x7f06000b;
-        public static final int app_name=0x7f060006;
-        public static final int cancel=0x7f060008;
-        public static final int close=0x7f06000f;
+        public static final int action_search=0x7f06000c;
+        public static final int app_name=0x7f060007;
+        public static final int cancel=0x7f060009;
+        public static final int close=0x7f060010;
         public static final int drawer_close=0x7f060005;
         public static final int drawer_open=0x7f060004;
-        public static final int list_empty=0x7f060010;
-        public static final int message_no_internet_connection=0x7f06000d;
-        public static final int no=0x7f06000a;
-        public static final int no_internet_connection=0x7f06000c;
-        public static final int ok=0x7f060007;
-        public static final int open=0x7f06000e;
-        public static final int yes=0x7f060009;
+        public static final int list_empty=0x7f060011;
+        public static final int message_no_internet_connection=0x7f06000e;
+        public static final int no=0x7f06000b;
+        public static final int no_internet_connection=0x7f06000d;
+        public static final int ok=0x7f060008;
+        public static final int open=0x7f06000f;
+        public static final int show_room=0x7f060006;
+        public static final int yes=0x7f06000a;
     }
     public static final class style {
         /**  Application theme. 

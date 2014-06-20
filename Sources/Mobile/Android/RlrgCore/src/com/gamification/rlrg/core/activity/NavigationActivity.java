@@ -1,4 +1,4 @@
-package com.gamification.rlrg.activity.navigation;
+package com.gamification.rlrg.core.activity;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.gamification.rlrg.activity.BaseActivity;
+import com.gamification.rlrg.core.data.NavigationData;
 import com.gamification.rlrg.gen.R;
 
 public class NavigationActivity extends BaseActivity
@@ -40,7 +40,7 @@ public class NavigationActivity extends BaseActivity
 			View view = convertView;
 			if (view == null)
 			{
-				view = mInflater.inflate(R.layout.navigation_item, parent, false);
+				view = mInflater.inflate(R.layout.list_item_navigation, parent, false);
 			}
 			TextView title = (TextView) view;
 			title.setText(getItem(position).getTitle());
@@ -139,6 +139,7 @@ public class NavigationActivity extends BaseActivity
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
 		setActionBarTitle(mNavigationData[position].getTitle());
+		mDrawerLayout.closeDrawers();
 	}
 	
 	protected void showActionBar()

@@ -1,4 +1,4 @@
-package com.gamification.rlrg.activity.navigation;
+package com.gamification.rlrg.core.data;
 
 import android.graphics.drawable.Drawable;
 
