@@ -11,6 +11,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rlrg.dataserver.base.controller.BaseUtils;
+import com.rlrg.dataserver.base.controller.WebVariables;
+import com.rlrg.dataserver.base.domain.UserToken;
+import com.rlrg.dataserver.base.exception.InvalidParamExeption;
+import com.rlrg.dataserver.base.exception.RepositoryException;
+import com.rlrg.dataserver.base.exception.UserTokenException;
+import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.CommonService;
 import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.entity.Role;
 import com.rlrg.dataserver.profile.entity.User;
@@ -18,14 +26,6 @@ import com.rlrg.dataserver.profile.entity.enums.UserStatus;
 import com.rlrg.dataserver.profile.exception.LoginException;
 import com.rlrg.dataserver.profile.form.LoginForm;
 import com.rlrg.dataserver.profile.repository.UserRepository;
-import com.rlrg.dataserver.utils.base.controller.BaseUtils;
-import com.rlrg.dataserver.utils.base.controller.WebVariables;
-import com.rlrg.dataserver.utils.base.domain.UserToken;
-import com.rlrg.dataserver.utils.base.exception.InvalidParamExeption;
-import com.rlrg.dataserver.utils.base.exception.RepositoryException;
-import com.rlrg.dataserver.utils.base.exception.UserTokenException;
-import com.rlrg.dataserver.utils.base.service.BaseService;
-import com.rlrg.dataserver.utils.base.service.CommonService;
 
 @Service
 public class UserService extends BaseService<User, UserDTO>{
@@ -154,7 +154,7 @@ public class UserService extends BaseService<User, UserDTO>{
             User user = userRepo.login(username, password);
             if (user != null) {
                 user.setLastLogin(new Date());
-                com.rlrg.dataserver.utils.base.domain.User uUser = convertUserToUtilUser(user);
+                com.rlrg.dataserver.base.domain.User uUser = convertUserToUtilUser(user);
                 user.setToken(commonService.setUserToken(uUser));
                 //
                 return convertObject(user);
@@ -198,8 +198,8 @@ public class UserService extends BaseService<User, UserDTO>{
 		return userRepo.getAllUserDTO(pageRequest);
     }
     
-    private com.rlrg.dataserver.utils.base.domain.User convertUserToUtilUser(User user){
-    	com.rlrg.dataserver.utils.base.domain.User uUser = new com.rlrg.dataserver.utils.base.domain.User();
+    private com.rlrg.dataserver.base.domain.User convertUserToUtilUser(User user){
+    	com.rlrg.dataserver.base.domain.User uUser = new com.rlrg.dataserver.base.domain.User();
     	uUser.setId(user.getId());
     	uUser.setFirstName(user.getFirstName());
     	uUser.setUsername(user.getUsername());

@@ -12,13 +12,19 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
-
+		<rlrg.version>0.0.1-SNAPSHOT</rlrg.version>
 		<tiles.version>2.2.2</tiles.version>
 		<slf4j.version>1.6.3</slf4j.version>
 	</properties>
 
 
 	<dependencies>
+		<dependency>
+			<groupId>com.rlrg.dataserver</groupId>
+			<artifactId>dataserver-utils</artifactId>
+			<version>${rlrg.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

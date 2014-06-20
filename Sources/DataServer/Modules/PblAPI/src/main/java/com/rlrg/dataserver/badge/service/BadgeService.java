@@ -13,12 +13,12 @@ import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.dataserver.badge.repository.BadgeRepository;
+import com.rlrg.dataserver.base.controller.WebVariables;
+import com.rlrg.dataserver.base.exception.RepositoryException;
+import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.language.entity.BadgeLanguage;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.language.service.BadgeLanguageService;
-import com.rlrg.dataserver.utils.base.controller.WebVariables;
-import com.rlrg.dataserver.utils.base.exception.RepositoryException;
-import com.rlrg.dataserver.utils.base.service.BaseService;
 
 @Service
 public class BadgeService extends BaseService<Badge, BadgeDTO>{

@@ -11,6 +11,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rlrg.dataserver.base.controller.WebVariables;
+import com.rlrg.dataserver.base.domain.UserToken;
+import com.rlrg.dataserver.base.exception.RepositoryException;
+import com.rlrg.dataserver.base.exception.UserTokenException;
+import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.CommonService;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.profile.entity.User;
 import com.rlrg.dataserver.profile.service.UserService;
@@ -19,12 +25,6 @@ import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.entity.Task;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
-import com.rlrg.dataserver.utils.base.controller.WebVariables;
-import com.rlrg.dataserver.utils.base.domain.UserToken;
-import com.rlrg.dataserver.utils.base.exception.RepositoryException;
-import com.rlrg.dataserver.utils.base.exception.UserTokenException;
-import com.rlrg.dataserver.utils.base.service.BaseService;
-import com.rlrg.dataserver.utils.base.service.CommonService;
 
 @Service
 public class TaskService extends BaseService<Task, TaskDTO>{

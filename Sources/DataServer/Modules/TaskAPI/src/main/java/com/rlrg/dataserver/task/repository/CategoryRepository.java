@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.rlrg.dataserver.task.dto.CategoryDTO;
+import com.rlrg.dataserver.base.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 
 @Repository

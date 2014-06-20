@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.profile.dto.PermissionDTO;
 import com.rlrg.dataserver.profile.entity.Permission;
 import com.rlrg.dataserver.profile.repository.PermissionRepository;
-import com.rlrg.dataserver.utils.base.service.BaseService;
 
 @Service
 public class PermissionService extends BaseService<Permission, PermissionDTO>{

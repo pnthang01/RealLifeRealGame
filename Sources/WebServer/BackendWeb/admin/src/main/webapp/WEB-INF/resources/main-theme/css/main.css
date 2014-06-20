@@ -17,7 +17,7 @@ body {
 
 #container {
 	margin: 0 auto;
-	width: 90%; /* Total width, use percentages to create a liquid layout */
+	width: 85%; /* Total width, use percentages to create a liquid layout */
 }
 
 /********** Header **********/

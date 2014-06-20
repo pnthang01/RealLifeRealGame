@@ -5,9 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class WelcomeController {
-	@RequestMapping("/welcome")
-	public String welcome() {
-		return "welcome";
+	
+	@RequestMapping("/login.html")
+	public String loginForm(){
+		return "login";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "dashboard";
 	}
 	
 	@RequestMapping("/dashboard")

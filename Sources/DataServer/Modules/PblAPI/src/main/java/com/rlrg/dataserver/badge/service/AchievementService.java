@@ -12,14 +12,14 @@ import com.rlrg.dataserver.badge.dto.AchievementDTO;
 import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.repository.AchievementRepository;
+import com.rlrg.dataserver.base.controller.WebVariables;
+import com.rlrg.dataserver.base.exception.RepositoryException;
+import com.rlrg.dataserver.base.exception.UserTokenException;
+import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.CommonService;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.profile.entity.User;
 import com.rlrg.dataserver.profile.service.UserService;
-import com.rlrg.dataserver.utils.base.controller.WebVariables;
-import com.rlrg.dataserver.utils.base.exception.RepositoryException;
-import com.rlrg.dataserver.utils.base.exception.UserTokenException;
-import com.rlrg.dataserver.utils.base.service.BaseService;
-import com.rlrg.dataserver.utils.base.service.CommonService;
 
 @Service
 public class AchievementService extends BaseService<Achievement, AchievementDTO> {

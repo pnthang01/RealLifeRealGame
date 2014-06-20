@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rlrg.dataserver.base.controller.BaseController;
 import com.rlrg.dataserver.profile.dto.RoleDTO;
 import com.rlrg.dataserver.profile.service.RoleService;
-import com.rlrg.dataserver.utils.base.controller.BaseController;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 

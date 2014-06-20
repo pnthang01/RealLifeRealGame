@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import com.rlrg.dataserver.base.controller.WebVariables;
+import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.language.dto.LanguageDTO;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.language.repository.LanguageRepository;
-import com.rlrg.dataserver.utils.base.controller.WebVariables;
-import com.rlrg.dataserver.utils.base.service.BaseService;
 
 @Service
 public class LanguageService extends BaseService<Language, LanguageDTO>{

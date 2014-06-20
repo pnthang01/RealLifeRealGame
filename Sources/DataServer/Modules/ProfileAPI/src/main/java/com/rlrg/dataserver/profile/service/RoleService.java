@@ -7,11 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rlrg.dataserver.base.controller.WebVariables;
+import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.profile.dto.RoleDTO;
 import com.rlrg.dataserver.profile.entity.Role;
 import com.rlrg.dataserver.profile.repository.RoleRepository;
-import com.rlrg.dataserver.utils.base.controller.WebVariables;
-import com.rlrg.dataserver.utils.base.service.BaseService;
 
 @Service
 public class RoleService extends BaseService<Role, RoleDTO> {

@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.language.dto.CateLangDTO;
 import com.rlrg.dataserver.language.entity.CategoryLanguage;
 import com.rlrg.dataserver.language.repository.CategoryLanguageRepository;
-import com.rlrg.dataserver.utils.base.service.BaseService;
 
 @Service
 public class CategoryLanguageService extends BaseService<CategoryLanguage, CateLangDTO>{

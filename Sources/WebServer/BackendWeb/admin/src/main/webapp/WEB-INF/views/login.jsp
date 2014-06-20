@@ -12,7 +12,7 @@
 						
 							<div class="notification information">Just click login to go forward.</div>
 						
-							<form action="//" method="POST" >
+							<form action="<c:url value="/login"/>" method="POST" >
 								<p>
 									<label>Username</label>
 									<input id="username" type="text" />

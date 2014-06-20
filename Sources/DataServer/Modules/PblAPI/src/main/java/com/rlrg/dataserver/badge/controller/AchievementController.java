@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.badge.dto.AchievementDTO;
 import com.rlrg.dataserver.badge.service.AchievementService;
-import com.rlrg.dataserver.utils.base.controller.BaseController;
+import com.rlrg.dataserver.base.controller.BaseController;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 

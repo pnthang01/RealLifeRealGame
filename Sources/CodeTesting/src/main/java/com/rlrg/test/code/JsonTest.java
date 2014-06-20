@@ -15,7 +15,7 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.rlrg.dataserver.task.dto.CategoryDTO;
+import com.rlrg.dataserver.base.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.utillities.domain.RestObject;

@@ -2,6 +2,7 @@ package com.rlrg.dataserver.task.dto;
 
 import java.util.Date;
 
+import com.rlrg.dataserver.base.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;

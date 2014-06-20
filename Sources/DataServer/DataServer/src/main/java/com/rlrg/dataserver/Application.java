@@ -22,7 +22,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-import com.rlrg.dataserver.utils.base.domain.UserToken;
+import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.utillities.json.JsonExporter;
 
 @ComponentScan

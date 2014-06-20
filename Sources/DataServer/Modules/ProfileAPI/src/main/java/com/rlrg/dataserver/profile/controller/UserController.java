@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rlrg.dataserver.base.controller.BaseController;
 import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.form.LoginForm;
 import com.rlrg.dataserver.profile.service.UserService;
-import com.rlrg.dataserver.utils.base.controller.BaseController;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
