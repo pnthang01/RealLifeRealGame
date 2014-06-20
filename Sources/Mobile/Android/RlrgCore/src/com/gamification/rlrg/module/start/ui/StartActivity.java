@@ -104,7 +104,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 				args.putString("title", mNavigationTitles[position]);
 				bgId = R.drawable.bg6;
 				break;
-				
+		
 		}
 		findViewById(R.id.fragment_container).setBackgroundResource(bgId);
 		fragment.setArguments(args);

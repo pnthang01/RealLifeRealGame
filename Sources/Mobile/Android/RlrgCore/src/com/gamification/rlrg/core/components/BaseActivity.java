@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.gamification.rlrg.gen.BuildConfig;
@@ -84,16 +85,22 @@ public class BaseActivity extends FragmentActivity
 		if (dialogType.equals(DIALOG_NETWORK_NOT_AVAILABLE))
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle(R.string.no_internet_connection).setMessage(R.string.message_no_internet_connection).setPositiveButton(R.string.ok, null);
+			builder.setTitle(R.string.no_internet_connection);
+			builder.setMessage(R.string.message_no_internet_connection);
+			builder.setPositiveButton(R.string.ok, null);
 			return builder.create();
 		}
-		if (dialogType.equals(DIALOG_SEARCH))
+		else if (dialogType.equals(DIALOG_SEARCH))
 		{
+			ViewGroup view = new FrameLayout(this);
+			inflate(R.layout.dialog_search, view);
+			
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.action_search);
-			builder.setMessage("");
+			builder.setView(view);
 			builder.setPositiveButton(R.string.ok, null);
 			builder.setNegativeButton(R.string.cancel, null);
+			
 			return builder.create();
 		}
 		return null;
@@ -123,11 +130,19 @@ public class BaseActivity extends FragmentActivity
 		}
 	}
 	
-	protected void toast(int resId)
+	protected void toast(int msg)
 	{
 		if (BuildConfig.DEBUG)
 		{
-			Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	protected void inform(CharSequence message)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			new AlertDialog.Builder(this).setTitle("Warning").setMessage(message).setPositiveButton(R.string.ok, null).show();
 		}
 	}
 }

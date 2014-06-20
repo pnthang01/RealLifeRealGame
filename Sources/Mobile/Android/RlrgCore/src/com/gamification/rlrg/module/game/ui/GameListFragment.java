@@ -122,7 +122,7 @@ public class GameListFragment extends ListFragment implements LoaderManager.Load
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
-		//GameData item = (GameData) getListAdapter().getItem(position);
+		// GameData item = (GameData) getListAdapter().getItem(position);
 	}
 	
 	@Override

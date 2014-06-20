@@ -33,7 +33,7 @@ public class NavigationActivity extends BaseActivity
 		{
 			super(NavigationActivity.this, android.R.layout.simple_list_item_1, mNavigationData);
 		}
-
+		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
@@ -60,7 +60,7 @@ public class NavigationActivity extends BaseActivity
 	private TextView mActionBarTitle;
 	private ImageButton mBtnActionBarLeft, mBtnActionBarRightOne, mBtnActionBarRightTwo;
 	
-	protected NavigationData[] mNavigationData = {};
+	protected NavigationData[] mNavigationData;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
