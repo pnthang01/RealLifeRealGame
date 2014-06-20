@@ -1,4 +1,4 @@
-package com.gamification.rlrg.core.activity;
+package com.gamification.rlrg.core.components;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

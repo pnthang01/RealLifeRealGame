@@ -1,4 +1,4 @@
-package com.gamification.rlrg.core.activity;
+package com.gamification.rlrg.core.components;
 
 import java.util.List;
 

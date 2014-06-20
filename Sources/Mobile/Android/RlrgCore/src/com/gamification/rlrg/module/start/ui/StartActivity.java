@@ -11,10 +11,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
-import com.gamification.rlrg.core.activity.NavigationActivity;
 import com.gamification.rlrg.core.app.CoreApp;
+import com.gamification.rlrg.core.components.NavigationActivity;
 import com.gamification.rlrg.core.data.NavigationData;
 import com.gamification.rlrg.gen.R;
+import com.gamification.rlrg.module.game.ui.GameListFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
 
 public class StartActivity extends NavigationActivity implements Runnable
@@ -65,7 +66,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 			setActionBarOverLay(false);
 			mLogoText.setVisibility(View.GONE);
 		}
-		
+		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		addFragment(R.id.fragment_container, ShowRoomFragment.newInstance());
 	}
 	
@@ -73,23 +74,41 @@ public class StartActivity extends NavigationActivity implements Runnable
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
 		super.onNavigationItemClick(adapter, view, position, id);
-		
-		if (position == 0)
-		{
-			setActionBarOverLay(false);
-		}
-		else
-		{
-			setActionBarOverLay(true);
-		}
-		/*
+		setActionBarOverLay(false);
+		Fragment fragment = GameListFragment.newInstance();
 		Bundle args = new Bundle();
-		args.putString("title", mNavigationTitles[position]);
-		
-		Fragment detail = new GameFagment();
-		detail.setArguments(args);
-		replaceFragment(detail);
-		*/
+		int bgId = 0;
+		switch (position)
+		{
+			case 0:
+				fragment = ShowRoomFragment.newInstance();
+				bgId = R.drawable.bg1;
+				break;
+			case 1:
+				args.putString("title", mNavigationTitles[position]);
+				bgId = R.drawable.bg2;
+				break;
+			case 2:
+				args.putString("title", mNavigationTitles[position]);
+				bgId = R.drawable.bg3;
+				break;
+			case 3:
+				args.putString("title", mNavigationTitles[position]);
+				bgId = R.drawable.bg4;
+				break;
+			case 4:
+				args.putString("title", mNavigationTitles[position]);
+				bgId = R.drawable.bg5;
+				break;
+			case 5:
+				args.putString("title", mNavigationTitles[position]);
+				bgId = R.drawable.bg6;
+				break;
+				
+		}
+		findViewById(R.id.fragment_container).setBackgroundResource(bgId);
+		fragment.setArguments(args);
+		replaceFragment(fragment);
 	}
 	
 	protected void replaceFragment(Fragment child)

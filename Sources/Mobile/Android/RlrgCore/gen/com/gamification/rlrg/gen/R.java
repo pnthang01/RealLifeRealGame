@@ -46,8 +46,14 @@ public final class R {
         public static final int font_size_xlarge_55=0x7f070014;
     }
     public static final class drawable {
-        public static final int ic_drawer_black=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int bg1=0x7f020000;
+        public static final int bg2=0x7f020001;
+        public static final int bg3=0x7f020002;
+        public static final int bg4=0x7f020003;
+        public static final int bg5=0x7f020004;
+        public static final int bg6=0x7f020005;
+        public static final int ic_drawer_black=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
     }
     public static final class id {
         public static final int actionbar=0x7f090002;
@@ -72,8 +78,9 @@ public final class R {
         public static final int activity_with_actionbar=0x7f030001;
         public static final int activity_with_navigation=0x7f030002;
         public static final int fragment_showroom=0x7f030003;
-        public static final int list_item_navigation=0x7f030004;
-        public static final int list_view=0x7f030005;
+        public static final int list_item_game=0x7f030004;
+        public static final int list_item_navigation=0x7f030005;
+        public static final int list_view=0x7f030006;
     }
     public static final class string {
         public static final int action_bar=0x7f060000;
