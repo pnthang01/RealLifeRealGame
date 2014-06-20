@@ -1,7 +1,9 @@
-package com.gamification.rlrg.core.fragment;
+package com.gamification.rlrg.module.game.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -18,8 +20,9 @@ import com.gamification.rlrg.core.asynctask.GameAsynctaskLoader;
 import com.gamification.rlrg.core.data.GameData;
 import com.gamification.rlrg.gen.R;
 
+@SuppressLint("ValidFragment")
 public class GameListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<GameData>>
-{	
+{
 	private class Adapter extends ArrayAdapter<GameData>
 	{
 		public Adapter()
@@ -45,7 +48,7 @@ public class GameListFragment extends ListFragment implements LoaderManager.Load
 			View view = convertView;
 			if (view == null)
 			{
-				view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item_navigation, parent, false);
+				view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item_game, parent, false);
 			}
 			
 			GameData item = getItem(position);
@@ -58,7 +61,45 @@ public class GameListFragment extends ListFragment implements LoaderManager.Load
 	
 	private Adapter mAdapter;
 	
-	protected List<GameData> list;
+	protected List<GameData> mList;
+	
+	public static GameListFragment newInstance()
+	{
+		return new GameListFragment();
+	}
+	
+	public GameListFragment()
+	{
+		super();
+	}
+	
+	public void setData(List<GameData> list)
+	{
+		mList = list;
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		mList = new ArrayList<GameData>();
+		Bundle args = getArguments();
+		if (args != null)
+		{
+			String title = args.getString("title");
+			for (String navigationTitle : getResources().getStringArray(R.array.navigation))
+			{
+				if (title.equals(navigationTitle))
+				{
+					mList.add(new GameData(title + ": Đọc sách"));
+					mList.add(new GameData(title + ": Chạy bộ"));
+					mList.add(new GameData(title + ": Bắn cung"));
+					mList.add(new GameData(title + ": Bơi lội"));
+					break;
+				}
+			}
+		}
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -89,7 +130,7 @@ public class GameListFragment extends ListFragment implements LoaderManager.Load
 	{
 		if (getActivity() != null)
 		{
-			return new GameAsynctaskLoader(getActivity(), list);
+			return new GameAsynctaskLoader(getActivity(), mList);
 		}
 		else
 		{

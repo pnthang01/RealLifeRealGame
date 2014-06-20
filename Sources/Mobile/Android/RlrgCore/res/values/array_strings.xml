@@ -2,12 +2,12 @@
 <resources>
 
     <string-array name="navigation">
-        <item>Home</item>
-        <item>Today</item>
-        <item>Tomorrow</item>
-        <item>Week</item>
-        <item>Month</item>
-        <item>Year</item>
+        <item>Phòng trưng bày</item>
+        <item>Hôm nay</item>
+        <item>Ngày mai</item>
+        <item>Tuần này</item>
+        <item>Tháng này</item>
+        <item>Năm nay</item>
     </string-array>
 
 </resources>
