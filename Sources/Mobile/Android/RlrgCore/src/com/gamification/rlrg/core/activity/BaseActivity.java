@@ -1,4 +1,4 @@
-package com.gamification.rlrg.activity;
+package com.gamification.rlrg.core.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -33,6 +33,16 @@ public class BaseActivity extends FragmentActivity
 	protected void inflate(int layoutResID, ViewGroup viewGroup)
 	{
 		mInflater.inflate(layoutResID, viewGroup);
+	}
+	
+	protected void addFragment(int containerResId, Fragment child)
+	{
+		getSupportFragmentManager().beginTransaction().addToBackStack(null).add(containerResId, child).commit();
+	}
+	
+	protected void replaceFragment(int containerResId, Fragment child)
+	{
+		getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(containerResId, child).commit();
 	}
 	
 	protected void showDialog(String dialogType, boolean isCancelable)

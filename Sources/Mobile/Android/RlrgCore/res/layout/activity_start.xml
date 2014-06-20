@@ -4,7 +4,7 @@
     style="@style/full_screen"
     tools:context=".StartActivity" >
 
-    <View
+    <FrameLayout
         android:id="@+id/fragment_container"
         style="@style/full_screen"
         android:background="@android:color/background_light" />

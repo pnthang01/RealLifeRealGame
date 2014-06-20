@@ -2,6 +2,7 @@
 <resources>
 
     <string-array name="navigation">
+        <item>Home</item>
         <item>Today</item>
         <item>Tomorrow</item>
         <item>Week</item>
