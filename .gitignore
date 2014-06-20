@@ -199,6 +199,7 @@ dist/
 build/
 eggs/
 parts/
+target/
 var/
 sdist/
 develop-eggs/
