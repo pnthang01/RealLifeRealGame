@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
-import com.rlrg.dataserver.base.dto.CategoryDTO;
+import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.service.CategoryService;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;

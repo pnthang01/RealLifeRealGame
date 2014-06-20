@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rlrg.dataserver.base.controller.WebVariables;
-import com.rlrg.dataserver.base.dto.CategoryDTO;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.language.entity.CategoryLanguage;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.language.service.CategoryLanguageService;
+import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.repository.CategoryRepository;
 import com.rlrg.utillities.json.JsonExporter;
