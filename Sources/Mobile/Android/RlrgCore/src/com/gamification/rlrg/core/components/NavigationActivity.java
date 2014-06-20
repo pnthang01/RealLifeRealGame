@@ -40,7 +40,7 @@ public class NavigationActivity extends BaseActivity
 			View view = convertView;
 			if (view == null)
 			{
-				view = mInflater.inflate(R.layout.list_item_navigation, parent, false);
+				view = inflate(R.layout.list_item_navigation, parent, false);
 			}
 			TextView title = (TextView) view;
 			title.setText(getItem(position).getTitle());
@@ -89,6 +89,7 @@ public class NavigationActivity extends BaseActivity
 			@Override
 			public void onClick(View v)
 			{
+				log("open navigation");
 				mDrawerLayout.openDrawer(mNavigation);
 			}
 		});
@@ -107,6 +108,7 @@ public class NavigationActivity extends BaseActivity
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id)
 			{
+				log("navigator item " + position + "clicked");
 				onNavigationItemClick((ListView) adapter, view, position, id);
 			}
 		});
@@ -121,18 +123,21 @@ public class NavigationActivity extends BaseActivity
 	}
 	
 	@Override
-	public void setContentView(int layoutResID)
+	public void setContentView(int layout)
 	{
-		inflate(layoutResID, mMainView);
+		log("set layout " + layout + " to main view");
+		inflate(layout, mMainView);
 	}
 	
 	protected void setNavigationData(List<NavigationData> data)
 	{
+		log("set navigation data: " + data.toString());
 		mNavigationData = data.toArray(new NavigationData[data.size()]);
 	}
 	
-	protected void setNavigationTitles(NavigationData[] data)
+	protected void setNavigationData(NavigationData[] data)
 	{
+		log("set navigation data: " + data.toString());
 		mNavigationData = data;
 	}
 	
@@ -144,16 +149,19 @@ public class NavigationActivity extends BaseActivity
 	
 	protected void showActionBar()
 	{
+		log("show action bar");
 		mActionBar.setVisibility(View.VISIBLE);
 	}
 	
 	protected void hideActionBar()
 	{
+		log("hide action bar");
 		mActionBar.setVisibility(View.GONE);
 	}
 	
 	protected void setActionBarOverLay(boolean isOverlay)
 	{
+		log("set action bar overlay: " + isOverlay);
 		LayoutParams params = (LayoutParams) mMainView.getLayoutParams();
 		if (isOverlay)
 		{
@@ -170,11 +178,13 @@ public class NavigationActivity extends BaseActivity
 	
 	protected void setActionBarTitle(int text)
 	{
+		log("set action bar title id: " + text);
 		mActionBarTitle.setText(text);
 	}
 	
 	protected void setActionBarTitle(CharSequence text)
 	{
+		log("set action bar title: " + text);
 		mActionBarTitle.setText(text);
 	}
 	

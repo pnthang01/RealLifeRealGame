@@ -20,6 +20,8 @@ import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
 
 public class StartActivity extends NavigationActivity implements Runnable
 {
+	private static final int LOGO_APPEAR_INTERVAL = 7000;
+	
 	private View mLogoText;
 	
 	private String[] mNavigationTitles;
@@ -58,7 +60,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 				{
 					runOnUiThread(StartActivity.this);
 				}
-			}, 7000);
+			}, LOGO_APPEAR_INTERVAL);
 		}
 		else
 		{
@@ -77,7 +79,9 @@ public class StartActivity extends NavigationActivity implements Runnable
 		setActionBarOverLay(false);
 		Fragment fragment = GameListFragment.newInstance();
 		Bundle args = new Bundle();
+		args.putString("title", mNavigationTitles[position]);
 		int bgId = 0;
+		
 		switch (position)
 		{
 			case 0:
@@ -85,26 +89,20 @@ public class StartActivity extends NavigationActivity implements Runnable
 				bgId = R.drawable.bg1;
 				break;
 			case 1:
-				args.putString("title", mNavigationTitles[position]);
 				bgId = R.drawable.bg2;
 				break;
 			case 2:
-				args.putString("title", mNavigationTitles[position]);
 				bgId = R.drawable.bg3;
 				break;
 			case 3:
-				args.putString("title", mNavigationTitles[position]);
 				bgId = R.drawable.bg4;
 				break;
 			case 4:
-				args.putString("title", mNavigationTitles[position]);
 				bgId = R.drawable.bg5;
 				break;
 			case 5:
-				args.putString("title", mNavigationTitles[position]);
 				bgId = R.drawable.bg6;
 				break;
-		
 		}
 		findViewById(R.id.fragment_container).setBackgroundResource(bgId);
 		fragment.setArguments(args);

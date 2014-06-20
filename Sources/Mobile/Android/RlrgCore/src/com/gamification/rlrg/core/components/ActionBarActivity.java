@@ -37,42 +37,50 @@ public class ActionBarActivity extends BaseActivity
 	}
 	
 	@Override
-	public void setContentView(int layoutResID)
+	public void setContentView(int layout)
 	{
-		inflate(layoutResID, mMainView);
+		log("set layout " + layout + " to main view");
+		inflate(layout, mMainView);
 	}
 	
 	protected void showActionBar()
 	{
+		log("show action bar");
 		mActionBar.setVisibility(View.VISIBLE);
 	}
 	
 	protected void hideActionBar()
 	{
+		log("hide action bar");
 		mActionBar.setVisibility(View.GONE);
 	}
 	
 	protected void setActionBarOverLay(boolean isOverlay)
 	{
+		log("set action bar overlay: " + isOverlay);
 		LayoutParams params = (LayoutParams) mMainView.getLayoutParams();
 		if (isOverlay)
 		{
 			params.topMargin = 0;
+			mActionBar.setBackgroundColor(getResources().getColor(R.color.background_transparent));
 		}
 		else
 		{
 			params.topMargin = getResources().getDimensionPixelSize(R.dimen.actionbar_height);
+			mActionBar.setBackgroundColor(getResources().getColor(R.color.background_solid));
 		}
 		mMainView.setLayoutParams(params);
 	}
 	
 	protected void setActionBarTitle(int text)
 	{
+		log("set action bar title id: " + text);
 		mActionBarTitle.setText(text);
 	}
 	
 	protected void setActionBarTitle(CharSequence text)
 	{
+		log("set action bar title: " + text);
 		mActionBarTitle.setText(text);
 	}
 	
@@ -123,6 +131,7 @@ public class ActionBarActivity extends BaseActivity
 	
 	private void setActionBarButton(ImageButton view, Drawable icon, View.OnClickListener callback)
 	{
+		log("set action bar button " + view.toString() + "with icon " + icon.toString());
 		if (icon != null)
 		{
 			view.setImageDrawable(icon);

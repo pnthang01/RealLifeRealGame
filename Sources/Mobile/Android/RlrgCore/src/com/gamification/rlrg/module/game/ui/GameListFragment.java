@@ -87,6 +87,8 @@ public class GameListFragment extends ListFragment implements LoaderManager.Load
 		if (args != null)
 		{
 			String title = args.getString("title");
+			
+			// TODO: Move to CoreApp
 			for (String navigationTitle : getResources().getStringArray(R.array.navigation))
 			{
 				if (title.equals(navigationTitle))
