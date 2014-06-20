@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,9 +62,9 @@ public class CategoryController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/getAllCategories?pageNumber={pageNumber}", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getAllCategories", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
-	public String getAllCategories(@PathVariable("pageNumber") int pageNumber){
+	public String getAllCategories(@RequestParam("pageNumber") int pageNumber){
 		String result = null;
 		LOG.info("<< Starting webservice /category/getAllCategories with parameters: pageNumber={}", pageNumber);
 		try {
