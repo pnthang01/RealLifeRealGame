@@ -1,4 +1,4 @@
-package com.rlrg.dataserver.base.dto;
+package com.rlrg.dataserver.task.dto;
 
 import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
