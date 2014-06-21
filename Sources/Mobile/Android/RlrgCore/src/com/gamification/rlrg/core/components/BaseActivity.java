@@ -118,7 +118,7 @@ public class BaseActivity extends FragmentActivity
 		return null;
 	}
 	
-	protected void log(String msg)
+	public void log(String msg)
 	{
 		if (BuildConfig.DEBUG)
 		{
@@ -126,7 +126,7 @@ public class BaseActivity extends FragmentActivity
 		}
 	}
 	
-	protected void error(String msg)
+	public void error(String msg)
 	{
 		if (BuildConfig.DEBUG)
 		{
@@ -134,25 +134,25 @@ public class BaseActivity extends FragmentActivity
 		}
 	}
 	
-	protected void toast(CharSequence msg)
+	public void toast(CharSequence msg)
 	{
 		log("toast: " + msg);
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
 	
-	protected void toast(int msg)
+	public void toast(int msg)
 	{
 		log("toast id: " + msg);
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
 	
-	protected void alert(CharSequence title, CharSequence message)
+	public void alert(CharSequence title, CharSequence message)
 	{
 		log("alert " + title + " width message: " + message);
 		new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton(R.string.ok, null).show();
 	}
 	
-	protected void alert(CharSequence message)
+	public void alert(CharSequence message)
 	{
 		log("warning: " + message);
 		alert("Warning", message);
