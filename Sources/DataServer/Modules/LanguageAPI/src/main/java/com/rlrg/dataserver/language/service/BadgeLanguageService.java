@@ -12,7 +12,7 @@ import com.rlrg.dataserver.language.repository.BadgeLanguageRepository;
 
 @Service
 public class BadgeLanguageService extends BaseService<BadgeLanguage, BadgeLangDTO> {
-	
+
 	private final static Logger LOG = LoggerFactory.getLogger(BadgeLanguageService.class);
 	
 	@Autowired

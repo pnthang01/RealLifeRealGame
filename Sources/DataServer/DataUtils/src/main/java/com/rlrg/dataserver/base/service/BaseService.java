@@ -6,22 +6,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rlrg.dataserver.base.domain.CountableDTO;
+import com.rlrg.utillities.badgechecker.BaseSource;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
 
 
-public abstract class BaseService <T, V>{
+public abstract class BaseService <T, V> extends BaseSource{
 
 	@Autowired
 	private JsonExporter jsonExporter;
 	
-	public abstract V convertEntityToDTO(T data);
+	protected abstract V convertEntityToDTO(T data);
 	
-	public abstract T revertDTOToEntity(V dto);
+	protected abstract T revertDTOToEntity(V dto);
 	
-	public abstract Class<V> getVClass();
-	
+	protected abstract Class<V> getVClass();
+
 	/**
 	 * Encode counting services for statistic to json.
 	 * @param count

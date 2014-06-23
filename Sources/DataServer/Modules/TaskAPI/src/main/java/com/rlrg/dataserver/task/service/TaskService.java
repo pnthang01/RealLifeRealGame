@@ -152,6 +152,7 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @return
 	 */
 	public TaskDTO getTaskById(Long taskId){
+		notifyListeners();
 		return taskRepo.getTaskById(taskId, DEFAULT_LANGUAGE.getId());
 	}
 	

@@ -1,5 +1,6 @@
 package com.rlrg.utillities.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -20,8 +21,15 @@ public abstract class BaseWebServiceReader<T> {
 	
 	private final JsonExporter jsonExporter = new JsonExporter();
 	
+	protected List<ReadWebServiceListener> listeners = new ArrayList<ReadWebServiceListener>();
+	
 	protected abstract Class<T> getTClass();
 	
+	public BaseWebServiceReader(){
+		ReadWebServiceListener readObserver = new ReadWebServiceObserver(this);
+	}
+	
+
 	/**
 	 * Accept part of url and their url parameters, combine that url with the uri domain to fully url
 	 * Then get a json string from the fully url and decode it to a list of class T
@@ -30,7 +38,7 @@ public abstract class BaseWebServiceReader<T> {
 	 * @return
 	 * @throws ConvertException
 	 */
-	public List<T> getListOfObjects(String url, Object... urlParams) throws ConvertException, RestClientException{
+	public List<T> getListOfObjects(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String json = restTemplate.getForObject(finalUrl, String.class, urlParams);
@@ -38,6 +46,7 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
+		notifyListeners(url, json, moduleName);
 		//
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
 		if(restobject.getErrorCode() == RestObject.ERROR){
@@ -61,7 +70,7 @@ public abstract class BaseWebServiceReader<T> {
 	 * @throws ConvertException
 	 * @throws RestClientException
 	 */
-	public T getAnObject(String url, Object... urlParams) throws ConvertException, RestClientException{
+	public T getAnObject(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String json = restTemplate.getForObject(finalUrl, String.class, urlParams);
@@ -69,6 +78,7 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
+		notifyListeners(url, json, moduleName);
 		//
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
 		if(restobject.getErrorCode() == RestObject.ERROR){
@@ -91,7 +101,7 @@ public abstract class BaseWebServiceReader<T> {
 	 * @return
 	 * @throws ConvertException
 	 */
-	public boolean postAnObjectT(String url, T objectT) throws ConvertException{
+	public boolean postAnObjectT(String url, String moduleName, T objectT) throws ConvertException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String json = jsonExporter.encodeObjectToJson(objectT);
@@ -105,6 +115,7 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
+		notifyListeners(url, resultJson, moduleName);
 		//
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(resultJson);
 		//
@@ -118,7 +129,7 @@ public abstract class BaseWebServiceReader<T> {
 	 * @param urlParams
 	 * @return
 	 */
-	public boolean postListOfParameters(String url, Object... urlParams){
+	public boolean postListOfParameters(String url, String moduleName, Object... urlParams){
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String resultJson = restTemplate.postForObject(finalUrl, null, String.class, urlParams);
@@ -126,9 +137,28 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
+		notifyListeners(url, resultJson, moduleName); 
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(resultJson);
 		//
 		return restobject.getErrorCode() == RestObject.OK;
 	}
+
+	/**
+	 * If an action of extend classes have to be checked by BadgeChecker, please add this method when the action is done.
+	 */
+	protected void notifyListeners(String url, String json, String moduleName) {
+		for (ReadWebServiceListener name : listeners) {
+	    	name.readWebService(new ReadWebServiceEvent(url, json, moduleName));
+	    }
+	}
+	
+	/**
+	 * For any Observers tend to implement this #ActionPerformedListener
+	 * @param newListener
+	 */
+	protected void addReadListener(ReadWebServiceListener newListener) {
+		listeners.add(newListener);
+	}
+	
 	
 }
