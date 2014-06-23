@@ -3,26 +3,27 @@ package com.rlrg.utillities.badgechecker;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rlrg.utillities.exception.BadgeCheckerModuleException;
-
 public abstract class BaseSource {
 	
 	protected List<ActionPerformedListener> listeners = new ArrayList<ActionPerformedListener>();
 	
+	protected abstract void initListener();
+	
 	/**
-	 * Default constructor, please make sure classes extends this BaseSource for BadgeChecker must have #ModuleName annotation.
-	 * @throws BadgeCheckerModuleException
+	 * Default constructor, please make sure extends classes have the method initListener do initialize ActionObserver.
+	 * Create a class extends #ActionPerformedListener with moduleName property. Like this
+	 * ActionPerformedListener actionObserver = new ActionObserver(this);
 	 */
 	public BaseSource(){
-		ActionObserver actionObserver = new ActionObserver(this);
+		initListener();
 	}
 	
 	/**
 	 * If an action of extend classes have to be checked by BadgeChecker, please add this method when the action is done.
 	 */
-	protected void notifyListeners() {
+	protected void notifyListeners(String action, Long userId) {
 		for (ActionPerformedListener name : listeners) {
-	    	name.actionPerformed(new ActionPerformedEvent());
+	    	name.actionPerformed(new ActionPerformedEvent(action, userId));
 	    }
 	}
 	

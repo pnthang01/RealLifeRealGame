@@ -3,16 +3,24 @@ package com.rlrg.dataserver.base.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
 
 import com.rlrg.dataserver.base.domain.CountableDTO;
+import com.rlrg.utillities.badgechecker.ActionObserver;
 import com.rlrg.utillities.badgechecker.BaseSource;
+import com.rlrg.utillities.badgechecker.ModuleName;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
 
 
 public abstract class BaseService <T, V> extends BaseSource{
+	
+	@Transient
+	private static final Logger LOG = LoggerFactory.getLogger(BaseService.class);
 
 	@Autowired
 	private JsonExporter jsonExporter;
@@ -22,6 +30,16 @@ public abstract class BaseService <T, V> extends BaseSource{
 	protected abstract T revertDTOToEntity(V dto);
 	
 	protected abstract Class<V> getVClass();
+	
+	public void initListener(){
+		ActionObserver actionObserver = new ActionObserver(this);
+		ModuleName moduleAnno = this.getClass().getAnnotation(ModuleName.class);
+		if(null == moduleAnno || null == moduleAnno.name()){
+			LOG.debug("ActionObserver does not have module name.");
+		} else {
+			actionObserver.setModuleName(moduleAnno.name());
+		}
+	}
 
 	/**
 	 * Encode counting services for statistic to json.
