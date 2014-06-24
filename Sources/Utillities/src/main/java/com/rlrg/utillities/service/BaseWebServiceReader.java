@@ -1,6 +1,5 @@
 package com.rlrg.utillities.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,7 +11,7 @@ import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
 
-public abstract class BaseWebServiceReader<T> {
+public abstract class BaseWebServiceReader<T>{
 	private static final Logger LOG = LoggerFactory.getLogger(BaseWebServiceReader.class);
 	
 	private final String SERVER_URI = "http://localhost:9090/data/";
@@ -21,14 +20,7 @@ public abstract class BaseWebServiceReader<T> {
 	
 	private final JsonExporter jsonExporter = new JsonExporter();
 	
-	protected List<ReadWebServiceListener> listeners = new ArrayList<ReadWebServiceListener>();
-	
 	protected abstract Class<T> getTClass();
-	
-	public BaseWebServiceReader(){
-		ReadWebServiceListener readObserver = new ReadWebServiceObserver(this);
-	}
-	
 
 	/**
 	 * Accept part of url and their url parameters, combine that url with the uri domain to fully url
@@ -46,7 +38,7 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
-		notifyListeners(url, json, moduleName);
+		//TODO
 		//
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
 		if(restobject.getErrorCode() == RestObject.ERROR){
@@ -78,7 +70,7 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
-		notifyListeners(url, json, moduleName);
+		//TODO
 		//
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
 		if(restobject.getErrorCode() == RestObject.ERROR){
@@ -115,7 +107,7 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
-		notifyListeners(url, resultJson, moduleName);
+		//TODO
 		//
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(resultJson);
 		//
@@ -137,28 +129,10 @@ public abstract class BaseWebServiceReader<T> {
 			LOG.info("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");
 		}
-		notifyListeners(url, resultJson, moduleName); 
+		//TODO
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(resultJson);
 		//
 		return restobject.getErrorCode() == RestObject.OK;
 	}
-
-	/**
-	 * If an action of extend classes have to be checked by BadgeChecker, please add this method when the action is done.
-	 */
-	protected void notifyListeners(String url, String json, String moduleName) {
-		for (ReadWebServiceListener name : listeners) {
-	    	name.readWebService(new ReadWebServiceEvent(url, json, moduleName));
-	    }
-	}
-	
-	/**
-	 * For any Observers tend to implement this #ActionPerformedListener
-	 * @param newListener
-	 */
-	protected void addReadListener(ReadWebServiceListener newListener) {
-		listeners.add(newListener);
-	}
-	
 	
 }
