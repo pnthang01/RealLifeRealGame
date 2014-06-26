@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.badge.dto.AchievementDTO;
-import com.rlrg.dataserver.badge.service.AchievementService;
+import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.IAchievementService;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -23,7 +24,7 @@ public class AchievementController extends BaseController {
 	private static final Logger LOG = LoggerFactory.getLogger(AchievementController.class);
 
 	@Autowired
-	private AchievementService achievementService;
+	private IAchievementService<Achievement, AchievementDTO> achievementService;
 	
 	@RequestMapping(value = "/getUserAchivements", produces = "application/json", method = RequestMethod.GET)
 	@ResponseBody

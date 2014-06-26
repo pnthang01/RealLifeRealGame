@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.ICategoryService;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
-import com.rlrg.dataserver.task.service.CategoryService;
+import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -26,7 +27,7 @@ public class CategoryController extends BaseController {
 	private static final Logger LOG = LoggerFactory.getLogger(CategoryController.class);
 	
 	@Autowired
-	private CategoryService cateService;
+	private ICategoryService<Category, CategoryDTO> categoryService;
 	
 	/**
 	 * Get Categories bases on their status
@@ -41,15 +42,15 @@ public class CategoryController extends BaseController {
 		String result = null;
 		LOG.info("<< Starting webservice /category/getCategoriesByStatus with parameters: status={}, pageNumber={}", status, pageNumber);
 		try {
-			List<CategoryDTO> listDto = cateService.getCategoriesByStatus(status, pageNumber);
+			List<CategoryDTO> listDto = categoryService.getCategoriesByStatus(status, pageNumber);
 			//
-			result = cateService.encodeMutipleObjectsFromListV(listDto);
+			result = categoryService.encodeMutipleObjectsFromListV(listDto);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		} catch(Exception e){
 			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /category/getCategoriesByStatus");
 		return result;
@@ -68,15 +69,15 @@ public class CategoryController extends BaseController {
 		String result = null;
 		LOG.info("<< Starting webservice /category/getAllCategories with parameters: pageNumber={}", pageNumber);
 		try {
-			List<CategoryDTO> listDTO = cateService.getAllCategories(pageNumber);
+			List<CategoryDTO> listDTO = categoryService.getAllCategories(pageNumber);
 			//
-			result = cateService.encodeMutipleObjectsFromListV(listDTO);
+			result = categoryService.encodeMutipleObjectsFromListV(listDTO);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		} catch(Exception e){
 			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /category/getAllCategories");
 		return result;
@@ -93,15 +94,15 @@ public class CategoryController extends BaseController {
 		String result = null;
 		LOG.info("<< Starting webservice /category/getCategoryByCode with parameters: code={}, pageNumber={}", code);
 		try {
-			CategoryDTO dto = cateService.getCategoryDTOByCode(code);
+			CategoryDTO dto = categoryService.getCategoryDTOByCode(code);
 			//
-			result = cateService.encodeSingleObjectFromVdto(dto);
+			result = categoryService.encodeSingleObjectFromVdto(dto);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		} catch(Exception e){
 			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /category/getCategoryByCode");
 		return result;
@@ -121,15 +122,15 @@ public class CategoryController extends BaseController {
 		String result = null;
 		LOG.info("<< Starting webservice /category/updateStatus with parameters: code={}, status={}", code, status);
 		try {
-			cateService.updateStatus(code, status);
+			categoryService.updateStatus(code, status);
 			RestObject restObject = RestObject.successBlank();
-			result =  cateService.encodeBlankRestObject(restObject);
+			result =  categoryService.encodeBlankRestObject(restObject);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		} catch(Exception e){
 			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		}
 		//
 		LOG.info("<< End webservice /category/updateStatus");
@@ -147,16 +148,16 @@ public class CategoryController extends BaseController {
 		String result = null;
 		LOG.info("<< Starting webservice /category/update with parameters: restobject={}", json);
 		try {
-			CategoryDTO dto = cateService.decodeSingleObject(json);
-			cateService.update(dto);
+			CategoryDTO dto = categoryService.decodeSingleObject(json);
+			categoryService.update(dto);
 			RestObject restObject = RestObject.successBlank();
-			result =  cateService.encodeBlankRestObject(restObject);
+			result =  categoryService.encodeBlankRestObject(restObject);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		} catch(Exception e){
 			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		}
 		//
 		LOG.info("<< End webservice /category/update");
@@ -176,15 +177,15 @@ public class CategoryController extends BaseController {
 		String result = null;
 		LOG.info("<< Starting webservice /category/searchCategories with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
 		try {
-			List<CategoryDTO> listDTO = cateService.searchCategoriesByKeyword(keyword, pageNumber);
+			List<CategoryDTO> listDTO = categoryService.searchCategoriesByKeyword(keyword, pageNumber);
 			//
-			result = cateService.encodeMutipleObjectsFromListV(listDTO);
+			result = categoryService.encodeMutipleObjectsFromListV(listDTO);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		} catch(Exception e){
 			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = cateService.encodeBlankRestObject(restObject);
+			result = categoryService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /category/searchCategories");
 		return result;

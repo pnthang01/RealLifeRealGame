@@ -3,6 +3,7 @@ package com.rlrg.dataserver.task.dto;
 import java.util.Date;
 
 import com.rlrg.dataserver.task.dto.CategoryDTO;
+import com.rlrg.dataserver.task.entity.enums.DifficultyLevel;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
@@ -25,6 +26,9 @@ public class TaskDTO {
 
 	@JsonExport(name = "Description")
 	private String description;
+	
+	@JsonExport(name = "CreateTime")
+	private Date createTime;
 
 	@JsonExport(name = "Complete Time")
 	private Date completeTime;
@@ -33,7 +37,7 @@ public class TaskDTO {
 	private Date startTime;
 
 	@JsonExport(name = "Difficulty Level")
-	private Integer difficultyLevel;
+	private DifficultyLevel difficultyLevel;
 
 	@JsonExport(name = "Status")
 	private TaskStatus status;
@@ -44,14 +48,15 @@ public class TaskDTO {
 	public TaskDTO(){
 	}
 	
-	public TaskDTO(Long id, String cateCode, String cateName, String name, String description, 
-			Date completeTime, Date startTime, Integer diffcultyLevel,
+	public TaskDTO(Long id, String cateCode, String cateName, String name, String description, Date createTime,
+			Date completeTime, Date startTime, DifficultyLevel diffcultyLevel,
 			TaskStatus status, Integer point){
 		this.id = id;
 		CategoryDTO cate = new CategoryDTO(cateCode, cateName);
 		this.category = cate;
 		this.name = name;
 		this.description = description;
+		this.createTime = createTime;
 		this.completeTime = completeTime;
 		this.startTime = startTime;
 		this.difficultyLevel = diffcultyLevel;
@@ -115,11 +120,11 @@ public class TaskDTO {
 		this.startTime = startTime;
 	}
 
-	public Integer getDifficultyLevel() {
+	public DifficultyLevel getDifficultyLevel() {
 		return difficultyLevel;
 	}
 
-	public void setDifficultyLevel(Integer difficultyLevel) {
+	public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
 		this.difficultyLevel = difficultyLevel;
 	}
 
@@ -137,6 +142,14 @@ public class TaskDTO {
 
 	public void setPoint(Integer point) {
 		this.point = point;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	@Override

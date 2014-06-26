@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.rlrg.dataserver.profile.entity.User;
+import com.rlrg.dataserver.task.entity.enums.DifficultyLevel;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 
 /**
@@ -45,6 +46,10 @@ public class Task implements java.io.Serializable {
 
 	@Column(name = "description", length = 65535)
 	private String description;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_time", length = 19)
+	private Date createTime;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "complete_time", length = 19)
@@ -55,7 +60,7 @@ public class Task implements java.io.Serializable {
 	private Date startTime;
 
 	@Column(name = "difficulty_level")
-	private Integer difficultyLevel;
+	private DifficultyLevel difficultyLevel;
 
 	@Column(name = "status")
 	private TaskStatus status;
@@ -73,7 +78,7 @@ public class Task implements java.io.Serializable {
 	}
 
 	public Task(User user, Category category, String name, String description,
-			Date completeTime, Date startTime, Integer difficultyLevel,
+			Date completeTime, Date startTime, DifficultyLevel difficultyLevel,
 			TaskStatus status, Integer point) {
 		this.user = user;
 		this.category = category;
@@ -142,11 +147,11 @@ public class Task implements java.io.Serializable {
 		this.startTime = startTime;
 	}
 
-	public Integer getDifficultyLevel() {
+	public DifficultyLevel getDifficultyLevel() {
 		return this.difficultyLevel;
 	}
 
-	public void setDifficultyLevel(Integer difficultyLevel) {
+	public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
 		this.difficultyLevel = difficultyLevel;
 	}
 
@@ -166,4 +171,11 @@ public class Task implements java.io.Serializable {
 		this.point = point;
 	}
 
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 }

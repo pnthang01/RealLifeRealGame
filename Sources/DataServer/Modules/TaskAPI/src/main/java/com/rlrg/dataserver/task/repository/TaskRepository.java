@@ -17,7 +17,7 @@ import com.rlrg.dataserver.task.entity.Task;
 public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
 
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.TaskDTO(" +
-			"t.id, c.code, cl.cateName, t.name, t.description," +
+			"t.id, c.code, cl.cateName, t.name, t.description, t.createTime," +
 			" t.completeTime, t.startTime, t.difficultyLevel, t.status, t.point"	+
 			")"  +
 			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl" +
@@ -26,7 +26,7 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 			@Param("languageId") Integer languageId, Pageable pageable);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.TaskDTO(" +
-			"t.id, c.code, cl.cateName, t.name, t.description," +
+			"t.id, c.code, cl.cateName, t.name, t.description, t.createTime," +
 			" t.completeTime, t.startTime, t.difficultyLevel, t.status, t.point"	+
 			")"  +
 			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl" +
@@ -35,7 +35,7 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 			, @Param("languageId") Integer languageId, Pageable pageable);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.TaskDTO(" +
-			"t.id, c.code, cl.cateName, t.name, t.description," +
+			"t.id, c.code, cl.cateName, t.name, t.description, t.createTime," +
 			" t.completeTime, t.startTime, t.difficultyLevel, t.status, t.point"	+
 			")"  +
 			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl" +

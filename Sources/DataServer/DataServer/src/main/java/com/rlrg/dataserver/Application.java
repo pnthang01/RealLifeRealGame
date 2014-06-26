@@ -26,9 +26,9 @@ import com.rlrg.utillities.json.JsonExporter;
 @PropertySources({
 	@PropertySource("classpath:application.properties")
 })
-public class StartApplication {
+public class Application {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(StartApplication.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 	
 	@Bean
 	public PathMatchingResourcePatternResolver resourcePatternResolver() {
@@ -81,6 +81,6 @@ public class StartApplication {
     }
 	
     public static void main(String[] args) {
-        SpringApplication.run(StartApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

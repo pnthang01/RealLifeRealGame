@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.badge.dto.AchievementDTO;
+import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.repository.AchievementRepository;
@@ -17,12 +18,15 @@ import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.CommonService;
+import com.rlrg.dataserver.base.service.IAchievementService;
+import com.rlrg.dataserver.base.service.IBadgeService;
+import com.rlrg.dataserver.base.service.IUserService;
 import com.rlrg.dataserver.language.entity.Language;
+import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.entity.User;
-import com.rlrg.dataserver.profile.service.UserService;
 
 @Service
-public class AchievementService extends BaseService<Achievement, AchievementDTO> {
+public class AchievementService extends BaseService<Achievement, AchievementDTO> implements IAchievementService<Achievement, AchievementDTO> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AchievementService.class);
 	
@@ -30,10 +34,10 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 	private AchievementRepository achievementRepo;
 
 	@Autowired
-	private BadgeService badgeService;
+	private IBadgeService<Badge, BadgeDTO> badgeService;
 	
 	@Autowired
-	private UserService userService;
+	private IUserService<User, UserDTO> userService;
 	
 	@Autowired
 	private Language DEFAULT_LANGUAGE;

@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.IRoleService;
 import com.rlrg.dataserver.profile.dto.RoleDTO;
-import com.rlrg.dataserver.profile.service.RoleService;
+import com.rlrg.dataserver.profile.entity.Role;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -23,7 +24,7 @@ public class RoleController extends BaseController{
 	private static final Logger LOG = LoggerFactory.getLogger(RoleController.class);
 	
 	@Autowired
-	private RoleService roleService;
+	private IRoleService<Role, RoleDTO> roleService;
 	
 	/**
 	 * Get all roles in database

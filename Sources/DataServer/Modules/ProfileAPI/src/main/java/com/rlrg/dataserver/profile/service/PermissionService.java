@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.IPermissionService;
 import com.rlrg.dataserver.profile.dto.PermissionDTO;
 import com.rlrg.dataserver.profile.entity.Permission;
 import com.rlrg.dataserver.profile.repository.PermissionRepository;
 
 @Service
-public class PermissionService extends BaseService<Permission, PermissionDTO>{
+public class PermissionService extends BaseService<Permission, PermissionDTO> implements IPermissionService<Permission, PermissionDTO>{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(PermissionService.class);
 	

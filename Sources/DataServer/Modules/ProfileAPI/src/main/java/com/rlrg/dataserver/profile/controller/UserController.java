@@ -1,7 +1,5 @@
 package com.rlrg.dataserver.profile.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.IUserService;
 import com.rlrg.dataserver.profile.dto.UserDTO;
+import com.rlrg.dataserver.profile.entity.User;
 import com.rlrg.dataserver.profile.form.LoginForm;
-import com.rlrg.dataserver.profile.service.UserService;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -28,7 +27,7 @@ public class UserController extends BaseController {
 	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 	
     @Autowired
-    private UserService userService;
+    private IUserService<User, UserDTO> userService;
 
 	@RequestMapping(value = "/signup", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
@@ -119,7 +118,7 @@ public class UserController extends BaseController {
 		String result = null;
 		LOG.info("<< Starting webservice /user/getAllUser with parameter: loginParam={}", loginParam);
 		try {
-			UserDTO userDTO = userService.login(loginParam);
+			UserDTO userDTO = userService.login(loginParam.getUsername(), loginParam.getPassword());
 			//
 			result = userService.encodeSingleObjectFromVdto(userDTO);
 		} catch(BaseException e){

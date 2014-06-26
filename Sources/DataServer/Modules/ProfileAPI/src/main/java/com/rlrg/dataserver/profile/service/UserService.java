@@ -19,16 +19,18 @@ import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.CommonService;
+import com.rlrg.dataserver.base.service.IRoleService;
+import com.rlrg.dataserver.base.service.IUserService;
+import com.rlrg.dataserver.profile.dto.RoleDTO;
 import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.entity.Role;
 import com.rlrg.dataserver.profile.entity.User;
 import com.rlrg.dataserver.profile.entity.enums.UserStatus;
 import com.rlrg.dataserver.profile.exception.LoginException;
-import com.rlrg.dataserver.profile.form.LoginForm;
 import com.rlrg.dataserver.profile.repository.UserRepository;
 
 @Service
-public class UserService extends BaseService<User, UserDTO>{
+public class UserService extends BaseService<User, UserDTO> implements IUserService<User, UserDTO>{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 	
@@ -36,7 +38,7 @@ public class UserService extends BaseService<User, UserDTO>{
     private UserRepository userRepo;
     
     @Autowired
-    private RoleService roleService;
+    private IRoleService<Role, RoleDTO> roleService;
     
     @Autowired
     private CommonService commonService;
@@ -146,10 +148,8 @@ public class UserService extends BaseService<User, UserDTO>{
     }
 
     @Transactional
-    public UserDTO login(LoginForm loginForm) throws RepositoryException, LoginException, InvalidParamExeption {
-        if (!StringUtils.isEmpty(loginForm.getUsername()) && !StringUtils.isEmpty(loginForm.getPassword())) {
-            String username = loginForm.getUsername();
-            String password = loginForm.getPassword();
+    public UserDTO login(String username, String password) throws RepositoryException, InvalidParamExeption, Exception {
+        if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)) {
             password = BaseUtils.md5(password);
             User user = userRepo.login(username, password);
             if (user != null) {
@@ -164,6 +164,10 @@ public class UserService extends BaseService<User, UserDTO>{
         } else {
             throw new InvalidParamExeption("username or password is empty!");
         }
+    }
+    
+    public boolean updateUserPerformed(Long userId, String performed){
+    	return false;
     }
     
     /**
@@ -197,6 +201,11 @@ public class UserService extends BaseService<User, UserDTO>{
 		//
 		return userRepo.getAllUserDTO(pageRequest);
     }
+    
+	@Override
+	public String getUserPerformedString(Long userId) {
+		return userRepo.getUserPerformedString(userId);
+	}
     
     private com.rlrg.dataserver.base.domain.User convertUserToUtilUser(User user){
     	com.rlrg.dataserver.base.domain.User uUser = new com.rlrg.dataserver.base.domain.User();
@@ -238,4 +247,5 @@ public class UserService extends BaseService<User, UserDTO>{
 	public Class<UserDTO> getVClass() {
 		return UserDTO.class;
 	}
+
 }

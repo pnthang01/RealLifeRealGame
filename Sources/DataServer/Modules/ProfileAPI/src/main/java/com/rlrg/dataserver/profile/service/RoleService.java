@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.IRoleService;
 import com.rlrg.dataserver.profile.dto.RoleDTO;
 import com.rlrg.dataserver.profile.entity.Role;
 import com.rlrg.dataserver.profile.repository.RoleRepository;
 
 @Service
-public class RoleService extends BaseService<Role, RoleDTO> {
+public class RoleService extends BaseService<Role, RoleDTO> implements IRoleService<Role, RoleDTO>{
 
 	private static final Logger LOG = LoggerFactory.getLogger(RoleService.class);
 

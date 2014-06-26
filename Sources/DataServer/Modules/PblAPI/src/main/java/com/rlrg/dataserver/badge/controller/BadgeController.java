@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.badge.dto.BadgeDTO;
+import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
-import com.rlrg.dataserver.badge.service.BadgeService;
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.IBadgeService;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -25,7 +26,7 @@ public class BadgeController extends BaseController{
 	public static final Logger LOG = LoggerFactory.getLogger(BadgeController.class);
 	
 	@Autowired
-	private BadgeService badgeService;
+	private IBadgeService<Badge, BadgeDTO> badgeService;
 	
 	/**
 	 * Get all {@link #Badge} with paging

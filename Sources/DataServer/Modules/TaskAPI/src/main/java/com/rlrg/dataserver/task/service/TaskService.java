@@ -1,5 +1,6 @@
 package com.rlrg.dataserver.task.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Transient;
@@ -17,17 +18,24 @@ import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.CommonService;
+import com.rlrg.dataserver.base.service.ICategoryService;
+import com.rlrg.dataserver.base.service.ITaskService;
+import com.rlrg.dataserver.base.service.IUserService;
 import com.rlrg.dataserver.language.entity.Language;
+import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.entity.User;
-import com.rlrg.dataserver.profile.service.UserService;
+import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.entity.Task;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
+import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
+import com.rlrg.utillities.badgechecker.ModuleName;
 
+@ModuleName(name=BadgeCheckerConstants.TASK_MODULE)
 @Service
-public class TaskService extends BaseService<Task, TaskDTO>{
+public class TaskService extends BaseService<Task, TaskDTO> implements ITaskService<Task, TaskDTO>{
 	
 	@Transient
 	private static final Logger LOG = LoggerFactory.getLogger(TaskService.class);
@@ -39,18 +47,20 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	private TaskRepository taskRepo;
 	
 	@Autowired
-	private CategoryService cateService;
+	private ICategoryService<Category, CategoryDTO> categoryService;
 	
 	@Autowired
-	private UserService userService;
+	private IUserService<User, UserDTO> userService;
 	
 	@Autowired
 	private CommonService commonService;
 	
+	@Override
 	public Task findById(Long id){
 		return taskRepo.findOne(id);
 	}
 	
+	@Override
 	public Task saveTask(Task task){
 		return taskRepo.save(task);
 	}
@@ -62,10 +72,11 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Override
 	@Transactional
 	public void create(TaskDTO dto) throws Exception{
 		try {
-			Category c = cateService.getCategoryByCode(dto.getCategory().getCode());
+			Category c = categoryService.getCategoryByCode(dto.getCategory().getCode());
 			User u = userService.getUserById(dto.getUserId());
 			if(null == c || null == u){
 				LOG.error("Cannot find entity Category with Code:{} And/Or User with Id:{}", dto.getCategory().getCode(), dto.getUserId());
@@ -76,6 +87,9 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 			t.setCategory(c);
 			t.setCompleteTime(dto.getCompleteTime());
 			t.setDescription(dto.getDescription());
+			//
+			Date createDate = new Date();
+			t.setCreateTime(createDate);
 			t.setDifficultyLevel(dto.getDifficultyLevel());
 			t.setName(dto.getName());
 			t.setPoint(dto.getPoint());
@@ -83,6 +97,9 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 			t.setStatus(dto.getStatus());
 			//
 			taskRepo.save(t);
+			//
+			notifyListeners(BadgeCheckerConstants.CREATE_TASK
+					, 1l, c.getId(), dto.getDifficultyLevel(), createDate);
 		} catch(Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw e;
@@ -96,11 +113,12 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @return
 	 * @throws Exception 
 	 */
+	@Override
 	@Transactional
 	public void update(TaskDTO dto) throws Exception{
 		try {
 			Task t = taskRepo.getTaskByIdAndUser(dto.getId(), dto.getUserId());
-			Category c = cateService.getCategoryByCode(dto.getCategory().getCode());
+			Category c = categoryService.getCategoryByCode(dto.getCategory().getCode());
 			if(null == t || null == c){
 				LOG.error("Cannot find entity Task with TaskId:{} and UserId:{}", dto.getId(), dto.getUserId());
 				throw new RepositoryException("Cannot find entity");
@@ -129,6 +147,7 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @param userId
 	 * @throws Exception 
 	 */
+	@Override
 	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, String token) throws Exception {
 		try {
 			UserToken userToken = commonService.getUserToken(token);
@@ -151,8 +170,9 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @param taskId
 	 * @return
 	 */
+	@Override
 	public TaskDTO getTaskById(Long taskId){
-		notifyListeners("test",1l); //TODO
+		//notifyListeners("test",1l); //TODO
 		return taskRepo.getTaskById(taskId, DEFAULT_LANGUAGE.getId());
 	}
 	
@@ -165,6 +185,7 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @return
 	 * @throws UserTokenException 
 	 */
+	@Override
 	public List<TaskDTO> getTasksByNameAndUser(String name, String token, Integer pageNumber) throws UserTokenException{
 		UserToken userToken = commonService.getUserToken(token);
 		if(null == pageNumber){
@@ -182,6 +203,7 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	 * @return
 	 * @throws UserTokenException 
 	 */
+	@Override
 	public List<TaskDTO> getTaskByCategoryAndUser(String categoryCode, String token, Integer pageNumber) throws UserTokenException{
 		UserToken userToken = commonService.getUserToken(token);
 		if(null == pageNumber){
@@ -195,7 +217,7 @@ public class TaskService extends BaseService<Task, TaskDTO>{
 	@Override
 	public TaskDTO convertEntityToDTO(Task data) {
 		TaskDTO dto = new TaskDTO();
-		dto.setCategory(cateService.convertEntityToDTO(data.getCategory()));
+		dto.setCategory(categoryService.convertEntityToDTO(data.getCategory()));
 		dto.setCompleteTime(data.getCompleteTime());
 		dto.setDescription(data.getDescription());
 		dto.setDifficultyLevel(data.getDifficultyLevel());

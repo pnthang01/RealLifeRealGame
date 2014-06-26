@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.IBadgeLanguageService;
 import com.rlrg.dataserver.language.dto.BadgeLangDTO;
 import com.rlrg.dataserver.language.entity.BadgeLanguage;
 import com.rlrg.dataserver.language.repository.BadgeLanguageRepository;
 
 @Service
-public class BadgeLanguageService extends BaseService<BadgeLanguage, BadgeLangDTO> {
+public class BadgeLanguageService extends BaseService<BadgeLanguage, BadgeLangDTO> implements IBadgeLanguageService<BadgeLanguage, BadgeLangDTO>{
 
 	private final static Logger LOG = LoggerFactory.getLogger(BadgeLanguageService.class);
 	

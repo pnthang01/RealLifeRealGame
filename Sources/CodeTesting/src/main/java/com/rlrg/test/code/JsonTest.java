@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
+import com.rlrg.dataserver.task.entity.enums.DifficultyLevel;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.ConvertException;
@@ -157,7 +158,7 @@ public class JsonTest {
 		task.setCategory(c);
 		task.setCompleteTime(new Date());
 		task.setDescription("Description");
-		task.setDifficultyLevel(1);
+		task.setDifficultyLevel(DifficultyLevel.NORMAL);
 		task.setId(3l);
 		task.setName("Task Name");
 		task.setPoint(12);
@@ -186,7 +187,7 @@ public class JsonTest {
 		//task.setCategory(c);
 		task.setCompleteTime(new Date());
 		task.setDescription("Description");
-		task.setDifficultyLevel(1);
+		task.setDifficultyLevel(DifficultyLevel.EASY);
 		task.setId(3l);
 		task.setName("Task Name");
 		task.setPoint(12);

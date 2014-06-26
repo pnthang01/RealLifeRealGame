@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.IPermissionService;
 import com.rlrg.dataserver.profile.dto.PermissionDTO;
-import com.rlrg.dataserver.profile.service.PermissionService;
+import com.rlrg.dataserver.profile.entity.Permission;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -24,7 +25,7 @@ public class PermissionController extends BaseController{
 	private static final Logger LOG = LoggerFactory.getLogger(PermissionController.class);
 	
 	@Autowired
-	private PermissionService permissionService;
+	private IPermissionService<Permission, PermissionDTO> permissionService;
 	
 	/**
 	 * Get List of permission bases on roleId

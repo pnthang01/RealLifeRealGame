@@ -17,7 +17,7 @@ import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
 
 
-public abstract class BaseService <T, V> extends BaseSource{
+public abstract class BaseService <T, V> extends BaseSource implements IBaseService<T, V>{
 	
 	@Transient
 	private static final Logger LOG = LoggerFactory.getLogger(BaseService.class);
@@ -25,17 +25,15 @@ public abstract class BaseService <T, V> extends BaseSource{
 	@Autowired
 	private JsonExporter jsonExporter;
 	
-	protected abstract V convertEntityToDTO(T data);
-	
-	protected abstract T revertDTOToEntity(V dto);
-	
 	protected abstract Class<V> getVClass();
 	
+	@Override
 	public void initListener(){
 		ActionObserver actionObserver = new ActionObserver(this);
 		ModuleName moduleAnno = this.getClass().getAnnotation(ModuleName.class);
 		if(null == moduleAnno || null == moduleAnno.name()){
-			LOG.debug("ActionObserver does not have module name.");
+			LOG.debug("This {} class doesn't use ModuleName annotation, please use it if this class is for BadgeCheck.", 
+					this.getClass().getName());
 		} else {
 			actionObserver.setModuleName(moduleAnno.name());
 		}

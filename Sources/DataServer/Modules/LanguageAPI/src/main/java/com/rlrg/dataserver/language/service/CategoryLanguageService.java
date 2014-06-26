@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.ICategoryLanguageService;
 import com.rlrg.dataserver.language.dto.CateLangDTO;
 import com.rlrg.dataserver.language.entity.CategoryLanguage;
 import com.rlrg.dataserver.language.repository.CategoryLanguageRepository;
 
 @Service
-public class CategoryLanguageService extends BaseService<CategoryLanguage, CateLangDTO>{
+public class CategoryLanguageService extends BaseService<CategoryLanguage, CateLangDTO> implements ICategoryLanguageService<CategoryLanguage, CateLangDTO>{
 	@Transient
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	

@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.ITaskService;
 import com.rlrg.dataserver.task.dto.TaskDTO;
+import com.rlrg.dataserver.task.entity.Task;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
-import com.rlrg.dataserver.task.service.TaskService;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -28,7 +29,7 @@ public class TaskController extends BaseController{
 	private static final Logger LOG = LoggerFactory.getLogger(TaskController.class);
 	
 	@Autowired
-	private TaskService taskService;
+	private ITaskService<Task, TaskDTO> taskService;
 
 	@RequestMapping(value = "/updateTask", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody

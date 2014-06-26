@@ -14,16 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.ICategoryLanguageService;
+import com.rlrg.dataserver.base.service.ICategoryService;
+import com.rlrg.dataserver.language.dto.CateLangDTO;
 import com.rlrg.dataserver.language.entity.CategoryLanguage;
 import com.rlrg.dataserver.language.entity.Language;
-import com.rlrg.dataserver.language.service.CategoryLanguageService;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.repository.CategoryRepository;
 import com.rlrg.utillities.json.JsonExporter;
 
 @Service
-public class CategoryService extends BaseService<Category, CategoryDTO>{
+public class CategoryService extends BaseService<Category, CategoryDTO> implements ICategoryService<Category, CategoryDTO>{
 
 	@Transient
 	private final static Logger LOG = LoggerFactory.getLogger(CategoryService.class);
@@ -35,7 +37,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO>{
 	private Language DEFAULT_LANGUAGE;
 	
 	@Autowired
-	private CategoryLanguageService cateLangService;
+	private ICategoryLanguageService<CategoryLanguage, CateLangDTO> cateLangService;
 
 	@Autowired
 	private JsonExporter jsonExporter;

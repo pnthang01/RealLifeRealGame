@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
+import com.rlrg.dataserver.base.service.ILanguageService;
+import com.rlrg.dataserver.language.dto.LanguageDTO;
 import com.rlrg.dataserver.language.entity.Language;
-import com.rlrg.dataserver.language.service.LanguageService;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -23,7 +24,7 @@ public class LanguageController extends BaseController{
 	public static final Logger LOG = LoggerFactory.getLogger(LanguageController.class);
 	
 	@Autowired
-	private LanguageService langService;
+	private ILanguageService<Language, LanguageDTO> languageService;
 	
 	@RequestMapping(value = "/getAllLanguages", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
@@ -31,15 +32,15 @@ public class LanguageController extends BaseController{
 		String result = null;
 		LOG.info("<< Starting webservice /language/getAllLanguages");
 		try {		
-			List<Language> list = langService.getAllLanguage();
+			List<Language> list = languageService.getAllLanguage();
 			//			
-			result = langService.encodeMutipleObjectsFromListT(list);
+			result = languageService.encodeMutipleObjectsFromListT(list);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = langService.encodeBlankRestObject(restObject);
+			result = languageService.encodeBlankRestObject(restObject);
 		} catch(Exception e){
 			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = langService.encodeBlankRestObject(restObject);
+			result = languageService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /language/getAllLanguages");
 		return result;

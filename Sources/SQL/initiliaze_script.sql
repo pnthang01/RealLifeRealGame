@@ -60,7 +60,8 @@ CREATE TABLE user (
 	`gender` TINYINT(4),
 	`point` INT NOT NULL DEFAULT 0,
 	`status` TINYINT(4) NOT NULL,
-	`token` VARCHAR(45) NULL
+	`token` VARCHAR(45) NULL,
+	`performed` VARCHAR(1000) NULL
 );
 
 CREATE TABLE permission (
@@ -85,6 +86,7 @@ CREATE TABLE task (
 	`category_id` INT,
 	`name` NVARCHAR(50) NOT NULL,
 	`description` NVARCHAR(100) NULL,
+	`create_time` DATETIME NOT NULL,
 	`complete_time` DATETIME NOT NULL,
 	`start_time` DATETIME NULL,
 	`difficulty_level` INT(11) NOT NULL,
