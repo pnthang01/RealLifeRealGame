@@ -1,10 +1,9 @@
 package com.rlrg.utillities.service;
 
-import java.util.List;
-
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.task.dto.CategoryDTO;
+import com.rlrg.utillities.domain.ResultList;
 import com.rlrg.utillities.exception.ConvertException;
 
 public class CategoryWebServiceReader extends BaseWebServiceReader<CategoryDTO> {
@@ -17,11 +16,11 @@ public class CategoryWebServiceReader extends BaseWebServiceReader<CategoryDTO> 
 	private final String SEARCH_CATEGORIES_BY_KEYWORD_URL = "category/searchCategories?keyword={keyword}&pageNumber={pageNumber}";
 	private final String UPDATE_CATEGORY_URL = "category/update?restobject={restobject}";
 	
-	public List<CategoryDTO> getCategoriesByStatus(boolean status, Integer pageNumber) throws RestClientException, ConvertException{
+	public ResultList<CategoryDTO> getCategoriesByStatus(boolean status, Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_CATEGORIES_BY_STATUS_URL, MODULE_NAME, status, pageNumber);
 	}
 	
-	public List<CategoryDTO> getAllCategories(Integer pageNumber) throws RestClientException, ConvertException{
+	public ResultList<CategoryDTO>  getAllCategories(Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_CATEGORIES_URL, MODULE_NAME, pageNumber);
 	}
 	
@@ -29,7 +28,7 @@ public class CategoryWebServiceReader extends BaseWebServiceReader<CategoryDTO> 
 		return this.getAnObject(GET_CATEGORY_BY_CODE_URL, MODULE_NAME, code);
 	}
 	
-	public List<CategoryDTO> searchCategoriesByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
+	public ResultList<CategoryDTO> searchCategoriesByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(SEARCH_CATEGORIES_BY_KEYWORD_URL, MODULE_NAME, keyword, pageNumber);
 	}
 	

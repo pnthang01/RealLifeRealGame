@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.ILanguageService;
 import com.rlrg.dataserver.language.dto.LanguageDTO;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.language.repository.LanguageRepository;
+import com.rlrg.dataserver.utillities.Constants;
 
 @Service
 public class LanguageService extends BaseService<Language, LanguageDTO> implements ILanguageService<Language, LanguageDTO>{
@@ -24,7 +24,7 @@ public class LanguageService extends BaseService<Language, LanguageDTO> implemen
 	
 	@Bean(name="DEFAULT_LANGUAGE")
 	public Language defaultLanguage(){
-		return this.getLanguageByI18N(WebVariables.DEFAULT_I18N);
+		return this.getLanguageByI18N(Constants.DEFAULT_I18N);
 	}
 
 	@Autowired

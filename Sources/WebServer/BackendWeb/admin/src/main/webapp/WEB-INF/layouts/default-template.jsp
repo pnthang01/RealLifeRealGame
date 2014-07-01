@@ -27,6 +27,8 @@
 			
 			<div id="content">
 			
+				<tiles:insertAttribute name="left-content" ignore="true" />	
+			
 				<tiles:insertAttribute name="content" ignore="false" />	
 			
 			</div><!-- end #content -->

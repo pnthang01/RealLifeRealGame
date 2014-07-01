@@ -1,16 +1,10 @@
 package com.rlrg.dataserver.base.repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.rlrg.dataserver.base.controller.BaseUtils;
 import com.rlrg.dataserver.base.domain.User;
-import com.rlrg.dataserver.base.exception.RepositoryException;
 
 @Repository
 public class CommonRepository {

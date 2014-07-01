@@ -13,7 +13,6 @@ import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.dataserver.badge.repository.BadgeRepository;
-import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.IBadgeLanguageService;
@@ -21,6 +20,7 @@ import com.rlrg.dataserver.base.service.IBadgeService;
 import com.rlrg.dataserver.language.dto.BadgeLangDTO;
 import com.rlrg.dataserver.language.entity.BadgeLanguage;
 import com.rlrg.dataserver.language.entity.Language;
+import com.rlrg.dataserver.utillities.Constants;
 
 @Service
 public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadgeService<Badge, BadgeDTO>{
@@ -44,7 +44,7 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		return badgeRepo.getAllBadgeDTO(DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
@@ -53,7 +53,7 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		return badgeRepo.getBadgeDTOByStatus(status, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}

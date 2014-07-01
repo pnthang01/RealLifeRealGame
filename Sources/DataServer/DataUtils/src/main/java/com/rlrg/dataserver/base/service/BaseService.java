@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
 
 import com.rlrg.dataserver.base.domain.CountableDTO;
+import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.utillities.badgechecker.ActionObserver;
 import com.rlrg.utillities.badgechecker.BaseSource;
 import com.rlrg.utillities.badgechecker.ModuleName;
@@ -112,6 +113,11 @@ public abstract class BaseService <T, V> extends BaseSource implements IBaseServ
 	public String encodeMutipleObjectsFromListV(List<V> list) throws ConvertException{
 		return jsonExporter.encodeObjectsToJson(list);
 	}
+
+	public String encodeMutipleObjectsFromListV(List<V> list, Long total) throws ConvertException {
+		return jsonExporter.encodeObjectsToJson(list, total);
+	}
+	
 	
 	/**
 	 * Decode json string to a V dto

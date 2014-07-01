@@ -8,6 +8,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.rlrg.utillities.domain.RestObject;
+import com.rlrg.utillities.domain.ResultList;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
 
@@ -30,7 +31,7 @@ public abstract class BaseWebServiceReader<T>{
 	 * @return
 	 * @throws ConvertException
 	 */
-	public List<T> getListOfObjects(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
+	public ResultList<T> getListOfObjects(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String json = restTemplate.getForObject(finalUrl, String.class, urlParams);
@@ -49,8 +50,13 @@ public abstract class BaseWebServiceReader<T>{
 			LOG.info("Decode json to object failed with json:{}", json);
 			throw new ConvertException("Error occurs when decoding json to objects.");
 		}
+		List<T> list = jsonExporter.decodeJsonToObjects(restobject.getData().toString(), getTClass());
 		//
-		return jsonExporter.decodeJsonToObjects(restobject.getData().toString(), getTClass());
+		ResultList<T> resultList = new ResultList<T>();
+		resultList.setTotal(restobject.getTotal());
+		resultList.setList(list);
+		//
+		return resultList; 
 	}
 	
 	/**

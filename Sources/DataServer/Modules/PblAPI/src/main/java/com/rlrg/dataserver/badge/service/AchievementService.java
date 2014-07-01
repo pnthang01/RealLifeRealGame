@@ -13,7 +13,6 @@ import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.repository.AchievementRepository;
-import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.service.BaseService;
@@ -24,6 +23,7 @@ import com.rlrg.dataserver.base.service.IUserService;
 import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.entity.User;
+import com.rlrg.dataserver.utillities.Constants;
 
 @Service
 public class AchievementService extends BaseService<Achievement, AchievementDTO> implements IAchievementService<Achievement, AchievementDTO> {
@@ -60,7 +60,7 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		return achievementRepo.getUserAchievementDTOs(username, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}

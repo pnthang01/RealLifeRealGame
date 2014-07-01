@@ -158,6 +158,22 @@ public class JsonExporter {
 		//
 		return JSONValue.toJSONString(jsonValue);
 	}
+	
+	public <T> String encodeObjectsToJson(final List<T> values, Long total) throws ConvertException {
+		if(null == values || values.isEmpty() || null == values.get(0)){
+			throw new ConvertException("The list of T values is null or empty.");
+		}
+		final JsonDTO dtoAnno = (JsonDTO) values.get(0).getClass().getAnnotation(JsonDTO.class);
+		if (null == dtoAnno) {
+			throw new ConvertException("This DTO doesn't containt JsonDTO annotation.");
+		}
+		final RestObject restObject = RestObject.fromData(values);
+		restObject.setTotal(total);
+		final Map<String, Object> jsonValue = putObjectToJSONMap(restObject, RestObject.class);
+		//
+		return JSONValue.toJSONString(jsonValue);
+	}
+
 
 	/**
 	 * From a json String, decode it to an object

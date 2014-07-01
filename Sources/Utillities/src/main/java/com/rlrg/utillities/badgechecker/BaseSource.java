@@ -3,6 +3,8 @@ package com.rlrg.utillities.badgechecker;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rlrg.utillities.exception.ConvertException;
+
 public abstract class BaseSource {
 	
 	protected List<ActionPerformedListener> listeners = new ArrayList<ActionPerformedListener>();

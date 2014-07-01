@@ -5,20 +5,21 @@
 
 <tiles-definitions>
 
-	<definition name="default" template="/WEB-INF/layouts/default.jsp">
+	<definition name="default" template="/WEB-INF/layouts/default-template.jsp">
 		<put-attribute name="title" value="Admin Control Panel" />
-		<put-attribute name="javascript_css" value="/WEB-INF/views/fragments/javascript_css.jsp" />
-		<put-attribute name="header_buttons" value="/WEB-INF/views/fragments/header_buttons.jsp" />
-		<put-attribute name="navigation" value="/WEB-INF/views/fragments/navigation.jsp" />
+		<put-attribute name="javascript_css" value="/WEB-INF/layouts/fragments/javascript_css.jsp" />
+		<put-attribute name="header_buttons" value="/WEB-INF/layouts/fragments/header_buttons.jsp" />
+		<put-attribute name="navigation" value="/WEB-INF/layouts/fragments/navigation.jsp" />
+		<put-attribute name="left-content" value="" />
 		<put-attribute name="content" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/fragments/footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/fragments/footer.jsp" />
 	</definition>
 	
-	<definition name="none-content" template="/WEB-INF/layouts/none-content.jsp">
+	<definition name="none-content" template="/WEB-INF/layouts/none-content-template.jsp">
 		<put-attribute name="title" value="Admin Control Panel" />
-		<put-attribute name="javascript_css" value="/WEB-INF/views/fragments/javascript_css.jsp" />
+		<put-attribute name="javascript_css" value="/WEB-INF/layouts/fragments/javascript_css.jsp" />
 		<put-attribute name="content" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/fragments/footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/fragments/footer.jsp" />
 	</definition>
 
 </tiles-definitions>

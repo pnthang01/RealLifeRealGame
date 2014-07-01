@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.ICategoryLanguageService;
@@ -22,6 +21,7 @@ import com.rlrg.dataserver.language.entity.Language;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.repository.CategoryRepository;
+import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.utillities.json.JsonExporter;
 
 @Service
@@ -97,7 +97,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		return cateRepo.searchCategoriesDTOByKeyword(keyword, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
@@ -111,9 +111,14 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		return cateRepo.getAllCategoriesDTO(DEFAULT_LANGUAGE.getId(), pageRequest);
+	}
+	
+	@Override
+	public Long countAllCategories(){
+		return cateRepo.countAllCategories();
 	}
 	
 	/**
@@ -144,7 +149,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		return cateRepo.getCategoriesDTOByStatus(status, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
@@ -169,5 +174,4 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 	public Class<CategoryDTO> getVClass() {
 		return CategoryDTO.class;
 	}
-	
 }

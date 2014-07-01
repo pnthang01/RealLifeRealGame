@@ -70,8 +70,9 @@ public class CategoryController extends BaseController {
 		LOG.info("<< Starting webservice /category/getAllCategories with parameters: pageNumber={}", pageNumber);
 		try {
 			List<CategoryDTO> listDTO = categoryService.getAllCategories(pageNumber);
+			Long total = categoryService.countAllCategories();
 			//
-			result = categoryService.encodeMutipleObjectsFromListV(listDTO);
+			result = categoryService.encodeMutipleObjectsFromListV(listDTO, total);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = categoryService.encodeBlankRestObject(restObject);

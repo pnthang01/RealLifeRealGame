@@ -7,12 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.IRoleService;
 import com.rlrg.dataserver.profile.dto.RoleDTO;
 import com.rlrg.dataserver.profile.entity.Role;
 import com.rlrg.dataserver.profile.repository.RoleRepository;
+import com.rlrg.dataserver.utillities.Constants;
 
 @Service
 public class RoleService extends BaseService<Role, RoleDTO> implements IRoleService<Role, RoleDTO>{
@@ -31,7 +31,7 @@ public class RoleService extends BaseService<Role, RoleDTO> implements IRoleServ
 	}
 
 	public Role getDefaultUserRole() {
-		return roleRepo.getDefaultUserRole(WebVariables.DEFAULT_ROLE);
+		return roleRepo.getDefaultUserRole(Constants.DEFAULT_ROLE);
 	}
 
 	@Override

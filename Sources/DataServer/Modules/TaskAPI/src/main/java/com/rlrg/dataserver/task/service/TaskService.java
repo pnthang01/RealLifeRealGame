@@ -12,7 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
@@ -30,6 +29,7 @@ import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.entity.Task;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
+import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
 import com.rlrg.utillities.badgechecker.ModuleName;
 
@@ -191,7 +191,7 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		return taskRepo.getTasksByNameAndUser(name, userToken.getId(), DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
 	
@@ -209,7 +209,7 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		return taskRepo.getTasksByCategoryAndUser(categoryCode, userToken.getId(), DEFAULT_LANGUAGE.getId(), pageRequest);
 	}	
 

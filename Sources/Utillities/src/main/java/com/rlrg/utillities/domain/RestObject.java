@@ -12,9 +12,22 @@ public class RestObject {
 
 	@JsonExport(name = "Msg")
 	private String msg;
+	
+	@JsonExport(name="Total")
+	private Long total;
 
 	@JsonObject(name = "data")
 	private Object data;
+
+	
+	
+	public Long getTotal() {
+		return total;
+	}
+
+	public void setTotal(Long total) {
+		this.total = total;
+	}
 
 	/**
 	 * @return the status

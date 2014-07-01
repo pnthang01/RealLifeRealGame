@@ -17,6 +17,8 @@ public interface ICategoryService<T, V> extends IBaseService<T, V>{
 	public List<V> searchCategoriesByKeyword(String keyword, Integer pageNumber);
 
 	public List<V> getAllCategories(Integer pageNumber);
+	
+	public Long countAllCategories();
 
 	public T getCategoryByCode(String code);
 

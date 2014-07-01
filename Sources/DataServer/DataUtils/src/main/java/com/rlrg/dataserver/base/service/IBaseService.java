@@ -23,6 +23,8 @@ public interface IBaseService<T, V> {
 	
 	public String encodeMutipleObjectsFromListV(List<V> list) throws ConvertException;
 	
+	public String encodeMutipleObjectsFromListV(List<V> list, Long total) throws ConvertException;
+	
 	public V decodeSingleObject(String json) throws ConvertException;
 	
 	public List<V> decodeMutipleObjects(String json);

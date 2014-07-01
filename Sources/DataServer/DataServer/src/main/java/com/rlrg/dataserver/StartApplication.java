@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.Resource;
@@ -21,14 +22,15 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.rlrg.utillities.json.JsonExporter;
 
+@Configuration
 @ComponentScan
 @EnableAutoConfiguration
 @PropertySources({
 	@PropertySource("classpath:application.properties")
 })
-public class Application {
+public class StartApplication {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(Application.class);
+	private static final Logger LOG = LoggerFactory.getLogger(StartApplication.class);
 	
 	@Bean
 	public PathMatchingResourcePatternResolver resourcePatternResolver() {
@@ -81,6 +83,6 @@ public class Application {
     }
 	
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(StartApplication.class, args);
     }
 }

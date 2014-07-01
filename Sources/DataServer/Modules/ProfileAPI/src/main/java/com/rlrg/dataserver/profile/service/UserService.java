@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rlrg.dataserver.base.controller.BaseUtils;
-import com.rlrg.dataserver.base.controller.WebVariables;
 import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.InvalidParamExeption;
 import com.rlrg.dataserver.base.exception.RepositoryException;
@@ -28,6 +27,7 @@ import com.rlrg.dataserver.profile.entity.User;
 import com.rlrg.dataserver.profile.entity.enums.UserStatus;
 import com.rlrg.dataserver.profile.exception.LoginException;
 import com.rlrg.dataserver.profile.repository.UserRepository;
+import com.rlrg.dataserver.utillities.Constants;
 
 @Service
 public class UserService extends BaseService<User, UserDTO> implements IUserService<User, UserDTO>{
@@ -197,7 +197,7 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, WebVariables.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		return userRepo.getAllUserDTO(pageRequest);
     }

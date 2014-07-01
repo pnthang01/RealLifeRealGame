@@ -51,4 +51,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Jp
 			" LEFT OUTER JOIN c.cateLangs cl" +
 			" WHERE cl.language.id = :languageId")
 	public List<CategoryDTO> getAllCategoriesDTO(@Param("languageId") Integer languageId, Pageable pageable);
+	
+	@Query("SELECT COUNT(*) FROM Category c")
+	public Long countAllCategories();
 }
