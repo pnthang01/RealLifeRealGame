@@ -45,6 +45,15 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Jp
 			" OR (c.code LIKE CONCAT('%', :keyword, '%')))")
 	public List<CategoryDTO> searchCategoriesDTOByKeyword(@Param("keyword") String keyword, @Param("languageId") Integer languageId, Pageable pageable);
 	
+	@Query("SELECT COUNT(c.id) FROM Category c" +
+			" LEFT OUTER JOIN c.cateLangs cl" +
+			" WHERE cl.language.id = :languageId" +
+			" AND " +
+			" ((cl.cateName LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (cl.description LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (c.code LIKE CONCAT('%', :keyword, '%')))")
+	public Long countCategoriesByKeyword(@Param("keyword") String keyword, @Param("languageId") Integer languageId);
+	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.CategoryDTO(" +
 			"c.code, cl.cateName, cl.description, c.position, c.status)" + 
 			" FROM Category c"+

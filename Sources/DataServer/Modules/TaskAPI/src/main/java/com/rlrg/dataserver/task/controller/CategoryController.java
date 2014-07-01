@@ -179,8 +179,9 @@ public class CategoryController extends BaseController {
 		LOG.info("<< Starting webservice /category/searchCategories with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
 		try {
 			List<CategoryDTO> listDTO = categoryService.searchCategoriesByKeyword(keyword, pageNumber);
+			Long total = categoryService.countCategoriesByKeyword(keyword);
 			//
-			result = categoryService.encodeMutipleObjectsFromListV(listDTO);
+			result = categoryService.encodeMutipleObjectsFromListV(listDTO, total);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = categoryService.encodeBlankRestObject(restObject);

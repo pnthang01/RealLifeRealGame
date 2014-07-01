@@ -6,6 +6,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.rlrg.dataserver.task.dto.CategoryDTO;
+import com.rlrg.utillities.domain.ResultList;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.service.CategoryWebServiceReader;
 public class RestTesting {
@@ -41,8 +42,8 @@ public class RestTesting {
 	public static void testReader(){
 		CategoryWebServiceReader cateReader = new CategoryWebServiceReader();
 		try {
-			List<CategoryDTO> list = cateReader.getCategoriesByStatus(true, 1);
-			for(CategoryDTO dto : list){
+			ResultList<CategoryDTO>  result = cateReader.getCategoriesByStatus(true, 1);
+			for(CategoryDTO dto : result.getList()){
 				System.out.println(dto.getCode());
 			}
 		} catch (RestClientException e) {

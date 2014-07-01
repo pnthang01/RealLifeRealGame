@@ -15,6 +15,8 @@ public interface ICategoryService<T, V> extends IBaseService<T, V>{
 	public void update(V dto) throws RepositoryException;
 
 	public List<V> searchCategoriesByKeyword(String keyword, Integer pageNumber);
+	
+	public Long countCategoriesByKeyword(String keyword);
 
 	public List<V> getAllCategories(Integer pageNumber);
 	

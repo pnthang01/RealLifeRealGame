@@ -16,6 +16,11 @@
 
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/main-theme/" />
+	
+	<bean class="org.springframework.context.support.ResourceBundleMessageSource"
+		id="messageSource">
+		<property name="basename" value="messages" />
+	</bean>
 
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">

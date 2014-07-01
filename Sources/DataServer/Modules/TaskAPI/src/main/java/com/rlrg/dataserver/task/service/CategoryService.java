@@ -102,6 +102,12 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		return cateRepo.searchCategoriesDTOByKeyword(keyword, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
 	
+
+	@Override
+	public Long countCategoriesByKeyword(String keyword) {
+		return cateRepo.countCategoriesByKeyword(keyword, DEFAULT_LANGUAGE.getId());
+	}
+	
 	/**
 	 * Get all categories
 	 * @param pageNumber
@@ -174,4 +180,5 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 	public Class<CategoryDTO> getVClass() {
 		return CategoryDTO.class;
 	}
+
 }

@@ -16,7 +16,7 @@ public class WelcomeController {
 		return "dashboard";
 	}
 	
-	@RequestMapping("/dashboard")
+	@RequestMapping("/dashboard.html")
 	public String dashboard(){
 		return "dashboard";
 	}

@@ -21,6 +21,7 @@ public class App
 	
     public static void main( String[] args )
     {
-        testPerformance();
+    	System.out.println(Math.ceil((double)10/4));
+        //testPerformance();
     }
 }

@@ -1,13 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <ul id="main-nav">
-	<li><a href="login.html"> Dashboard </a></li>
+	<li><a href="<c:url value="/dashboard.html"/>"> Dashboard </a></li>
 
 	<li><a href="#">
 			<!-- use href="#" to indicate there's a submenu --> Module
 	</a>
 
 		<ul>
-			<li><a href="<c:url value="/category/manage"/>">Task</a></li>
+			<li><a href="<c:url value="/category/manage.html"/>">Task</a></li>
 			<li><a href="#">Language</a></li>
 			<li><a href="#">Point-Badge-Leaderboard</a></li>
 			<li><a href="#">Profile</a></li>

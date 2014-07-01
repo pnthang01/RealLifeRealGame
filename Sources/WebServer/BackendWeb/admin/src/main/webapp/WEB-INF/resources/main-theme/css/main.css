@@ -181,7 +181,7 @@ body {
 
 .column-left {
 	float: left;
-	width: 30%%;
+	width: 49%%;
 }
 
 .column-right {
@@ -190,11 +190,11 @@ body {
 }
 
 .sidebar {
-	width: 32%;
+	width: 25%;
 }
 
 .main {
-	width: 66%;
+	width: 74%;
 }
 
 .clear {
