@@ -14,7 +14,7 @@
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/fragments/footer.jsp" />
 	</definition>
-	
+
 	<definition name="none-content" template="/WEB-INF/layouts/none-content-template.jsp">
 		<put-attribute name="title" value="Admin Control Panel" />
 		<put-attribute name="javascript_css" value="/WEB-INF/layouts/fragments/javascript_css.jsp" />

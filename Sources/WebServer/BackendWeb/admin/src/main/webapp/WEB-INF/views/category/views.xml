@@ -11,10 +11,16 @@
 		<put-attribute name="content" value="/WEB-INF/views/category/category-manage.jsp" />
 	</definition>
 	
-	<!-- 	Login page -->
-	<definition name="login" extends="none-content">
-		<put-attribute name="title" value="Login Page" />
-		<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+	<definition name="category.edit" extends="default">
+		<put-attribute name="title" value="Category Edit" />
+		<put-attribute name="left-content" value="/WEB-INF/views/category/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/category/category-edit.jsp" />
+	</definition>
+
+	<definition name="category.add" extends="default">
+		<put-attribute name="title" value="Category Add" />
+		<put-attribute name="left-content" value="/WEB-INF/views/category/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/category/category-add.jsp" />
 	</definition>
 
 </tiles-definitions>

@@ -112,7 +112,7 @@ public abstract class BaseWebServiceReader<T>{
 			throw new ConvertException("Error when encoding an object to json string.");
 		}
 		//
-		String resultJson = restTemplate.postForObject(finalUrl, json, String.class);
+		String resultJson = restTemplate.postForObject(finalUrl, null, String.class, json);
 		if(null == resultJson){
 			LOG.error("Received null result when reading data from url:{}.", finalUrl);
 			throw new RestClientException("Received null result from url.");

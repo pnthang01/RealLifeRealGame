@@ -1,4 +1,4 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class="content-box column-right main">
@@ -36,7 +36,7 @@
 				<tr>
 					<td colspan="5">
 						<div class="bulk-actions">
-							<a href="#" class="graybutton">Add new category</a>
+<%-- 							<a href="<c:url value="/category/add.html"/>" class="graybutton">Add new category</a> --%>
 						</div>
 						<div class="pagination">
 						<c:if test="${not empty totalPage || not empty categories}">

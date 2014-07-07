@@ -23,30 +23,30 @@ import com.rlrg.webserver.admin.service.MvcCategoryService;
 @RequestMapping("/category")
 @Controller
 public class MvcCategoryController {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(MvcCategoryController.class);
 
 	@Autowired
 	private MvcCategoryService categoryService;
 
-	@RequestMapping(value="/manage.html", method = RequestMethod.GET)
-	public String manage(@RequestParam(value="page", required=false, defaultValue="1") Integer page, ModelMap model,
-			@Valid SearchForm searchForm, BindingResult bResult){
+	@RequestMapping(value = "/manage.html", method = RequestMethod.GET)
+	public String manage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			ModelMap model, @Valid SearchForm searchForm, BindingResult bResult) {
 		try {
 			ResultList<CategoryDTO> result = null;
-			if(null == searchForm || null == searchForm.getKeyword()){
+			if (null == searchForm || null == searchForm.getKeyword()) {
 				model.addAttribute("searchForm", new SearchForm());
 				result = categoryService.getAllCategories(page);
-			} else if(bResult.hasErrors()){
+			} else if (bResult.hasErrors()) {
 				return "category.manage";
 			} else {
 				result = categoryService.searchCategoriesByKeyword(searchForm.getKeyword(), page);
 				model.addAttribute("searchForm", searchForm);
-			}		
+			}
 			//
-			if(null != result){
-				model.addAttribute("totalPage", Math.ceil((double)result.getTotal()/Constants.PAGE_SIZE));
-				model.addAttribute("categories", result.getList());		
+			if (null != result) {
+				model.addAttribute("totalPage",Math.ceil((double) result.getTotal()/ Constants.PAGE_SIZE));
+				model.addAttribute("categories", result.getList());
 			}
 			return "category.manage";
 		} catch (RestClientException e) {
@@ -60,24 +60,57 @@ public class MvcCategoryController {
 			return "error";
 		}
 	}
-	
-	@RequestMapping(value="/edit.html", method = RequestMethod.GET)
-	public String edit(@RequestParam("code") String code){
-		return "error";
+
+	@RequestMapping(value = "/edit.html", method = RequestMethod.GET)
+	public String edit(@RequestParam("code") String code, ModelMap model) {
+		try {
+			CategoryDTO data = categoryService.getCategoryByCode(code);
+			model.addAttribute("categoryDTO", data);
+			//
+			return "category.edit";
+		} catch (RestClientException | ConvertException e) {
+			LOG.error(e.getMessage());
+			return "error";
+		} catch (Exception e) {
+			LOG.error(e.getMessage());
+			return "error";
+		}
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String edit(@Valid CategoryDTO data, BindingResult bResult) {
+		try {
+			if (bResult.hasErrors()) {
+				return "category.edit";
+			} else {
+				categoryService.updateCategory(data);
+				return "redirect:/category/manage.html";
+			}
+		} catch (RestClientException e) {
+			LOG.error(e.getMessage());
+			return "error";
+		} catch (ConvertException e){
+			LOG.error(e.getTechnicalMsg());
+			return "error";
+		}
 	}
 	
+	/*
+	//No need adding actions for Category
 	@RequestMapping(value = "/add.html", method = RequestMethod.GET)
-	public String add(){
-		return null;
+	public String add(ModelMap map) {
+		map.addAttribute("category", new CategoryDTO());
+		return "category.add";
 	}
-	
-	@RequestMapping(value="/edit", method = RequestMethod.POST)
-	public String edit(){
-		return null;
-	}
-	
+
+	//No need adding actions for Category
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(String test){
-		return null;
+	public String addAction(@Valid CategoryDTO data, BindingResult bResult) {
+		if (bResult.hasErrors()) {
+			return "category.add";
+		} else {
+			return "category.manage";
+		}
 	}
+	*/
 }
