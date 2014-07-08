@@ -2,33 +2,23 @@ package com.gamification.rlrg.module.start.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Animation.AnimationListener;
-import android.widget.EditText;
 import android.widget.ListView;
 
-import com.gamification.rlrg.core.app.CoreApp;
+import com.gamification.rlrg.application.CoreApp;
 import com.gamification.rlrg.core.components.NavigationActivity;
 import com.gamification.rlrg.core.data.NavigationData;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.game.ui.GameListFragment;
+import com.gamification.rlrg.module.login.ui.LoginFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
 
 public class StartActivity extends NavigationActivity implements Runnable
 {
-	private static final int LOGO_APPEAR_INTERVAL = 7000;
-	
-	private View mLayoutLogo, mLayoutLogin, mLogoText;
-	
 	private String[] mNavigationTitles;
 	
 	@Override
@@ -36,10 +26,6 @@ public class StartActivity extends NavigationActivity implements Runnable
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
-
-		mLayoutLogo = findViewById(R.id.layout_logo);
-		mLayoutLogin = findViewById(R.id.layout_login);
-		mLogoText = findViewById(R.id.logo);
 		
 		mNavigationTitles = getResources().getStringArray(R.array.navigation);
 		List<NavigationData> list = new ArrayList<NavigationData>();
@@ -57,38 +43,17 @@ public class StartActivity extends NavigationActivity implements Runnable
 				showDialog(DIALOG_SEARCH, true);
 			}
 		});
-
-		showLoginForm();
+		
 		if (CoreApp.isStart)
 		{
-			/*
 			hideActionBar();
-			mLogoText = findViewById(R.id.logo);
-			new Timer().schedule(new TimerTask()
-			{
-				@Override
-				public void run()
-				{
-					runOnUiThread(StartActivity.this);
-				}
-			}, LOGO_APPEAR_INTERVAL);
-			*/
 		}
 		else
 		{
 			showActionBar();
 			setActionBarOverLay(false);
-			mLogoText.setVisibility(View.GONE);
 		}
-		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
-		addFragment(R.id.fragment_container, ShowRoomFragment.newInstance());
-	}
-	
-	// Called by layout
-	public void onBtnLoginClick(View view)
-	{
-		String username = ((EditText) findViewById(R.id.edit_username)).getText().toString();
-		String password = ((EditText) findViewById(R.id.edit_password)).getText().toString();
+		addFragment(R.id.fragment_container, LoginFragment.newInstance());
 	}
 	
 	@Override
@@ -138,33 +103,30 @@ public class StartActivity extends NavigationActivity implements Runnable
 	{
 		showActionBar();
 		setActionBarOverLay(false);
-		mLogoText.setVisibility(View.GONE);
 		CoreApp.isStart = false;
 	}
 	
-	private void showLoginForm()
+	public void onBtnLoginClick(View view)
 	{
-		Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.show_login_form);
-        anim.setAnimationListener(new AnimationListener()
-        {
-            @Override
-            public void onAnimationStart(Animation animation)
-            {
-            	log("onAnimationStart");
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation)
-            {
-            	log("onAnimationRepeat");
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation)
-            {
-            	log("onAnimationEnd");
-            }
-        });
-        mLogoText.startAnimation(anim);
+		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
+		Fragment fragment = ShowRoomFragment.newInstance();
+		Bundle args = new Bundle();
+		args.putString("title", mNavigationTitles[0]);
+		fragment.setArguments(args);
+		replaceFragment(fragment);
+		showActionBar();
+	}
+	
+	@Override
+	public void onBackPressed()
+	{
+		if (getSupportFragmentManager().getBackStackEntryCount() > 1)
+		{
+			super.onBackPressed();
+		}
+		else
+		{
+			showDialog(DIALOG_EXIT, true);
+		}
 	}
 }

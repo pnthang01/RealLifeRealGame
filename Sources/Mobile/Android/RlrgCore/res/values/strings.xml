@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">RLRG</string>
+    <string name="quit_app">Quit App</string>
+    <string name="quit_app_message">Do you want to quit the App?</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
@@ -15,4 +17,5 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-</resources>
+    <string name="login_failed_message">Login Failed!\nPlease login again!</string>
+</resources>

@@ -1,12 +1,12 @@
 package com.gamification.rlrg.module.showroom.ui;
 
-import com.gamification.rlrg.gen.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.gamification.rlrg.gen.R;
 
 public class ShowRoomFragment extends Fragment
 {
@@ -20,7 +20,6 @@ public class ShowRoomFragment extends Fragment
 		return inflater.inflate(R.layout.fragment_showroom, container, false);
 	}
 	
-	// Bắt đầu
 	public void onStart()
 	{
 		super.onStart();

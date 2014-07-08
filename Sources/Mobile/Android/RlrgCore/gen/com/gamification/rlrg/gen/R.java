@@ -49,32 +49,38 @@ public final class R {
         public static int font_size_xlarge_55=0x7f080014;
     }
     public static final class drawable {
-        public static int bg1=0x7f020000;
-        public static int bg2=0x7f020001;
-        public static int bg3=0x7f020002;
-        public static int bg4=0x7f020003;
-        public static int bg5=0x7f020004;
-        public static int bg6=0x7f020005;
-        public static int ic_drawer_black=0x7f020006;
-        public static int ic_launcher=0x7f020007;
+        public static int badge_book_1=0x7f020000;
+        public static int badge_book_2=0x7f020001;
+        public static int badge_book_3=0x7f020002;
+        public static int badge_cycling_1=0x7f020003;
+        public static int badge_cycling_2=0x7f020004;
+        public static int badge_cycling_3=0x7f020005;
+        public static int bg1=0x7f020006;
+        public static int bg2=0x7f020007;
+        public static int bg3=0x7f020008;
+        public static int bg4=0x7f020009;
+        public static int bg5=0x7f02000a;
+        public static int bg6=0x7f02000b;
+        public static int ic_drawer_black=0x7f02000c;
+        public static int ic_launcher=0x7f02000d;
     }
     public static final class id {
-        public static int actionbar=0x7f0a0006;
-        public static int actionbar_btn_left=0x7f0a0007;
-        public static int actionbar_btn_right_1=0x7f0a000a;
-        public static int actionbar_btn_right_2=0x7f0a0009;
-        public static int actionbar_title=0x7f0a0008;
-        public static int drawer_layout=0x7f0a000c;
-        public static int edit_password=0x7f0a0003;
-        public static int edit_username=0x7f0a0002;
+        public static int actionbar=0x7f0a0001;
+        public static int actionbar_btn_left=0x7f0a0002;
+        public static int actionbar_btn_right_1=0x7f0a0005;
+        public static int actionbar_btn_right_2=0x7f0a0004;
+        public static int actionbar_title=0x7f0a0003;
+        public static int btn_login=0x7f0a000f;
+        public static int drawer_layout=0x7f0a0007;
+        public static int edit_password=0x7f0a000e;
+        public static int edit_username=0x7f0a000d;
         public static int fragment_container=0x7f0a0000;
-        public static int layout_login=0x7f0a0001;
-        public static int layout_logo=0x7f0a0004;
-        public static int logo=0x7f0a0005;
-        public static int main_view=0x7f0a000b;
-        public static int navigation=0x7f0a000d;
-        public static int navigation_list=0x7f0a000e;
-        public static int search_box=0x7f0a000f;
+        public static int layout_login=0x7f0a000c;
+        public static int logo=0x7f0a000b;
+        public static int main_view=0x7f0a0006;
+        public static int navigation=0x7f0a0008;
+        public static int navigation_list=0x7f0a0009;
+        public static int search_box=0x7f0a000a;
         public static int title=0x7f0a0010;
     }
     public static final class layout {
@@ -82,33 +88,37 @@ public final class R {
         public static int activity_with_actionbar=0x7f030001;
         public static int activity_with_navigation=0x7f030002;
         public static int dialog_search=0x7f030003;
-        public static int fragment_showroom=0x7f030004;
-        public static int list_item_game=0x7f030005;
-        public static int list_item_navigation=0x7f030006;
-        public static int list_view=0x7f030007;
+        public static int fragment_login=0x7f030004;
+        public static int fragment_showroom=0x7f030005;
+        public static int list_item_game=0x7f030006;
+        public static int list_item_navigation=0x7f030007;
+        public static int list_view=0x7f030008;
     }
     public static final class string {
         public static int action_bar=0x7f070000;
         public static int action_bar_btn_left=0x7f070001;
         public static int action_bar_btn_right_1=0x7f070002;
         public static int action_bar_btn_right_2=0x7f070003;
-        public static int action_search=0x7f07000c;
+        public static int action_search=0x7f07000e;
         public static int app_name=0x7f070007;
-        public static int cancel=0x7f070009;
-        public static int close=0x7f070010;
+        public static int cancel=0x7f07000b;
+        public static int close=0x7f070012;
         public static int drawer_close=0x7f070005;
         public static int drawer_open=0x7f070004;
-        public static int list_empty=0x7f070011;
-        public static int login=0x7f070014;
-        public static int message_no_internet_connection=0x7f07000e;
-        public static int no=0x7f07000b;
-        public static int no_internet_connection=0x7f07000d;
-        public static int ok=0x7f070008;
-        public static int open=0x7f07000f;
-        public static int password=0x7f070013;
+        public static int list_empty=0x7f070013;
+        public static int login=0x7f070016;
+        public static int login_failed_message=0x7f070017;
+        public static int message_no_internet_connection=0x7f070010;
+        public static int no=0x7f07000d;
+        public static int no_internet_connection=0x7f07000f;
+        public static int ok=0x7f07000a;
+        public static int open=0x7f070011;
+        public static int password=0x7f070015;
+        public static int quit_app=0x7f070008;
+        public static int quit_app_message=0x7f070009;
         public static int show_room=0x7f070006;
-        public static int username=0x7f070012;
-        public static int yes=0x7f07000a;
+        public static int username=0x7f070014;
+        public static int yes=0x7f07000c;
     }
     public static final class style {
         /**  Application theme. 
