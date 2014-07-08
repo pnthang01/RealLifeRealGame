@@ -3,7 +3,6 @@ package com.rlrg.utillities.badgechecker;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JacksonJsonParser;
 
 import com.rlrg.dataserver.base.service.ITaskService;
 import com.rlrg.dataserver.base.service.IUserService;
@@ -11,6 +10,9 @@ import com.rlrg.dataserver.base.service.IUserService;
 public class ActionObserver implements ActionPerformedListener {
 	
 	private String moduleName;
+	
+	@Autowired
+	private IBadgeChecker badgeChecker;
 	
 	@Autowired
 	private ITaskService<?, ?> taskService;
@@ -39,10 +41,7 @@ public class ActionObserver implements ActionPerformedListener {
 		}
 	}	
 	private void checkBadgesForCreateTaskModule(Long userId, Object[] props){
-		String performed = userService.getUserPerformedString(userId);
-		JSONObject jsonObject = (JSONObject) JSONValue.parse(performed);
-		//
-	//new JacksonJsonParser().
+		badgeChecker.process(userId, props);
 	}
 
 }

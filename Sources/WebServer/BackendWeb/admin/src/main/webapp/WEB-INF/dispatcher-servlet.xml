@@ -38,5 +38,13 @@
 	<bean id="categoryReader" class="com.rlrg.utillities.service.CategoryWebServiceReader" />
 	<bean id="categoryService" class="com.rlrg.webserver.admin.service.MvcCategoryService" />
 
+	<bean id="badgeReader" class="com.rlrg.utillities.service.BadgeWebServiceReader" />
+	<bean id="badgeService" class="com.rlrg.webserver.admin.service.MvcBadgeService" />
+	
+	<bean id="userReader" class="com.rlrg.utillities.service.UserWebServiceReader" />
+	<bean id="profileService" class="com.rlrg.webserver.admin.service.MvcProfileService" />
+	
+	<bean id="taskReader" class="com.rlrg.utillities.service.TaskWebServiceReader" />
+	<bean id="taskService" class="com.rlrg.webserver.admin.service.MvcTaskService" />
 
 </beans>
