@@ -24,7 +24,7 @@ public class UserWebServiceReader extends BaseWebServiceReader<UserDTO> {
 	 * @throws RestClientException
 	 * @throws ConvertException
 	 */
-	public boolean updateCategory(UserDTO dto) throws RestClientException, ConvertException{
+	public boolean updateUser(UserDTO dto) throws RestClientException, ConvertException{
 		return this.postAnObjectT(UPDATE_USER_URL, MODULE_NAME, dto);
 	}
 

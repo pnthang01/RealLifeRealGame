@@ -83,8 +83,7 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="category" items="${categories}" begin="0"
-							end="${fn:length(categories)}">
+						<c:forEach var="category" items="${categories}" begin="0" end="${fn:length(categories)}">
 							<tr>
 								<td><input type="checkbox" /></td>
 								<td><c:out value="${category.code}">No code</c:out></td>

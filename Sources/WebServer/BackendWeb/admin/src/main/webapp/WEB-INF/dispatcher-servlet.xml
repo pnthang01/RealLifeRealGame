@@ -17,9 +17,10 @@
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/main-theme/" />
 	
-	<bean class="org.springframework.context.support.ResourceBundleMessageSource"
-		id="messageSource">
-		<property name="basename" value="messages" />
+	<bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
+		<property name="basename">
+			<value>i18n\messages</value>
+		</property>
 	</bean>
 
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
@@ -42,9 +43,21 @@
 	<bean id="badgeService" class="com.rlrg.webserver.admin.service.MvcBadgeService" />
 	
 	<bean id="userReader" class="com.rlrg.utillities.service.UserWebServiceReader" />
-	<bean id="profileService" class="com.rlrg.webserver.admin.service.MvcProfileService" />
+	<bean id="userService" class="com.rlrg.webserver.admin.service.MvcUserService" />
 	
 	<bean id="taskReader" class="com.rlrg.utillities.service.TaskWebServiceReader" />
 	<bean id="taskService" class="com.rlrg.webserver.admin.service.MvcTaskService" />
+	
+	<bean id="achievementReader" class="com.rlrg.utillities.service.AchievementWebServiceReader" />
+	<bean id="achievementService" class="com.rlrg.webserver.admin.service.MvcAchievementService" />
+	
+	<bean id="languageReader" class="com.rlrg.utillities.service.LanguageWebServiceReader" />
+	<bean id="languageService" class="com.rlrg.webserver.admin.service.MvcLanguageService" />
+	
+	<bean id="permissionReader" class="com.rlrg.utillities.service.PermissionWebServiceReader" />
+	<bean id="permissionService" class="com.rlrg.webserver.admin.service.MvcPermissionService" />
+	
+	<bean id="roleReader" class="com.rlrg.utillities.service.RoleWebServiceReader" />
+	<bean id="roleService" class="com.rlrg.webserver.admin.service.MvcRoleService" />
 
 </beans>
