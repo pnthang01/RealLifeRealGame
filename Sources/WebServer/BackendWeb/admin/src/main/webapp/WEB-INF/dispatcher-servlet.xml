@@ -31,10 +31,8 @@
 		</property>
 	</bean>
 
-	<bean id="urlViewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	<bean id="urlViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
 
 	<bean id="categoryReader" class="com.rlrg.utillities.service.CategoryWebServiceReader" />

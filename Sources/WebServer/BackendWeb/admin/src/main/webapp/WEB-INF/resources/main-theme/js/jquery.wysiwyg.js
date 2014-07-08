@@ -299,7 +299,7 @@
             this.initFrame();
 
             if ( this.initialContent.length == 0 )
-                this.setContent('<br />');
+                this.setContent('');
 
             if ( this.options.autoSave )
                 $('form').submit(function() { self.saveContent(); });

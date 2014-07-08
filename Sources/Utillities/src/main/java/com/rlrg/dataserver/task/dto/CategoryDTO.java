@@ -1,5 +1,9 @@
 package com.rlrg.dataserver.task.dto;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+
 import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
 
@@ -7,13 +11,16 @@ import com.rlrg.utillities.annotation.JsonExport;
 public class CategoryDTO{
 	@JsonExport(name="Code")
 	private String code;
-	
-	@JsonExport(name="Name")
+
+	@Length(min = 3, max = 30)
+	@JsonExport(name="Name")	
 	private String name;
 	
+	@NotBlank
 	@JsonExport(name="Description")
 	private String description;
-	
+
+	@Range(min = 1, max = 100)
 	@JsonExport(name="Position")
 	private Integer position;
 	
