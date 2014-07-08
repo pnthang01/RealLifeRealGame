@@ -9,6 +9,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.gamification.rlrg.core.app.CoreApp;
@@ -22,7 +27,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 {
 	private static final int LOGO_APPEAR_INTERVAL = 7000;
 	
-	private View mLogoText;
+	private View mLayoutLogo, mLayoutLogin, mLogoText;
 	
 	private String[] mNavigationTitles;
 	
@@ -31,6 +36,10 @@ public class StartActivity extends NavigationActivity implements Runnable
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+
+		mLayoutLogo = findViewById(R.id.layout_logo);
+		mLayoutLogin = findViewById(R.id.layout_login);
+		mLogoText = findViewById(R.id.logo);
 		
 		mNavigationTitles = getResources().getStringArray(R.array.navigation);
 		List<NavigationData> list = new ArrayList<NavigationData>();
@@ -48,9 +57,11 @@ public class StartActivity extends NavigationActivity implements Runnable
 				showDialog(DIALOG_SEARCH, true);
 			}
 		});
-		
+
+		showLoginForm();
 		if (CoreApp.isStart)
 		{
+			/*
 			hideActionBar();
 			mLogoText = findViewById(R.id.logo);
 			new Timer().schedule(new TimerTask()
@@ -61,6 +72,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 					runOnUiThread(StartActivity.this);
 				}
 			}, LOGO_APPEAR_INTERVAL);
+			*/
 		}
 		else
 		{
@@ -70,6 +82,13 @@ public class StartActivity extends NavigationActivity implements Runnable
 		}
 		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		addFragment(R.id.fragment_container, ShowRoomFragment.newInstance());
+	}
+	
+	// Called by layout
+	public void onBtnLoginClick(View view)
+	{
+		String username = ((EditText) findViewById(R.id.edit_username)).getText().toString();
+		String password = ((EditText) findViewById(R.id.edit_password)).getText().toString();
 	}
 	
 	@Override
@@ -121,5 +140,31 @@ public class StartActivity extends NavigationActivity implements Runnable
 		setActionBarOverLay(false);
 		mLogoText.setVisibility(View.GONE);
 		CoreApp.isStart = false;
+	}
+	
+	private void showLoginForm()
+	{
+		Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.show_login_form);
+        anim.setAnimationListener(new AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation)
+            {
+            	log("onAnimationStart");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation)
+            {
+            	log("onAnimationRepeat");
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+            	log("onAnimationEnd");
+            }
+        });
+        mLogoText.startAnimation(anim);
 	}
 }

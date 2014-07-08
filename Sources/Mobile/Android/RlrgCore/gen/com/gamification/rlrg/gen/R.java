@@ -8,42 +8,45 @@
 package com.gamification.rlrg.gen;
 
 public final class R {
+    public static final class anim {
+        public static int show_login_form=0x7f040000;
+    }
     public static final class array {
-        public static int navigation=0x7f040000;
+        public static int navigation=0x7f050000;
     }
     public static final class attr {
     }
     public static final class color {
-        public static int angel=0x7f050003;
-        public static int background_solid=0x7f050000;
-        public static int background_transparent=0x7f050001;
-        public static int devil=0x7f050004;
-        public static int divider=0x7f050002;
+        public static int angel=0x7f060003;
+        public static int background_solid=0x7f060000;
+        public static int background_transparent=0x7f060001;
+        public static int devil=0x7f060004;
+        public static int divider=0x7f060002;
     }
     public static final class dimen {
-        public static int actionbar_button_height=0x7f070004;
-        public static int actionbar_height=0x7f070003;
-        public static int actionbar_padding=0x7f070002;
+        public static int actionbar_button_height=0x7f080004;
+        public static int actionbar_height=0x7f080003;
+        public static int actionbar_padding=0x7f080002;
         /**  Default screen margins, per the Android Design guidelines. 
          */
-        public static int activity_horizontal_margin=0x7f070000;
-        public static int activity_vertical_margin=0x7f070001;
-        public static int font_size_large_21=0x7f07000e;
-        public static int font_size_large_22=0x7f07000f;
-        public static int font_size_large_23=0x7f070010;
-        public static int font_size_medium_17=0x7f07000a;
-        public static int font_size_medium_18=0x7f07000b;
-        public static int font_size_medium_19=0x7f07000d;
-        public static int font_size_medium_fixed=0x7f07000c;
-        public static int font_size_small_13=0x7f070006;
-        public static int font_size_small_14=0x7f070007;
-        public static int font_size_small_15=0x7f070008;
-        public static int font_size_small_16=0x7f070009;
-        public static int font_size_tiny_10=0x7f070005;
-        public static int font_size_xlarge_26=0x7f070011;
-        public static int font_size_xlarge_34=0x7f070012;
-        public static int font_size_xlarge_50=0x7f070013;
-        public static int font_size_xlarge_55=0x7f070014;
+        public static int activity_horizontal_margin=0x7f080000;
+        public static int activity_vertical_margin=0x7f080001;
+        public static int font_size_large_21=0x7f08000e;
+        public static int font_size_large_22=0x7f08000f;
+        public static int font_size_large_23=0x7f080010;
+        public static int font_size_medium_17=0x7f08000a;
+        public static int font_size_medium_18=0x7f08000b;
+        public static int font_size_medium_19=0x7f08000d;
+        public static int font_size_medium_fixed=0x7f08000c;
+        public static int font_size_small_13=0x7f080006;
+        public static int font_size_small_14=0x7f080007;
+        public static int font_size_small_15=0x7f080008;
+        public static int font_size_small_16=0x7f080009;
+        public static int font_size_tiny_10=0x7f080005;
+        public static int font_size_xlarge_26=0x7f080011;
+        public static int font_size_xlarge_34=0x7f080012;
+        public static int font_size_xlarge_50=0x7f080013;
+        public static int font_size_xlarge_55=0x7f080014;
     }
     public static final class drawable {
         public static int bg1=0x7f020000;
@@ -56,23 +59,23 @@ public final class R {
         public static int ic_launcher=0x7f020007;
     }
     public static final class id {
-        public static int actionbar=0x7f090002;
-        public static int actionbar_btn_left=0x7f090003;
-        public static int actionbar_btn_right_1=0x7f090006;
-        public static int actionbar_btn_right_2=0x7f090005;
-        public static int actionbar_title=0x7f090004;
-        public static int angel_bar=0x7f09000e;
-        public static int devil_bar=0x7f09000d;
-        public static int drawer_layout=0x7f090008;
-        public static int fragment_container=0x7f090000;
-        public static int layout_devil_angel=0x7f09000c;
-        public static int layout_showroom=0x7f09000f;
-        public static int logo=0x7f090001;
-        public static int main_view=0x7f090007;
-        public static int navigation=0x7f090009;
-        public static int navigation_list=0x7f09000a;
-        public static int search_box=0x7f09000b;
-        public static int title=0x7f090010;
+        public static int actionbar=0x7f0a0006;
+        public static int actionbar_btn_left=0x7f0a0007;
+        public static int actionbar_btn_right_1=0x7f0a000a;
+        public static int actionbar_btn_right_2=0x7f0a0009;
+        public static int actionbar_title=0x7f0a0008;
+        public static int drawer_layout=0x7f0a000c;
+        public static int edit_password=0x7f0a0003;
+        public static int edit_username=0x7f0a0002;
+        public static int fragment_container=0x7f0a0000;
+        public static int layout_login=0x7f0a0001;
+        public static int layout_logo=0x7f0a0004;
+        public static int logo=0x7f0a0005;
+        public static int main_view=0x7f0a000b;
+        public static int navigation=0x7f0a000d;
+        public static int navigation_list=0x7f0a000e;
+        public static int search_box=0x7f0a000f;
+        public static int title=0x7f0a0010;
     }
     public static final class layout {
         public static int activity_start=0x7f030000;
@@ -85,42 +88,39 @@ public final class R {
         public static int list_view=0x7f030007;
     }
     public static final class string {
-        public static int action_bar=0x7f060000;
-        public static int action_bar_btn_left=0x7f060001;
-        public static int action_bar_btn_right_1=0x7f060002;
-        public static int action_bar_btn_right_2=0x7f060003;
-        public static int action_search=0x7f06000c;
-        public static int app_name=0x7f060007;
-        public static int cancel=0x7f060009;
-        public static int close=0x7f060010;
-        public static int drawer_close=0x7f060005;
-        public static int drawer_open=0x7f060004;
-        public static int list_empty=0x7f060011;
-        public static int message_no_internet_connection=0x7f06000e;
-        public static int no=0x7f06000b;
-        public static int no_internet_connection=0x7f06000d;
-        public static int ok=0x7f060008;
-        public static int open=0x7f06000f;
-        public static int show_room=0x7f060006;
-        public static int yes=0x7f06000a;
+        public static int action_bar=0x7f070000;
+        public static int action_bar_btn_left=0x7f070001;
+        public static int action_bar_btn_right_1=0x7f070002;
+        public static int action_bar_btn_right_2=0x7f070003;
+        public static int action_search=0x7f07000c;
+        public static int app_name=0x7f070007;
+        public static int cancel=0x7f070009;
+        public static int close=0x7f070010;
+        public static int drawer_close=0x7f070005;
+        public static int drawer_open=0x7f070004;
+        public static int list_empty=0x7f070011;
+        public static int login=0x7f070014;
+        public static int message_no_internet_connection=0x7f07000e;
+        public static int no=0x7f07000b;
+        public static int no_internet_connection=0x7f07000d;
+        public static int ok=0x7f070008;
+        public static int open=0x7f07000f;
+        public static int password=0x7f070013;
+        public static int show_room=0x7f070006;
+        public static int username=0x7f070012;
+        public static int yes=0x7f07000a;
     }
     public static final class style {
         /**  Application theme. 
          */
-        public static int app_theme=0x7f080000;
-        public static int dynamic_height=0x7f080006;
-        public static int dynamic_width=0x7f080005;
-        public static int equal_height=0x7f080008;
-        public static int equal_height_vertical=0x7f080009;
-        public static int equal_width=0x7f080007;
-        public static int full_height=0x7f08000e;
-        public static int full_height_vertical=0x7f08000b;
-        public static int full_screen=0x7f080001;
-        public static int full_screen_vertical=0x7f08000d;
-        public static int full_width=0x7f080004;
-        public static int full_width_right=0x7f08000c;
-        public static int full_width_vertical=0x7f08000a;
-        public static int wrap_content=0x7f080002;
-        public static int wrap_content_docking_center=0x7f080003;
+        public static int app_theme=0x7f090000;
+        public static int full_height=0x7f090006;
+        public static int full_height_dynamic_width=0x7f090007;
+        public static int full_height_equal_width=0x7f090008;
+        public static int full_screen=0x7f090001;
+        public static int full_width=0x7f090003;
+        public static int full_width_dynamic_height=0x7f090004;
+        public static int full_width_equal_height=0x7f090005;
+        public static int wrap_content=0x7f090002;
     }
 }
