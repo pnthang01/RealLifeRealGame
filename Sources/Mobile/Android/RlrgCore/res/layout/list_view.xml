@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/full_screen_vertical" >
+    style="@style/full_screen"
+    android:orientation="vertical" >
 
     <ListView
         android:id="@android:id/list"
