@@ -1,0 +1,41 @@
+﻿Merge branch 'master' of https://github.com/pnthang01/RealLifeRealGame
+
+Conflicts:
+	Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/controllers/MvcBadgeController.java
+	Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/controllers/MvcTaskController.java
+	Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/service/MvcBadgeService.java
+	Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/service/MvcTaskService.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   Sources/DataServer/DataUtils/src/main/java/com/rlrg/utillities/badgechecker/ActionObserver.java
+#	modified:   Sources/Utillities/pom.xml
+#	new file:   Sources/Utillities/src/main/java/com/rlrg/utillities/badgechecker/IBadgeChecker.java
+#	modified:   Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/controllers/MvcBadgeController.java
+#	new file:   Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/controllers/MvcProfileController.java
+#	modified:   Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/service/MvcBadgeService.java
+#	new file:   Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/service/MvcProfileService.java
+#	modified:   Sources/WebServer/BackendWeb/admin/src/main/java/com/rlrg/webserver/admin/service/MvcTaskService.java
+#	modified:   Sources/WebServer/BackendWeb/admin/src/main/webapp/WEB-INF/dispatcher-servlet.xml
+#	new file:   Sources/pbl-checker-module/pom.xml
+#	new file:   Sources/pbl-checker-module/src/main/java/com/rlrg/checker/App.java
+#	new file:   Sources/pbl-checker-module/src/main/java/com/rlrg/checker/BadgeChecker.java
+#	new file:   Sources/pbl-checker-module/src/test/java/com/rlrg/checker/AppTest.java
+#
+

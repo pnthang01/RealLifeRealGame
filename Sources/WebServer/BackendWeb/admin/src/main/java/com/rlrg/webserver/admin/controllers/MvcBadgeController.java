@@ -74,4 +74,5 @@ public class MvcBadgeController {
 			return "error";
 		}
 	}
+
 }

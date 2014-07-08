@@ -27,4 +27,5 @@ public class MvcBadgeService {
 	public boolean updateBadge(BadgeDTO dto) throws RestClientException, ConvertException{
 		return badgeReader.updateBadge(dto);
 	}
+
 }
