@@ -1,0 +1,29 @@
+-------- Category: --------
+
+http://localhost:9090/data/category/getCategoriesByStatus/?status=true&pageNumber=1
+
+{\"ErrorCode\":\"0\",\"Msg\":\"Success\",\"data\":{\"Categories\":[{\"Code\":\"LKSJDKFL\",\"Name\":\"Category VN #1\",\"Description\":\"Category VN #1 Description\",\"Position\":\"1\",\"status\":\"true\"},{\"Code\":\"AH6B769F\",\"Name\":\"Category VN #2\",\"Description\":\"Category VN #2 Description\",\"Position\":\"2\",\"status\":\"true\"},{\"Code\":\"BNZBZBE6\",\"Name\":\"Category VN #4\",\"Description\":\"Category VN #4 Description\",\"Position\":\"4\",\"status\":\"true\"},{\"Code\":\"WTZBZBE6\",\"Name\":\"Category VN #5\",\"Description\":\"Category VN #5 Description\",\"Position\":\"9\",\"status\":\"true\"}]}}
+
+-------- Task: --------
+
+http://localhost:9090/data/badge/getAllBages/?pageNumber=1
+
+{\"ErrorCode\":\"0\",\"Msg\":\"Success\",\"data\":{\"Badges\":[{\"ID\":\"1\",\"Name\":\"Badge VN #1\",\"Description\":\"Badge VN #1 Description\",\"Status\":\"OPEN\",\"Eligibility\":\"Do something to achive this\"},{\"ID\":\"2\",\"Name\":\"Badge VN #2\",\"Description\":\"Badge VN #2 Description\",\"Status\":\"OPEN\",\"Eligibility\":\"Do something to achive this\"},{\"ID\":\"3\",\"Name\":\"Badge VN #3\",\"Description\":\"Badge VN #3 Description\",\"Status\":\"OPEN\",\"Eligibility\":\"Do something to achive this\"},{\"ID\":\"4\",\"Name\":\"Badge VN #4\",\"Description\":\"Badge VN #4 Description\",\"Status\":\"OPEN\",\"Eligibility\":\"Do something to achive this\"}]}}
+
+-------- Task: --------
+
+http://localhost:9090/data/task/getTasksByCategoryAndUser/?categoryCode=1&token=123&pageNumber=1
+
+{\"ErrorCode\":\"0\",\"Msg\":\"Success\",\"data\":{\"Task\":{\"ID\":\"1\",\"Category\":{\"Code\":\"LKSJDKFL\",\"Name\":\"Category VN #1\"},\"Name\":\"Task Name #1\",\"Complete Time\":1402397322000,\"Difficulty Level\":\"NORMAL\",\"Status\":\"NOTCOMPLETED\",\"Point\":\"10\"}}}
+
+-------- User: --------
+
+http://localhost:9090/data/user/getAllUser/?pageNumber=1
+
+{\"ErrorCode\":\"0\",\"Msg\":\"Success\",\"data\":{\"Users\":[{\"Username\":\"username1\",\"Email\":\"useremail1@gmail.com\",\"FirstName\":\"FirstName Test\",\"Gender\":\"MALE\"},{\"Username\":\"username2\",\"Email\":\"useremail2@gmail.com\",\"FirstName\":\"FirstName 2\",\"Gender\":\"MALE\"},{\"Username\":\"username3\",\"Email\":\"useremail3@gmail.com\",\"FirstName\":\"FirstName 3\",\"Gender\":\"MALE\"},{\"Username\":\"username4\",\"Email\":\"useremail4@gmail.com\",\"FirstName\":\"FirstName 4\",\"Gender\":\"MALE\"}]}}
+
+-------- Achievement: --------
+
+http://localhost:9090/data/achievement/getUserAchivements/?username=username1&pageNumber=1
+
+{\"ErrorCode\":\"0\",\"Msg\":\"Success\",\"data\":{\"Achievements\":[{\"ID\":\"1\",\"Badge\":{\"ID\":\"1\",\"Name\":\"Badge VN #1\",\"Description\":\"Badge VN #1 Description\"},\"AchievedTime\":1402397322000},{\"ID\":\"11\",\"Badge\":{\"ID\":\"4\",\"Name\":\"Badge VN #4\",\"Description\":\"Badge VN #4 Description\"},\"AchievedTime\":1402397322000},{\"ID\":\"12\",\"Badge\":{\"ID\":\"4\",\"Name\":\"Badge VN #4\",\"Description\":\"Badge VN #4 Description\"},\"AchievedTime\":1402397322000},{\"ID\":\"13\",\"Badge\":{\"ID\":\"5\",\"Name\":\"Badge VN #5\",\"Description\":\"Badge VN #5 Description\"},\"AchievedTime\":1402397322000}]}}
