@@ -11,10 +11,10 @@ public class WelcomeController {
 		return "login";
 	}
 	
-	@RequestMapping("/login")
-	public String login() {
-		return "dashboard";
-	}
+//	@RequestMapping("/login")
+//	public String login() {
+//		return "redirect:/dashboard.html";
+//	}
 	
 	@RequestMapping("/dashboard.html")
 	public String dashboard(){
