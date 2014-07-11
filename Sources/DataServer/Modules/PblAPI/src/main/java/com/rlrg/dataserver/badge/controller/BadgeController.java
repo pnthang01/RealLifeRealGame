@@ -16,6 +16,7 @@ import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.dataserver.base.controller.BaseController;
 import com.rlrg.dataserver.base.service.IBadgeService;
+import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -39,6 +40,8 @@ public class BadgeController extends BaseController{
 		String result = null;
 		LOG.info("<< Starting webservice /badge/getAllBages with parameters: pageNumber={}", pageNumber);
 		try {
+			List<Badge> test = badgeService.getBadgeByEligibility(1l, BadgeCheckerConstants.CREATE_TASK);
+			System.out.print(test);
 			List<BadgeDTO> listDto = badgeService.getAllBadges(pageNumber);
 			//
 			result = badgeService.encodeMutipleObjectsFromListV(listDto);

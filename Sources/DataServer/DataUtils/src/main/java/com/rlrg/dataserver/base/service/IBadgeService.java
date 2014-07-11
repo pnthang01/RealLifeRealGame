@@ -14,4 +14,6 @@ public interface IBadgeService<T, V> extends IBaseService<T, V>{
 	public List<V> getBadgesByStatus(BadgeStatus status, Integer pageNumber);
 			
 	public void update(V dto) throws RepositoryException;
+	
+	public List<T> getBadgeByEligibility(Long userId, String... params);
 }
