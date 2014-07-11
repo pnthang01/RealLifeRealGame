@@ -1,10 +1,8 @@
-package com.gamification.rlrg.data;
-
-import java.util.List;
+package com.gamification.rlrg.core.components;
 
 import com.google.gson.annotations.SerializedName;
 
-public class BaseResult<T>
+public class BaseEntity<T>
 {
 	@SerializedName("ErrorCode")
 	private String error;
@@ -12,7 +10,13 @@ public class BaseResult<T>
 	@SerializedName("Msg")
 	private String message;
 	
-	private List<T> data;
+	@SerializedName("data")
+	private T data;
+
+	public boolean isSuccessful()
+	{
+		return error.equals("0");
+	}
 
 	public String getError()
 	{
@@ -34,12 +38,12 @@ public class BaseResult<T>
 		this.message = message;
 	}
 
-	public List<T> getData()
+	public T getData()
 	{
 		return data;
 	}
 
-	public void setData(List<T> data)
+	public void setData(T data)
 	{
 		this.data = data;
 	}

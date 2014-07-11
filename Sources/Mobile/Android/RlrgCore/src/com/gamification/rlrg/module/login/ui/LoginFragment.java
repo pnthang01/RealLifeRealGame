@@ -98,7 +98,7 @@ public class LoginFragment extends Fragment implements AnimationListener, OnClic
 	@Override
 	public void onClick(View view)
 	{
-		if (mEdtUsername.getText().toString().equals("admin") && mEdtPassword.getText().toString().equals("123456"))
+		if (mEdtUsername.getText().toString().equals("") && mEdtPassword.getText().toString().equals(""))
 		{
 			mActivity.onBtnLoginClick(view);
 		}

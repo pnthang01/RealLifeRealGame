@@ -1,0 +1,119 @@
+package com.gamification.rlrg.data;
+
+import java.util.List;
+
+import com.gamification.rlrg.core.components.BaseEntity;
+import com.google.gson.annotations.SerializedName;
+
+public class Tasks extends BaseEntity<Tasks.TaskList>
+{
+	public class TaskList
+	{
+		@SerializedName("Tasks")
+		private List<Task> tasks;
+		
+		public List<Task> getTasks()
+		{
+			return tasks;
+		}
+		
+		public void setTasks(List<Task> tasks)
+		{
+			this.tasks = tasks;
+		}
+	}
+	
+	public class Task
+	{
+		@SerializedName("ID")
+		private String id;
+		
+		@SerializedName("Category")
+		private Categories category;
+		
+		@SerializedName("Name")
+		private String name;
+		
+		@SerializedName("Complete Time")
+		private long completeTime;
+		
+		@SerializedName("Difficulty Level")
+		private String difficultyLevel;
+		
+		@SerializedName("Status")
+		private String status;
+		
+		@SerializedName("Point")
+		private String point;
+		
+		public String getId()
+		{
+			return id;
+		}
+		
+		public void setId(String id)
+		{
+			this.id = id;
+		}
+		
+		public Categories getCategory()
+		{
+			return category;
+		}
+		
+		public void setCategory(Categories category)
+		{
+			this.category = category;
+		}
+		
+		public String getName()
+		{
+			return name;
+		}
+		
+		public void setName(String name)
+		{
+			this.name = name;
+		}
+		
+		public long getCompleteTime()
+		{
+			return completeTime;
+		}
+		
+		public void setCompleteTime(long completeTime)
+		{
+			this.completeTime = completeTime;
+		}
+		
+		public String getDifficultyLevel()
+		{
+			return difficultyLevel;
+		}
+		
+		public void setDifficultyLevel(String difficultyLevel)
+		{
+			this.difficultyLevel = difficultyLevel;
+		}
+		
+		public String getStatus()
+		{
+			return status;
+		}
+		
+		public void setStatus(String status)
+		{
+			this.status = status;
+		}
+		
+		public String getPoint()
+		{
+			return point;
+		}
+		
+		public void setPoint(String point)
+		{
+			this.point = point;
+		}
+	}
+}

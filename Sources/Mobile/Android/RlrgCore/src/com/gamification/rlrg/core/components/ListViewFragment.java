@@ -27,14 +27,14 @@ public class ListViewFragment<T> extends ListFragment implements LoaderManager.L
 			super(getActivity(), mListLayout);
 		}
 		
-		public void setData(List<T> spots)
+		public void setData(List<T> list)
 		{
 			clear();
-			if (spots != null)
+			if (list != null)
 			{
-				for (T spot : spots)
+				for (T item : list)
 				{
-					add(spot);
+					add(item);
 				}
 			}
 		}

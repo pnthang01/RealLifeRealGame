@@ -13,7 +13,6 @@ import com.gamification.rlrg.application.CoreApp;
 import com.gamification.rlrg.core.components.NavigationActivity;
 import com.gamification.rlrg.core.data.NavigationData;
 import com.gamification.rlrg.gen.R;
-import com.gamification.rlrg.module.game.ui.GameListFragment;
 import com.gamification.rlrg.module.login.ui.LoginFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
 
@@ -26,6 +25,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		getCoreApp().init();
 		
 		mNavigationTitles = getResources().getStringArray(R.array.navigation);
 		List<NavigationData> list = new ArrayList<NavigationData>();
@@ -56,12 +56,17 @@ public class StartActivity extends NavigationActivity implements Runnable
 		addFragment(R.id.fragment_container, LoginFragment.newInstance());
 	}
 	
+	public CoreApp getCoreApp()
+	{
+		return (CoreApp) getApplication();
+	}
+	
 	@Override
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
 		super.onNavigationItemClick(adapter, view, position, id);
 		setActionBarOverLay(false);
-		Fragment fragment = GameListFragment.newInstance();
+		Fragment fragment = ShowRoomFragment.newInstance();
 		Bundle args = new Bundle();
 		args.putString("title", mNavigationTitles[position]);
 		int bgId = 0;

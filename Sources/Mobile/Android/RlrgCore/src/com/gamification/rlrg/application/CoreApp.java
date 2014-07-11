@@ -1,11 +1,10 @@
 package com.gamification.rlrg.application;
 
-import com.gamification.rlrg.data.Achievement;
-import com.gamification.rlrg.data.Badge;
-import com.gamification.rlrg.data.BaseResult;
-import com.gamification.rlrg.data.Category;
-import com.gamification.rlrg.data.Task;
-import com.gamification.rlrg.data.User;
+import com.gamification.rlrg.data.Achievements;
+import com.gamification.rlrg.data.Badges;
+import com.gamification.rlrg.data.Categories;
+import com.gamification.rlrg.data.Tasks;
+import com.gamification.rlrg.data.Users;
 import com.gamification.rlrg.gen.R;
 import com.google.gson.Gson;
 
@@ -19,77 +18,76 @@ public class CoreApp extends Application
 	private Gson mGson = new Gson();
 	private Resources mResources = null;
 	
-	private BaseResult<User> users;
-	private BaseResult<Category> categories;
-	private BaseResult<Task> tasks;
-	private BaseResult<Achievement> achievements;
-	private BaseResult<Badge> badges;
+	private Users users;
+	private Categories categories;
+	private Tasks tasks;
+	private Achievements achievements;
+	private Badges badges;
 	
-	@SuppressWarnings("unchecked")
 	public void init()
 	{
-		users = (BaseResult<User>) fromJson(R.string.get_users);
-		badges = (BaseResult<Badge>) fromJson(R.string.get_badges);
-		categories = (BaseResult<Category>) fromJson(R.string.get_categories);
-		tasks = (BaseResult<Task>) fromJson(R.string.get_tasks_by_category_and_user);
-		achievements = (BaseResult<Achievement>) fromJson(R.string.get_user_achievements);
+		users = (Users) fromJson(R.string.get_users, Users.class);
+		badges = (Badges) fromJson(R.string.get_badges, Badges.class);
+		categories = (Categories) fromJson(R.string.get_categories, Categories.class);
+		tasks = (Tasks) fromJson(R.string.get_tasks_by_category_and_user, Tasks.class);
+		achievements = (Achievements) fromJson(R.string.get_user_achievements, Achievements.class);
 	}
 	
-	private Object fromJson(int id)
+	private Object fromJson(int id, Class<?> clazz)
 	{
 		if (mResources == null)
 		{
 			mResources = getResources();
 		}
-		return mGson.fromJson(mResources.getString(id), BaseResult.class);
+		return mGson.fromJson(mResources.getString(id), clazz);
 	}
 	
-	public BaseResult<User> getUsers()
+	public Users getUsers()
 	{
 		return users;
 	}
 	
-	public void setUsers(BaseResult<User> users)
+	public void setUsers(Users users)
 	{
 		this.users = users;
 	}
 	
-	public BaseResult<Category> getCategories()
+	public Categories getCategories()
 	{
 		return categories;
 	}
 	
-	public void setCategories(BaseResult<Category> categories)
+	public void setCategories(Categories categories)
 	{
 		this.categories = categories;
 	}
 	
-	public BaseResult<Task> getTasks()
+	public Tasks getTasks()
 	{
 		return tasks;
 	}
 	
-	public void setTasks(BaseResult<Task> tasks)
+	public void setTasks(Tasks tasks)
 	{
 		this.tasks = tasks;
 	}
 	
-	public BaseResult<Achievement> getAchievements()
+	public Achievements getAchievements()
 	{
 		return achievements;
 	}
 	
-	public void setAchievements(BaseResult<Achievement> achievements)
+	public void setAchievements(Achievements achievements)
 	{
 		this.achievements = achievements;
 	}
 	
-	public BaseResult<Badge> getBadges()
+	public Badges getBadges()
 	{
 		return badges;
 	}
 	
-	public void setBadges(BaseResult<Badge> badges)
+	public void setBadges(Badges badges)
 	{
 		this.badges = badges;
 	}
