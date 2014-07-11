@@ -6,12 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
+import com.rlrg.dataserver.badge.helper.BadgeCriteriaHelper;
 import com.rlrg.dataserver.badge.repository.BadgeRepository;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.service.BaseService;
@@ -86,7 +88,13 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 		}
 	}
 	
-	
+
+	@Override
+	public List<Badge> getBadgeByEligibility(Long userId, String... params) {
+		Specification<Badge> spec = BadgeCriteriaHelper.findBadgeByEligibility(userId, params);
+		return badgeRepo.findAll(spec);
+	}
+
 	@Override
 	public BadgeDTO convertEntityToDTO(Badge data) {
 		// TODO Auto-generated method stub

@@ -28,4 +28,5 @@ public interface BadgeRepository extends JpaRepository<Badge, Integer>, JpaSpeci
 			")" +
 		" FROM Badge b INNER JOIN b.badgeLangs bl WHERE b.status = :status AND bl.language.id = :languageId")
 	public List<BadgeDTO> getBadgeDTOByStatus(@Param("status") BadgeStatus status, @Param("languageId") Integer languageId, Pageable pageable);
+	
 }
