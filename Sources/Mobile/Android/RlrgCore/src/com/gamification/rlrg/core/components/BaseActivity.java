@@ -1,6 +1,5 @@
 package com.gamification.rlrg.core.components;
 
-import android.R.fraction;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
