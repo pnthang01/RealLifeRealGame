@@ -38,4 +38,7 @@ public interface AchievementRepository extends JpaRepository<Achievement, Long>,
 	@Query("SELECT a FROM Achievement a WHERE a.user.id = :userId AND a.achievedTime LIKE :dateYear")
 	public List<Achievement> getAchievementByUserAndDate(
 			@Param("userId") Long userId, @Param("dateYear") Integer dateYear);
+	
+	@Query("SELECT a.badge.id FROM Achievement a WHERE a.user.id = :userId")
+	public List<Integer> getAllBadgeIdByUserId(@Param("userId") Long userId);
 }

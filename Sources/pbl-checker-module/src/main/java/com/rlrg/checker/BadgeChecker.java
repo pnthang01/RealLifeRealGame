@@ -15,7 +15,7 @@ public class BadgeChecker implements IBadgeChecker{
 	private IBadgeService badgeService;
 	
 	public void process(String action, Long userId, Object[] props) {
-		
+		//badgeService.getBadgeByEligibility(userId, params);
 	}
 	
 }

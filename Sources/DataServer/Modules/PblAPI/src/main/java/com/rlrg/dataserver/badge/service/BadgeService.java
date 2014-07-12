@@ -33,6 +33,9 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 	private BadgeRepository badgeRepo;
 	
 	@Autowired
+	private AchievementService achieService;
+	
+	@Autowired
 	private IBadgeLanguageService<BadgeLanguage, BadgeLangDTO> badgeLangService;
 	
 	@Autowired
@@ -91,7 +94,8 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 
 	@Override
 	public List<Badge> getBadgeByEligibility(Long userId, String... params) {
-		Specification<Badge> spec = BadgeCriteriaHelper.findBadgeByEligibility(userId, params);
+		List<Integer> usersAchie = achieService.getAllBadgeIdByUserId(userId);
+		Specification<Badge> spec = BadgeCriteriaHelper.findAvaiableBadgeByEligibilityAndUserId(usersAchie, params);
 		return badgeRepo.findAll(spec);
 	}
 

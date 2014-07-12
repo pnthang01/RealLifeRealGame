@@ -84,6 +84,10 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 			throw e;
 		}
 	}
+	
+	public List<Integer> getAllBadgeIdByUserId(Long userId){
+		return achievementRepo.getAllBadgeIdByUserId(userId);
+	}
 
 	@Override
 	public AchievementDTO convertEntityToDTO(Achievement data) {
