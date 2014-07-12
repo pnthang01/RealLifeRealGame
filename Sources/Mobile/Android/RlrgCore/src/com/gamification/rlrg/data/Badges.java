@@ -10,16 +10,16 @@ public class Badges extends BaseEntity<Badges.BadgeList>
 	public class BadgeList
 	{
 		@SerializedName("Badges")
-		private List<Badge> badges;
+		private List<Badge> list;
 		
-		public List<Badge> getBadges()
+		public List<Badge> getList()
 		{
-			return badges;
+			return list;
 		}
 	
-		public void setBadges(List<Badge> badges)
+		public void setList(List<Badge> list)
 		{
-			this.badges = badges;
+			this.list = list;
 		}
 	}
 

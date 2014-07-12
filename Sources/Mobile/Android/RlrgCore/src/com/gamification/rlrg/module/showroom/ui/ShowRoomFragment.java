@@ -1,13 +1,21 @@
 package com.gamification.rlrg.module.showroom.ui;
 
+import java.util.List;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.gamification.rlrg.application.CoreApp;
+import com.gamification.rlrg.core.components.BaseEntity;
 import com.gamification.rlrg.core.components.ListViewFragment;
+import com.gamification.rlrg.data.Badges;
 import com.gamification.rlrg.data.Badges.Badge;
+import com.gamification.rlrg.data.Badges.BadgeList;
 import com.gamification.rlrg.gen.R;
+import com.gamification.rlrg.module.start.ui.StartActivity;
 
 public class ShowRoomFragment extends ListViewFragment<Badge>
 {
@@ -27,9 +35,13 @@ public class ShowRoomFragment extends ListViewFragment<Badge>
 		super.onCreate(savedInstanceState);
 		if (mArguments != null)
 		{
-			//String title = mArguments.getString("title");
+			// String title = mArguments.getString("title");
 			
-			// TODO: Move to CoreApp
+			StartActivity activity = (StartActivity) getActivity();
+			if (activity != null)
+			{
+				mList = activity.getCoreApp().getBadges().getData().getList();
+			}
 		}
 	}
 	

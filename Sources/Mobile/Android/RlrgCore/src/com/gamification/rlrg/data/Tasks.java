@@ -10,16 +10,16 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 	public class TaskList
 	{
 		@SerializedName("Tasks")
-		private List<Task> tasks;
+		private List<Task> list;
 		
-		public List<Task> getTasks()
+		public List<Task> getList()
 		{
-			return tasks;
+			return list;
 		}
-		
-		public void setTasks(List<Task> tasks)
+	
+		public void setList(List<Task> list)
 		{
-			this.tasks = tasks;
+			this.list = list;
 		}
 	}
 	

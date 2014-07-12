@@ -10,16 +10,16 @@ public class Achievements extends BaseEntity<Achievements.AchievementList>
 	public class AchievementList
 	{
 		@SerializedName("Achievements")
-		private List<Achievement> achievements;
+		private List<Achievement> list;
 		
-		public List<Achievement> getAchievements()
+		public List<Achievement> getList()
 		{
-			return achievements;
+			return list;
 		}
 	
-		public void setAchievements(List<Achievement> achievements)
+		public void setList(List<Achievement> list)
 		{
-			this.achievements = achievements;
+			this.list = list;
 		}
 	}
 

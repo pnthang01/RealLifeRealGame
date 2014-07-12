@@ -10,16 +10,16 @@ public class Categories extends BaseEntity<Categories.CategoryList>
 	public class CategoryList
 	{
 		@SerializedName("Categories")
-		private List<Category> categories;
+		private List<Category> list;
 		
-		public List<Category> getCategories()
+		public List<Category> getList()
 		{
-			return categories;
+			return list;
 		}
-		
-		public void setCategories(List<Category> categories)
+	
+		public void setList(List<Category> list)
 		{
-			this.categories = categories;
+			this.list = list;
 		}
 	}
 	
