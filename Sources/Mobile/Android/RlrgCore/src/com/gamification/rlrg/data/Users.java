@@ -12,12 +12,12 @@ public class Users extends BaseEntity<Users.UserList>
 		@SerializedName("Users")
 		private List<User> list;
 		
-		public List<User> getList()
+		public List<User> getElements()
 		{
 			return list;
 		}
 	
-		public void setList(List<User> list)
+		public void setElements(List<User> list)
 		{
 			this.list = list;
 		}

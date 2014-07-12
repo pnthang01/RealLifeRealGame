@@ -12,12 +12,12 @@ public class Categories extends BaseEntity<Categories.CategoryList>
 		@SerializedName("Categories")
 		private List<Category> list;
 		
-		public List<Category> getList()
+		public List<Category> getElements()
 		{
 			return list;
 		}
 	
-		public void setList(List<Category> list)
+		public void setElements(List<Category> list)
 		{
 			this.list = list;
 		}

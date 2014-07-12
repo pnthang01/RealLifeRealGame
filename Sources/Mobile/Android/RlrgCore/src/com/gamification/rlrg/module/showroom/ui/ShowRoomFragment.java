@@ -1,29 +1,31 @@
 package com.gamification.rlrg.module.showroom.ui;
 
-import java.util.List;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.gamification.rlrg.application.CoreApp;
-import com.gamification.rlrg.core.components.BaseEntity;
 import com.gamification.rlrg.core.components.ListViewFragment;
-import com.gamification.rlrg.data.Badges;
-import com.gamification.rlrg.data.Badges.Badge;
-import com.gamification.rlrg.data.Badges.BadgeList;
+import com.gamification.rlrg.data.Achievements;
+import com.gamification.rlrg.data.Achievements.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
-public class ShowRoomFragment extends ListViewFragment<Badge>
+public class ShowRoomFragment extends ListViewFragment<Achievement>
 {
+	public static final String TAG = ShowRoomFragment.class.getName();
+
 	public static ShowRoomFragment newInstance()
 	{
 		return new ShowRoomFragment(R.layout.list_view, R.layout.list_item_game);
 	}
-	
+
 	public ShowRoomFragment(int listLayout, int itemLayout)
 	{
 		super(listLayout, itemLayout);
@@ -36,23 +38,37 @@ public class ShowRoomFragment extends ListViewFragment<Badge>
 		if (mArguments != null)
 		{
 			// String title = mArguments.getString("title");
-			
-			StartActivity activity = (StartActivity) getActivity();
-			if (activity != null)
+		}
+		StartActivity activity = (StartActivity) getActivity();
+		if (activity != null)
+		{
+			Achievements achievements = activity.getCoreApp().getAchievements();
+			if (achievements.isSuccessful())
 			{
-				mList = activity.getCoreApp().getBadges().getData().getList();
+				setData(achievements.getData().getElements());
+			}
+			else
+			{
+				Log.d(TAG, achievements.getMessage());
 			}
 		}
 	}
-	
+
 	@Override
+	@SuppressLint("SimpleDateFormat")
 	protected View getListItemView(ListView parent, View view, int position)
 	{
-		Badge item = (Badge) getListAdapter().getItem(position);
-		((TextView) view).setText(item.getName());
+		Achievement item = (Achievement) getListAdapter().getItem(position);
+
+		Date date = new Date(item.getAchievedTime());
+		Format format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+		String message = "AchievedTime: %s\nBadge: %s";
+
+		((TextView) view).setText(String.format(message, format.format(date), item.getBadge().getName()));
 		return view;
 	}
-	
+
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id)
 	{

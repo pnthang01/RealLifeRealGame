@@ -15,6 +15,7 @@ import com.gamification.rlrg.core.data.NavigationData;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.login.ui.LoginFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
+import com.gamification.rlrg.module.task.ui.TaskFragment;
 
 public class StartActivity extends NavigationActivity implements Runnable
 {
@@ -65,8 +66,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
 		super.onNavigationItemClick(adapter, view, position, id);
-		setActionBarOverLay(false);
-		Fragment fragment = ShowRoomFragment.newInstance();
+		Fragment fragment = TaskFragment.newInstance();
 		Bundle args = new Bundle();
 		args.putString("title", mNavigationTitles[position]);
 		int bgId = 0;
@@ -119,6 +119,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 		args.putString("title", mNavigationTitles[0]);
 		fragment.setArguments(args);
 		replaceFragment(fragment);
+		setActionBarOverLay(false);
 		showActionBar();
 	}
 	

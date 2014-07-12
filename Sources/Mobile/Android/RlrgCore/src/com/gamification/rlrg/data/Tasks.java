@@ -3,21 +3,22 @@ package com.gamification.rlrg.data;
 import java.util.List;
 
 import com.gamification.rlrg.core.components.BaseEntity;
+import com.gamification.rlrg.data.Categories.Category;
 import com.google.gson.annotations.SerializedName;
 
 public class Tasks extends BaseEntity<Tasks.TaskList>
 {
 	public class TaskList
 	{
-		@SerializedName("Tasks")
+		@SerializedName("Task")
 		private List<Task> list;
 		
-		public List<Task> getList()
+		public List<Task> getElements()
 		{
 			return list;
 		}
 	
-		public void setList(List<Task> list)
+		public void setElements(List<Task> list)
 		{
 			this.list = list;
 		}
@@ -29,7 +30,7 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 		private String id;
 		
 		@SerializedName("Category")
-		private Categories category;
+		private Category category;
 		
 		@SerializedName("Name")
 		private String name;
@@ -56,12 +57,12 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 			this.id = id;
 		}
 		
-		public Categories getCategory()
+		public Category getCategory()
 		{
 			return category;
 		}
 		
-		public void setCategory(Categories category)
+		public void setCategory(Category category)
 		{
 			this.category = category;
 		}

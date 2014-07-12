@@ -3,6 +3,7 @@ package com.gamification.rlrg.data;
 import java.util.List;
 
 import com.gamification.rlrg.core.components.BaseEntity;
+import com.gamification.rlrg.data.Badges.Badge;
 import com.google.gson.annotations.SerializedName;
 
 public class Achievements extends BaseEntity<Achievements.AchievementList>
@@ -12,12 +13,12 @@ public class Achievements extends BaseEntity<Achievements.AchievementList>
 		@SerializedName("Achievements")
 		private List<Achievement> list;
 		
-		public List<Achievement> getList()
+		public List<Achievement> getElements()
 		{
 			return list;
 		}
 	
-		public void setList(List<Achievement> list)
+		public void setElements(List<Achievement> list)
 		{
 			this.list = list;
 		}
@@ -29,7 +30,7 @@ public class Achievements extends BaseEntity<Achievements.AchievementList>
 		private String id;
 		
 		@SerializedName("Badge")
-		private Badges badge;
+		private Badge badge;
 		
 		@SerializedName("AchievedTime")
 		private long achievedTime;
@@ -44,12 +45,12 @@ public class Achievements extends BaseEntity<Achievements.AchievementList>
 			this.id = id;
 		}
 
-		public Badges getBadge()
+		public Badge getBadge()
 		{
 			return badge;
 		}
 
-		public void setBadge(Badges badge)
+		public void setBadge(Badge badge)
 		{
 			this.badge = badge;
 		}
