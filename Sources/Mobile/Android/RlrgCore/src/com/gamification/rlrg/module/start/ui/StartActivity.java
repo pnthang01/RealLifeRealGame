@@ -66,9 +66,9 @@ public class StartActivity extends NavigationActivity implements Runnable
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
 		super.onNavigationItemClick(adapter, view, position, id);
-		Fragment fragment = TaskFragment.newInstance();
 		Bundle args = new Bundle();
 		args.putString("title", mNavigationTitles[position]);
+		Fragment fragment = new Fragment();
 		int bgId = 0;
 		
 		switch (position)
@@ -78,19 +78,8 @@ public class StartActivity extends NavigationActivity implements Runnable
 				bgId = R.drawable.bg1;
 				break;
 			case 1:
+				fragment = TaskFragment.newInstance();
 				bgId = R.drawable.bg2;
-				break;
-			case 2:
-				bgId = R.drawable.bg3;
-				break;
-			case 3:
-				bgId = R.drawable.bg4;
-				break;
-			case 4:
-				bgId = R.drawable.bg5;
-				break;
-			case 5:
-				bgId = R.drawable.bg6;
 				break;
 		}
 		findViewById(R.id.fragment_container).setBackgroundResource(bgId);

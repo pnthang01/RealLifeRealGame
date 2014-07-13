@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager"
+    style="@style/full_screen" >
+
+    <android.support.v4.view.PagerTabStrip
+        android:id="@+id/pager_tab_strip"
+        style="@style/full_width"
+        android:layout_gravity="top"
+        android:background="@color/view_pager_tab_strip_bg"
+        android:textColor="@color/view_pager_tab_strip_text" />
+
+</android.support.v4.view.ViewPager>

@@ -182,7 +182,7 @@ public class NavigationActivity extends BaseActivity
 		mActionBarTitle.setText(text);
 	}
 	
-	protected void setActionBarTitle(CharSequence text)
+	public void setActionBarTitle(CharSequence text)
 	{
 		log("set action bar title: " + text);
 		mActionBarTitle.setText(text);

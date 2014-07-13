@@ -8,7 +8,7 @@ import com.gamification.rlrg.core.asynctask.loader.BaseAsyncTaskLoader;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class ListViewFragment<Data> extends ListFragment implements LoaderManager.LoaderCallbacks<List<Data>>
+public class ListViewFragment<Data> extends ListFragment implements LoaderCallbacks<List<Data>>
 {
 	private class Adapter extends ArrayAdapter<Data>
 	{
@@ -43,7 +43,8 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderManage
 			View view = convertView;
 			if (view == null)
 			{
-				view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(mItemLayout, parent, false);
+				int layoutResId = mIsMultipleItemLayout ? mItemLayouts[position] : mItemLayout;
+				view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(layoutResId, parent, false);
 			}
 			return getListItemView((ListView) parent, view, position);
 		}
@@ -52,6 +53,9 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderManage
 	protected Adapter mAdapter;
 	protected Bundle mArguments;
 	protected int mListLayout, mItemLayout;
+	protected int[] mItemLayouts;
+	
+	private boolean mIsMultipleItemLayout = false;
 	
 	private List<Data> mList = new ArrayList<Data>();
 	
@@ -60,6 +64,15 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderManage
 		super();
 		mListLayout = listLayout;
 		mItemLayout = itemLayout;
+		
+	}
+	
+	public ListViewFragment(int listLayout, int[] itemLayouts)
+	{
+		super();
+		mListLayout = listLayout;
+		mItemLayouts = itemLayouts;
+		mIsMultipleItemLayout = true;
 	}
 	
 	public void setData(List<Data> list)
@@ -100,24 +113,21 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderManage
 	@Override
 	public Loader<List<Data>> onCreateLoader(int id, Bundle args)
 	{
-		if (getActivity() != null)
-		{
-			return new BaseAsyncTaskLoader<Data>(getActivity(), mList);
-		}
-		else
+		if (getActivity() == null)
 		{
 			return null;
 		}
+		return new BaseAsyncTaskLoader<Data>(getActivity(), mList);
 	}
 	
 	@Override
-	public void onLoadFinished(Loader<List<Data>> arg0, List<Data> data)
+	public void onLoadFinished(Loader<List<Data>> loader, List<Data> data)
 	{
 		mAdapter.setData(data);
 	}
 	
 	@Override
-	public void onLoaderReset(Loader<List<Data>> arg0)
+	public void onLoaderReset(Loader<List<Data>> loader)
 	{
 		mAdapter.setData(null);
 	}

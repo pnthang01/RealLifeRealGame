@@ -13,15 +13,18 @@ public final class R {
     }
     public static final class array {
         public static final int navigation=0x7f050000;
+        public static final int task=0x7f050001;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int angel=0x7f060003;
+        public static final int angel=0x7f060005;
         public static final int background_solid=0x7f060000;
         public static final int background_transparent=0x7f060001;
-        public static final int devil=0x7f060004;
-        public static final int divider=0x7f060002;
+        public static final int devil=0x7f060006;
+        public static final int divider=0x7f060004;
+        public static final int view_pager_tab_strip_bg=0x7f060002;
+        public static final int view_pager_tab_strip_text=0x7f060003;
     }
     public static final class dimen {
         public static final int actionbar_button_height=0x7f080004;
@@ -80,8 +83,10 @@ public final class R {
         public static final int main_view=0x7f0a0006;
         public static final int navigation=0x7f0a0008;
         public static final int navigation_list=0x7f0a0009;
+        public static final int pager=0x7f0a0010;
+        public static final int pager_tab_strip=0x7f0a0011;
         public static final int search_box=0x7f0a000a;
-        public static final int title=0x7f0a0010;
+        public static final int title=0x7f0a0012;
     }
     public static final class layout {
         public static final int activity_start=0x7f030000;
@@ -90,9 +95,11 @@ public final class R {
         public static final int dialog_search=0x7f030003;
         public static final int fragment_login=0x7f030004;
         public static final int fragment_showroom=0x7f030005;
-        public static final int list_item_game=0x7f030006;
-        public static final int list_item_navigation=0x7f030007;
-        public static final int list_view=0x7f030008;
+        public static final int fragment_view_pager=0x7f030006;
+        public static final int fragment_view_pager_with_tab_strip=0x7f030007;
+        public static final int list_item_game=0x7f030008;
+        public static final int list_item_navigation=0x7f030009;
+        public static final int list_view=0x7f03000a;
     }
     public static final class string {
         public static final int action_bar=0x7f070000;

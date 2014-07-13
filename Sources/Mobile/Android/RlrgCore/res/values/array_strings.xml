@@ -2,12 +2,16 @@
 <resources>
 
     <string-array name="navigation">
-        <item>Phòng trưng bày</item>
-        <item>Hôm nay</item>
-        <item>Ngày mai</item>
-        <item>Tuần này</item>
-        <item>Tháng này</item>
-        <item>Năm nay</item>
+        <item>Showroom</item>
+        <item>Task</item>
+    </string-array>
+    
+    <string-array name="task">
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>This Week</item>
+        <item>This month</item>
+        <item>This year</item>
     </string-array>
 
 </resources>

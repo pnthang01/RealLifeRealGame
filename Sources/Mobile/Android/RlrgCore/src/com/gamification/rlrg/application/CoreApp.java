@@ -9,6 +9,7 @@ import com.gamification.rlrg.gen.R;
 import com.google.gson.Gson;
 
 import android.app.Application;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 
 public class CoreApp extends Application
@@ -24,6 +25,35 @@ public class CoreApp extends Application
 	private Achievements achievements;
 	private Badges badges;
 	
+	private static CoreApp sInstance;
+	
+	public static CoreApp getInstance()
+	{
+		return sInstance;
+	}
+	
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
+		sInstance = this;
+		if (mResources == null)
+		{
+			mResources = getResources();
+		}
+	}
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        sInstance = this;
+        if (mResources == null)
+		{
+			mResources = getResources();
+		}
+    }
+	
 	public void init()
 	{
 		users = (Users) fromJson(R.string.get_users, Users.class);
@@ -35,10 +65,6 @@ public class CoreApp extends Application
 	
 	private Object fromJson(int id, Class<?> clazz)
 	{
-		if (mResources == null)
-		{
-			mResources = getResources();
-		}
 		return mGson.fromJson(mResources.getString(id), clazz);
 	}
 	

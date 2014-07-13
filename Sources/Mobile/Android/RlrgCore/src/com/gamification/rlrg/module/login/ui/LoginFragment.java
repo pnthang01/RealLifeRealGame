@@ -35,6 +35,7 @@ public class LoginFragment extends Fragment implements AnimationListener, OnClic
 		return new LoginFragment();
 	}
 	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		if (container == null)
