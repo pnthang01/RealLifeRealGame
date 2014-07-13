@@ -39,7 +39,10 @@ public class MvcUserController {
 				result = userService.getAllUsers(page);
 			} else if (bResult.hasErrors()) {
 				return "user.manage";
-			} 
+			} else {
+				result = userService.searchUsersByKeyword(searchForm.getKeyword(), page);
+				model.addAttribute("searchForm", searchForm);
+			}
 			//
 			if (null != result) {
 				model.addAttribute("totalPage",Math.ceil((double) result.getTotal()/ Constants.PAGE_SIZE));

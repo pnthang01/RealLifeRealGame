@@ -28,4 +28,7 @@ public class MvcBadgeService {
 		return badgeReader.updateBadge(dto);
 	}
 
+	public ResultList<BadgeDTO>  searchBadgesByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
+		return badgeReader.searchBadgesByKeyword(keyword, pageNumber);
+	}
 }

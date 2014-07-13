@@ -40,7 +40,10 @@ public class MvcAchievementController {
 				result = achievementService.getAllAchievementsByUserName(searchForm.getKeyword(), page);
 			} else if (bResult.hasErrors()) {
 				return "achievement.manage";
-			} 
+			} else {
+				result = achievementService.searchAchievementsByKeyword(searchForm.getKeyword(), page);
+				model.addAttribute("searchForm", searchForm);
+			}
 			//
 			if (null != result) {
 				model.addAttribute("totalPage",Math.ceil((double) result.getTotal()/ Constants.PAGE_SIZE));

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="badge.manage" extends="default">
+		<put-attribute name="title" value="Badge Manage" />
+		<put-attribute name="left-content" value="/WEB-INF/views/badge/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/badge/badge-manage.jsp" />
+	</definition>
+	
+	<definition name="badge.edit" extends="default">
+		<put-attribute name="title" value="Badge Edit" />
+		<put-attribute name="left-content" value="/WEB-INF/views/badge/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/badge/badge-edit.jsp" />
+	</definition>
+
+	<definition name="badge.add" extends="default">
+		<put-attribute name="title" value="Badge Add" />
+		<put-attribute name="left-content" value="/WEB-INF/views/badge/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/badge/badge-add.jsp" />
+	</definition>
+
+</tiles-definitions>

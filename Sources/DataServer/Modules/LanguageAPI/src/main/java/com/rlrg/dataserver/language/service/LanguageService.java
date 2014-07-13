@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.service.BaseService;
@@ -53,6 +54,26 @@ public class LanguageService extends BaseService<Language, LanguageDTO> implemen
 	public Language revertDTOToEntity(LanguageDTO dto) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Search a list of language base on keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<LanguageDTO> searchLanguagesByKeyword(String keyword, Integer pageNumber){
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		//
+		return langRepo.searchLanguagesDTOByKeyword(keyword, pageRequest);
+	}
+	
+
+	public Long countLanguagesByKeyword(String keyword) {
+		return langRepo.countLanguagesByKeyword(keyword);
 	}
 
 	@Override

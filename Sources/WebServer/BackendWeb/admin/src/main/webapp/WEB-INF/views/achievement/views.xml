@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="achievement.manage" extends="default">
+		<put-attribute name="title" value="Achievement Manage" />
+		<put-attribute name="left-content" value="/WEB-INF/views/achievement/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/achievement/achievement-manage.jsp" />
+	</definition>
+	
+	<definition name="achievement.edit" extends="default">
+		<put-attribute name="title" value="Achievement Edit" />
+		<put-attribute name="left-content" value="/WEB-INF/views/achievement/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/achievement/achievement-edit.jsp" />
+	</definition>
+
+	<definition name="achievement.add" extends="default">
+		<put-attribute name="title" value="Achievement Add" />
+		<put-attribute name="left-content" value="/WEB-INF/views/achievement/left-side-bar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/achievement/achievement-add.jsp" />
+	</definition>
+
+</tiles-definitions>

@@ -39,7 +39,10 @@ public class MvcLanguageController {
 				result = languageService.getAllLanguages();
 			} else if (bResult.hasErrors()) {
 				return "language.manage";
-			}
+			} else {
+			result = languageService.searchLanguagesByKeyword(searchForm.getKeyword(), page);
+			model.addAttribute("searchForm", searchForm);
+		}
 			//
 			if (null != result) {
 				model.addAttribute("totalPage",Math.ceil((double) result.getTotal()/ Constants.PAGE_SIZE));

@@ -84,10 +84,6 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 			throw e;
 		}
 	}
-	
-	public List<Integer> getAllBadgeIdByUserId(Long userId){
-		return achievementRepo.getAllBadgeIdByUserId(userId);
-	}
 
 	@Override
 	public AchievementDTO convertEntityToDTO(Achievement data) {
@@ -99,6 +95,27 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 	public Achievement revertDTOToEntity(AchievementDTO dto) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Search a list of achievement base on keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<AchievementDTO> searchAchievementsByKeyword(String keyword, Integer pageNumber){
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		//
+		return achievementRepo.searchAchievementsDTOByKeyword(keyword, pageRequest);
+	}
+	
+
+	@Override
+	public Long countAchievementsByKeyword(String keyword) {
+		return achievementRepo.countAchievementsByKeyword(keyword);
 	}
 
 	@Override

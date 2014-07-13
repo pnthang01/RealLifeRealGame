@@ -27,5 +27,7 @@ public class MvcAchievementService {
 		return achievementReader.addAnAchievement(dto);
 	}
 	
-	
+	public ResultList<AchievementDTO>  searchAchievementsByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
+		return achievementReader.searchAchievementsByKeyword(keyword, pageNumber);
+	}
 }

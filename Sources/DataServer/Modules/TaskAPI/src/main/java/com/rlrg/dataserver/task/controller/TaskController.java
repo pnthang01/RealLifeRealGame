@@ -175,4 +175,32 @@ public class TaskController extends BaseController{
 		LOG.info("<< End webservice /task/getTasksByNameAndUser");
 		return result;
 	}
+	
+	/**
+	 * Search all tasks which related to keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	@RequestMapping(value = "/searchTasks", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String searchTasksByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
+			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
+		String result = null;
+		LOG.info("<< Starting webservice /task/searchTasks with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
+		try {
+			List<TaskDTO> listDTO = taskService.searchTasksByKeyword(keyword, pageNumber);
+			Long total = taskService.countTasksByKeyword(keyword);
+			//
+			result = taskService.encodeMutipleObjectsFromListV(listDTO, total);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = taskService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = taskService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /task/searchTasks");
+		return result;
+	}
 }

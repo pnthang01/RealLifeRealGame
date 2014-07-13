@@ -39,6 +39,18 @@ public interface AchievementRepository extends JpaRepository<Achievement, Long>,
 	public List<Achievement> getAchievementByUserAndDate(
 			@Param("userId") Long userId, @Param("dateYear") Integer dateYear);
 	
-	@Query("SELECT a.badge.id FROM Achievement a WHERE a.user.id = :userId")
-	public List<Integer> getAllBadgeIdByUserId(@Param("userId") Long userId);
+	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.AchievementDTO(" +
+			"a.id, a.username)" + 
+			" FROM Achievement a"+
+			" WHERE " +
+			" ((a.id LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (a.username LIKE CONCAT('%', :keyword, '%')))")
+	public List<AchievementDTO> searchAchievementsDTOByKeyword(@Param("keyword") String keyword, Pageable pageable);
+	
+	@Query("SELECT COUNT(a.id) FROM Achievement a" +
+			" WHERE " +
+			" ((a.id LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (a.username LIKE CONCAT('%', :keyword, '%')))")
+	public Long countAchievementsByKeyword(@Param("keyword") String keyword);
+	
 }

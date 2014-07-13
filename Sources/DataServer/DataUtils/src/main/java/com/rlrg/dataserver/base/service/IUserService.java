@@ -29,5 +29,9 @@ public interface IUserService<T, V> extends IBaseService<T, V> {
 	public void updateUserPoint(String token, Integer point) throws Exception;
 
 	public List<V> getAllUserDTO(Integer pageNumber);
+	
+	public List<V> searchUsersByKeyword(String keyword, Integer pageNumber);
+	
+	public Long countUsersByKeyword(String keyword);
 
 }

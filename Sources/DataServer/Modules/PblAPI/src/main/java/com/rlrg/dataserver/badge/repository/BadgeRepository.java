@@ -29,4 +29,20 @@ public interface BadgeRepository extends JpaRepository<Badge, Integer>, JpaSpeci
 		" FROM Badge b INNER JOIN b.badgeLangs bl WHERE b.status = :status AND bl.language.id = :languageId")
 	public List<BadgeDTO> getBadgeDTOByStatus(@Param("status") BadgeStatus status, @Param("languageId") Integer languageId, Pageable pageable);
 	
+	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.BadgeDTO(" +
+			"b.id, b.name, b.description)" + 
+			" FROM Badge b"+
+			" WHERE " +
+			" ((b.id LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (b.description LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (b.name LIKE CONCAT('%', :keyword, '%')))")
+	public List<BadgeDTO> searchBadgesDTOByKeyword(@Param("keyword") String keyword, Pageable pageable);
+	
+	@Query("SELECT COUNT(b.id) FROM Badge b" +
+			" WHERE " +
+			" ((b.id LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (b.description LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (b.name LIKE CONCAT('%', :keyword, '%')))")
+	public Long countBadgesByKeyword(@Param("keyword") String keyword);
+	
 }

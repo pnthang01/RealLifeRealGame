@@ -18,4 +18,8 @@ public class MvcLanguageService {
 	public ResultList<LanguageDTO> getAllLanguages() throws RestClientException, ConvertException{
 		return languageReader.getAllLanguages();
 	}
+	
+	public ResultList<LanguageDTO>  searchLanguagesByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
+		return languageReader.searchLanguagesByKeyword(keyword, pageNumber);
+	}
 }

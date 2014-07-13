@@ -131,4 +131,32 @@ public class UserController extends BaseController {
 		LOG.info("<< End webservice /user/getAllUser");
 		return result;
     }
+    
+    /**
+	 * Search all users which related to keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	@RequestMapping(value = "/searchUsers", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String searchUsersByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
+			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
+		String result = null;
+		LOG.info("<< Starting webservice /user/searchUsers with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
+		try {
+			List<UserDTO> listDTO = userService.searchUsersByKeyword(keyword, pageNumber);
+			Long total = userService.countUsersByKeyword(keyword);
+			//
+			result = userService.encodeMutipleObjectsFromListV(listDTO, total);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = userService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = userService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /user/searchUsers");
+		return result;
+	}
 }
