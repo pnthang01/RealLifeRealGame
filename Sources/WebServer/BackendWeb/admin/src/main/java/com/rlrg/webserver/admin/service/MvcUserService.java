@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.profile.dto.UserDTO;
+import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.utillities.domain.ResultList;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.service.UserWebServiceReader;
@@ -21,5 +22,9 @@ public class MvcUserService {
 	
 	public boolean updateUser(UserDTO dto) throws RestClientException, ConvertException{
 		return userReader.updateUser(dto);
+	}
+	
+	public ResultList<UserDTO> searchUsersByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
+		return userReader.searchUsersByKeyword(keyword, pageNumber);
 	}
 }

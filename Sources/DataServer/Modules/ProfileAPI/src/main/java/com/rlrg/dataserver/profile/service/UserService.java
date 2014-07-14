@@ -242,6 +242,26 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * Search a list of user base on keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<UserDTO> searchUsersByKeyword(String keyword, Integer pageNumber){
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		//
+		return userRepo.searchUsersDTOByKeyword(keyword, pageRequest);
+	}
+	
+
+	public Long countUsersByKeyword(String keyword) {
+		return userRepo.countUsersByKeyword(keyword);
+	}
 
 	@Override
 	public Class<UserDTO> getVClass() {

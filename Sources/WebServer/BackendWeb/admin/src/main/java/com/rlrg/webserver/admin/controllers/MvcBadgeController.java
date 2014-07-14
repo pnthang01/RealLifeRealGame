@@ -39,7 +39,11 @@ public class MvcBadgeController {
 				result = badgeService.getAllBadges(page);
 			} else if (bResult.hasErrors()) {
 				return "badge.manage";
-			} 			//
+			} else {
+				result = badgeService.searchBadgesByKeyword(searchForm.getKeyword(), page);
+				model.addAttribute("searchForm", searchForm);
+			} 		
+			//
 			if (null != result) {
 				model.addAttribute("totalPage",Math.ceil((double) result.getTotal()/ Constants.PAGE_SIZE));
 				model.addAttribute("badges", result.getList());

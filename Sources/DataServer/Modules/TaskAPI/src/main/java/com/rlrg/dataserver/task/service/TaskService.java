@@ -235,6 +235,26 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * Search a list of task base on keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<TaskDTO> searchTasksByKeyword(String keyword, Integer pageNumber){
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		//
+		return taskRepo.searchTasksDTOByKeyword(keyword, pageRequest);
+	}
+	
+
+	public Long countTasksByKeyword(String keyword) {
+		return taskRepo.countTasksByKeyword(keyword);
+	}
 
 	@Override
 	public Class<TaskDTO> getVClass() {

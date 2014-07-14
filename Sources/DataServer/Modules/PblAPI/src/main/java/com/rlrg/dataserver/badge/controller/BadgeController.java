@@ -16,7 +16,6 @@ import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.dataserver.base.controller.BaseController;
 import com.rlrg.dataserver.base.service.IBadgeService;
-import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -40,8 +39,6 @@ public class BadgeController extends BaseController{
 		String result = null;
 		LOG.info("<< Starting webservice /badge/getAllBages with parameters: pageNumber={}", pageNumber);
 		try {
-			List<Badge> test = badgeService.getBadgeByEligibility(1l, BadgeCheckerConstants.CREATE_TASK);
-			System.out.print(test);
 			List<BadgeDTO> listDto = badgeService.getAllBadges(pageNumber);
 			//
 			result = badgeService.encodeMutipleObjectsFromListV(listDto);
@@ -102,6 +99,34 @@ public class BadgeController extends BaseController{
 		}
 		//
 		LOG.info("<< End webservice /badge/updateBadge");
+		return result;
+	}
+	
+	/**
+	 * Search all badges which related to keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	@RequestMapping(value = "/searchBadges", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String searchBadgesByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
+			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
+		String result = null;
+		LOG.info("<< Starting webservice /badge/searchBadges with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
+		try {
+			List<BadgeDTO> listDTO = badgeService.searchBadgesByKeyword(keyword, pageNumber);
+			Long total = badgeService.countBadgesByKeyword(keyword);
+			//
+			result = badgeService.encodeMutipleObjectsFromListV(listDTO, total);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = badgeService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = badgeService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /badge/searchBadges");
 		return result;
 	}
 }

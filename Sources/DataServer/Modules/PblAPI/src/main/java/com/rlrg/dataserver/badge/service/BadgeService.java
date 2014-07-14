@@ -6,14 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
-import com.rlrg.dataserver.badge.helper.BadgeCriteriaHelper;
 import com.rlrg.dataserver.badge.repository.BadgeRepository;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.service.BaseService;
@@ -31,9 +29,6 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 
 	@Autowired
 	private BadgeRepository badgeRepo;
-	
-	@Autowired
-	private AchievementService achieService;
 	
 	@Autowired
 	private IBadgeLanguageService<BadgeLanguage, BadgeLangDTO> badgeLangService;
@@ -91,14 +86,7 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 		}
 	}
 	
-
-	@Override
-	public List<Badge> getBadgeByEligibility(Long userId, String... params) {
-		List<Integer> usersAchie = achieService.getAllBadgeIdByUserId(userId);
-		Specification<Badge> spec = BadgeCriteriaHelper.findAvaiableBadgeByEligibilityAndUserId(usersAchie, params);
-		return badgeRepo.findAll(spec);
-	}
-
+	
 	@Override
 	public BadgeDTO convertEntityToDTO(Badge data) {
 		// TODO Auto-generated method stub
@@ -111,6 +99,27 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 		return null;
 	}
 
+	/**
+	 * Search a list of badge base on keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<BadgeDTO> searchBadgesByKeyword(String keyword, Integer pageNumber){
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		//
+		return badgeRepo.searchBadgesDTOByKeyword(keyword, pageRequest);
+	}
+	
+
+	@Override
+	public Long countBadgesByKeyword(String keyword) {
+		return badgeRepo.countBadgesByKeyword(keyword);
+	}
+	
 	@Override
 	public Class<BadgeDTO> getVClass() {
 		return BadgeDTO.class;

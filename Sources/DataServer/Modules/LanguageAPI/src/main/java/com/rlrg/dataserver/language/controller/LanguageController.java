@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rlrg.dataserver.base.controller.BaseController;
@@ -43,6 +44,34 @@ public class LanguageController extends BaseController{
 			result = languageService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /language/getAllLanguages");
+		return result;
+	}
+	
+	/**
+	 * Search all languages which related to keyword
+	 * @param keyword
+	 * @param pageNumber
+	 * @return
+	 */
+	@RequestMapping(value = "/searchLanguages", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String searchLanguagesByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
+			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
+		String result = null;
+		LOG.info("<< Starting webservice /language/searchLanguages with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
+		try {
+			List<LanguageDTO> listDTO = languageService.searchLanguagesByKeyword(keyword, pageNumber);
+			Long total = languageService.countLanguagesByKeyword(keyword);
+			//
+			result = languageService.encodeMutipleObjectsFromListV(listDTO, total);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = languageService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = languageService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /language/searchLanguages");
 		return result;
 	}
 }

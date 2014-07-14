@@ -21,4 +21,8 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 	public List<TaskDTO> getTasksByNameAndUser(String name, String token, Integer pageNumber) throws UserTokenException;
 	
 	public List<TaskDTO> getTaskByCategoryAndUser(String categoryCode, String token, Integer pageNumber) throws UserTokenException;
+	
+	public List<V> searchTasksByKeyword(String keyword, Integer pageNumber);
+	
+	public Long countTasksByKeyword(String keyword);
 }

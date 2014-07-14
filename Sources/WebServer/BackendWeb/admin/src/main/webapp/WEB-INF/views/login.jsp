@@ -12,15 +12,15 @@
 						
 							<div class="notification information">Just click login to go forward.</div>
 						
-							<form action="<c:url value='j_spring_security_check' />" method="POST" >
+							<form action="<c:url value="/login"/>" method="POST" >
 								<p>
 									<label>Username</label>
-									<input id="username" name="username" type="text" value="admin" />
+									<input id="username" type="text" />
 								</p>
 						
 								<p>
 									<label>Password</label>
-									<input id="password" name="password" type="password" value="password"/>
+									<input id="password" type="password" />
 								</p>
 						
 								<input type="submit" value="Login" />
