@@ -25,37 +25,56 @@ import android.view.WindowManager;
 public class CoreApp extends Application
 {
 	public static boolean isStart = true;
-	
-	private Gson mGson = new Gson();
-	
+
+	private static CoreApp sInstance;
+	private static Gson sGson = new Gson();
+	private static SharedPreferences sSharedPreferences;
+
 	private Users users;
 	private Categories categories;
 	private Tasks tasks;
 	private Achievements achievements;
 	private Badges badges;
-	
-	private static CoreApp sInstance;
-	private static SharedPreferences sSharedPreferences;
-	
+
 	public static CoreApp getInstance()
 	{
 		return sInstance;
 	}
-	
+
+	public static Gson initGson()
+	{
+		if (sGson == null)
+		{
+			sGson = new Gson();
+		}
+		return sGson;
+	}
+
+	public static SharedPreferences getSharedPreferences(String fileName)
+	{
+		if (sSharedPreferences == null)
+		{
+			sSharedPreferences = sInstance.getSharedPreferences(fileName, MODE_PRIVATE);
+		}
+		return sSharedPreferences;
+	}
+
 	@Override
 	public void onCreate()
 	{
 		super.onCreate();
 		sInstance = this;
+		initGson();
 	}
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-        sInstance = this;
-    }
-	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		sInstance = this;
+		initGson();
+	}
+
 	public void init()
 	{
 		users = (Users) fromJson(DataPreferences.loadJsonUsers(), Users.class);
@@ -64,57 +83,62 @@ public class CoreApp extends Application
 		tasks = (Tasks) fromJson(DataPreferences.loadJsonTasks(), Tasks.class);
 		achievements = (Achievements) fromJson(DataPreferences.loadJsonAchievements(), Achievements.class);
 	}
-	
-	private Object fromJson(String json, Class<?> clazz)
+
+	public static Object fromJson(String json, Class<?> clazz)
 	{
-		return mGson.fromJson(json, clazz);
+		return sGson.fromJson(json, clazz);
 	}
-	
+
+	public static String toJson(Object data, Class<?> clazz)
+	{
+		return sGson.toJson(data, clazz);
+	}
+
 	public Users getUsers()
 	{
 		return users;
 	}
-	
+
 	public void setUsers(Users users)
 	{
 		this.users = users;
 	}
-	
+
 	public Categories getCategories()
 	{
 		return categories;
 	}
-	
+
 	public void setCategories(Categories categories)
 	{
 		this.categories = categories;
 	}
-	
+
 	public Tasks getTasks()
 	{
 		return tasks;
 	}
-	
+
 	public void setTasks(Tasks tasks)
 	{
 		this.tasks = tasks;
 	}
-	
+
 	public Achievements getAchievements()
 	{
 		return achievements;
 	}
-	
+
 	public void setAchievements(Achievements achievements)
 	{
 		this.achievements = achievements;
 	}
-	
+
 	public Badges getBadges()
 	{
 		return badges;
 	}
-	
+
 	public void setBadges(Badges badges)
 	{
 		this.badges = badges;
@@ -145,40 +169,29 @@ public class CoreApp extends Application
 		return "";
 	}
 
-    public static int getScreenWidth()
-    {
-        DisplayMetrics displayMetrics = getCurrentDisplayMetrics();
-        return Math.min(displayMetrics.widthPixels, displayMetrics.heightPixels);
-    }
+	public static int getScreenWidth()
+	{
+		DisplayMetrics displayMetrics = getCurrentDisplayMetrics();
+		return Math.min(displayMetrics.widthPixels, displayMetrics.heightPixels);
+	}
 
-    public static int getScreenHeight()
-    {
-        DisplayMetrics displayMetrics = getCurrentDisplayMetrics();
-        return Math.max(displayMetrics.widthPixels, displayMetrics.heightPixels);
-    }
+	public static int getScreenHeight()
+	{
+		DisplayMetrics displayMetrics = getCurrentDisplayMetrics();
+		return Math.max(displayMetrics.widthPixels, displayMetrics.heightPixels);
+	}
 
-    public static float getScreenDensity()
-    {
-        return getCurrentDisplayMetrics().density;
-    }
+	public static float getScreenDensity()
+	{
+		return getCurrentDisplayMetrics().density;
+	}
 
-    private static DisplayMetrics getCurrentDisplayMetrics()
-    {
-        WindowManager sWindowManager = (WindowManager) getInstance().getSystemService(
-                Context.WINDOW_SERVICE);
-        Display display = sWindowManager.getDefaultDisplay();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        display.getMetrics(displayMetrics);
-        return displayMetrics;
-    }
-
-    public static SharedPreferences getSharedPreferences(String fileName)
-    {
-        if (sSharedPreferences == null)
-        {
-            sSharedPreferences = getInstance().getSharedPreferences(fileName,
-                    MODE_PRIVATE);
-        }
-        return sSharedPreferences;
-    }
+	private static DisplayMetrics getCurrentDisplayMetrics()
+	{
+		WindowManager sWindowManager = (WindowManager) getInstance().getSystemService(Context.WINDOW_SERVICE);
+		Display display = sWindowManager.getDefaultDisplay();
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		display.getMetrics(displayMetrics);
+		return displayMetrics;
+	}
 }
