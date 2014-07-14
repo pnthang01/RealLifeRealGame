@@ -1,0 +1,85 @@
+{
+  "ErrorCode": "0",
+  "Msg": "Success",
+  "data": {
+    "Badges": [
+      {
+        "ID": "1",
+        "Name": "Reading 1",
+        "Description": "Reading 1",
+        "Status": "OPEN",
+        "Eligibility": "Read 3 books to achieve this"
+      },
+      {
+        "ID": "2",
+        "Name": "Reading 2",
+        "Description": "Reading 2",
+        "Status": "OPEN",
+        "Eligibility": "Read 5 books to achieve this"
+      },
+      {
+        "ID": "3",
+        "Name": "Reading 3",
+        "Description": "Reading 3",
+        "Status": "OPEN",
+        "Eligibility": "Read 10 books to achieve this"
+      },
+      {
+        "ID": "4",
+        "Name": "Cycling 1",
+        "Description": "Cycling 1",
+        "Status": "OPEN",
+        "Eligibility": "Ride 3km to achieve this"
+      },
+      {
+        "ID": "5",
+        "Name": "Cycling 2",
+        "Description": "Cycling 2",
+        "Status": "OPEN",
+        "Eligibility": "Ride 5km to achieve this"
+      },
+      {
+        "ID": "6",
+        "Name": "Cycling 3",
+        "Description": "Cycling 3",
+        "Status": "OPEN",
+        "Eligibility": "Ride 10km to achieve this"
+      },
+      {
+        "ID": "7",
+        "Name": "Swimming 1",
+        "Description": "Swimming 1",
+        "Status": "OPEN",
+        "Eligibility": "Swim 3km to achieve this"
+      },
+      {
+        "ID": "8",
+        "Name": "Swimming 2",
+        "Description": "Swimming 2",
+        "Status": "OPEN",
+        "Eligibility": "Swim 5km to achieve this"
+      },
+      {
+        "ID": "9",
+        "Name": "Swimming 3",
+        "Description": "Swimming 3",
+        "Status": "OPEN",
+        "Eligibility": "Swim 10km to achieve this"
+      },
+      {
+        "ID": "10",
+        "Name": "Create 10 tasks",
+        "Description": "Create 10 tasks",
+        "Status": "OPEN",
+        "Eligibility": "Create 10 tasks to achieve this"
+      },
+      {
+        "ID": "11",
+        "Name": "Finish 10 tasks",
+        "Description": "Finish 10 tasks",
+        "Status": "OPEN",
+        "Eligibility": "Finish 10 tasks to achieve this"
+      }
+    ]
+  }
+}

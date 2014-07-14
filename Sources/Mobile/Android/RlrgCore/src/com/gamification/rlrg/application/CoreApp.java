@@ -1,23 +1,32 @@
 package com.gamification.rlrg.application;
 
+import java.security.MessageDigest;
+
+import com.gamification.rlrg.core.utils.Utils;
 import com.gamification.rlrg.data.Achievements;
 import com.gamification.rlrg.data.Badges;
 import com.gamification.rlrg.data.Categories;
 import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.Users;
-import com.gamification.rlrg.gen.R;
 import com.google.gson.Gson;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.util.Base64;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
 
 public class CoreApp extends Application
 {
 	public static boolean isStart = true;
 	
 	private Gson mGson = new Gson();
-	private Resources mResources = null;
 	
 	private Users users;
 	private Categories categories;
@@ -26,6 +35,7 @@ public class CoreApp extends Application
 	private Badges badges;
 	
 	private static CoreApp sInstance;
+	private static SharedPreferences sSharedPreferences;
 	
 	public static CoreApp getInstance()
 	{
@@ -37,10 +47,6 @@ public class CoreApp extends Application
 	{
 		super.onCreate();
 		sInstance = this;
-		if (mResources == null)
-		{
-			mResources = getResources();
-		}
 	}
 
     @Override
@@ -48,24 +54,20 @@ public class CoreApp extends Application
     {
         super.onConfigurationChanged(newConfig);
         sInstance = this;
-        if (mResources == null)
-		{
-			mResources = getResources();
-		}
     }
 	
 	public void init()
 	{
-		users = (Users) fromJson(R.string.get_users, Users.class);
-		badges = (Badges) fromJson(R.string.get_badges, Badges.class);
-		categories = (Categories) fromJson(R.string.get_categories, Categories.class);
-		tasks = (Tasks) fromJson(R.string.get_tasks_by_category_and_user, Tasks.class);
-		achievements = (Achievements) fromJson(R.string.get_user_achievements, Achievements.class);
+		users = (Users) fromJson(DataPreferences.loadJsonUsers(), Users.class);
+		badges = (Badges) fromJson(DataPreferences.loadJsonBadges(), Badges.class);
+		categories = (Categories) fromJson(DataPreferences.loadJsonCategories(), Categories.class);
+		tasks = (Tasks) fromJson(DataPreferences.loadJsonTasks(), Tasks.class);
+		achievements = (Achievements) fromJson(DataPreferences.loadJsonAchievements(), Achievements.class);
 	}
 	
-	private Object fromJson(int id, Class<?> clazz)
+	private Object fromJson(String json, Class<?> clazz)
 	{
-		return mGson.fromJson(mResources.getString(id), clazz);
+		return mGson.fromJson(json, clazz);
 	}
 	
 	public Users getUsers()
@@ -117,4 +119,66 @@ public class CoreApp extends Application
 	{
 		this.badges = badges;
 	}
+
+	/**
+	 * Get Hash key of keystore are using.
+	 * 
+	 * @param packageId
+	 * @return Hash key
+	 */
+	public String getKeystoreHashkey(String packageId)
+	{
+		try
+		{
+			PackageInfo info = getPackageManager().getPackageInfo(packageId, PackageManager.GET_SIGNATURES);
+			for (Signature signature : info.signatures)
+			{
+				MessageDigest md = MessageDigest.getInstance("SHA");
+				md.update(signature.toByteArray());
+				return Base64.encodeToString(md.digest(), Base64.DEFAULT);
+			}
+		}
+		catch (Exception e)
+		{
+			Utils.logException(e);
+		}
+		return "";
+	}
+
+    public static int getScreenWidth()
+    {
+        DisplayMetrics displayMetrics = getCurrentDisplayMetrics();
+        return Math.min(displayMetrics.widthPixels, displayMetrics.heightPixels);
+    }
+
+    public static int getScreenHeight()
+    {
+        DisplayMetrics displayMetrics = getCurrentDisplayMetrics();
+        return Math.max(displayMetrics.widthPixels, displayMetrics.heightPixels);
+    }
+
+    public static float getScreenDensity()
+    {
+        return getCurrentDisplayMetrics().density;
+    }
+
+    private static DisplayMetrics getCurrentDisplayMetrics()
+    {
+        WindowManager sWindowManager = (WindowManager) getInstance().getSystemService(
+                Context.WINDOW_SERVICE);
+        Display display = sWindowManager.getDefaultDisplay();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        display.getMetrics(displayMetrics);
+        return displayMetrics;
+    }
+
+    public static SharedPreferences getSharedPreferences(String fileName)
+    {
+        if (sSharedPreferences == null)
+        {
+            sSharedPreferences = getInstance().getSharedPreferences(fileName,
+                    MODE_PRIVATE);
+        }
+        return sSharedPreferences;
+    }
 }
