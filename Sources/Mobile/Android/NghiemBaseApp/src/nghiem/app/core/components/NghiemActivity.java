@@ -16,7 +16,7 @@ import android.widget.Toast;
 import nghiem.app.gen.R;
 import nghiem.app.core.utils.Utils;
 
-public class BaseActivity extends FragmentActivity
+public class NghiemActivity extends FragmentActivity
 {
     public static final String DIALOG_NETWORK_NOT_AVAILABLE = "NETWORK_NOT_AVAILABLE";
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";

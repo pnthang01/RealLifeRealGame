@@ -2,8 +2,8 @@ package com.gamification.rlrg.data;
 
 import java.util.List;
 
-import com.gamification.rlrg.application.BaseEntity;
 import com.gamification.rlrg.data.Badges.Badge;
+import com.gamification.rlrg.data.core.BaseEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class Achievements extends BaseEntity<Achievements.AchievementList>

@@ -26,7 +26,7 @@ import nghiem.app.gen.R;
 import nghiem.app.core.data.NavigationData;
 import nghiem.app.core.utils.Utils;
 
-public class NavigationActivity extends BaseActivity
+public class NavigationActivity extends NghiemActivity
 {
 	private class NavigationAdapter extends ArrayAdapter<NavigationData>
 	{

@@ -3,6 +3,7 @@ package nghiem.app.core.components;
 import java.util.Arrays;
 import java.util.List;
 
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import nghiem.app.gen.R;
 
@@ -20,6 +22,71 @@ public class ViewPagerFragment extends Fragment implements OnPageChangeListener
 	public static final int TYPE_NORMAL = 0;
 	public static final int TYPE_TITLE_STRIP = 1;
 	public static final int TYPE_TAB_STRIP = 2;
+	
+	private class ParallaxTransformer implements ViewPager.PageTransformer
+	{
+	    /**
+	     * Both sides, each side = 0.17
+	     */
+	    private static final float IMAGE_SIZE_WIDTH_OUT_VIEW_PERCENT = 0.34f;
+
+	    private int mImageViewResId = -1;
+	    private ImageView mImageView = null;
+	    
+	    public ParallaxTransformer(int imageViewResId)
+	    {
+	        super();
+	        mImageViewResId = imageViewResId;
+	    }
+
+	    public ParallaxTransformer(ImageView imageView)
+	    {
+	        super();
+	        mImageView = imageView;
+	    }
+
+	    @Override
+	    public void transformPage(View root, float position)
+	    {
+	        if (mImageView == null)
+	        {
+	            mImageView = (ImageView) root.findViewById(mImageViewResId);
+	        }
+	        
+	        Matrix matrix = new Matrix();
+	        matrix.reset();
+
+	        float viewWidth = mImageView.getWidth();
+	        float viewHeight = mImageView.getHeight();
+
+	        float imageWidth = mImageView.getDrawable().getIntrinsicWidth();
+	        float imageHeight = mImageView.getDrawable().getIntrinsicHeight();
+
+	        float imageWidthInsideView = imageWidth * (1 - IMAGE_SIZE_WIDTH_OUT_VIEW_PERCENT);
+	        float newImageWidth = viewWidth / (1 - IMAGE_SIZE_WIDTH_OUT_VIEW_PERCENT);
+
+	        float scaleX = viewWidth / imageWidthInsideView;
+	        float scaleY = viewHeight / imageHeight;
+
+	        if (scaleX < scaleY)
+	        {
+	            matrix.setScale(scaleY, scaleY);
+	            newImageWidth = imageWidth * scaleY;
+	        }
+	        else
+	        {
+	            matrix.setScale(scaleX, scaleX);
+	        }
+
+	        float dx = (position + 1) * newImageWidth * IMAGE_SIZE_WIDTH_OUT_VIEW_PERCENT / -2;
+
+	        // Keep the height
+	        matrix.preTranslate(dx, 0);
+
+	        mImageView.setScaleType(ImageView.ScaleType.MATRIX);
+	        mImageView.setImageMatrix(matrix);
+	    }
+	}
 
 	private class Adapter extends FragmentStatePagerAdapter
 	{
@@ -104,7 +171,21 @@ public class ViewPagerFragment extends Fragment implements OnPageChangeListener
 		{
 			return null;
 		}
-		int layoutResId = mType == 0 ? R.layout.fragment_view_pager : R.layout.fragment_view_pager_with_tab_strip;
+		
+		int layoutResId;
+		switch (mType)
+        {
+            case TYPE_TITLE_STRIP:
+                layoutResId = R.layout.fragment_view_pager_with_tab_strip;
+                break;
+            case TYPE_TAB_STRIP:
+                layoutResId = R.layout.fragment_view_pager_with_tab_strip;
+                break;
+            default:
+                layoutResId = R.layout.fragment_view_pager;
+                break;
+        }
+		
 		mAdapter = new Adapter(getActivity().getSupportFragmentManager());
 		mViewPager = (ViewPager) inflater.inflate(layoutResId, container, false);
 		mViewPager.setAdapter(mAdapter);
@@ -117,8 +198,18 @@ public class ViewPagerFragment extends Fragment implements OnPageChangeListener
 	{
 		mViewPager.setCurrentItem(position);
 	}
+	
+	public void setParallax(int backgroundResId)
+    {
+        mViewPager.setPageTransformer(false, new ParallaxTransformer(backgroundResId));
+    }
 
-	@Override
+	public void setParallax(ImageView background)
+    {
+        mViewPager.setPageTransformer(false, new ParallaxTransformer(background));
+    }
+
+    @Override
 	public void onPageScrollStateChanged(int state)
 	{
 	}

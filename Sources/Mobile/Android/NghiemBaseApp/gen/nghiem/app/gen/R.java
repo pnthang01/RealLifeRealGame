@@ -14,8 +14,8 @@ public final class R {
         public static int background_solid=0x7f040000;
         public static int background_transparent=0x7f040001;
         public static int divider=0x7f040004;
-        public static int view_pager_tab_strip_bg=0x7f040002;
-        public static int view_pager_tab_strip_text=0x7f040003;
+        public static int view_pager_strip_bg=0x7f040002;
+        public static int view_pager_strip_text=0x7f040003;
     }
     public static final class dimen {
         public static int actionbar_button_height=0x7f060004;
@@ -57,7 +57,7 @@ public final class R {
         public static int navigation=0x7f080007;
         public static int navigation_list=0x7f080008;
         public static int pager=0x7f080009;
-        public static int pager_tab_strip=0x7f08000a;
+        public static int pager_strip=0x7f08000a;
         public static int title=0x7f08000b;
     }
     public static final class layout {
@@ -65,8 +65,9 @@ public final class R {
         public static int activity_with_navigation=0x7f030001;
         public static int fragment_view_pager=0x7f030002;
         public static int fragment_view_pager_with_tab_strip=0x7f030003;
-        public static int list_item_navigation=0x7f030004;
-        public static int list_view=0x7f030005;
+        public static int fragment_view_pager_with_title_strip=0x7f030004;
+        public static int list_item_navigation=0x7f030005;
+        public static int list_view=0x7f030006;
     }
     public static final class string {
         public static int action_bar=0x7f050000;

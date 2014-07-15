@@ -21,8 +21,8 @@ public final class R {
         public static int background_solid=0x7f050000;
         public static int background_transparent=0x7f050001;
         public static int divider=0x7f050004;
-        public static int view_pager_tab_strip_bg=0x7f050002;
-        public static int view_pager_tab_strip_text=0x7f050003;
+        public static int view_pager_strip_bg=0x7f050002;
+        public static int view_pager_strip_text=0x7f050003;
     }
     public static final class dimen {
         public static int actionbar_button_height=0x7f070004;
@@ -82,7 +82,7 @@ public final class R {
         public static int navigation=0x7f0a0008;
         public static int navigation_list=0x7f0a0009;
         public static int pager=0x7f0a0010;
-        public static int pager_tab_strip=0x7f0a0011;
+        public static int pager_strip=0x7f0a0011;
         public static int search_box=0x7f0a000a;
         public static int title=0x7f0a0012;
     }
@@ -95,9 +95,10 @@ public final class R {
         public static int fragment_showroom=0x7f030005;
         public static int fragment_view_pager=0x7f030006;
         public static int fragment_view_pager_with_tab_strip=0x7f030007;
-        public static int list_item_game=0x7f030008;
-        public static int list_item_navigation=0x7f030009;
-        public static int list_view=0x7f03000a;
+        public static int fragment_view_pager_with_title_strip=0x7f030008;
+        public static int list_item_game=0x7f030009;
+        public static int list_item_navigation=0x7f03000a;
+        public static int list_view=0x7f03000b;
     }
     public static final class string {
         public static int action_bar=0x7f060000;

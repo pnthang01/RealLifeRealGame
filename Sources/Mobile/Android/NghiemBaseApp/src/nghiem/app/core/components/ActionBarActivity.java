@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-public class ActionBarActivity extends BaseActivity
+public class ActionBarActivity extends NghiemActivity
 {
 	private LinearLayout mActionBar;
 	private FrameLayout mMainView;

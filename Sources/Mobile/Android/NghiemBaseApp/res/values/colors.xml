@@ -4,8 +4,8 @@
     <color name="background_solid">#00D000</color>
     <color name="background_transparent">#9000D000</color>
     
-    <color name="view_pager_tab_strip_bg">#000000</color>
-    <color name="view_pager_tab_strip_text">#FFFFFF</color>
+    <color name="view_pager_strip_bg">#000000</color>
+    <color name="view_pager_strip_text">#FFFFFF</color>
     
     <color name="divider">#AAAAAA</color>
 

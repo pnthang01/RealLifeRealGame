@@ -1,4 +1,4 @@
-package com.gamification.rlrg.application;
+package com.gamification.rlrg.data.core;
 
 import com.google.gson.annotations.SerializedName;
 

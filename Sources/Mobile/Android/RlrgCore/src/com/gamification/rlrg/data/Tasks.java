@@ -2,8 +2,8 @@ package com.gamification.rlrg.data;
 
 import java.util.List;
 
-import com.gamification.rlrg.application.BaseEntity;
 import com.gamification.rlrg.data.Categories.Category;
+import com.gamification.rlrg.data.core.BaseEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class Tasks extends BaseEntity<Tasks.TaskList>

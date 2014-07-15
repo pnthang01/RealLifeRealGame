@@ -2,7 +2,7 @@ package com.gamification.rlrg.data;
 
 import java.util.List;
 
-import com.gamification.rlrg.application.BaseEntity;
+import com.gamification.rlrg.data.core.BaseEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class Categories extends BaseEntity<Categories.CategoryList>

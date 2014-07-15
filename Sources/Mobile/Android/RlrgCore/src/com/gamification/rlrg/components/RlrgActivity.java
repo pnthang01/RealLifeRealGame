@@ -1,6 +1,6 @@
-package com.gamification.rlrg.application;
+package com.gamification.rlrg.components;
 
-import nghiem.app.core.components.BaseActivity;
+import nghiem.app.core.components.NghiemActivity;
 import nghiem.app.core.utils.Utils;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 
 import com.gamification.rlrg.gen.R;
 
-public class RlrgBaseActivity extends BaseActivity
+public class RlrgActivity extends NghiemActivity
 {
     protected Dialog onCreateDialog(String type)
 	{

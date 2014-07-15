@@ -3,7 +3,7 @@
     android:id="@+id/pager"
     style="@style/full_screen" >
 
-    <android.support.v4.view.PagerTabStrip
+    <android.support.v4.view.PagerTitleStrip
         android:id="@+id/pager_strip"
         style="@style/full_width"
         android:layout_gravity="top"
