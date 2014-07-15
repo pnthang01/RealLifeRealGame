@@ -14,8 +14,8 @@ public class BadgeChecker implements IBadgeChecker{
 	@Autowired
 	private IBadgeService badgeService;
 	
-	public void process(String action, Long userId, Object[] props) {
-		//badgeService.getBadgeByEligibility(userId, params);
+	public void process(Long userId, Object[] props) {
+		//badgeService.getBadgeByEligibility(userId, props.toString());
 	}
 	
 }

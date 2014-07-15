@@ -98,8 +98,8 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 			//
 			taskRepo.save(t);
 			//
-			notifyListeners(BadgeCheckerConstants.CREATE_TASK
-					, 1l, c.getId(), dto.getDifficultyLevel(), createDate);
+			notifyListeners(1l, BadgeCheckerConstants.CREATE_TASK, 
+					c.getId(), dto.getDifficultyLevel(), createDate);
 		} catch(Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw e;

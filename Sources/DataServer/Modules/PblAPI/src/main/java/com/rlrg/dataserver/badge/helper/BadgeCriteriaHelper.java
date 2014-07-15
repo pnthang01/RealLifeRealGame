@@ -17,17 +17,18 @@ public class BadgeCriteriaHelper {
 		return new Specification<Badge>() {
 			@Override
 			public Predicate toPredicate(Root<Badge> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate[] critList = new Predicate[params.length+1];
+				Predicate[] critList = new Predicate[2];
 				Predicate avaiBadge = cb.not(root.<Integer>get("id").in(usersAchie));
 				critList[0] = avaiBadge;
 				//
-				int i = 1;
-				//Predicate test = cb.and(critList);
 				for(String param : params){
 					Predicate temp = cb.like(root.<String>get("eligibility"), 
 							new StringBuffer("%").append(param).append("%").toString());
-					critList[i] = temp;
-					i++;
+					if(null == critList[1]){
+						critList[1] = temp;
+					} else {
+						critList[1] = cb.or(critList[1], temp);
+					}
 				}
 				return query.where(critList).getRestriction();
 			}
