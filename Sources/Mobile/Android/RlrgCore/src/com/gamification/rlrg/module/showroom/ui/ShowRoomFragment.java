@@ -4,6 +4,8 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import nghiem.app.core.components.ListViewFragment;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +13,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.gamification.rlrg.core.components.ListViewFragment;
 import com.gamification.rlrg.data.Achievements;
 import com.gamification.rlrg.data.Achievements.Achievement;
 import com.gamification.rlrg.gen.R;

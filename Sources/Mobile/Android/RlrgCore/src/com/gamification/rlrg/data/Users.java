@@ -2,7 +2,7 @@ package com.gamification.rlrg.data;
 
 import java.util.List;
 
-import com.gamification.rlrg.core.components.BaseEntity;
+import com.gamification.rlrg.application.BaseEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class Users extends BaseEntity<Users.UserList>

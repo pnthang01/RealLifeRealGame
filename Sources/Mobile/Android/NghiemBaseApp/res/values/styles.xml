@@ -1,0 +1,43 @@
+<resources>
+
+    <style name="app_theme" parent="android:Theme.Light" />
+    
+    <style name="full_screen">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="wrap_content">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="full_width">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="full_width_dynamic_height">
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="full_width_equal_height" parent="full_width_dynamic_height">
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="full_height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="full_height_dynamic_width">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="full_height_equal_width" parent="full_height_dynamic_width">
+        <item name="android:layout_weight">1</item>
+    </style>
+
+</resources>

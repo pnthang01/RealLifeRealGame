@@ -3,6 +3,9 @@ package com.gamification.rlrg.module.start.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import nghiem.app.core.components.NavigationActivity;
+import nghiem.app.core.data.NavigationData;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -10,8 +13,6 @@ import android.view.View.OnClickListener;
 import android.widget.ListView;
 
 import com.gamification.rlrg.application.CoreApp;
-import com.gamification.rlrg.core.components.NavigationActivity;
-import com.gamification.rlrg.core.data.NavigationData;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.login.ui.LoginFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;

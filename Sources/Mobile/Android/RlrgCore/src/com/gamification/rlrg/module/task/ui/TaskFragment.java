@@ -3,10 +3,11 @@ package com.gamification.rlrg.module.task.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import nghiem.app.core.components.ViewPagerFragment;
+
 import android.support.v4.app.Fragment;
 
 import com.gamification.rlrg.application.CoreApp;
-import com.gamification.rlrg.core.components.ViewPagerFragment;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
