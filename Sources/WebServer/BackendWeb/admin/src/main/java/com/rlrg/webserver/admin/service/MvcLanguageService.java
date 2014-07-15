@@ -20,6 +20,7 @@ public class MvcLanguageService {
 	}
 	
 	public ResultList<LanguageDTO>  searchLanguagesByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
-		return languageReader.searchLanguagesByKeyword(keyword, pageNumber);
+		return null;
+		//return languageReader.searchLanguagesByKeyword(keyword, pageNumber);
 	}
 }

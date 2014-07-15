@@ -22,6 +22,7 @@ public class BadgeCriteriaHelper {
 				critList[0] = avaiBadge;
 				//
 				int i = 1;
+				//Predicate test = cb.and(critList);
 				for(String param : params){
 					Predicate temp = cb.like(root.<String>get("eligibility"), 
 							new StringBuffer("%").append(param).append("%").toString());

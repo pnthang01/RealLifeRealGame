@@ -94,25 +94,25 @@ public class AchievementController extends BaseController {
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/searchAchievements", produces = "application/json", method=RequestMethod.GET)
-	@ResponseBody
-	public String searchAchievementsByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
-			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
-		String result = null;
-		LOG.info("<< Starting webservice /achievement/searchAchievements with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
-		try {
-			List<AchievementDTO> listDTO = achievementService.searchAchievementsByKeyword(keyword, pageNumber);
-			Long total = achievementService.countAchievementsByKeyword(keyword);
-			//
-			result = achievementService.encodeMutipleObjectsFromListV(listDTO, total);
-		} catch(BaseException e){
-			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
-			result = achievementService.encodeBlankRestObject(restObject);
-		} catch(Exception e){
-			RestObject restObject = RestObject.failBank(e.getMessage());
-			result = achievementService.encodeBlankRestObject(restObject);
-		}
-		LOG.info("<< End webservice /achievement/searchAchievements");
-		return result;
-	}
+//	@RequestMapping(value = "/searchAchievements", produces = "application/json", method=RequestMethod.GET)
+//	@ResponseBody
+//	public String searchAchievementsByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
+//			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
+//		String result = null;
+//		LOG.info("<< Starting webservice /achievement/searchAchievements with parameters: keyword={}, pageNumber={}", keyword, pageNumber);
+//		try {
+//			List<AchievementDTO> listDTO = achievementService.searchAchievementsByKeyword(keyword, pageNumber);
+//			Long total = achievementService.countAchievementsByKeyword(keyword);
+//			//
+//			result = achievementService.encodeMutipleObjectsFromListV(listDTO, total);
+//		} catch(BaseException e){
+//			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+//			result = achievementService.encodeBlankRestObject(restObject);
+//		} catch(Exception e){
+//			RestObject restObject = RestObject.failBank(e.getMessage());
+//			result = achievementService.encodeBlankRestObject(restObject);
+//		}
+//		LOG.info("<< End webservice /achievement/searchAchievements");
+//		return result;
+//	}
 }

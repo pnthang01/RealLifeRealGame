@@ -90,7 +90,7 @@
 								<td style="width: 45%"><c:out value="${badge.description}">No description</c:out></td>
 								<td><c:out value="${badge.eligibility}">No eligibility</c:out></td>
 								<td>
-									<a href="<c:url value="/badge/edit.html"><c:param name="code" value="${badge.id}"/></c:url>">
+									<a href="<c:url value="/badge/edit.html"><c:param name="id" value="${badge.id}"/></c:url>">
 										<img src="<c:url value="/resources/images/icons/pencil.png"/>" alt="Edit">
 									</a>
 								</td>

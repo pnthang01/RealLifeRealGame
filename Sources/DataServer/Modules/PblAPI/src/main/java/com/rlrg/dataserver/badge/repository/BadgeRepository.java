@@ -23,6 +23,14 @@ public interface BadgeRepository extends JpaRepository<Badge, Integer>, JpaSpeci
 			" FROM Badge b INNER JOIN b.badgeLangs bl WHERE bl.language.id = :languageId")
 	public List<BadgeDTO> getAllBadgeDTO(@Param("languageId") Integer languageId, Pageable pageable);
 	
+	@Query("SELECT COUNT(b.id) FROM Badge b")
+	public Long countAllBadges();
+	
+	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.BadgeDTO(" +
+			"b.id, bl.name, bl.description, b.status, b.eligibility)" +
+			" FROM Badge b INNER JOIN b.badgeLangs bl WHERE bl.language.id = :languageId AND b.id = :id")
+	public BadgeDTO getBadgeDTOById(@Param("id") Integer id, @Param("languageId") Integer languageId);
+	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.BadgeDTO(" +
 			"b.id, bl.name, bl.description, b.status, b.eligibility" +
 			")" +
@@ -30,19 +38,19 @@ public interface BadgeRepository extends JpaRepository<Badge, Integer>, JpaSpeci
 	public List<BadgeDTO> getBadgeDTOByStatus(@Param("status") BadgeStatus status, @Param("languageId") Integer languageId, Pageable pageable);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.BadgeDTO(" +
-			"b.id, b.name, b.description)" + 
-			" FROM Badge b"+
-			" WHERE " +
+			"b.id, bl.name, bl.description)" + 
+			" FROM Badge b INNER JOIN b.badgeLangs bl"+
+			" WHERE bl.language.id = :languageId AND" +
 			" ((b.id LIKE CONCAT('%', :keyword, '%'))" +
-			" OR (b.description LIKE CONCAT('%', :keyword, '%'))" +
-			" OR (b.name LIKE CONCAT('%', :keyword, '%')))")
-	public List<BadgeDTO> searchBadgesDTOByKeyword(@Param("keyword") String keyword, Pageable pageable);
+			" OR (bl.description LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (bl.name LIKE CONCAT('%', :keyword, '%')))")
+	public List<BadgeDTO> searchBadgesDTOByKeyword(@Param("keyword") String keyword, @Param("languageId") Integer languageId, Pageable pageable);
 	
-	@Query("SELECT COUNT(b.id) FROM Badge b" +
-			" WHERE " +
+	@Query("SELECT COUNT(b.id) FROM Badge b INNER JOIN b.badgeLangs bl" +
+			" WHERE bl.language.id = :languageId AND" +
 			" ((b.id LIKE CONCAT('%', :keyword, '%'))" +
-			" OR (b.description LIKE CONCAT('%', :keyword, '%'))" +
-			" OR (b.name LIKE CONCAT('%', :keyword, '%')))")
-	public Long countBadgesByKeyword(@Param("keyword") String keyword);
+			" OR (bl.description LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (bl.name LIKE CONCAT('%', :keyword, '%')))")
+	public Long countBadgesByKeyword(@Param("keyword") String keyword, @Param("languageId") Integer languageId);
 	
 }

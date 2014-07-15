@@ -11,7 +11,7 @@ public interface IAchievementService<T, V> extends IBaseService<T, V>{
 	
 	public void addAchievement(V dto) throws Exception;
 	
-	public List<V> searchAchievementsByKeyword(String keyword, Integer pageNumber);
-	
-	public Long countAchievementsByKeyword(String keyword);
+//	public List<V> searchAchievementsByKeyword(String keyword, Integer pageNumber);
+//	
+//	public Long countAchievementsByKeyword(String keyword);
 }

@@ -16,6 +16,17 @@ public class LanguageDTO {
 
 	@JsonExport(name = "I18N")
 	private String i18n;
+	
+	public LanguageDTO(){
+	}
+
+	public LanguageDTO(Integer id, String language, String country, String i18n) {
+		super();
+		this.id = id;
+		this.language = language;
+		this.country = country;
+		this.i18n = i18n;
+	}
 
 	public Integer getId() {
 		return id;

@@ -48,6 +48,13 @@ public class TaskDTO {
 	public TaskDTO(){
 	}
 	
+	public TaskDTO(Long id, Long userId, String name, String description){
+		this.id = id;
+		this.userId = userId;
+		this.name = name;
+		this.description = description;
+	}
+	
 	public TaskDTO(Long id, String cateCode, String cateName, String name, String description, Date createTime,
 			Date completeTime, Date startTime, DifficultyLevel diffcultyLevel,
 			TaskStatus status, Integer point){

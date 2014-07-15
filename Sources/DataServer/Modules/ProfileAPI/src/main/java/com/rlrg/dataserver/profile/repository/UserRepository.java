@@ -32,14 +32,14 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 	
 	@Query("SELECT NEW com.rlrg.dataserver.profile.dto.UserDTO(" +
 			"u.username, u.firstName, u.email)" + 
-			" FROM User u"+
+			" FROM entity.User u"+
 			" WHERE " +
 			" ((u.username LIKE CONCAT('%', :keyword, '%'))" +
 			" OR (u.firstName LIKE CONCAT('%', :keyword, '%'))" +
 			" OR (u.email LIKE CONCAT('%', :keyword, '%')))")
 	public List<UserDTO> searchUsersDTOByKeyword(@Param("keyword") String keyword, Pageable pageable);
 	
-	@Query("SELECT COUNT(u.username) FROM User u" +
+	@Query("SELECT COUNT(u.username) FROM entity.User u" +
 			" WHERE " +
 			" ((u.username LIKE CONCAT('%', :keyword, '%'))" +
 			" OR (u.firstName LIKE CONCAT('%', :keyword, '%'))" +

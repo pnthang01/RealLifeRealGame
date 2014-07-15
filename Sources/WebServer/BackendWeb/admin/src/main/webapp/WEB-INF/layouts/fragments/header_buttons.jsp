@@ -2,8 +2,10 @@
 				<div id="header_buttons">
 					
 					<a href="#modal" rel="modal"><img src="<c:url value="/resources/images/icons/envelope.png"/>"
-								alt="3 Messages" />3</a> <a href="#modal2" rel="modal">modal box test</a>
-					<a href="#">logout</a> <a href="#">view website</a>
+								alt="3 Messages" />3</a> 
+					<a href="#modal2" rel="modal">modal box test</a>
+					<a href="<c:url value="/j_spring_security_logout" />" >logout</a> 
+					<a href="#">view website</a>
 				
 				</div>
 				<!-- end #header_buttons -->

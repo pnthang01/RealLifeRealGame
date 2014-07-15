@@ -1,7 +1,5 @@
 package com.rlrg.utillities.service;
 
-import java.util.List;
-
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.task.dto.TaskDTO;

@@ -24,11 +24,16 @@ public class MvcBadgeService {
 		return badgeReader.getAllBadgesByStatus(status, pageNumber);
 	}
 	
+	public BadgeDTO getBadgeById(Integer id) throws RestClientException, ConvertException{
+		return badgeReader.getBadgeById(id);
+	}
+	
 	public boolean updateBadge(BadgeDTO dto) throws RestClientException, ConvertException{
 		return badgeReader.updateBadge(dto);
 	}
 
 	public ResultList<BadgeDTO>  searchBadgesByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
-		return badgeReader.searchBadgesByKeyword(keyword, pageNumber);
+		return null;
+		//return badgeReader.searchBadgesByKeyword(keyword, pageNumber);
 	}
 }

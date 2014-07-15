@@ -35,6 +35,12 @@ public class UserDTO {
 	public UserDTO(){
 	}
 	
+	public UserDTO(String username, String firstName, String email){
+		this.username = username;
+		this.firstName = firstName;
+		this.email = email;
+	}
+	
 	public UserDTO(String username, String firstName, String email, Date lastLogin, UserGender gender){
 		this.username = username;
 		this.firstName = firstName;

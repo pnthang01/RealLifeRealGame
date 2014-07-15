@@ -49,6 +49,14 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 		return badgeRepo.getAllBadgeDTO(DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
 	
+	public Long countAllBadges(){
+		return badgeRepo.countAllBadges();
+	}
+	
+	public BadgeDTO getBadgeById(Integer id){
+		return badgeRepo.getBadgeDTOById(id, DEFAULT_LANGUAGE.getId());
+	}
+	
 	public List<BadgeDTO> getBadgesByStatus(BadgeStatus status, Integer pageNumber){
 		if(null == pageNumber){
 			pageNumber = 1;
@@ -111,13 +119,13 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 		}
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
-		return badgeRepo.searchBadgesDTOByKeyword(keyword, pageRequest);
+		return badgeRepo.searchBadgesDTOByKeyword(keyword, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
 	
 
 	@Override
 	public Long countBadgesByKeyword(String keyword) {
-		return badgeRepo.countBadgesByKeyword(keyword);
+		return badgeRepo.countBadgesByKeyword(keyword, DEFAULT_LANGUAGE.getId());
 	}
 	
 	@Override

@@ -6,7 +6,7 @@
 	
 	<div class="content-box-content">
 		<form:form method="POST" commandName="badgeDTO" action="edit">
-			<form:hidden path="code" />
+			<form:hidden path="id" />
 			<fieldset>
 				<p>
 					<h6>Badge Name:
@@ -15,17 +15,19 @@
                     <form:input path="name" cssClass="small"/>            
 				</p>
 				<p>
-					<h6>Position:
-						<form:errors path="position" cssClass="notification error" element="span"/> 
-					</h6>
-                    <form:input path="position" cssClass="small"/>                   
-				</p>
-				<p>
-					<h6>Position:
+					<h6>Status:
 						<form:errors path="status" cssClass="notification error" element="span"/> 
 					</h6>
-          			<form:radiobutton path="status" value="true" label="Active" /><span>Active</span>
-					<form:radiobutton path="status" value="false" label="Deactive" /><span>Deactive</span>             
+          			<form:select path="status">
+    					<form:option value="" label="*** Select Option ***" />
+    					<form:options items="${badgeStatus}" />
+					</form:select>          
+				</p>
+				<p>
+					<h6>Eligibility:
+						<form:errors path="eligibility" cssClass="notification error" element="span"/> 
+					</h6>
+                    <form:textarea path="eligibility" cssClass="wysiwyg"/>                   
 				</p>
 				<p>
 					<h6>Description:

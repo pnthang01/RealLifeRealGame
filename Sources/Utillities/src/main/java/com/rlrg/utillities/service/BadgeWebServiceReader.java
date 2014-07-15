@@ -13,7 +13,8 @@ public class BadgeWebServiceReader extends BaseWebServiceReader<BadgeDTO> {
 	
 	private final String GET_ALL_BADGES_URL = "badge/getAllBadges?pageNumber={pageNumber}";
 	private final String GET_ALL_BADGES_BY_STATUS_URL = "badge/getAllBadgesByStatus?status={status}&pageNumber={pageNumber}";
-	private final String UPDATE_BADGE_URL = "badge/update?restobject={restobject}";
+	private final String GET_BADGE_BY_ID = "badge/getBadgeById?id={id}";
+	private final String UPDATE_BADGE_URL = "badge/updateBadge?restobject={restobject}";
 	
 	public ResultList<BadgeDTO> getAllBadges(Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_BADGES_URL, MODULE_NAME, pageNumber);
@@ -21,6 +22,10 @@ public class BadgeWebServiceReader extends BaseWebServiceReader<BadgeDTO> {
 	
 	public ResultList<BadgeDTO> getAllBadgesByStatus(BadgeStatus status, Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_BADGES_BY_STATUS_URL, MODULE_NAME, status, pageNumber);
+	}
+	
+	public BadgeDTO getBadgeById(Integer id) throws RestClientException, ConvertException{
+		return this.getAnObject(GET_BADGE_BY_ID, MODULE_NAME, id);
 	}
 	
 	public boolean updateBadge(BadgeDTO dto) throws RestClientException, ConvertException{

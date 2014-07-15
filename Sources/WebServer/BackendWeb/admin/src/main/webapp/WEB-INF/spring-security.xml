@@ -6,7 +6,7 @@
 
 	<http auto-config="true">
 		<intercept-url pattern="/login.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-		<intercept-url pattern="/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/*" access="ROLE_ADMIN" />
 		<form-login login-page="/login.html" 
 		    default-target-url="/dashboard.html" 
 			authentication-failure-url="/login.html" 

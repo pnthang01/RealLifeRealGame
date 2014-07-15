@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.badge.dto.BadgeDTO;
+import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.utillities.domain.ResultList;
 import com.rlrg.utillities.exception.ConvertException;
@@ -61,6 +62,23 @@ public class MvcBadgeController {
 		}
 	}
 
+	@RequestMapping(value = "/edit.html", method = RequestMethod.GET)
+	public String edit(@RequestParam("id") Integer id, ModelMap model) {
+		try {
+			BadgeDTO data = badgeService.getBadgeById(id);
+			model.addAttribute("badgeStatus", BadgeStatus.values());
+			model.addAttribute("badgeDTO", data);
+			//
+			return "badge.edit";
+		} catch (RestClientException | ConvertException e) {
+			LOG.error(e.getMessage());
+			return "error";
+		} catch (Exception e) {
+			LOG.error(e.getMessage());
+			return "error";
+		}
+	}
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String edit(@Valid BadgeDTO data, BindingResult bResult) {
 		try {

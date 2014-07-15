@@ -25,6 +25,7 @@ public class MvcUserService {
 	}
 	
 	public ResultList<UserDTO> searchUsersByKeyword(String keyword, Integer pageNumber) throws RestClientException, ConvertException{
-		return userReader.searchUsersByKeyword(keyword, pageNumber);
+		return null;
+		//return userReader.searchUsersByKeyword(keyword, pageNumber);
 	}
 }

@@ -49,18 +49,18 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 	public Task getTaskByIdAndUser(@Param("taskId") Long taskId, @Param("userId") Long userId);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.TaskDTO(" +
-			"t.id, t.userId, t.name, t.description)" + 
+			"t.id, t.user.id, t.name, t.description)" + 
 			" FROM Task t"+
-			" WHERE " +
+			" WHERE " + 
 			" ((t.id LIKE CONCAT('%', :keyword, '%'))" +
-			" OR (t.userId LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (t.user.id LIKE CONCAT('%', :keyword, '%'))" +
 			" OR (t.name LIKE CONCAT('%', :keyword, '%')))")
 	public List<TaskDTO> searchTasksDTOByKeyword(@Param("keyword") String keyword, Pageable pageable);
 	
 	@Query("SELECT COUNT(t.id) FROM Task t" +
 			" WHERE " +
 			" ((t.id LIKE CONCAT('%', :keyword, '%'))" +
-			" OR (t.userId LIKE CONCAT('%', :keyword, '%'))" +
+			" OR (t.user.id LIKE CONCAT('%', :keyword, '%'))" +
 			" OR (t.name LIKE CONCAT('%', :keyword, '%')))")
 	public Long countTasksByKeyword(@Param("keyword") String keyword);
 	
