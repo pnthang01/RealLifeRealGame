@@ -5,22 +5,39 @@
 
 <tiles-definitions>
 
-	<definition name="task.manage" extends="default">
-		<put-attribute name="title" value="Task Manage" />
+	<definition name="task.module" extends="default">
 		<put-attribute name="left-content" value="/WEB-INF/views/task/left-side-bar.jsp" />
+	</definition>
+	
+	<definition name="task.manage" extends="task.module">
+		<put-attribute name="title" value="Task Manage" />	
 		<put-attribute name="content" value="/WEB-INF/views/task/task-manage.jsp" />
 	</definition>
 	
-	<definition name="task.edit" extends="default">
+	<definition name="task.edit" extends="task.module">
 		<put-attribute name="title" value="Task Edit" />
-		<put-attribute name="left-content" value="/WEB-INF/views/task/left-side-bar.jsp" />
 		<put-attribute name="content" value="/WEB-INF/views/task/task-edit.jsp" />
 	</definition>
 
-	<definition name="task.add" extends="default">
+	<definition name="task.add" extends="task.module">
 		<put-attribute name="title" value="Task Add" />
-		<put-attribute name="left-content" value="/WEB-INF/views/task/left-side-bar.jsp" />
 		<put-attribute name="content" value="/WEB-INF/views/task/task-add.jsp" />
 	</definition>
+
+	<definition name="category.manage" extends="task.module">
+		<put-attribute name="title" value="Category Manage" />
+		<put-attribute name="content" value="/WEB-INF/views/task/category-manage.jsp" />
+	</definition>
+	
+	<definition name="category.edit" extends="task.module">
+		<put-attribute name="title" value="Category Edit" />
+		<put-attribute name="content" value="/WEB-INF/views/task/category-edit.jsp" />
+	</definition>
+
+	<definition name="category.add" extends="task.module">
+		<put-attribute name="title" value="Category Add" />
+		<put-attribute name="content" value="/WEB-INF/views/task/category-add.jsp" />
+	</definition>
+
 
 </tiles-definitions>

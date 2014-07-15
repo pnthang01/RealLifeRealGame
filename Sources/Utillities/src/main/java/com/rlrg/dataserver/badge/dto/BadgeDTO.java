@@ -1,5 +1,8 @@
 package com.rlrg.dataserver.badge.dto;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
@@ -9,15 +12,18 @@ public class BadgeDTO {
 	@JsonExport(name = "ID")
 	private Integer id;
 
+	@Length(min = 3, max = 30)
 	@JsonExport(name = "Name")
 	private String name;
 
+	@NotBlank
 	@JsonExport(name = "Description")
 	private String description;
 
 	@JsonExport(name = "Status")
 	private BadgeStatus status;
 
+	@NotBlank
 	@JsonExport(name = "Eligibility")
 	private String eligibility;
 

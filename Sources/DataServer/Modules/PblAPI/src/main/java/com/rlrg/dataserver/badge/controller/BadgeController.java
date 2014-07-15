@@ -33,15 +33,16 @@ public class BadgeController extends BaseController{
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/getAllBages", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getAllBadges", produces = "application/json", method=RequestMethod.GET)
 	@ResponseBody
 	public String getAllBadges(@RequestParam(value="pageNumber") Integer pageNumber){
 		String result = null;
 		LOG.info("<< Starting webservice /badge/getAllBages with parameters: pageNumber={}", pageNumber);
 		try {
 			List<BadgeDTO> listDto = badgeService.getAllBadges(pageNumber);
+			Long total = badgeService.countAllBadges();
 			//
-			result = badgeService.encodeMutipleObjectsFromListV(listDto);
+			result = badgeService.encodeMutipleObjectsFromListV(listDto, total);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = badgeService.encodeBlankRestObject(restObject);
@@ -50,6 +51,26 @@ public class BadgeController extends BaseController{
 			result = badgeService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /badge/getAllBages");
+		return result;
+	}
+	
+	@RequestMapping(value = "/getBadgeById", produces = "application/json", method=RequestMethod.GET)
+	@ResponseBody
+	public String getBadgeById(@RequestParam(value="id") Integer id){
+		String result = null;
+		LOG.info("<< Starting webservice /category/getCategoryByCode with parameters: id={}, pageNumber={}", id);
+		try {
+			BadgeDTO dto = badgeService.getBadgeById(id);
+			//
+			result = badgeService.encodeSingleObjectFromVdto(dto);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = badgeService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = badgeService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /category/getCategoryByCode");
 		return result;
 	}
 	
@@ -80,7 +101,7 @@ public class BadgeController extends BaseController{
 		return result;
 	}
 	
-	@RequestMapping(value = "/updateBadge", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/updateBadge", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
 	public String updateBadge(@RequestParam(value="restobject", required=true) String json){
 		String result = null;

@@ -9,7 +9,11 @@ public interface IBadgeService<T, V> extends IBaseService<T, V>{
 	
 	public T findBadgeById(Integer badgeId);
 	
-	public List<V> getAllBadges(Integer pageNumber);
+	public List<V> getAllBadges(Integer pageNumber);	
+	
+	public V getBadgeById(Integer id);
+	
+	public Long countAllBadges();
 	
 	public List<V> getBadgesByStatus(BadgeStatus status, Integer pageNumber);
 			
@@ -18,4 +22,5 @@ public interface IBadgeService<T, V> extends IBaseService<T, V>{
 	public List<V> searchBadgesByKeyword(String keyword, Integer pageNumber);
 	
 	public Long countBadgesByKeyword(String keyword);
+
 }

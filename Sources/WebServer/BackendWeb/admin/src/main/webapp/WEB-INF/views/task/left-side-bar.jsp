@@ -14,8 +14,8 @@
 
 	<div class="content-box-content">
 		<ul>
+				<li><a href="<c:url value="/category/manage.html"/>">Manage Categories</a></li>
 				<li><a href="<c:url value="/task/manage.html"/>">Manage Tasks</a></li>
-				<li><a href="#">Manage Tasks</a></li>
 		</ul>
 	</div>
 </div>

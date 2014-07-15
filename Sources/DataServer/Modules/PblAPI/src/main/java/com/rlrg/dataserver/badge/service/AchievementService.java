@@ -103,20 +103,20 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 	 * @param pageNumber
 	 * @return
 	 */
-	public List<AchievementDTO> searchAchievementsByKeyword(String keyword, Integer pageNumber){
-		if(null == pageNumber){
-			pageNumber = 1;
-		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
-		//
-		return achievementRepo.searchAchievementsDTOByKeyword(keyword, pageRequest);
-	}
-	
-
-	@Override
-	public Long countAchievementsByKeyword(String keyword) {
-		return achievementRepo.countAchievementsByKeyword(keyword);
-	}
+//	public List<AchievementDTO> searchAchievementsByKeyword(String keyword, Integer pageNumber){
+//		if(null == pageNumber){
+//			pageNumber = 1;
+//		}
+//		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+//		//
+//		return achievementRepo.searchAchievementsDTOByKeyword(keyword, pageRequest);
+//	}
+//	
+//
+//	@Override
+//	public Long countAchievementsByKeyword(String keyword) {
+//		return achievementRepo.countAchievementsByKeyword(keyword);
+//	}
 
 	@Override
 	public Class<AchievementDTO> getVClass() {

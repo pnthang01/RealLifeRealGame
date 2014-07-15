@@ -34,14 +34,11 @@ public class ActionObserver implements ActionPerformedListener {
 
 	public void actionPerformed(ActionPerformedEvent event) {
 		if(BadgeCheckerConstants.TASK_MODULE.equals(moduleName)){
-			if(BadgeCheckerConstants.CREATE_TASK.equals(event.getAction())){
-				checkBadgesForCreateTaskModule(event.getUserId(), event.getProperties());
-			}
-
+			checkBadgesForCreateTaskModule(event.getAction(), event.getUserId(), event.getProperties());		
 		}
 	}	
-	private void checkBadgesForCreateTaskModule(Long userId, Object[] props){
-		badgeChecker.process(userId, props);
+	private void checkBadgesForCreateTaskModule(String action, Long userId, Object[] props){
+		badgeChecker.process(action, userId, props);
 	}
 
 }

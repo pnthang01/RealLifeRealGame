@@ -13,7 +13,7 @@ public class WelcomeController {
 	
 	@RequestMapping("/login")
 	public String login() {
-		return "dashboard";
+		return "redirect:/dashboard.html";
 	}
 	
 	@RequestMapping("/dashboard.html")
