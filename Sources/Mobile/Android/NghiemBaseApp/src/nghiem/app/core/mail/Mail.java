@@ -24,6 +24,9 @@ import nghiem.app.gen.BuildConfig;
 
 public class Mail extends Authenticator
 {
+    private static final String GMAIL_SMTP_SERVER = "smtp.gmail.com";
+    private static final String GMAIL_SMTP_PORT = "465";
+    private static final String GMAIL_SOCKET = "465";
 
     private String mUsername;
     private String mPassword;
@@ -45,22 +48,36 @@ public class Mail extends Authenticator
 
     public Mail()
     {
-        mHost = "smtp.gmail.com"; // default smtp server
-        mPort = "465"; // default smtp port
-        mSport = "465"; // default socketfactory port
+        this(GMAIL_SMTP_SERVER, GMAIL_SMTP_PORT, GMAIL_SOCKET);
+    }
 
-        mUsername = ""; // username
-        mPassword = ""; // password
-        mFrom = ""; // email sent from
-        mSubject = ""; // email subject
-        mBody = ""; // email body
+    public Mail(String host, String port, String socket)
+    {
+        this(host, port, socket, null, null);
+    }
 
-        mIsAuth = true; // smtp authentication - default on
+    public Mail(String host, String port, String socket, String user, String pass)
+    {
+        this(host, port, socket, user, pass, null, null, "", true);
+    }
+
+    public Mail(String host, String port, String socket, String user, String pass, String from, String subject, String body, boolean isAuthen)
+    {
+        mHost = host;
+        mPort = port;
+        mSport = socket;
+
+        mUsername = user;
+        mPassword = pass;
+        mFrom = from;
+        mSubject = subject;
+        mBody = body;
+
+        mIsAuth = isAuthen;
 
         mMultipart = new MimeMultipart();
 
-        // There is something wrong with MailCap, javamail can not find a
-        // handler for the multipart/mixed part, so this bit needs to be added.
+        // There is something wrong with MailCap, javamail can not find a handler for the multipart/mixed part, so this bit needs to be added.
         MailcapCommandMap mailcapCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
         mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
         mailcapCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
@@ -83,9 +100,7 @@ public class Mail extends Authenticator
         Properties props = setProperties();
 
         mFrom = mUsername;
-        if (!mUsername.equals("") && !mPassword.equals("") && mTos.length > 0
-                && !mSubject.equals("")
-                && !mBody.equals(""))
+        if (!mUsername.equals("") && !mPassword.equals("") && mTos.length > 0 && !mSubject.equals("") && !mBody.equals(""))
         {
             Session session = Session.getInstance(props, this);
 
@@ -211,5 +226,4 @@ public class Mail extends Authenticator
     {
         mBody = body;
     }
-
 }
