@@ -2,16 +2,16 @@ package com.gamification.rlrg.data.core;
 
 import com.google.gson.annotations.SerializedName;
 
-public class BaseEntity<T>
+public class BaseEntity<Data>
 {
 	@SerializedName("ErrorCode")
-	private String error;
+	private String error ="";
 	
 	@SerializedName("Msg")
-	private String message;
+	private String message = "";
 	
 	@SerializedName("data")
-	private T data;
+	private Data data;
 
 	public boolean isSuccessful()
 	{
@@ -23,12 +23,12 @@ public class BaseEntity<T>
 		return message;
 	}
 
-	public T getData()
+	public Data getData()
 	{
 		return data;
 	}
 
-	public void setData(T data)
+	public void setData(Data data)
 	{
 		this.data = data;
 	}

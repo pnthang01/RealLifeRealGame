@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.gamification.rlrg.data.Tasks;
-import com.gamification.rlrg.data.Tasks.Task;
+import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 

@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.gamification.rlrg.data.Achievements;
-import com.gamification.rlrg.data.Achievements.Achievement;
+import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
