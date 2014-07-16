@@ -83,8 +83,10 @@ public final class R {
         public static int navigation_list=0x7f0a0009;
         public static int pager=0x7f0a0010;
         public static int pager_strip=0x7f0a0011;
+        public static int progress_bar=0x7f0a0012;
         public static int search_box=0x7f0a000a;
-        public static int title=0x7f0a0012;
+        public static int title=0x7f0a0014;
+        public static int webview=0x7f0a0013;
     }
     public static final class layout {
         public static int activity_start=0x7f030000;
@@ -96,9 +98,10 @@ public final class R {
         public static int fragment_view_pager=0x7f030006;
         public static int fragment_view_pager_with_tab_strip=0x7f030007;
         public static int fragment_view_pager_with_title_strip=0x7f030008;
-        public static int list_item_game=0x7f030009;
-        public static int list_item_navigation=0x7f03000a;
-        public static int list_view=0x7f03000b;
+        public static int fragment_web=0x7f030009;
+        public static int list_item_game=0x7f03000a;
+        public static int list_item_navigation=0x7f03000b;
+        public static int list_view=0x7f03000c;
     }
     public static final class string {
         public static int action_bar=0x7f060000;

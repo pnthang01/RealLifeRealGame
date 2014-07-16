@@ -53,7 +53,9 @@ public final class R {
 		public static final int navigation_list = 0x7f0a0009;
 		public static final int pager = 0x7f0a0010;
 		public static final int pager_strip = 0x7f0a0011;
-		public static final int title = 0x7f0a0012;
+		public static final int progress_bar = 0x7f0a0012;
+		public static final int title = 0x7f0a0014;
+		public static final int webview = 0x7f0a0013;
 	}
 	public static final class layout {
 		public static final int activity_with_actionbar = 0x7f030001;
@@ -61,8 +63,9 @@ public final class R {
 		public static final int fragment_view_pager = 0x7f030006;
 		public static final int fragment_view_pager_with_tab_strip = 0x7f030007;
 		public static final int fragment_view_pager_with_title_strip = 0x7f030008;
-		public static final int list_item_navigation = 0x7f03000a;
-		public static final int list_view = 0x7f03000b;
+		public static final int fragment_web = 0x7f030009;
+		public static final int list_item_navigation = 0x7f03000b;
+		public static final int list_view = 0x7f03000c;
 	}
 	public static final class string {
 		public static final int action_bar = 0x7f060000;
