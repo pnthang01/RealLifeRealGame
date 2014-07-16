@@ -6,15 +6,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rlrg.dataserver.badge.dto.AchievementDTO;
 import com.rlrg.dataserver.badge.dto.BadgeDTO;
+import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
+import com.rlrg.dataserver.badge.helper.BadgeCriteriaHelper;
 import com.rlrg.dataserver.badge.repository.BadgeRepository;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.service.BaseService;
+import com.rlrg.dataserver.base.service.IAchievementService;
 import com.rlrg.dataserver.base.service.IBadgeLanguageService;
 import com.rlrg.dataserver.base.service.IBadgeService;
 import com.rlrg.dataserver.language.dto.BadgeLangDTO;
@@ -32,6 +37,9 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 	
 	@Autowired
 	private IBadgeLanguageService<BadgeLanguage, BadgeLangDTO> badgeLangService;
+	
+	@Autowired
+	private IAchievementService<Achievement, AchievementDTO> achievementService;
 	
 	@Autowired
 	private Language DEFAULT_LANGUAGE;
@@ -92,6 +100,14 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 			LOG.error("<< Error occurs when updating badge with id: " + dto.getId(), e);
 			throw new RepositoryException("Error occurs when updating badge.");
 		}
+	}
+	
+	@Override
+	public List<Badge> getBadgeByEligibility(Long userId, String... params) {
+		//Specification<Badge> spec = BadgeCriteriaHelper.findAvaiableBadgeByEligibilityAndUserId(userId, params);
+		List<Integer> usersAchie = achievementService.getAllBadgeIdByUserId(userId);
+		Specification<Badge> spec = BadgeCriteriaHelper.findAvaiableBadgeByEligibilityAndUserId(usersAchie, params);
+		return badgeRepo.findAll(spec);
 	}
 	
 	

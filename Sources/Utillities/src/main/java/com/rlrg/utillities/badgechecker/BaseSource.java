@@ -23,9 +23,9 @@ public abstract class BaseSource {
 	/**
 	 * If an action of extend classes have to be checked by BadgeChecker, please add this method when the action is done.
 	 */
-	protected void notifyListeners(String action, Long userId, Object... props) {
+	protected void notifyListeners(Long userId, Object... props) {
 		for (ActionPerformedListener name : listeners) {
-	    	name.actionPerformed(new ActionPerformedEvent(action, userId, props));
+	    	name.actionPerformed(new ActionPerformedEvent(userId, props));
 	    }
 	}
 	

@@ -49,6 +49,11 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 		return achievementRepo.countTimeBadgeBeAchieved(badgeId);
 	}
 	
+
+	public List<Integer> getAllBadgeIdByUserId(Long userId){
+		return achievementRepo.getAllBadgeIdByUserId(userId);
+	}
+	
 	/**
 	 * 
 	 * @param token
