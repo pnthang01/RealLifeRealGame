@@ -39,35 +39,45 @@ import java.util.Map;
 
 /**
  * Type adapter that reflects over the fields and methods of a class.
+ * <p>
+ * !!!!! WARNING !!!!!<br>
+ * Duplicate defination of the same class from Gson library.<br>
+ * You HAVE TO delete ReflectiveTypeAdapterFactory.class series from Gson Jar file !!!!!!!
+ * </p>
  */
-public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
+public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory
+{
     private final ConstructorConstructor constructorConstructor;
     private final FieldNamingStrategy fieldNamingPolicy;
     private final Excluder excluder;
 
     public ReflectiveTypeAdapterFactory(
             ConstructorConstructor constructorConstructor,
-            FieldNamingStrategy fieldNamingPolicy, Excluder excluder) {
+            FieldNamingStrategy fieldNamingPolicy, Excluder excluder)
+    {
         this.constructorConstructor = constructorConstructor;
         this.fieldNamingPolicy = fieldNamingPolicy;
         this.excluder = excluder;
     }
 
-    public boolean excludeField(Field f, boolean serialize) {
+    public boolean excludeField(Field f, boolean serialize)
+    {
         return !excluder.excludeClass(f.getType(), serialize)
                 && !excluder.excludeField(f, serialize);
     }
 
-    private String getFieldName(Field f) {
+    private String getFieldName(Field f)
+    {
         SerializedName serializedName = f.getAnnotation(SerializedName.class);
-        return serializedName == null ? fieldNamingPolicy.translateName(f)
-                : serializedName.value();
+        return serializedName == null ? fieldNamingPolicy.translateName(f) : serializedName.value();
     }
 
-    public <T> TypeAdapter<T> create(Gson gson, final TypeToken<T> type) {
+    public <T> TypeAdapter<T> create(Gson gson, final TypeToken<T> type)
+    {
         Class<? super T> raw = type.getRawType();
 
-        if (!Object.class.isAssignableFrom(raw)) {
+        if (!Object.class.isAssignableFrom(raw))
+        {
             return null; // it's a primitive!
         }
 
@@ -77,20 +87,22 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
 
     private ReflectiveTypeAdapterFactory.BoundField createBoundField(
             final Gson context, final Field field, final String name,
-            final TypeToken<?> fieldType, boolean serialize, boolean deserialize) {
-        final boolean isPrimitive = Primitives.isPrimitive(fieldType
-                .getRawType());
+            final TypeToken<?> fieldType, boolean serialize, boolean deserialize)
+    {
+        final boolean isPrimitive = Primitives.isPrimitive(fieldType.getRawType());
 
         // special casing primitives here saves ~5% on Android...
         return new ReflectiveTypeAdapterFactory.BoundField(name, serialize,
-                deserialize) {
+                deserialize)
+        {
             final TypeAdapter<?> typeAdapter = context.getAdapter(fieldType);
 
             @SuppressWarnings({ "unchecked", "rawtypes" })
             // the type adapter and field type always agree
             @Override
             void write(JsonWriter writer, Object value) throws IOException,
-                    IllegalAccessException {
+                    IllegalAccessException
+            {
                 Object fieldValue = field.get(value);
                 TypeAdapter t = new TypeAdapterRuntimeTypeWrapper(context,
                         this.typeAdapter, fieldType.getType());
@@ -99,12 +111,15 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
 
             @Override
             void read(JsonReader reader, Object value) throws IOException,
-                    IllegalAccessException {
+                    IllegalAccessException
+            {
                 Object fieldValue = typeAdapter.read(reader);
-                if (fieldValue == null) {
+                if (fieldValue == null)
+                {
                     return;
                 }
-                if (!isPrimitive) {
+                if (!isPrimitive)
+                {
                     field.set(value, fieldValue);
                 }
             }
@@ -112,19 +127,24 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
     }
 
     private Map<String, BoundField> getBoundFields(Gson context,
-            TypeToken<?> type, Class<?> raw) {
+            TypeToken<?> type, Class<?> raw)
+    {
         Map<String, BoundField> result = new LinkedHashMap<String, BoundField>();
-        if (raw.isInterface()) {
+        if (raw.isInterface())
+        {
             return result;
         }
 
         Type declaredType = type.getType();
-        while (raw != Object.class) {
+        while (raw != Object.class)
+        {
             Field[] fields = raw.getDeclaredFields();
-            for (Field field : fields) {
+            for (Field field : fields)
+            {
                 boolean serialize = excludeField(field, true);
                 boolean deserialize = excludeField(field, false);
-                if (!serialize && !deserialize) {
+                if (!serialize && !deserialize)
+                {
                     continue;
                 }
                 field.setAccessible(true);
@@ -134,7 +154,8 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
                         getFieldName(field), TypeToken.get(fieldType),
                         serialize, deserialize);
                 BoundField previous = result.put(boundField.name, boundField);
-                if (previous != null) {
+                if (previous != null)
+                {
                     throw new IllegalArgumentException(declaredType
                             + " declares multiple JSON fields named "
                             + previous.name);
@@ -147,13 +168,15 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
         return result;
     }
 
-    static abstract class BoundField {
+    static abstract class BoundField
+    {
         final String name;
         final boolean serialized;
         final boolean deserialized;
 
         protected BoundField(String name, boolean serialized,
-                boolean deserialized) {
+                boolean deserialized)
+        {
             this.name = name;
             this.serialized = serialized;
             this.deserialized = deserialized;
@@ -166,39 +189,50 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
                 IllegalAccessException;
     }
 
-    public static final class Adapter<T> extends TypeAdapter<T> {
+    public static final class Adapter<T> extends TypeAdapter<T>
+    {
         private final ObjectConstructor<T> constructor;
         private final Map<String, BoundField> boundFields;
 
         private Adapter(ObjectConstructor<T> constructor,
-                Map<String, BoundField> boundFields) {
+                Map<String, BoundField> boundFields)
+        {
             this.constructor = constructor;
             this.boundFields = boundFields;
         }
 
         @Override
-        public T read(JsonReader in) throws IOException {
-            if (in.peek() == JsonToken.NULL) {
+        public T read(JsonReader in) throws IOException
+        {
+            if (in.peek() == JsonToken.NULL)
+            {
                 in.nextNull();
                 return null;
             }
 
             T instance = constructor.construct();
 
-            try {
+            try
+            {
                 in.beginObject();
-                while (in.hasNext()) {
+                while (in.hasNext())
+                {
                     String name = in.nextName();
                     BoundField field = boundFields.get(name);
-                    if (field == null || !field.deserialized) {
+                    if (field == null || !field.deserialized)
+                    {
                         in.skipValue();
-                    } else {
+                    }
+                    else
+                    {
                         field.read(in, instance);
                     }
                 }
-            } catch (IllegalStateException e) {
+            } catch (IllegalStateException e)
+            {
                 throw new JsonSyntaxException(e);
-            } catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e)
+            {
                 throw new AssertionError(e);
             }
             in.endObject();
@@ -206,21 +240,27 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
         }
 
         @Override
-        public void write(JsonWriter out, T value) throws IOException {
-            if (value == null) {
+        public void write(JsonWriter out, T value) throws IOException
+        {
+            if (value == null)
+            {
                 out.nullValue();
                 return;
             }
 
             out.beginObject();
-            try {
-                for (BoundField boundField : boundFields.values()) {
-                    if (boundField.serialized) {
+            try
+            {
+                for (BoundField boundField : boundFields.values())
+                {
+                    if (boundField.serialized)
+                    {
                         out.name(boundField.name);
                         boundField.write(out, value);
                     }
                 }
-            } catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e)
+            {
                 throw new AssertionError();
             }
             out.endObject();
