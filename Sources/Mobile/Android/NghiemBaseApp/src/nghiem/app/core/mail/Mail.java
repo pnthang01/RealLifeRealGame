@@ -21,207 +21,208 @@ import javax.mail.internet.MimeMultipart;
 
 import nghiem.app.gen.BuildConfig;
 
-
 public class Mail extends Authenticator
 {
-    private static final String GMAIL_SMTP_SERVER = "smtp.gmail.com";
-    private static final String GMAIL_SMTP_PORT = "465";
-    private static final String GMAIL_SOCKET = "465";
+	private static final String GMAIL_SMTP_SERVER = "smtp.gmail.com";
+	private static final String GMAIL_SMTP_PORT = "465";
+	private static final String GMAIL_SOCKET = "465";
 
-    private String mUsername;
-    private String mPassword;
+	private String mUsername;
+	private String mPassword;
 
-    private String[] mTos;
-    private String mFrom;
+	private String[] mTos;
+	private String mFrom;
 
-    private String mPort;
-    private String mSport;
+	private String mPort;
+	private String mSport;
 
-    private String mHost;
+	private String mHost;
 
-    private String mSubject;
-    private String mBody;
+	private String mSubject;
+	private String mBody;
 
-    private boolean mIsAuth;
+	private boolean mIsAuth;
 
-    private Multipart mMultipart;
+	private Multipart mMultipart;
 
-    public Mail()
-    {
-        this(GMAIL_SMTP_SERVER, GMAIL_SMTP_PORT, GMAIL_SOCKET);
-    }
+	public Mail()
+	{
+		this(GMAIL_SMTP_SERVER, GMAIL_SMTP_PORT, GMAIL_SOCKET);
+	}
 
-    public Mail(String user, String pass)
-    {
-        this();
-        mUsername = user;
-        mPassword = pass;
-    }
+	public Mail(String user, String pass)
+	{
+		this();
+		mUsername = user;
+		mPassword = pass;
+	}
 
-    public Mail(String host, String port, String socket)
-    {
-        this(host, port, socket, null, null);
-    }
+	public Mail(String host, String port, String socket)
+	{
+		this(host, port, socket, null, null);
+	}
 
-    public Mail(String host, String port, String socket, String user, String pass)
-    {
-        this(host, port, socket, user, pass, null, null, "", true);
-    }
+	public Mail(String host, String port, String socket, String user, String pass)
+	{
+		this(host, port, socket, user, pass, null, null, "", true);
+	}
 
-    public Mail(String host, String port, String socket, String user, String pass, String from, String subject, String body, boolean isAuthen)
-    {
-        mHost = host;
-        mPort = port;
-        mSport = socket;
+	public Mail(String host, String port, String socket, String user, String pass, String from, String subject, String body, boolean isAuthen)
+	{
+		mHost = host;
+		mPort = port;
+		mSport = socket;
 
-        mUsername = user;
-        mPassword = pass;
-        mFrom = from;
-        mSubject = subject;
-        mBody = body;
+		mUsername = user;
+		mPassword = pass;
+		mFrom = from;
+		mSubject = subject;
+		mBody = body;
 
-        mIsAuth = isAuthen;
+		mIsAuth = isAuthen;
 
-        mMultipart = new MimeMultipart();
+		mMultipart = new MimeMultipart();
 
-        // There is something wrong with MailCap, javamail can not find a handler for the multipart/mixed part, so this bit needs to be added.
-        MailcapCommandMap mailcapCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
-        mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
-        mailcapCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
-        mailcapCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
-        mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
-        mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
-        CommandMap.setDefaultCommandMap(mailcapCommandMap);
-    }
+		// There is something wrong with MailCap, javamail can not find a
+		// handler for the multipart/mixed part, so this bit needs to be added.
+		MailcapCommandMap mailcapCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
+		mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
+		mailcapCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
+		mailcapCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
+		mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
+		mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
+		CommandMap.setDefaultCommandMap(mailcapCommandMap);
+	}
 
-    public boolean send() throws Exception
-    {
-        Properties props = setProperties();
+	public boolean send() throws Exception
+	{
+		Properties props = setProperties();
 
-        mFrom = mUsername;
-        if (!mUsername.equals("") && !mPassword.equals("") && mTos.length > 0 && !mSubject.equals("") && !mBody.equals(""))
-        {
-            Session session = Session.getInstance(props, this);
+		mFrom = mUsername;
+		if (!mUsername.equals("") && !mPassword.equals("") && mTos.length > 0 && !mSubject.equals("") && !mBody.equals(""))
+		{
+			Session session = Session.getInstance(props, this);
 
-            MimeMessage msg = new MimeMessage(session);
+			MimeMessage msg = new MimeMessage(session);
 
-            msg.setFrom(new InternetAddress(mFrom));
+			msg.setFrom(new InternetAddress(mFrom));
 
-            InternetAddress[] addressTo = new InternetAddress[mTos.length];
-            for (int i = 0; i < mTos.length; i++)
-            {
-                addressTo[i] = new InternetAddress(mTos[i]);
-            }
-            msg.setRecipients(MimeMessage.RecipientType.TO, addressTo);
+			InternetAddress[] addressTo = new InternetAddress[mTos.length];
+			for (int i = 0; i < mTos.length; i++)
+			{
+				addressTo[i] = new InternetAddress(mTos[i]);
+			}
+			msg.setRecipients(MimeMessage.RecipientType.TO, addressTo);
 
-            msg.setSubject(mSubject);
-            msg.setSentDate(new Date());
+			msg.setSubject(mSubject);
+			msg.setSentDate(new Date());
 
-            // setup message body
-            BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText(mBody);
-            mMultipart.addBodyPart(messageBodyPart);
+			// setup message body
+			BodyPart messageBodyPart = new MimeBodyPart();
+			messageBodyPart.setText(mBody);
+			mMultipart.addBodyPart(messageBodyPart);
 
-            // Put parts in message
-            msg.setContent(mMultipart);
+			// Put parts in message
+			msg.setContent(mMultipart);
 
-            // send email
-            Transport.send(msg);
+			// send email
+			Transport.send(msg);
 
-            return true;
-        } else
-        {
-            return false;
-        }
-    }
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
-    public void addAttachment(String filename) throws Exception
-    {
-        BodyPart messageBodyPart = new MimeBodyPart();
-        DataSource source = new FileDataSource(filename);
-        messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(filename);
+	public void addAttachment(String filename) throws Exception
+	{
+		BodyPart messageBodyPart = new MimeBodyPart();
+		DataSource source = new FileDataSource(filename);
+		messageBodyPart.setDataHandler(new DataHandler(source));
+		messageBodyPart.setFileName(filename);
 
-        mMultipart.addBodyPart(messageBodyPart);
-    }
+		mMultipart.addBodyPart(messageBodyPart);
+	}
 
-    @Override
-    public PasswordAuthentication getPasswordAuthentication()
-    {
-        return new PasswordAuthentication(mUsername, mPassword);
-    }
+	@Override
+	public PasswordAuthentication getPasswordAuthentication()
+	{
+		return new PasswordAuthentication(mUsername, mPassword);
+	}
 
-    private Properties setProperties()
-    {
-        Properties props = new Properties();
+	private Properties setProperties()
+	{
+		Properties props = new Properties();
 
-        props.put("mail.smtp.host", mHost);
+		props.put("mail.smtp.host", mHost);
 
-        if (BuildConfig.DEBUG)
-        {
-            props.put("mail.debug", "true");
-        }
+		if (BuildConfig.DEBUG)
+		{
+			props.put("mail.debug", "true");
+		}
 
-        if (mIsAuth)
-        {
-            props.put("mail.smtp.auth", "true");
-        }
+		if (mIsAuth)
+		{
+			props.put("mail.smtp.auth", "true");
+		}
 
-        props.put("mail.smtp.port", mPort);
-        props.put("mail.smtp.socketFactory.port", mSport);
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.socketFactory.fallback", "false");
+		props.put("mail.smtp.port", mPort);
+		props.put("mail.smtp.socketFactory.port", mSport);
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.socketFactory.fallback", "false");
 
-        return props;
-    }
+		return props;
+	}
 
-    public String getUsername()
-    {
-        return mUsername;
-    }
+	public String getUsername()
+	{
+		return mUsername;
+	}
 
-    public void setUsername(String username)
-    {
-        mUsername = username;
-    }
+	public void setUsername(String username)
+	{
+		mUsername = username;
+	}
 
-    public String getPassword()
-    {
-        return mPassword;
-    }
+	public String getPassword()
+	{
+		return mPassword;
+	}
 
-    public void setPassword(String password)
-    {
-        mPassword = password;
-    }
+	public void setPassword(String password)
+	{
+		mPassword = password;
+	}
 
-    public String[] getTo()
-    {
-        return mTos;
-    }
+	public String[] getTo()
+	{
+		return mTos;
+	}
 
-    public void setTos(String[] tos)
-    {
-        mTos = tos;
-    }
+	public void setTos(String[] tos)
+	{
+		mTos = tos;
+	}
 
-    public String getSubject()
-    {
-        return mSubject;
-    }
+	public String getSubject()
+	{
+		return mSubject;
+	}
 
-    public void setSubject(String subject)
-    {
-        mSubject = subject;
-    }
+	public void setSubject(String subject)
+	{
+		mSubject = subject;
+	}
 
-    public String getBody()
-    {
-        return mBody;
-    }
+	public String getBody()
+	{
+		return mBody;
+	}
 
-    public void setBody(String body)
-    {
-        mBody = body;
-    }
+	public void setBody(String body)
+	{
+		mBody = body;
+	}
 }

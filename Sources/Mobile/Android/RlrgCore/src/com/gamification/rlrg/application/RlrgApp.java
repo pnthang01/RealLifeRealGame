@@ -15,8 +15,8 @@ import com.google.gson.Gson;
 
 public class RlrgApp extends NghiemBaseApp
 {
-    public static final String TAG = RlrgApp.class.getName();
-    
+	public static final String TAG = RlrgApp.class.getName();
+
 	public static boolean isStart = true;
 
 	private Users users;
@@ -26,21 +26,21 @@ public class RlrgApp extends NghiemBaseApp
 	private Badges badges;
 
 	private static RlrgApp sInstance;
-    
-    public static RlrgApp getInstance()
-    {
-        if (sInstance == null)
-        {
-            synchronized(RlrgApp.class)
-            {
-                if (sInstance == null)
-                {
-                    sInstance = new RlrgApp();
-                }
-            }            
-        }
-        return sInstance;
-    }
+
+	public static RlrgApp getInstance()
+	{
+		if (sInstance == null)
+		{
+			synchronized (RlrgApp.class)
+			{
+				if (sInstance == null)
+				{
+					sInstance = new RlrgApp();
+				}
+			}
+		}
+		return sInstance;
+	}
 
 	@Override
 	public void onCreate()
@@ -58,33 +58,33 @@ public class RlrgApp extends NghiemBaseApp
 
 	public void init()
 	{
-	    initUuid();
-	    initErrorHandle();
-	    
-	    Gson gson = new Gson();
-	    DataPreferencesManager preferences = DataPreferencesManager.getInstance();
-	    
-	    users = (Users) gson.fromJson(preferences.loadJsonUsers(), Users.class);
+		initUuid();
+		initErrorHandle();
+
+		Gson gson = new Gson();
+		DataPreferencesManager preferences = DataPreferencesManager.getInstance();
+
+		users = (Users) gson.fromJson(preferences.loadJsonUsers(), Users.class);
 		badges = (Badges) gson.fromJson(preferences.loadJsonBadges(), Badges.class);
 		categories = (Categories) gson.fromJson(preferences.loadJsonCategories(), Categories.class);
 		tasks = (Tasks) gson.fromJson(preferences.loadJsonTasks(), Tasks.class);
 		achievements = (Achievements) gson.fromJson(preferences.loadJsonAchievements(), Achievements.class);
 	}
-	
-    private void initErrorHandle()
-    {
-        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
-    }
-    
-    private void initUuid()
-    {
-        String lastUuid = DataPreferencesManager.getInstance().getUuid();
-        if (TextUtils.isEmpty(lastUuid) || lastUuid.startsWith("FAKE"))
-        {
-            lastUuid = DeviceManager.getInstance().generateUuid();
-            // TODO: register UUID with server
-        }
-    }
+
+	private void initErrorHandle()
+	{
+		Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
+	}
+
+	private void initUuid()
+	{
+		String lastUuid = DataPreferencesManager.getInstance().getUuid();
+		if (TextUtils.isEmpty(lastUuid) || lastUuid.startsWith("FAKE"))
+		{
+			lastUuid = DeviceManager.getInstance().generateUuid();
+			// TODO: register UUID with server
+		}
+	}
 
 	public Users getUsers()
 	{

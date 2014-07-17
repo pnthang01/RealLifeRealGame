@@ -3,13 +3,12 @@ package nghiem.app.core.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 
-
 public class StorageUtils
 {
 	private StorageUtils()
-    {
-    }
-	
+	{
+	}
+
 	/**
 	 * Get the content from a byte buffer
 	 * 

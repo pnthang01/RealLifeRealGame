@@ -8,15 +8,21 @@
         android:gravity="center"
         android:orientation="vertical" >
 
+        <Spinner
+            android:id="@+id/spinner_category"
+            style="@style/full_width" />
+
         <EditText
             android:id="@+id/edit_name"
             style="@style/full_width"
             android:hint="@string/name"
             android:inputType="textNoSuggestions" />
 
-        <DatePicker
-            android:id="@+id/dpicker_complete"
-            style="@style/full_width" />
+        <EditText
+            android:id="@+id/edit_complete"
+            style="@style/full_width"
+            android:inputType="time"
+            android:hint="@string/complete_time" />
 
         <Spinner
             android:id="@+id/spinner_difficulty"
@@ -29,12 +35,6 @@
             android:digits="true"
             android:hint="@string/point"
             android:inputType="textNoSuggestions" />
-
-        <Button
-            android:id="@+id/btn_login"
-            style="@style/full_width"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="@string/task_create" />
     </LinearLayout>
 
 </ScrollView>

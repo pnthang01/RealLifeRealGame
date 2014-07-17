@@ -22,46 +22,46 @@ public class ActionBarActivity extends NghiemActivity
 	private TextView mActionBarTitle;
 	private Button mBtnActionBarRightText;
 	private ImageButton mBtnActionBarLeft, mBtnActionBarRightOne, mBtnActionBarRightTwo;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		super.setContentView(R.layout.activity_with_actionbar);
-		
+
 		mActionBar = (LinearLayout) findViewById(R.id.actionbar);
 		mMainView = (FrameLayout) findViewById(R.id.main_view);
 		mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
 		mBtnActionBarLeft = (ImageButton) findViewById(R.id.actionbar_btn_left);
 		mBtnActionBarRightOne = (ImageButton) findViewById(R.id.actionbar_btn_right_1);
-        mBtnActionBarRightTwo = (ImageButton) findViewById(R.id.actionbar_btn_right_2);
-        mBtnActionBarRightText = (Button) findViewById(R.id.actionbar_btn_right_text);
-		
+		mBtnActionBarRightTwo = (ImageButton) findViewById(R.id.actionbar_btn_right_2);
+		mBtnActionBarRightText = (Button) findViewById(R.id.actionbar_btn_right_text);
+
 		setActionBarOverLay(false);
 	}
-	
+
 	@Override
 	public void setContentView(int layout)
 	{
-	    LogUtils.log(TAG, "set layout " + layout + " to main view");
+		LogUtils.log(TAG, "set layout " + layout + " to main view");
 		inflate(layout, mMainView);
 	}
-	
-	protected void showActionBar()
+
+	public void showActionBar()
 	{
-	    LogUtils.log(TAG, "show action bar");
+		LogUtils.log(TAG, "show action bar");
 		mActionBar.setVisibility(View.VISIBLE);
 	}
-	
-	protected void hideActionBar()
+
+	public void hideActionBar()
 	{
-	    LogUtils.log(TAG, "hide action bar");
+		LogUtils.log(TAG, "hide action bar");
 		mActionBar.setVisibility(View.GONE);
 	}
-	
-	protected void setActionBarOverLay(boolean isOverlay)
+
+	public void setActionBarOverLay(boolean isOverlay)
 	{
-	    LogUtils.log(TAG, "set action bar overlay: " + isOverlay);
+		LogUtils.log(TAG, "set action bar overlay: " + isOverlay);
 		LayoutParams params = (LayoutParams) mMainView.getLayoutParams();
 		if (isOverlay)
 		{
@@ -75,94 +75,94 @@ public class ActionBarActivity extends NghiemActivity
 		}
 		mMainView.setLayoutParams(params);
 	}
-	
-	protected void setActionBarTitle(int text)
+
+	public void setActionBarTitle(int text)
 	{
-	    LogUtils.log(TAG, "set action bar title id: " + text);
+		LogUtils.log(TAG, "set action bar title id: " + text);
 		mActionBarTitle.setText(text);
 	}
-	
-	protected void setActionBarTitle(CharSequence text)
+
+	public void setActionBarTitle(CharSequence text)
 	{
-	    LogUtils.log(TAG, "set action bar title: " + text);
+		LogUtils.log(TAG, "set action bar title: " + text);
 		mActionBarTitle.setText(text);
 	}
-	
-	protected void setBtnActionBarLeft(Drawable icon, View.OnClickListener callback)
+
+	public void setBtnActionBarLeft(Drawable icon, View.OnClickListener callback)
 	{
 		setActionBarButton(mBtnActionBarLeft, icon, callback);
 	}
-	
-	protected void setBtnActionBarRightOne(Drawable icon, View.OnClickListener callback)
+
+	public void setBtnActionBarRightOne(Drawable icon, View.OnClickListener callback)
 	{
 		setActionBarButton(mBtnActionBarRightOne, icon, callback);
 		if (mBtnActionBarRightText.getVisibility() == View.VISIBLE)
 		{
-		    mBtnActionBarRightText.setVisibility(View.GONE);
+			mBtnActionBarRightText.setVisibility(View.GONE);
 		}
 	}
-    
-    protected void setBtnActionBarRightTwo(Drawable icon, View.OnClickListener callback)
-    {
-        setActionBarButton(mBtnActionBarRightTwo, icon, callback);
-        if (mBtnActionBarRightText.getVisibility() == View.VISIBLE)
-        {
-            mBtnActionBarRightText.setVisibility(View.GONE);
-        }
-    }
-    
-    protected void setBtnActionBarRightText(CharSequence title, View.OnClickListener callback)
-    {
-        if (title != null)
-        {
-            mBtnActionBarRightText.setText(title);
-            mBtnActionBarRightText.setVisibility(View.VISIBLE);
-            mBtnActionBarRightText.setOnClickListener(callback);
-            LogUtils.log(TAG, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
-        }
-        if (mBtnActionBarRightOne.getVisibility() == View.VISIBLE)
-        {
-            mBtnActionBarRightOne.setVisibility(View.GONE);
-        }
-        if (mBtnActionBarRightTwo.getVisibility() == View.VISIBLE)
-        {
-            mBtnActionBarRightTwo.setVisibility(View.GONE);
-        }
-    }
-	
-	protected void setBtnActionBarLeft(int icon, View.OnClickListener callback)
+
+	public void setBtnActionBarRightTwo(Drawable icon, View.OnClickListener callback)
+	{
+		setActionBarButton(mBtnActionBarRightTwo, icon, callback);
+		if (mBtnActionBarRightText.getVisibility() == View.VISIBLE)
+		{
+			mBtnActionBarRightText.setVisibility(View.GONE);
+		}
+	}
+
+	public void setBtnActionBarRightText(CharSequence title, View.OnClickListener callback)
+	{
+		if (title != null)
+		{
+			mBtnActionBarRightText.setText(title);
+			mBtnActionBarRightText.setVisibility(View.VISIBLE);
+			mBtnActionBarRightText.setOnClickListener(callback);
+			LogUtils.log(TAG, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
+		}
+		if (mBtnActionBarRightOne.getVisibility() == View.VISIBLE)
+		{
+			mBtnActionBarRightOne.setVisibility(View.GONE);
+		}
+		if (mBtnActionBarRightTwo.getVisibility() == View.VISIBLE)
+		{
+			mBtnActionBarRightTwo.setVisibility(View.GONE);
+		}
+	}
+
+	public void setBtnActionBarLeft(int icon, View.OnClickListener callback)
 	{
 		setBtnActionBarLeft(getResources().getDrawable(icon), callback);
 	}
-	
-	protected void setBtnActionBarRightOne(int icon, View.OnClickListener callback)
+
+	public void setBtnActionBarRightOne(int icon, View.OnClickListener callback)
 	{
 		setBtnActionBarRightOne(getResources().getDrawable(icon), callback);
 	}
-	
-	protected void setBtnActionBarRightTwo(int icon, View.OnClickListener callback)
+
+	public void setBtnActionBarRightTwo(int icon, View.OnClickListener callback)
 	{
 		setBtnActionBarRightTwo(getResources().getDrawable(icon), callback);
 	}
-	
-	protected void setBtnActionBarLeft(Bitmap icon, View.OnClickListener callback)
+
+	public void setBtnActionBarLeft(Bitmap icon, View.OnClickListener callback)
 	{
 		setBtnActionBarLeft(new BitmapDrawable(getResources(), icon), callback);
 	}
-	
-	protected void setBtnActionBarRightOne(Bitmap icon, View.OnClickListener callback)
+
+	public void setBtnActionBarRightOne(Bitmap icon, View.OnClickListener callback)
 	{
 		setBtnActionBarRightOne(new BitmapDrawable(getResources(), icon), callback);
 	}
-	
-	protected void setBtnActionBarRightTwo(Bitmap icon, View.OnClickListener callback)
+
+	public void setBtnActionBarRightTwo(Bitmap icon, View.OnClickListener callback)
 	{
 		setBtnActionBarRightTwo(new BitmapDrawable(getResources(), icon), callback);
 	}
-	
+
 	private void setActionBarButton(ImageButton view, Drawable icon, View.OnClickListener callback)
 	{
-	    if (icon != null)
+		if (icon != null)
 		{
 			view.setImageDrawable(icon);
 			view.setVisibility(View.VISIBLE);

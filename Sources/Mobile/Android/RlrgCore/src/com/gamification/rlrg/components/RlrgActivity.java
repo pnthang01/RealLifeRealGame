@@ -10,10 +10,10 @@ import com.gamification.rlrg.gen.R;
 
 public class RlrgActivity extends NghiemActivity
 {
-    protected Dialog onCreateDialog(String type)
+	protected Dialog onCreateDialog(String type)
 	{
-        super.onCreateDialog(type);
-        LogUtils.log(TAG, "alert type " + type);
+		super.onCreateDialog(type);
+		LogUtils.log(TAG, "alert type " + type);
 		if (type.equals(DIALOG_NETWORK_NOT_AVAILABLE))
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -29,7 +29,7 @@ public class RlrgActivity extends NghiemActivity
 			builder.setView(inflate(R.layout.dialog_search));
 			builder.setPositiveButton(R.string.ok, null);
 			builder.setNegativeButton(R.string.cancel, null);
-			
+
 			return builder.create();
 		}
 		if (type.equals(DIALOG_EXIT))
@@ -46,7 +46,7 @@ public class RlrgActivity extends NghiemActivity
 				}
 			});
 			builder.setNegativeButton(R.string.cancel, null);
-			
+
 			return builder.create();
 		}
 		return null;

@@ -13,12 +13,12 @@ public class Achievements extends BaseEntity<Achievements.AchievementList>
 	{
 		@SerializedName("Achievements")
 		private List<Achievement> list = new ArrayList<Achievement>();
-		
+
 		public List<Achievement> getElements()
 		{
 			return list;
 		}
-	
+
 		public void setElements(List<Achievement> list)
 		{
 			this.list = list;

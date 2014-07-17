@@ -3,6 +3,7 @@
 
     <string name="app_name">RLRG</string>
     <string name="name">Name</string>
+    <string name="complete_time">Complete Time</string>
     <string name="point">Point</string>
     <string name="task_create">Create task</string>
     <string name="username">Username</string>

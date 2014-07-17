@@ -13,12 +13,12 @@ public class Badges extends BaseEntity<Badges.BadgeList>
 	{
 		@SerializedName("Badges")
 		private List<Badge> list = new ArrayList<Badge>();
-		
+
 		public List<Badge> getElements()
 		{
 			return list;
 		}
-	
+
 		public void setElements(List<Badge> list)
 		{
 			this.list = list;

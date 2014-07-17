@@ -22,118 +22,118 @@ import nghiem.app.core.utils.LogUtils;
 
 public class NghiemActivity extends FragmentActivity
 {
-    public static final String DIALOG_NETWORK_NOT_AVAILABLE = "NETWORK_NOT_AVAILABLE";
+	public static final String DIALOG_NETWORK_NOT_AVAILABLE = "NETWORK_NOT_AVAILABLE";
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
-	
-	public interface OnResumeListener
-    {
-        public void onResume();
-    }
-    
-    public interface OnPauseListener
-    {
-        public void onPause();
-    }
-    
-    public interface OnStopListener
-    {
-        public void onStop();
-    }
-    
-    protected String TAG = getClass().getName();
-	
-    private OnResumeListener mResumeCallback;
-    private OnPauseListener mPauseCallback;
-    private OnStopListener mStopCallback;
-    
-    private Handler mHandler;
 
-    public Handler getHandler()
-    {
-        if (mHandler == null)
-        {
-            mHandler = new Handler(Looper.getMainLooper())
-            {
-                @Override
-                public void handleMessage(Message msg)
-                {
-                    super.handleMessage(msg);
-                    NghiemActivity.this.handleMessage(msg);
-                }
-            };
-        }
-        return mHandler;
-    }
+	public interface OnResumeListener
+	{
+		public void onResume();
+	}
+
+	public interface OnPauseListener
+	{
+		public void onPause();
+	}
+
+	public interface OnStopListener
+	{
+		public void onStop();
+	}
+
+	protected String TAG = getClass().getName();
+
+	private OnResumeListener mResumeCallback;
+	private OnPauseListener mPauseCallback;
+	private OnStopListener mStopCallback;
+
+	private Handler mHandler;
+
+	public Handler getHandler()
+	{
+		if (mHandler == null)
+		{
+			mHandler = new Handler(Looper.getMainLooper())
+			{
+				@Override
+				public void handleMessage(Message msg)
+				{
+					super.handleMessage(msg);
+					NghiemActivity.this.handleMessage(msg);
+				}
+			};
+		}
+		return mHandler;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	protected void onResume()
 	{
-	    super.onResume();
-	    mResumeCallback.onResume();
+		super.onResume();
+		mResumeCallback.onResume();
 	}
-	
+
 	@Override
 	protected void onPause()
 	{
-	    super.onPause();
-	    mPauseCallback.onPause();
+		super.onPause();
+		mPauseCallback.onPause();
 	}
-	
+
 	@Override
 	protected void onStop()
 	{
-	    super.onStop();
-	    mStopCallback.onStop();
+		super.onStop();
+		mStopCallback.onStop();
 	}
-	
+
 	protected View inflate(int layout)
 	{
-	    LogUtils.log(TAG, "inflate " + layout);
+		LogUtils.log(TAG, "inflate " + layout);
 		return inflate(layout, new FrameLayout(this));
 	}
-	
+
 	protected View inflate(int layout, ViewGroup root)
 	{
-	    LogUtils.log(TAG, "inflate " + layout + " to " + root.toString());
+		LogUtils.log(TAG, "inflate " + layout + " to " + root.toString());
 		return getLayoutInflater().inflate(layout, root);
 	}
-	
+
 	protected View inflate(int layout, ViewGroup root, boolean attachToRoot)
 	{
-	    LogUtils.log(TAG, "inflate " + layout + " no attach to " + root.toString());
+		LogUtils.log(TAG, "inflate " + layout + " no attach to " + root.toString());
 		return getLayoutInflater().inflate(layout, root, attachToRoot);
 	}
-	
-	protected void addFragment(int container, Fragment child)
+
+	public void addFragment(int container, Fragment child)
 	{
-	    LogUtils.log(TAG, "add fragment " + child.toString() + " to " + container);
+		LogUtils.log(TAG, "add fragment " + child.toString() + " to " + container);
 		getSupportFragmentManager().beginTransaction().addToBackStack(null).add(container, child).commit();
 	}
-	
-	protected void replaceFragment(int container, Fragment child)
+
+	public void replaceFragment(int container, Fragment child)
 	{
-	    LogUtils.log(TAG, "replace fragment " + child.toString() + " to " + container);
+		LogUtils.log(TAG, "replace fragment " + child.toString() + " to " + container);
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.popBackStack();
 		fragmentManager.beginTransaction().addToBackStack(null).replace(container, child).commit();
 	}
-	
-	protected void showDialog(String type, boolean isCancelable)
+
+	public void showDialog(String type, boolean isCancelable)
 	{
 		final Dialog dialog = onCreateDialog(type);
 		if (dialog == null)
 		{
-		    LogUtils.logError(TAG, "cannot create dialog type " + type);
+			LogUtils.logError(TAG, "cannot create dialog type " + type);
 			return;
 		}
-		
+
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		Fragment oldFragment = fragmentManager.findFragmentByTag(type);
@@ -142,7 +142,7 @@ public class NghiemActivity extends FragmentActivity
 			fragmentTransaction.remove(oldFragment);
 			fragmentTransaction.commitAllowingStateLoss();
 		}
-		
+
 		DialogFragment baseDialogFragment = new DialogFragment()
 		{
 			@Override
@@ -154,90 +154,90 @@ public class NghiemActivity extends FragmentActivity
 		baseDialogFragment.setCancelable(isCancelable);
 		baseDialogFragment.show(fragmentManager, type);
 	}
-	
-	protected Dialog onCreateDialog(String type)
+
+	public Dialog onCreateDialog(String type)
 	{
 		if (type == null)
 		{
-		    LogUtils.logError(TAG, "type is null");
+			LogUtils.logError(TAG, "type is null");
 			return null;
 		}
 		return null;
 	}
-	
+
 	public void toast(CharSequence msg)
 	{
-	    LogUtils.log(TAG, "toast: " + msg);
+		LogUtils.log(TAG, "toast: " + msg);
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
-	
+
 	public void toast(int msg)
 	{
 		String text = getResources().getString(msg);
 		LogUtils.log(TAG, "toast id: " + text);
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 	}
-	
+
 	public void alert(CharSequence title, CharSequence message)
 	{
-	    LogUtils.log(TAG, "alert " + title + " width message: " + message);
+		LogUtils.log(TAG, "alert " + title + " width message: " + message);
 		new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton(R.string.ok, null).show();
 	}
-	
+
 	public void alert(CharSequence message)
 	{
-	    LogUtils.log(TAG, "warning: " + message);
+		LogUtils.log(TAG, "warning: " + message);
 		alert("Warning", message);
 	}
-	
+
 	public void alert(int title, int message)
 	{
 		String textTitle = getResources().getString(title);
 		String textMessage = getResources().getString(message);
 		alert(textTitle, textMessage);
 	}
-	
+
 	public void alert(int message)
 	{
 		String textMessage = getResources().getString(message);
 		alert(textMessage);
 	}
-	
+
 	public void showToast(String message)
-    {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
+	{
+		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+	}
 
-    public void showDebugToast(String message)
-    {
-        if (BuildConfig.DEBUG)
-        {
-            showToast(message);
-            LogUtils.log(TAG, message);
-        }
-    }
+	public void showDebugToast(String message)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			showToast(message);
+			LogUtils.log(TAG, message);
+		}
+	}
 
-    /**
-     * Handling the message which sent by {@link #sendMessage(int, int)}
-     * 
-     * @param message
-     */
-    public void handleMessage(Message message)
-    {
-    }
+	/**
+	 * Handling the message which sent by {@link #sendMessage(int, int)}
+	 * 
+	 * @param message
+	 */
+	public void handleMessage(Message message)
+	{
+	}
 
-    public void setOnResumeCallback(OnResumeListener callback)
-    {
-        mResumeCallback = callback;
-    }
+	public void setOnResumeCallback(OnResumeListener callback)
+	{
+		mResumeCallback = callback;
+	}
 
-    public void setPauseCallback(OnPauseListener callback)
-    {
-        mPauseCallback = callback;
-    }
+	public void setPauseCallback(OnPauseListener callback)
+	{
+		mPauseCallback = callback;
+	}
 
-    public void setStopCallback(OnStopListener callback)
-    {
-        mStopCallback = callback;
-    }
+	public void setStopCallback(OnStopListener callback)
+	{
+		mStopCallback = callback;
+	}
 }

@@ -24,30 +24,30 @@ import android.widget.TextView;
 
 public class LoginFragment extends Fragment implements AnimationListener, OnClickListener
 {
-    private static final String TAG = LoginFragment.class.getName();
-    
+	private static final String TAG = LoginFragment.class.getName();
+
 	private StartActivity mActivity;
 	private LinearLayout mLayoutLogin;
 	private TextView mTxtLogo;
 	private EditText mEdtUsername, mEdtPassword;
 	private Button mBtnLogin;
 	private LayoutParams mLogoParams;
-	
+
 	private int mScreenHeight = 0;
-	
+
 	public static Fragment newInstance()
 	{
 		return new LoginFragment();
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		if (container == null)
 		{
-	        return null;
-	    }
-		
+			return null;
+		}
+
 		mActivity = (StartActivity) getActivity();
 		RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.fragment_login, container, false);
 		mLayoutLogin = (LinearLayout) root.findViewById(R.id.layout_login);
@@ -55,23 +55,23 @@ public class LoginFragment extends Fragment implements AnimationListener, OnClic
 		mEdtUsername = (EditText) root.findViewById(R.id.edit_username);
 		mEdtPassword = (EditText) root.findViewById(R.id.edit_password);
 		mBtnLogin = (Button) root.findViewById(R.id.btn_login);
-		
+
 		mScreenHeight = DeviceManager.getInstance().getScreenHeight();
 		mLogoParams = mTxtLogo.getLayoutParams();
 		mBtnLogin.setOnClickListener(this);
 		return root;
 	}
-	
+
 	public void onStart()
 	{
 		super.onStart();
-		
+
 		if (getActivity() != null)
 		{
 			showLoginForm();
 		}
 	}
-	
+
 	private void showLoginForm()
 	{
 		Animation animation = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.show_login_form);

@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName;
 public class BaseEntity<Data>
 {
 	@SerializedName("ErrorCode")
-	private String error ="";
-	
+	private String error = "";
+
 	@SerializedName("Msg")
 	private String message = "";
-	
+
 	@SerializedName("data")
 	private Data data;
 

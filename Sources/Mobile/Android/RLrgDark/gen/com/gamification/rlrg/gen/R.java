@@ -69,12 +69,12 @@ public final class R {
 		public static final int actionbar_btn_right_2 = 0x7f0a0004;
 		public static final int actionbar_btn_right_text = 0x7f0a0006;
 		public static final int actionbar_title = 0x7f0a0003;
-		public static final int btn_login = 0x7f0a0010;
-		public static final int dpicker_complete = 0x7f0a000d;
+		public static final int btn_login = 0x7f0a0015;
 		public static final int drawer_layout = 0x7f0a0008;
-		public static final int edit_name = 0x7f0a000c;
+		public static final int edit_complete = 0x7f0a000e;
+		public static final int edit_name = 0x7f0a000d;
 		public static final int edit_password = 0x7f0a0014;
-		public static final int edit_point = 0x7f0a000f;
+		public static final int edit_point = 0x7f0a0010;
 		public static final int edit_username = 0x7f0a0013;
 		public static final int fragment_container = 0x7f0a0000;
 		public static final int layout_login = 0x7f0a0012;
@@ -82,13 +82,14 @@ public final class R {
 		public static final int main_view = 0x7f0a0007;
 		public static final int navigation = 0x7f0a0009;
 		public static final int navigation_list = 0x7f0a000a;
-		public static final int pager = 0x7f0a0015;
-		public static final int pager_strip = 0x7f0a0016;
-		public static final int progress_bar = 0x7f0a0017;
+		public static final int pager = 0x7f0a0016;
+		public static final int pager_strip = 0x7f0a0017;
+		public static final int progress_bar = 0x7f0a0018;
 		public static final int search_box = 0x7f0a000b;
-		public static final int spinner_difficulty = 0x7f0a000e;
-		public static final int title = 0x7f0a0019;
-		public static final int webview = 0x7f0a0018;
+		public static final int spinner_category = 0x7f0a000c;
+		public static final int spinner_difficulty = 0x7f0a000f;
+		public static final int title = 0x7f0a001a;
+		public static final int webview = 0x7f0a0019;
 	}
 	public static final class layout {
 		public static final int activity_start = 0x7f030000;
@@ -116,25 +117,26 @@ public final class R {
 		public static final int app_name = 0x7f060007;
 		public static final int cancel = 0x7f06000b;
 		public static final int close = 0x7f060012;
+		public static final int complete_time = 0x7f060017;
 		public static final int default_email_password = 0x7f060015;
 		public static final int default_email_username = 0x7f060014;
 		public static final int drawer_close = 0x7f060006;
 		public static final int drawer_open = 0x7f060005;
 		public static final int list_empty = 0x7f060013;
-		public static final int login = 0x7f06001b;
-		public static final int login_failed_message = 0x7f06001c;
+		public static final int login = 0x7f06001c;
+		public static final int login_failed_message = 0x7f06001d;
 		public static final int message_no_internet_connection = 0x7f060010;
 		public static final int name = 0x7f060016;
 		public static final int no = 0x7f06000d;
 		public static final int no_internet_connection = 0x7f06000f;
 		public static final int ok = 0x7f06000a;
 		public static final int open = 0x7f060011;
-		public static final int password = 0x7f06001a;
-		public static final int point = 0x7f060017;
+		public static final int password = 0x7f06001b;
+		public static final int point = 0x7f060018;
 		public static final int quit_app = 0x7f060008;
 		public static final int quit_app_message = 0x7f060009;
-		public static final int task_create = 0x7f060018;
-		public static final int username = 0x7f060019;
+		public static final int task_create = 0x7f060019;
+		public static final int username = 0x7f06001a;
 		public static final int yes = 0x7f06000c;
 	}
 	public static final class style {

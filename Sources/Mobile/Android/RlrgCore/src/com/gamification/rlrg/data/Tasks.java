@@ -13,12 +13,12 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 	{
 		@SerializedName("Task")
 		private List<Task> list = new ArrayList<Task>();
-		
+
 		public List<Task> getElements()
 		{
 			return list;
 		}
-	
+
 		public void setElements(List<Task> list)
 		{
 			this.list = list;

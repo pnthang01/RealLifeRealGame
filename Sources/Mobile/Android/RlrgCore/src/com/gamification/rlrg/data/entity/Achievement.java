@@ -4,42 +4,42 @@ import com.google.gson.annotations.SerializedName;
 
 public class Achievement
 {
-    @SerializedName("ID")
-    private String id = "";
-    
-    @SerializedName("Badge")
-    private Badge badge = new Badge();
-    
-    @SerializedName("AchievedTime")
-    private long achievedTime;
+	@SerializedName("ID")
+	private String id = "";
 
-    public String getId()
-    {
-        return id;
-    }
+	@SerializedName("Badge")
+	private Badge badge = new Badge();
 
-    public void setId(String id)
-    {
-        this.id = id;
-    }
+	@SerializedName("AchievedTime")
+	private long achievedTime;
 
-    public Badge getBadge()
-    {
-        return badge;
-    }
+	public String getId()
+	{
+		return id;
+	}
 
-    public void setBadge(Badge badge)
-    {
-        this.badge = badge;
-    }
+	public void setId(String id)
+	{
+		this.id = id;
+	}
 
-    public long getAchievedTime()
-    {
-        return achievedTime;
-    }
+	public Badge getBadge()
+	{
+		return badge;
+	}
 
-    public void setAchievedTime(long achievedTime)
-    {
-        this.achievedTime = achievedTime;
-    }
+	public void setBadge(Badge badge)
+	{
+		this.badge = badge;
+	}
+
+	public long getAchievedTime()
+	{
+		return achievedTime;
+	}
+
+	public void setAchievedTime(long achievedTime)
+	{
+		this.achievedTime = achievedTime;
+	}
 }

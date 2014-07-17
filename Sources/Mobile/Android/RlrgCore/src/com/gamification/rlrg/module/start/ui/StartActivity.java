@@ -21,14 +21,14 @@ import com.gamification.rlrg.module.task.ui.TaskFragment;
 public class StartActivity extends NavigationActivity implements Runnable
 {
 	private String[] mNavigationTitles;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
 		getCoreApp().init();
-		
+
 		mNavigationTitles = getResources().getStringArray(R.array.navigation);
 		List<NavigationData> list = new ArrayList<NavigationData>();
 		for (String title : mNavigationTitles)
@@ -36,7 +36,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 			list.add(new NavigationData(title, getResources().getDrawable(R.drawable.ic_drawer_black)));
 		}
 		setNavigationData(list);
-		
+
 		setBtnActionBarRightOne(android.R.drawable.ic_search_category_default, new OnClickListener()
 		{
 			@Override
@@ -45,7 +45,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 				showDialog(DIALOG_SEARCH, true);
 			}
 		});
-		
+
 		if (RlrgApp.isStart)
 		{
 			hideActionBar();
@@ -57,12 +57,12 @@ public class StartActivity extends NavigationActivity implements Runnable
 		}
 		addFragment(R.id.fragment_container, LoginFragment.newInstance());
 	}
-	
+
 	public RlrgApp getCoreApp()
 	{
 		return (RlrgApp) getApplication();
 	}
-	
+
 	@Override
 	protected void onNavigationItemClick(ListView adapter, View view, int position, long id)
 	{
@@ -71,7 +71,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 		args.putString("title", mNavigationTitles[position]);
 		Fragment fragment = new Fragment();
 		int bgId = 0;
-		
+
 		switch (position)
 		{
 			case 0:
@@ -87,12 +87,12 @@ public class StartActivity extends NavigationActivity implements Runnable
 		fragment.setArguments(args);
 		replaceFragment(fragment);
 	}
-	
+
 	protected void replaceFragment(Fragment child)
 	{
 		replaceFragment(R.id.fragment_container, child);
 	}
-	
+
 	@Override
 	public void run()
 	{
@@ -100,7 +100,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 		setActionBarOverLay(false);
 		RlrgApp.isStart = false;
 	}
-	
+
 	public void onBtnLoginClick(View view)
 	{
 		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
@@ -112,7 +112,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 		setActionBarOverLay(false);
 		showActionBar();
 	}
-	
+
 	@Override
 	public void onBackPressed()
 	{
