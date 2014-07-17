@@ -51,16 +51,17 @@ public final class R {
         public static int actionbar_btn_left=0x7f080001;
         public static int actionbar_btn_right_1=0x7f080004;
         public static int actionbar_btn_right_2=0x7f080003;
+        public static int actionbar_btn_right_text=0x7f080005;
         public static int actionbar_title=0x7f080002;
-        public static int drawer_layout=0x7f080006;
-        public static int main_view=0x7f080005;
-        public static int navigation=0x7f080007;
-        public static int navigation_list=0x7f080008;
-        public static int pager=0x7f080009;
-        public static int pager_strip=0x7f08000a;
-        public static int progress_bar=0x7f08000b;
-        public static int title=0x7f08000d;
-        public static int webview=0x7f08000c;
+        public static int drawer_layout=0x7f080007;
+        public static int main_view=0x7f080006;
+        public static int navigation=0x7f080008;
+        public static int navigation_list=0x7f080009;
+        public static int pager=0x7f08000a;
+        public static int pager_strip=0x7f08000b;
+        public static int progress_bar=0x7f08000c;
+        public static int title=0x7f08000e;
+        public static int webview=0x7f08000d;
     }
     public static final class layout {
         public static int activity_with_actionbar=0x7f030000;
@@ -77,21 +78,24 @@ public final class R {
         public static int action_bar_btn_left=0x7f050001;
         public static int action_bar_btn_right_1=0x7f050002;
         public static int action_bar_btn_right_2=0x7f050003;
-        public static int action_search=0x7f05000d;
-        public static int app_name=0x7f050006;
-        public static int cancel=0x7f05000a;
-        public static int close=0x7f050011;
-        public static int drawer_close=0x7f050005;
-        public static int drawer_open=0x7f050004;
-        public static int list_empty=0x7f050012;
-        public static int message_no_internet_connection=0x7f05000f;
-        public static int no=0x7f05000c;
-        public static int no_internet_connection=0x7f05000e;
-        public static int ok=0x7f050009;
-        public static int open=0x7f050010;
-        public static int quit_app=0x7f050007;
-        public static int quit_app_message=0x7f050008;
-        public static int yes=0x7f05000b;
+        public static int action_bar_btn_right_text=0x7f050004;
+        public static int action_search=0x7f05000e;
+        public static int app_name=0x7f050007;
+        public static int cancel=0x7f05000b;
+        public static int close=0x7f050012;
+        public static int default_email_password=0x7f050015;
+        public static int default_email_username=0x7f050014;
+        public static int drawer_close=0x7f050006;
+        public static int drawer_open=0x7f050005;
+        public static int list_empty=0x7f050013;
+        public static int message_no_internet_connection=0x7f050010;
+        public static int no=0x7f05000d;
+        public static int no_internet_connection=0x7f05000f;
+        public static int ok=0x7f05000a;
+        public static int open=0x7f050011;
+        public static int quit_app=0x7f050008;
+        public static int quit_app_message=0x7f050009;
+        public static int yes=0x7f05000c;
     }
     public static final class style {
         public static int app_theme=0x7f070000;

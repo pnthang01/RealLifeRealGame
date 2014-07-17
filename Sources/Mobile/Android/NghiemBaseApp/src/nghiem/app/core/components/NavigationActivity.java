@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import nghiem.app.gen.R;
 import nghiem.app.core.data.NavigationData;
-import nghiem.app.core.utils.Utils;
+import nghiem.app.core.utils.LogUtils;
 
 public class NavigationActivity extends NghiemActivity
 {
@@ -90,7 +90,7 @@ public class NavigationActivity extends NghiemActivity
 			@Override
 			public void onClick(View v)
 			{
-			    Utils.log(TAG, "open navigation");
+			    LogUtils.log(TAG, "open navigation");
 				mDrawerLayout.openDrawer(mNavigation);
 			}
 		});
@@ -109,7 +109,7 @@ public class NavigationActivity extends NghiemActivity
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id)
 			{
-			    Utils.log(TAG, "navigator item " + position + "clicked");
+			    LogUtils.log(TAG, "navigator item " + position + "clicked");
 				onNavigationItemClick((ListView) adapter, view, position, id);
 			}
 		});
@@ -126,19 +126,19 @@ public class NavigationActivity extends NghiemActivity
 	@Override
 	public void setContentView(int layout)
 	{
-	    Utils.log(TAG, "set layout " + layout + " to main view");
+	    LogUtils.log(TAG, "set layout " + layout + " to main view");
 		inflate(layout, mMainView);
 	}
 	
 	protected void setNavigationData(List<NavigationData> data)
 	{
-		Utils.log(TAG, "set navigation data: " + data.toString());
+	    LogUtils.log(TAG, "set navigation data: " + data.toString());
 		mNavigationData = data.toArray(new NavigationData[data.size()]);
 	}
 	
 	protected void setNavigationData(NavigationData[] data)
 	{
-		Utils.log(TAG, "set navigation data: " + data.toString());
+	    LogUtils.log(TAG, "set navigation data: " + data.toString());
 		mNavigationData = data;
 	}
 	
@@ -150,19 +150,19 @@ public class NavigationActivity extends NghiemActivity
 	
 	protected void showActionBar()
 	{
-		Utils.log(TAG, "show action bar");
+	    LogUtils.log(TAG, "show action bar");
 		mActionBar.setVisibility(View.VISIBLE);
 	}
 	
 	protected void hideActionBar()
 	{
-		Utils.log(TAG, "hide action bar");
+	    LogUtils.log(TAG, "hide action bar");
 		mActionBar.setVisibility(View.GONE);
 	}
 	
 	protected void setActionBarOverLay(boolean isOverlay)
 	{
-		Utils.log(TAG, "set action bar overlay: " + isOverlay);
+	    LogUtils.log(TAG, "set action bar overlay: " + isOverlay);
 		LayoutParams params = (LayoutParams) mMainView.getLayoutParams();
 		if (isOverlay)
 		{
@@ -179,13 +179,13 @@ public class NavigationActivity extends NghiemActivity
 	
 	protected void setActionBarTitle(int text)
 	{
-		Utils.log(TAG, "set action bar title id: " + text);
+	    LogUtils.log(TAG, "set action bar title id: " + text);
 		mActionBarTitle.setText(text);
 	}
 	
 	public void setActionBarTitle(CharSequence text)
 	{
-		Utils.log(TAG, "set action bar title: " + text);
+	    LogUtils.log(TAG, "set action bar title: " + text);
 		mActionBarTitle.setText(text);
 	}
 	

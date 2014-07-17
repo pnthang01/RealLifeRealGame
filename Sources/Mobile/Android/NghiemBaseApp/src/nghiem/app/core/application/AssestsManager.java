@@ -1,9 +1,9 @@
-package com.gamification.rlrg.application;
+package nghiem.app.core.application;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import nghiem.app.core.utils.Utils;
+import nghiem.app.core.utils.LogUtils;
 
 
 public class AssestsManager
@@ -15,12 +15,12 @@ public class AssestsManager
 	{
 		try
         {
-            Scanner scanner = new Scanner(CoreApp.getInstance().getAssets().open(path)).useDelimiter("\\A");
+            Scanner scanner = new Scanner(NghiemBaseApp.getInstance().getAssets().open(path)).useDelimiter("\\A");
             return scanner.hasNext() ? scanner.next() : "";
         }
         catch (IOException e)
         {
-        	Utils.logError(TAG, "Load data from " + path + " error!", e);
+        	LogUtils.logError(TAG, "Load data from " + path + " error!", e);
         	return null;
         }
 	}

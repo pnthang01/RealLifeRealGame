@@ -44,6 +44,13 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/action_bar_btn_right_1"
             android:visibility="gone" />
+
+        <Button
+            android:id="@+id/actionbar_btn_right_text"
+            style="@style/full_height"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/action_bar_btn_right_text"
+            android:visibility="gone" />
     </LinearLayout>
 
     <FrameLayout

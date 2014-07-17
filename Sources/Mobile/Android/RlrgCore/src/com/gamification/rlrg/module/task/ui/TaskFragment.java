@@ -7,7 +7,7 @@ import nghiem.app.core.components.ViewPagerFragment;
 
 import android.support.v4.app.Fragment;
 
-import com.gamification.rlrg.application.CoreApp;
+import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
@@ -22,7 +22,7 @@ public class TaskFragment extends ViewPagerFragment
 		pages.add(MonthFragment.newInstance());
 		pages.add(YearFragment.newInstance());
 		
-		String[] titles = CoreApp.getInstance().getResources().getStringArray(R.array.task);
+		String[] titles = RlrgApp.getInstance().getResources().getStringArray(R.array.task);
 		
 		return new TaskFragment(pages, titles, TYPE_NORMAL);
 	}

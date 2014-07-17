@@ -1,41 +1,45 @@
 package com.gamification.rlrg.application;
 
+import nghiem.app.core.application.AssestsManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.gamification.rlrg.gen.R;
+import com.gamification.rlrg.settings.Settings;
 
-public class DataPreferences
+public class DataPreferencesManager
 {
-	public static final String JSON_USERS = "JSON_USERS";
+    public static final String PREFERENCE_UUID = "uuid";
+    
+    public static final String JSON_USERS = "JSON_USERS";
 	public static final String JSON_CATEGORIES = "JSON_CATEGORIES";
 	public static final String JSON_BADGES = "JSON_BADGES";
 	public static final String JSON_TASKS = "JSON_TASKS";
 	public static final String JSON_ACHIEVEMENTS = "JSON_ACHIEVEMENTS";
 	
-	private static DataPreferences sInstance;
+	private static DataPreferencesManager sInstance;
 
     private Context mContext;
     private SharedPreferences mSharedPreferences;
 
-    public static DataPreferences getInstance()
+    public static DataPreferencesManager getInstance()
     {
         if (sInstance == null)
         {
-            synchronized(DataPreferences.class)
+            synchronized(DataPreferencesManager.class)
             {
                 if (sInstance == null)
                 {
-                    sInstance = new DataPreferences();
+                    sInstance = new DataPreferencesManager();
                 }
             }            
         }
         return sInstance;
     }
 	
-	private DataPreferences()
+	private DataPreferencesManager()
 	{
-	    mContext = CoreApp.getInstance();
+	    mContext = RlrgApp.getInstance();
 	}
 	
 	public SharedPreferences getSharedPreferences(String fileName)
@@ -52,6 +56,22 @@ public class DataPreferences
         return getSharedPreferences(mContext.getResources().getString(R.string.app_name) + ".txt");
     }
     
+    /**
+     * Get the Device ID
+     */
+    public final String getUuid()
+    {
+        return getStorage().getString(PREFERENCE_UUID, "");
+    }
+
+    /**
+     * Save the Device ID
+     */
+    public void saveUuid(String uuid)
+    {
+        getStorage().edit().putString(PREFERENCE_UUID, uuid).commit();
+    }
+
     public void saveJsonUsers(String json)
     {
     	getStorage().edit().putString(JSON_USERS, json).commit();
@@ -79,26 +99,26 @@ public class DataPreferences
     
     public String loadJsonUsers()
     {
-    	return getStorage().getString(JSON_USERS, AssestsManager.getData(Defination.Assets.Data.USERS));
+    	return getStorage().getString(JSON_USERS, AssestsManager.getData(Settings.Assets.Data.USERS));
     }
     
     public String loadJsonBadges()
     {
-    	return getStorage().getString(JSON_BADGES, AssestsManager.getData(Defination.Assets.Data.BADGES));
+    	return getStorage().getString(JSON_BADGES, AssestsManager.getData(Settings.Assets.Data.BADGES));
     }
     
     public String loadJsonCategories()
     {
-    	return getStorage().getString(JSON_CATEGORIES, AssestsManager.getData(Defination.Assets.Data.CATEGORIES));
+    	return getStorage().getString(JSON_CATEGORIES, AssestsManager.getData(Settings.Assets.Data.CATEGORIES));
     }
     
     public String loadJsonTasks()
     {
-    	return getStorage().getString(JSON_TASKS, AssestsManager.getData(Defination.Assets.Data.TASKS));
+    	return getStorage().getString(JSON_TASKS, AssestsManager.getData(Settings.Assets.Data.TASKS));
     }
     
     public String loadJsonAchievements()
     {
-    	return getStorage().getString(JSON_ACHIEVEMENTS, AssestsManager.getData(Defination.Assets.Data.ACHIEVEMENTS));
+    	return getStorage().getString(JSON_ACHIEVEMENTS, AssestsManager.getData(Settings.Assets.Data.ACHIEVEMENTS));
     }
 }

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
-import com.gamification.rlrg.application.CoreApp;
+import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.login.ui.LoginFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
@@ -46,7 +46,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 			}
 		});
 		
-		if (CoreApp.isStart)
+		if (RlrgApp.isStart)
 		{
 			hideActionBar();
 		}
@@ -58,9 +58,9 @@ public class StartActivity extends NavigationActivity implements Runnable
 		addFragment(R.id.fragment_container, LoginFragment.newInstance());
 	}
 	
-	public CoreApp getCoreApp()
+	public RlrgApp getCoreApp()
 	{
-		return (CoreApp) getApplication();
+		return (RlrgApp) getApplication();
 	}
 	
 	@Override
@@ -98,7 +98,7 @@ public class StartActivity extends NavigationActivity implements Runnable
 	{
 		showActionBar();
 		setActionBarOverLay(false);
-		CoreApp.isStart = false;
+		RlrgApp.isStart = false;
 	}
 	
 	public void onBtnLoginClick(View view)

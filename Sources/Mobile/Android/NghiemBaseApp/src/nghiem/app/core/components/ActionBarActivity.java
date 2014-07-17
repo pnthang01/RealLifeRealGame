@@ -1,13 +1,14 @@
 package nghiem.app.core.components;
 
 import nghiem.app.gen.R;
-import nghiem.app.core.utils.Utils;
+import nghiem.app.core.utils.LogUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ public class ActionBarActivity extends NghiemActivity
 	private LinearLayout mActionBar;
 	private FrameLayout mMainView;
 	private TextView mActionBarTitle;
+	private Button mBtnActionBarRightText;
 	private ImageButton mBtnActionBarLeft, mBtnActionBarRightOne, mBtnActionBarRightTwo;
 	
 	@Override
@@ -32,7 +34,8 @@ public class ActionBarActivity extends NghiemActivity
 		mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
 		mBtnActionBarLeft = (ImageButton) findViewById(R.id.actionbar_btn_left);
 		mBtnActionBarRightOne = (ImageButton) findViewById(R.id.actionbar_btn_right_1);
-		mBtnActionBarRightTwo = (ImageButton) findViewById(R.id.actionbar_btn_right_2);
+        mBtnActionBarRightTwo = (ImageButton) findViewById(R.id.actionbar_btn_right_2);
+        mBtnActionBarRightText = (Button) findViewById(R.id.actionbar_btn_right_text);
 		
 		setActionBarOverLay(false);
 	}
@@ -40,25 +43,25 @@ public class ActionBarActivity extends NghiemActivity
 	@Override
 	public void setContentView(int layout)
 	{
-	    Utils.log(TAG, "set layout " + layout + " to main view");
+	    LogUtils.log(TAG, "set layout " + layout + " to main view");
 		inflate(layout, mMainView);
 	}
 	
 	protected void showActionBar()
 	{
-	    Utils.log(TAG, "show action bar");
+	    LogUtils.log(TAG, "show action bar");
 		mActionBar.setVisibility(View.VISIBLE);
 	}
 	
 	protected void hideActionBar()
 	{
-	    Utils.log(TAG, "hide action bar");
+	    LogUtils.log(TAG, "hide action bar");
 		mActionBar.setVisibility(View.GONE);
 	}
 	
 	protected void setActionBarOverLay(boolean isOverlay)
 	{
-	    Utils.log(TAG, "set action bar overlay: " + isOverlay);
+	    LogUtils.log(TAG, "set action bar overlay: " + isOverlay);
 		LayoutParams params = (LayoutParams) mMainView.getLayoutParams();
 		if (isOverlay)
 		{
@@ -75,13 +78,13 @@ public class ActionBarActivity extends NghiemActivity
 	
 	protected void setActionBarTitle(int text)
 	{
-	    Utils.log(TAG, "set action bar title id: " + text);
+	    LogUtils.log(TAG, "set action bar title id: " + text);
 		mActionBarTitle.setText(text);
 	}
 	
 	protected void setActionBarTitle(CharSequence text)
 	{
-	    Utils.log(TAG, "set action bar title: " + text);
+	    LogUtils.log(TAG, "set action bar title: " + text);
 		mActionBarTitle.setText(text);
 	}
 	
@@ -132,7 +135,7 @@ public class ActionBarActivity extends NghiemActivity
 	
 	private void setActionBarButton(ImageButton view, Drawable icon, View.OnClickListener callback)
 	{
-	    Utils.log(TAG, "set action bar button " + view.toString() + "with icon " + icon.toString());
+	    LogUtils.log(TAG, "set action bar button " + view.toString() + "with icon " + icon.toString());
 		if (icon != null)
 		{
 			view.setImageDrawable(icon);

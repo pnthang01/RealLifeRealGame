@@ -13,5 +13,8 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="list_empty">Empty</string>
+    
+    <string name="default_email_username">le.vinhnghiem@gmail.com</string>
+    <string name="default_email_password">He!1@ngeI</string>
 
 </resources>

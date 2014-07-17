@@ -1,8 +1,8 @@
 package com.gamification.rlrg.module.login.ui;
 
-import nghiem.app.core.utils.Utils;
+import nghiem.app.core.application.DeviceManager;
+import nghiem.app.core.utils.LogUtils;
 
-import com.gamification.rlrg.application.Device;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment implements AnimationListener, OnClic
 		mEdtPassword = (EditText) root.findViewById(R.id.edit_password);
 		mBtnLogin = (Button) root.findViewById(R.id.btn_login);
 		
-		mScreenHeight = Device.getInstance().getScreenHeight();
+		mScreenHeight = DeviceManager.getInstance().getScreenHeight();
 		mLogoParams = mTxtLogo.getLayoutParams();
 		mBtnLogin.setOnClickListener(this);
 		return root;
@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment implements AnimationListener, OnClic
 		double step = (0.75 / animation.getRepeatCount()) * mScreenHeight;
 		mLogoParams.height -= step;
 		mTxtLogo.setLayoutParams(mLogoParams);
-		Utils.log(TAG, "Height: " + mLogoParams.height);
+		LogUtils.log(TAG, "Height: " + mLogoParams.height);
 	}
 
 	@Override

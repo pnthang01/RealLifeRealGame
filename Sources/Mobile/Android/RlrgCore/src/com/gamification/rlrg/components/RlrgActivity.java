@@ -1,7 +1,7 @@
 package com.gamification.rlrg.components;
 
 import nghiem.app.core.components.NghiemActivity;
-import nghiem.app.core.utils.Utils;
+import nghiem.app.core.utils.LogUtils;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,7 +13,7 @@ public class RlrgActivity extends NghiemActivity
     protected Dialog onCreateDialog(String type)
 	{
         super.onCreateDialog(type);
-		Utils.log(TAG, "alert type " + type);
+        LogUtils.log(TAG, "alert type " + type);
 		if (type.equals(DIALOG_NETWORK_NOT_AVAILABLE))
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);

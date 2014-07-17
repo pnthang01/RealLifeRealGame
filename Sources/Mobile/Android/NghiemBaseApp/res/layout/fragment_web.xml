@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/full_screen"
+    android:background="@android:color/white" >
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.ProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <WebView
+        android:id="@+id/webview"
+        style="@style/full_screen"
+        android:layout_below="@id/progress_bar"
+        android:animationCache="true"
+        android:fadeScrollbars="true"
+        android:fadingEdge="horizontal|vertical" />
+    <!-- android:animateLayoutChanges="true" -->
+
+</RelativeLayout>

@@ -1,16 +1,22 @@
 package com.gamification.rlrg.application;
 
-import android.app.Application;
+import nghiem.app.core.application.DeviceManager;
+import nghiem.app.core.application.NghiemBaseApp;
+import nghiem.app.core.exception.ExceptionHandler;
 import android.content.res.Configuration;
+import android.text.TextUtils;
 
 import com.gamification.rlrg.data.Achievements;
 import com.gamification.rlrg.data.Badges;
 import com.gamification.rlrg.data.Categories;
 import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.Users;
+import com.google.gson.Gson;
 
-public class CoreApp extends Application
+public class RlrgApp extends NghiemBaseApp
 {
+    public static final String TAG = RlrgApp.class.getName();
+    
 	public static boolean isStart = true;
 
 	private Users users;
@@ -19,17 +25,17 @@ public class CoreApp extends Application
 	private Achievements achievements;
 	private Badges badges;
 
-	private static CoreApp sInstance;
+	private static RlrgApp sInstance;
     
-    public static CoreApp getInstance()
+    public static RlrgApp getInstance()
     {
         if (sInstance == null)
         {
-            synchronized(CoreApp.class)
+            synchronized(RlrgApp.class)
             {
                 if (sInstance == null)
                 {
-                    sInstance = new CoreApp();
+                    sInstance = new RlrgApp();
                 }
             }            
         }
@@ -52,15 +58,33 @@ public class CoreApp extends Application
 
 	public void init()
 	{
-	    GsonManager gsonManager = GsonManager.getInstance();
-	    DataPreferences preferences = DataPreferences.getInstance();
+	    initUuid();
+	    initErrorHandle();
 	    
-		users = (Users) gsonManager.fromJson(preferences.loadJsonUsers(), Users.class);
-		badges = (Badges) gsonManager.fromJson(preferences.loadJsonBadges(), Badges.class);
-		categories = (Categories) gsonManager.fromJson(preferences.loadJsonCategories(), Categories.class);
-		tasks = (Tasks) gsonManager.fromJson(preferences.loadJsonTasks(), Tasks.class);
-		achievements = (Achievements) gsonManager.fromJson(preferences.loadJsonAchievements(), Achievements.class);
+	    Gson gson = new Gson();
+	    DataPreferencesManager preferences = DataPreferencesManager.getInstance();
+	    
+	    users = (Users) gson.fromJson(preferences.loadJsonUsers(), Users.class);
+		badges = (Badges) gson.fromJson(preferences.loadJsonBadges(), Badges.class);
+		categories = (Categories) gson.fromJson(preferences.loadJsonCategories(), Categories.class);
+		tasks = (Tasks) gson.fromJson(preferences.loadJsonTasks(), Tasks.class);
+		achievements = (Achievements) gson.fromJson(preferences.loadJsonAchievements(), Achievements.class);
 	}
+	
+    private void initErrorHandle()
+    {
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
+    }
+    
+    private void initUuid()
+    {
+        String lastUuid = DataPreferencesManager.getInstance().getUuid();
+        if (TextUtils.isEmpty(lastUuid) || lastUuid.startsWith("FAKE"))
+        {
+            lastUuid = DeviceManager.getInstance().generateUuid();
+            // TODO: register UUID with server
+        }
+    }
 
 	public Users getUsers()
 	{

@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import nghiem.app.core.utils.Utils;
+import nghiem.app.core.utils.LogUtils;
 import nghiem.app.gen.BuildConfig;
 
 import android.annotation.SuppressLint;
@@ -72,13 +72,10 @@ public class StorageManager
         }
         String def_path_state = Environment.getExternalStorageState();
         boolean def_path_readonly = def_path_state.equals(Environment.MEDIA_MOUNTED_READ_ONLY);
-        boolean def_path_available = def_path_state.equals(Environment.MEDIA_MOUNTED)
-                || def_path_readonly;
-        BufferedReader buf_reader = null;
-        try
+        boolean def_path_available = def_path_state.equals(Environment.MEDIA_MOUNTED) || def_path_readonly;
+        try (BufferedReader buf_reader = new BufferedReader(new FileReader("/proc/mounts")))
         {
             HashSet<String> paths = new HashSet<String>();
-            buf_reader = new BufferedReader(new FileReader("/proc/mounts"));
             String line;
             int cur_display_number = 1;
             Log.d(TAG, "/proc/mounts");
@@ -127,24 +124,11 @@ public class StorageManager
         }
         catch (FileNotFoundException ex)
         {
-            Utils.logError(TAG, ex.getMessage());
+            LogUtils.logError(TAG, ex.getMessage());
         }
         catch (IOException ex)
         {
-            Utils.logError(TAG, ex.getMessage());
-        }
-        finally
-        {
-            if (buf_reader != null)
-            {
-                try
-                {
-                    buf_reader.close();
-                } catch (IOException ex)
-                {
-                    Utils.logError(TAG, ex.getMessage());
-                }
-            }
+            LogUtils.logError(TAG, ex.getMessage());
         }
         return list;
     }
@@ -156,7 +140,7 @@ public class StorageManager
             List<StorageInfo> storageInfos = getStorageList();
             for (StorageInfo storageInfo : storageInfos)
             {
-                Utils.log(TAG, storageInfo.getDisplayName());
+                LogUtils.log(TAG, storageInfo.getDisplayName());
             }
         }
     }

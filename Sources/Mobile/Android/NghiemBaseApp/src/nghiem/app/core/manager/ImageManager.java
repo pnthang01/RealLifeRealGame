@@ -8,7 +8,8 @@ import java.util.Locale;
 
 import nghiem.app.core.utils.DeviceUtils;
 import nghiem.app.core.utils.ImageUtils;
-import nghiem.app.core.utils.Utils;
+import nghiem.app.core.utils.LogUtils;
+import nghiem.app.core.utils.NumberUtils;
 import nghiem.app.gen.R;
 
 import android.annotation.SuppressLint;
@@ -60,7 +61,7 @@ public class ImageManager
     {
         if (TextUtils.isEmpty(link))
         {
-            Utils.logError(TAG, "Load drawble from link --- null image URL!!!");
+            LogUtils.logError(TAG, "Load drawble from link --- null image URL!!!");
             return true;
         }
 
@@ -76,7 +77,7 @@ public class ImageManager
         if (bitmap != null)
         {
             applyDrawableToViewWithAnimation(imageView, bitmap, useBackgroundTransitionAnimation);
-            Utils.log(TAG, "Loaded bitmap from cach with id = " + link);
+            LogUtils.log(TAG, "Loaded bitmap from cach with id = " + link);
             return true;
         }
 
@@ -84,7 +85,7 @@ public class ImageManager
         if (bitmap != null)
         {
             applyDrawableToViewWithAnimation(imageView, bitmap, useBackgroundTransitionAnimation);
-            Utils.log(TAG, "Loaded local image!");
+            LogUtils.log(TAG, "Loaded local image!");
             saveBitmap(link, bitmap);
 
             return true;
@@ -93,8 +94,8 @@ public class ImageManager
         if (!TextUtils.isEmpty(colorString))
         {
             int color = ImageUtils.getColorFromString(colorString);
-            String hexString = "#" + Utils.intToHexString6(color);
-            Utils.log(TAG, "Load drawble from link --- Image Color = "
+            String hexString = "#" + NumberUtils.intToHexString6(color);
+            LogUtils.log(TAG, "Load drawble from link --- Image Color = "
                     + colorString + " => " + hexString);
             try
             {
@@ -117,7 +118,7 @@ public class ImageManager
         if (link == null || link.length() < 8)
         {
             // At least link = http://
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Load drawble from link --- Wrong URL!!! URL = " + link);
             return true;
         }
@@ -181,20 +182,20 @@ public class ImageManager
     {
         if (TextUtils.isEmpty(link))
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Save image to SDCard: cancel because URL is null");
             return;
         }
         if (bitmap == null)
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Save image to SDCard: cancel because bitmap is null (link: "
                             + link + ")");
             return;
         }
         if (!DeviceUtils.isExternalStorageSupportWrite())
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Save image to SDCard: cancel, there is no SDCard or it is read only");
             return;
         }
@@ -215,19 +216,19 @@ public class ImageManager
                 file.createNewFile();
             } catch (IOException e)
             {
-                Utils.logError(TAG,
+                LogUtils.logError(TAG,
                         "Save image to SDCard: error =  " + e.getMessage());
                 return;
             }
         } else
         {
-            Utils.log(TAG, "Save image to SDCard --- cancel - File is exists! "
+            LogUtils.log(TAG, "Save image to SDCard --- cancel - File is exists! "
                     + link);
-            Utils.log(TAG, "Save image to SDCard --- delete local file");
+            LogUtils.log(TAG, "Save image to SDCard --- delete local file");
             file.delete();
         }
 
-        Utils.log(TAG, "Save image to SDCard --- Save with new file");
+        LogUtils.log(TAG, "Save image to SDCard --- Save with new file");
         FileOutputStream fileOutputStream = null;
         try
         {
@@ -249,12 +250,12 @@ public class ImageManager
             fileOutputStream.flush();
         } catch (FileNotFoundException e)
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Save image to SDCard: error =  " + e.getMessage());
             return;
         } catch (IOException e)
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Save image to SDCard: error =  " + e.getMessage());
             file.delete();
             return;
@@ -267,12 +268,12 @@ public class ImageManager
                     fileOutputStream.close();
                 } catch (IOException e)
                 {
-                    Utils.logError(TAG,
+                    LogUtils.logError(TAG,
                             "Save image to SDCard: error =  " + e.getMessage());
                 }
             }
         }
-        Utils.log(TAG, "Saved image to SDCard Successfully! (link: " + link
+        LogUtils.log(TAG, "Saved image to SDCard Successfully! (link: " + link
                 + ")");
     }
 
@@ -286,12 +287,12 @@ public class ImageManager
     {
         if (TextUtils.isEmpty(linkWithColor))
         {
-            Utils.logError(TAG, "Delete image from SDCard: cancel - Null link");
+            LogUtils.logError(TAG, "Delete image from SDCard: cancel - Null link");
             return;
         }
         if (!DeviceUtils.isExternalStorageSupportWrite())
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Delete image from SDCard: cancel - There is no SDCard or it is read only");
             return;
         }
@@ -304,7 +305,7 @@ public class ImageManager
             if (link == null || link.length() < 8)
             {
                 // At least link = http://
-                Utils.logError(TAG,
+                LogUtils.logError(TAG,
                         "Delete image from SDCard: cancel - wrong link: "
                                 + link);
                 return;
@@ -319,11 +320,11 @@ public class ImageManager
         if (file.exists())
         {
             file.delete();
-            Utils.log(TAG, "Delete image from SDCard Successfully!!! (link: "
+            LogUtils.log(TAG, "Delete image from SDCard Successfully!!! (link: "
                     + link + ")");
         } else
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Delete image from SDCard: link is not cached yet!!! (link: "
                             + link + ")");
         }
@@ -333,12 +334,12 @@ public class ImageManager
     {
         if (TextUtils.isEmpty(link))
         {
-            Utils.logError(TAG, "Load image from SDCard: cancel - Null link");
+            LogUtils.logError(TAG, "Load image from SDCard: cancel - Null link");
             return null;
         }
         if (!DeviceUtils.isExternalStorageSupportWrite())
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Load image from SDCard: cancel - There is no SDCard or it is read only");
             return null;
         }
@@ -346,7 +347,7 @@ public class ImageManager
         File file = new File(getImageFolderName(), getFileName(link));
         if (!file.exists())
         {
-            Utils.logError(TAG,
+            LogUtils.logError(TAG,
                     "Load image from SDCard: cancel - This was not saved to SDCard yet");
             return null;
         }
@@ -365,7 +366,7 @@ public class ImageManager
             return BitmapFactory.decodeFile(file.getAbsolutePath(), options);
         } catch (Throwable throwable)
         {
-            Utils.logError(TAG, throwable.getMessage());
+            LogUtils.logError(TAG, throwable.getMessage());
             System.gc();
         }
         return null;

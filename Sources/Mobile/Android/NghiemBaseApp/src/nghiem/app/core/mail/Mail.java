@@ -51,6 +51,13 @@ public class Mail extends Authenticator
         this(GMAIL_SMTP_SERVER, GMAIL_SMTP_PORT, GMAIL_SOCKET);
     }
 
+    public Mail(String user, String pass)
+    {
+        this();
+        mUsername = user;
+        mPassword = pass;
+    }
+
     public Mail(String host, String port, String socket)
     {
         this(host, port, socket, null, null);
@@ -85,14 +92,6 @@ public class Mail extends Authenticator
         mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
         mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
         CommandMap.setDefaultCommandMap(mailcapCommandMap);
-    }
-
-    public Mail(String user, String pass)
-    {
-        this();
-
-        mUsername = user;
-        mPassword = pass;
     }
 
     public boolean send() throws Exception
@@ -170,8 +169,7 @@ public class Mail extends Authenticator
 
         props.put("mail.smtp.port", mPort);
         props.put("mail.smtp.socketFactory.port", mSport);
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
 
         return props;

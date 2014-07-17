@@ -5,6 +5,7 @@
     <string name="action_bar_btn_left">action_bar_btn_left</string>
     <string name="action_bar_btn_right_1">action_bar_btn_right_1</string>
     <string name="action_bar_btn_right_2">action_bar_btn_right_2</string>
+    <string name="action_bar_btn_right_text">action_bar_btn_right_text</string>
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
 
