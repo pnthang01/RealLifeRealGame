@@ -103,7 +103,7 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 	}
 	
 	@Override
-	public List<Badge> getBadgeByEligibility(Long userId, String... params) {
+	public List<Badge> getBadgeByEligibility(Long userId, List<String> params) {
 		//Specification<Badge> spec = BadgeCriteriaHelper.findAvaiableBadgeByEligibilityAndUserId(userId, params);
 		List<Integer> usersAchie = achievementService.getAllBadgeIdByUserId(userId);
 		Specification<Badge> spec = BadgeCriteriaHelper.findAvaiableBadgeByEligibilityAndUserId(usersAchie, params);

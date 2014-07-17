@@ -1,4 +1,4 @@
-package com.rlrg.utillities.badgechecker;
+package com.rlrg.utillities.badgechecker.domain;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

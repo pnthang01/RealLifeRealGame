@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Transient;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,15 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 
 	public Category saveCategory(Category c){
 		return cateRepo.save(c);
+	}
+	
+	private String getNewCode(){
+		String newCode = RandomStringUtils.random(8, true, true);
+		while(cateRepo.exitsCategoryCode(newCode)){
+			newCode = RandomStringUtils.random(8, true, true);
+		}
+		//
+		return newCode;
 	}
 	
 	@Transactional

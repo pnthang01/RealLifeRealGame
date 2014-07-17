@@ -1,26 +1,33 @@
 package com.rlrg.utillities.badgechecker;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import com.rlrg.dataserver.base.service.ITaskService;
-import com.rlrg.dataserver.base.service.IUserService;
+import com.rlrg.utillities.badgechecker.domain.ActionPerformedEvent;
+import com.rlrg.utillities.badgechecker.domain.IMainChecker;
 
+@Component
+@Scope("prototype")
 public class ActionObserver implements ActionPerformedListener {
 	
 	private String moduleName;
-	
-	@Autowired
-	private IBadgeChecker badgeChecker;
-	
-	@Autowired
-	private ITaskService<?, ?> taskService;
-	
-	@Autowired
-	private IUserService<?, ?> userService;
 
+	private IMainChecker mainChecker;
+
+	@Autowired 
+	private AutowireCapableBeanFactory factory; 
+	
+	public ActionObserver(){
+	}
+	
 	public ActionObserver(BaseSource source) {
+		source.addPerformedListener(this);
+		this.mainChecker = this.factory.getBean("mainChecker", IMainChecker.class);
+	}
+	
+	public void setBaseSource(BaseSource source){
 		source.addPerformedListener(this);
 	}
 
@@ -33,12 +40,7 @@ public class ActionObserver implements ActionPerformedListener {
 	}
 
 	public void actionPerformed(ActionPerformedEvent event) {
-		if(BadgeCheckerConstants.TASK_MODULE.equals(moduleName)){
-			checkBadgesForCreateTaskModule(event.getUserId(), event.getProperties());		
-		}
+		this.mainChecker.mainProcess(moduleName, event.getUserId(), event.getProperties());
 	}	
-	private void checkBadgesForCreateTaskModule(Long userId, Object[] props){
-		badgeChecker.process(userId, props);
-	}
 
 }

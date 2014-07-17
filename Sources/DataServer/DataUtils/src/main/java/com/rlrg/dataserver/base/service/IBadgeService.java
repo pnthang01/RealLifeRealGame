@@ -23,5 +23,5 @@ public interface IBadgeService<T, V> extends IBaseService<T, V>{
 	
 	public Long countBadgesByKeyword(String keyword);
 
-	public List<T> getBadgeByEligibility(Long userId, String... params) ;
+	public List<T> getBadgeByEligibility(Long userId, List<String> params) ;
 }

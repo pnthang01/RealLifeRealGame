@@ -1,5 +1,6 @@
 package com.rlrg.dataserver.badge.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -40,7 +41,10 @@ public class BadgeController extends BaseController{
 		String result = null;
 		LOG.info("<< Starting webservice /badge/getAllBages with parameters: pageNumber={}", pageNumber);
 		try {
-			List<Badge> test = badgeService.getBadgeByEligibility(1l, BadgeCheckerConstants.CREATE_TASK, BadgeCheckerConstants.CATEGORY_1);
+			List<String> temp = new ArrayList<String>();
+			temp.add(BadgeCheckerConstants.CREATE_TASK);
+			temp.add(BadgeCheckerConstants.CATEGORY_1);
+			List<Badge> test = badgeService.getBadgeByEligibility(1l, temp);
 			for(Badge b : test){
 				System.out.println(b.getId());
 			}

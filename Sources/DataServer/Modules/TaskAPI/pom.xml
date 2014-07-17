@@ -24,6 +24,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.rlrg.dataserver</groupId>
+			<artifactId>pbl-checker-module</artifactId>
+			<version>${rlrg-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rlrg.dataserver</groupId>
 			<artifactId>profile-api</artifactId>
 			<version>${rlrg-version}</version>
 		</dependency>
@@ -32,7 +37,7 @@
 			<artifactId>language-api</artifactId>
 			<version>${rlrg-version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.rlrg.dataserver</groupId>
 			<artifactId>dataserver-utils</artifactId>

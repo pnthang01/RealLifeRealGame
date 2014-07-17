@@ -2,11 +2,12 @@ CREATE DATABASE IF NOT EXISTS `data`;
 
 USE `data`;
 
-CREATE TABLE category (
+CREATE TABLE `category` (
 	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`code` VARCHAR(15) UNIQUE NOT NULL,
 	`position` INT(11) NOT NULL,
-	`status` TINYINT NOT NULL
+	`status` TINYINT NOT NULL,
+	`tag` VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE `language`(
@@ -16,7 +17,7 @@ CREATE TABLE `language`(
 	`i18n` VARCHAR(10) NOT NULL UNIQUE
 );
 
-CREATE TABLE category_language (
+CREATE TABLE `category_language` (
 	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`category_id` INT,
 	`language_id` INT(11),
@@ -26,13 +27,14 @@ CREATE TABLE category_language (
 	CONSTRAINT fk_CLCate FOREIGN KEY (category_id) REFERENCES `category`(id)
 );
 
-CREATE TABLE badge (
+CREATE TABLE `badge` (
 	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`status` INT NOT NULL,
+	`image_link` VARCHAR(100) NOT NULL,
 	`eligibility` VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE badge_language(
+CREATE TABLE `badge_language`(
 	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`badge_id` INT(11),
 	`language_id` INT(11),
@@ -42,12 +44,12 @@ CREATE TABLE badge_language(
 	CONSTRAINT fk_BLBadge FOREIGN KEY (badge_id) REFERENCES `badge`(id)
 );
 
-CREATE TABLE role (
+CREATE TABLE `role` (
 	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(30)
 );
 
-CREATE TABLE user (
+CREATE TABLE `user` (
 	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`role_id` INT(11),
 	`username` VARCHAR(30) UNIQUE NOT NULL,
@@ -64,14 +66,14 @@ CREATE TABLE user (
 	`performed` VARCHAR(1000) NULL
 );
 
-CREATE TABLE permission (
+CREATE TABLE `permission` (
 	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`role_id` INT,
 	`regional` VARCHAR(30) NOT NULL,
 	CONSTRAINT fk_PerRole FOREIGN KEY(role_id) REFERENCES `role`(id)
 );
 
-CREATE TABLE achievement (
+CREATE TABLE `achievement` (
 	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`user_id` MEDIUMINT,
 	`badge_id` INT(11),
@@ -80,7 +82,7 @@ CREATE TABLE achievement (
 	CONSTRAINT fk_AchieBadge FOREIGN KEY(badge_id) REFERENCES `badge`(id)
 );
 
-CREATE TABLE task (
+CREATE TABLE `task` (
 	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`user_id` MEDIUMINT,
 	`category_id` INT,
@@ -96,4 +98,11 @@ CREATE TABLE task (
 	CONSTRAINT fk_TaskCate FOREIGN KEY(category_id) REFERENCES `category`(id)
 );
 
+CREATE TABLE `user_log` (
+	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	`user_id` MEDIUMINT,
+	`action` VARCHAR(50) NOT NULL,
+	`time` DATETIME NOT NULL,
+	CONSTRAINT fk_UserLog FOREIGN KEY(user_id) REFERENCES `user`(id)
+);
 

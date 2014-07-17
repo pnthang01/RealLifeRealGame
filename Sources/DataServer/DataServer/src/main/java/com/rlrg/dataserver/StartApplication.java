@@ -20,6 +20,9 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import com.rlrg.checker.MainChecker;
+import com.rlrg.checker.TaskChecker;
+import com.rlrg.utillities.badgechecker.domain.IMainChecker;
 import com.rlrg.utillities.json.JsonExporter;
 
 @Configuration
@@ -35,6 +38,16 @@ public class StartApplication {
 	@Bean
 	public PathMatchingResourcePatternResolver resourcePatternResolver() {
 		return new PathMatchingResourcePatternResolver();
+	}
+	
+	@Bean(name="taskChecker")
+	public TaskChecker getTaskChecker(){
+		return new TaskChecker();
+	}
+
+	@Bean(name="mainChecker")
+	public IMainChecker getMainChecker(){
+		return new MainChecker();
 	}
 
 	@Bean

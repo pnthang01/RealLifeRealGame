@@ -40,6 +40,9 @@ public class Category implements Serializable, Comparable<Category> {
 	@Column(name = "status")
 	private boolean status;
 	
+	@Column(name = "tag")
+	private String tag;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
 	private List<CategoryLanguage> cateLangs;
 
@@ -51,13 +54,13 @@ public class Category implements Serializable, Comparable<Category> {
 		this.id = id;
 	}
 
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 
 	public List<CategoryLanguage> getCateLangs() {
 		return cateLangs;

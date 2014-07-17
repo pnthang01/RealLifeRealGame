@@ -10,7 +10,7 @@ public interface IBaseService<T, V> {
 	public V convertEntityToDTO(T data);
 	
 	public T revertDTOToEntity(V dto);
-	
+
 	public String encodeCountingRestObject(Long count, String controllerName) throws ConvertException;
 	
 	public String encodeBlankRestObject(RestObject restObject);

@@ -13,7 +13,7 @@ import com.rlrg.dataserver.badge.entity.Badge;
 
 public class BadgeCriteriaHelper {
 	
-	public static Specification<Badge> findAvaiableBadgeByEligibilityAndUserId(final List<Integer> usersAchie, final String...params){
+	public static Specification<Badge> findAvaiableBadgeByEligibilityAndUserId(final List<Integer> usersAchie, final List<String> params){
 		return new Specification<Badge>() {
 			@Override
 			public Predicate toPredicate(Root<Badge> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

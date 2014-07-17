@@ -28,6 +28,10 @@ if not exist "%CURRENT_DIR%\DataServer\Modules\TaskAPI\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\Modules\TaskAPI\"
 call mvn install clean
 
+if not exist "%CURRENT_DIR%\pbl-checker-module\pom.xml" goto :error
+cd "%CURRENT_DIR%\pbl-checker-module\"
+call mvn install clean
+
 if not exist "%CURRENT_DIR%\DataServer\DataServer\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\DataServer\"
 call mvn clean package

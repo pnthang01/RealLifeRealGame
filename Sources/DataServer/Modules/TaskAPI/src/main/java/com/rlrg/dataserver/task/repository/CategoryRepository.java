@@ -23,6 +23,9 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Jp
 			" AND c.code = :code")
 	public CategoryDTO getCategoryDTOByCode(@Param("code") String code, @Param("languageId") Integer languageId);
 	
+	@Query("SELECT true FROM Categroy c WHERE c.code = :code")
+	public boolean exitsCategoryCode(@Param("code") String code);
+	
 	@Query("SELECT c FROM Category c WHERE c.code = :code")
 	public Category getCategoryByCode(@Param("code") String code);
 	

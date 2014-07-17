@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rlrg.checker.dto.TaskCheckerDTO;
 import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
@@ -31,7 +32,8 @@ import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
 import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
-import com.rlrg.utillities.badgechecker.ModuleName;
+import com.rlrg.utillities.badgechecker.domain.AbstractCheckerDTO;
+import com.rlrg.utillities.badgechecker.domain.ModuleName;
 
 @ModuleName(name=BadgeCheckerConstants.TASK_MODULE)
 @Service
@@ -64,6 +66,7 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	public Task saveTask(Task task){
 		return taskRepo.save(task);
 	}
+
 	
 	/**
 	 * Create new #Task entity, the method will get #User and #Category from database.
@@ -98,8 +101,13 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 			//
 			taskRepo.save(t);
 			//
-			notifyListeners(1l, BadgeCheckerConstants.CREATE_TASK, 
-					c.getId(), dto.getDifficultyLevel(), createDate);
+			TaskCheckerDTO checkerDTO = new TaskCheckerDTO();
+			checkerDTO.setAction(BadgeCheckerConstants.CREATE_TASK);
+			checkerDTO.setCategory(c.getTag());
+			checkerDTO.setDiffLevel(t.getDifficultyLevel().name());
+			checkerDTO.setActionDate(createDate);
+			//
+			submitValueToBadgeChecker(BadgeCheckerConstants.TASK_MODULE, u.getId(), checkerDTO);
 		} catch(Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw e;

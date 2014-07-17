@@ -1,5 +1,9 @@
 package com.rlrg.test.code;
 
+import org.apache.commons.lang.RandomStringUtils;
+
+import com.rlrg.dataserver.task.entity.enums.DifficultyLevel;
+
 /**
  * Hello world!
  *
@@ -21,7 +25,10 @@ public class App
 	
     public static void main( String[] args )
     {
+    	System.out.println(DifficultyLevel.HARD);
     	System.out.println(Math.ceil((double)10/4));
+    	System.out.println(RandomStringUtils.random(8, true, true));
+    	System.out.println(RandomStringUtils.random(8, "Trí thức"));
         //testPerformance();
     }
 }

@@ -46,6 +46,11 @@ import com.rlrg.dataserver.task.service.TaskService;
 
 @Configuration
 public class InitializeWebData {
+
+	@Bean
+	public IBadgeService<Badge, BadgeDTO> getBadgeService(){
+		return new BadgeService();
+	}
 	
 	@Bean(name="badgeLangService")
 	public IBadgeLanguageService<BadgeLanguage, BadgeLangDTO> getBadgeLanguageService(){
@@ -66,12 +71,7 @@ public class InitializeWebData {
 	public IAchievementService<Achievement, AchievementDTO> getAchievementService(){
 		return new AchievementService();
 	}
-	
-	@Bean
-	public IBadgeService<Badge, BadgeDTO> getBadgeService(){
-		return new BadgeService();
-	}
-	
+
 	@Bean
 	public IPermissionService<Permission, PermissionDTO> getPermissionService(){
 		return new PermissionService();

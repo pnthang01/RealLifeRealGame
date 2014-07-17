@@ -3,7 +3,8 @@ package com.rlrg.utillities.badgechecker;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rlrg.utillities.exception.ConvertException;
+import com.rlrg.utillities.badgechecker.domain.AbstractCheckerDTO;
+import com.rlrg.utillities.badgechecker.domain.ActionPerformedEvent;
 
 public abstract class BaseSource {
 	
@@ -17,15 +18,15 @@ public abstract class BaseSource {
 	 * ActionPerformedListener actionObserver = new ActionObserver(this);
 	 */
 	public BaseSource(){
-		initListener();
+		//initListener();
 	}
 	
 	/**
 	 * If an action of extend classes have to be checked by BadgeChecker, please add this method when the action is done.
 	 */
-	protected void notifyListeners(Long userId, Object... props) {
+	protected void notifyListeners(Long userId, AbstractCheckerDTO checkerDTO) {
 		for (ActionPerformedListener name : listeners) {
-	    	name.actionPerformed(new ActionPerformedEvent(userId, props));
+	    	name.actionPerformed(new ActionPerformedEvent(userId, checkerDTO));
 	    }
 	}
 	
