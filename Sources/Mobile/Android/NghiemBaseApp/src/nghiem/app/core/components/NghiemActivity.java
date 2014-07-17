@@ -3,6 +3,9 @@ package nghiem.app.core.components;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,12 +26,71 @@ public class NghiemActivity extends FragmentActivity
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
 	
-	protected String TAG = getClass().getName();
+	public interface OnResumeListener
+    {
+        public void onResume();
+    }
+    
+    public interface OnPauseListener
+    {
+        public void onPause();
+    }
+    
+    public interface OnStopListener
+    {
+        public void onStop();
+    }
+    
+    protected String TAG = getClass().getName();
+	
+    private OnResumeListener mResumeCallback;
+    private OnPauseListener mPauseCallback;
+    private OnStopListener mStopCallback;
+    
+    private Handler mHandler;
+
+    public Handler getHandler()
+    {
+        if (mHandler == null)
+        {
+            mHandler = new Handler(Looper.getMainLooper())
+            {
+                @Override
+                public void handleMessage(Message msg)
+                {
+                    super.handleMessage(msg);
+                    NghiemActivity.this.handleMessage(msg);
+                }
+            };
+        }
+        return mHandler;
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+	}
+	
+	@Override
+	protected void onResume()
+	{
+	    super.onResume();
+	    mResumeCallback.onResume();
+	}
+	
+	@Override
+	protected void onPause()
+	{
+	    super.onPause();
+	    mPauseCallback.onPause();
+	}
+	
+	@Override
+	protected void onStop()
+	{
+	    super.onStop();
+	    mStopCallback.onStop();
 	}
 	
 	protected View inflate(int layout)
@@ -153,5 +215,29 @@ public class NghiemActivity extends FragmentActivity
             showToast(message);
             LogUtils.log(TAG, message);
         }
+    }
+
+    /**
+     * Handling the message which sent by {@link #sendMessage(int, int)}
+     * 
+     * @param message
+     */
+    public void handleMessage(Message message)
+    {
+    }
+
+    public void setOnResumeCallback(OnResumeListener callback)
+    {
+        mResumeCallback = callback;
+    }
+
+    public void setPauseCallback(OnPauseListener callback)
+    {
+        mPauseCallback = callback;
+    }
+
+    public void setStopCallback(OnStopListener callback)
+    {
+        mStopCallback = callback;
     }
 }

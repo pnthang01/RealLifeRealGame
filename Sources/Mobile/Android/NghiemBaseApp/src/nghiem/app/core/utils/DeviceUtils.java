@@ -1,13 +1,19 @@
 package nghiem.app.core.utils;
 
+import nghiem.app.core.application.NghiemBaseApp;
+
 import android.content.Context;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 public class DeviceUtils
 {
+    public static final String TAG = DeviceUtils.class.getName();
+    
     private DeviceUtils()
     {
     }
@@ -23,6 +29,24 @@ public class DeviceUtils
         {
             return false;
         }
+    }
+
+    /**
+     * Check network is connected
+     */
+    public static final boolean isNetworkConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) NghiemBaseApp.getInstance().getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean isConnected = networkInfo != null && networkInfo.isConnected();
+
+        if (!isConnected)
+        {
+            LogUtils.logError(TAG, "No Internet!!!!!!!!!");
+        }
+
+        return isConnected;
     }
 
     public static boolean isGpsEnabled(Context context)

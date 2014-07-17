@@ -96,12 +96,39 @@ public class ActionBarActivity extends NghiemActivity
 	protected void setBtnActionBarRightOne(Drawable icon, View.OnClickListener callback)
 	{
 		setActionBarButton(mBtnActionBarRightOne, icon, callback);
+		if (mBtnActionBarRightText.getVisibility() == View.VISIBLE)
+		{
+		    mBtnActionBarRightText.setVisibility(View.GONE);
+		}
 	}
-	
-	protected void setBtnActionBarRightTwo(Drawable icon, View.OnClickListener callback)
-	{
-		setActionBarButton(mBtnActionBarRightTwo, icon, callback);
-	}
+    
+    protected void setBtnActionBarRightTwo(Drawable icon, View.OnClickListener callback)
+    {
+        setActionBarButton(mBtnActionBarRightTwo, icon, callback);
+        if (mBtnActionBarRightText.getVisibility() == View.VISIBLE)
+        {
+            mBtnActionBarRightText.setVisibility(View.GONE);
+        }
+    }
+    
+    protected void setBtnActionBarRightText(CharSequence title, View.OnClickListener callback)
+    {
+        if (title != null)
+        {
+            mBtnActionBarRightText.setText(title);
+            mBtnActionBarRightText.setVisibility(View.VISIBLE);
+            mBtnActionBarRightText.setOnClickListener(callback);
+            LogUtils.log(TAG, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
+        }
+        if (mBtnActionBarRightOne.getVisibility() == View.VISIBLE)
+        {
+            mBtnActionBarRightOne.setVisibility(View.GONE);
+        }
+        if (mBtnActionBarRightTwo.getVisibility() == View.VISIBLE)
+        {
+            mBtnActionBarRightTwo.setVisibility(View.GONE);
+        }
+    }
 	
 	protected void setBtnActionBarLeft(int icon, View.OnClickListener callback)
 	{
@@ -135,12 +162,12 @@ public class ActionBarActivity extends NghiemActivity
 	
 	private void setActionBarButton(ImageButton view, Drawable icon, View.OnClickListener callback)
 	{
-	    LogUtils.log(TAG, "set action bar button " + view.toString() + "with icon " + icon.toString());
-		if (icon != null)
+	    if (icon != null)
 		{
 			view.setImageDrawable(icon);
 			view.setVisibility(View.VISIBLE);
 			view.setOnClickListener(callback);
+			LogUtils.log(TAG, "set action bar button " + view.toString() + "with icon " + icon.toString());
 		}
 	}
 }
