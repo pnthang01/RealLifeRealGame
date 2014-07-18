@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nghiem.app.core.components.ViewPagerFragment;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
 

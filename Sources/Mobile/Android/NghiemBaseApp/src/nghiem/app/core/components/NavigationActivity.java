@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -59,6 +60,7 @@ public class NavigationActivity extends NghiemActivity
 
 	private ListView mNavigationList;
 	private TextView mActionBarTitle;
+    private Button mBtnActionBarRightText;
 	private ImageButton mBtnActionBarLeft, mBtnActionBarRightOne, mBtnActionBarRightTwo;
 
 	protected NavigationData[] mNavigationData;
@@ -81,7 +83,8 @@ public class NavigationActivity extends NghiemActivity
 		mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
 		mBtnActionBarLeft = (ImageButton) findViewById(R.id.actionbar_btn_left);
 		mBtnActionBarRightOne = (ImageButton) findViewById(R.id.actionbar_btn_right_1);
-		mBtnActionBarRightTwo = (ImageButton) findViewById(R.id.actionbar_btn_right_2);
+        mBtnActionBarRightTwo = (ImageButton) findViewById(R.id.actionbar_btn_right_2);
+        mBtnActionBarRightText = (Button) findViewById(R.id.actionbar_btn_right_text);
 
 		mBtnActionBarLeft.setImageResource(R.drawable.ic_drawer_black);
 		mBtnActionBarLeft.setVisibility(View.VISIBLE);
@@ -198,6 +201,25 @@ public class NavigationActivity extends NghiemActivity
 	{
 		setActionBarButton(mBtnActionBarRightTwo, icon, callback);
 	}
+
+    public void setBtnActionBarRightText(CharSequence title, View.OnClickListener callback)
+    {
+        if (title != null)
+        {
+            mBtnActionBarRightText.setText(title);
+            mBtnActionBarRightText.setVisibility(View.VISIBLE);
+            mBtnActionBarRightText.setOnClickListener(callback);
+            LogUtils.log(TAG, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
+        }
+        if (mBtnActionBarRightOne.getVisibility() == View.VISIBLE)
+        {
+            mBtnActionBarRightOne.setVisibility(View.GONE);
+        }
+        if (mBtnActionBarRightTwo.getVisibility() == View.VISIBLE)
+        {
+            mBtnActionBarRightTwo.setVisibility(View.GONE);
+        }
+    }
 
 	protected void setBtnActionBarRightOne(int icon, View.OnClickListener callback)
 	{

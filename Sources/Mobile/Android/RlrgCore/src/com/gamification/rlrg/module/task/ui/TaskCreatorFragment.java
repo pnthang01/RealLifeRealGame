@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -15,17 +16,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
-import com.gamification.rlrg.data.Categories.CategoryList;
 import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.entity.Category;
 import com.gamification.rlrg.data.entity.Task;
@@ -149,7 +146,8 @@ public class TaskCreatorFragment extends Fragment implements OnClickListener, On
 		updateLabel();
 	}
 
-	private void updateLabel()
+	@SuppressLint("SimpleDateFormat")
+    private void updateLabel()
 	{
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		mEdtComplete.setText(format.format(mCalendar.getTime()));
