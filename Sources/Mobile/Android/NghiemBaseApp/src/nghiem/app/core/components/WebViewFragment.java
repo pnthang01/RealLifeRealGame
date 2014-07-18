@@ -1,7 +1,7 @@
 package nghiem.app.core.components;
 
+import nghiem.app.core.application.DeviceManager;
 import nghiem.app.core.application.WebManager;
-import nghiem.app.core.utils.DeviceUtils;
 import nghiem.app.core.utils.StringUtils;
 import nghiem.app.gen.R;
 import android.graphics.Bitmap;
@@ -102,7 +102,7 @@ public class WebViewFragment extends Fragment
 			mActivity.showDebugToast("The link is wrong format: " + mLink);
 		}
 
-		if (DeviceUtils.isNetworkConnected())
+		if (DeviceManager.getInstance().isNetworkConnected())
 		{
 			mWebView.setWebViewClient(new Browser());
 			mFactory.configure(mWebView, new ChromeBrowser());

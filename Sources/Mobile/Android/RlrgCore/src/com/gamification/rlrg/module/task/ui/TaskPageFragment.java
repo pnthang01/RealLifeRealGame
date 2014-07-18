@@ -5,10 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nghiem.app.core.components.ListViewFragment;
-import nghiem.app.core.utils.LogUtils;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -18,11 +17,14 @@ import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
+import com.gamification.rlrg.settings.Settings;
 
 public class TaskPageFragment extends ListViewFragment<Task>
 {
 	public static final String TAG = TaskPageFragment.class.getName();
-	
+
+	private static Format sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
+
 	private StartActivity mActivity;
 
 	public static TaskPageFragment newInstance()
@@ -65,10 +67,9 @@ public class TaskPageFragment extends ListViewFragment<Task>
 		Task item = (Task) getListAdapter().getItem(position);
 
 		Date date = new Date(item.getCompleteTime());
-		Format format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 		String message = "Category: %s\nName: %s\nComplete Time: %s\nDifficulty Level: %s\nStatus: %s\nPoint: %s";
-		String print = String.format(message, item.getCategory().getName(), item.getName(), format.format(date), item.getDifficultyLevel(), item.getStatus(), item.getPoint());
+		String print = String.format(message, item.getCategory().getName(), item.getName(), sFormat.format(date), item.getDifficultyLevel(), item.getStatus(), item.getPoint());
 
 		((TextView) view).setText(print);
 		return view;
@@ -77,8 +78,10 @@ public class TaskPageFragment extends ListViewFragment<Task>
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id)
 	{
-	    Task item = (Task) getListAdapter().getItem(position);
-	    
-	    LogUtils.log(TAG, item.getCompleteTime() + "");
+		Bundle args = new Bundle();
+		args.putInt("position", position);
+		Fragment fragment = TaskDetailFragment.newInstance();
+		fragment.setArguments(args);
+		mActivity.replaceFragment(fragment);
 	}
 }

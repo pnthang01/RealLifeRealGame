@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RLRG</string>
-    <string name="name">Name</string>
-    <string name="complete_time">Complete Time</string>
-    <string name="point">Point</string>
-    <string name="task_create">Create task</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="login_failed_message">Login Failed!\nPlease login again!</string>
+    <!-- Title -->
+    <string name="title_name">Name:</string>
+    <string name="title_category">Category:</string>
+    <string name="title_complete_time">Complete Time:</string>
+    <string name="title_difficulty_level">Difficulty Level:</string>
+    <string name="title_point">Point:</string>
+    <string name="title_status">Status:</string>
+    <string name="title_username">Username:</string>
+    <string name="title_password">Password:</string>
+    
+    <!-- Hint -->
+    <string name="hint_name">Name</string>
+    <string name="hint_category">Category</string>
+    <string name="hint_complete_time">Complete Time</string>
+    <string name="hint_difficulty_level">Difficulty Level</string>
+    <string name="hint_point">Point</string>
+    <string name="hint_status">Status</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    
+    <!-- Action -->
+    <string name="action_login">Login</string>
+    <string name="action_create_task">Create task</string>
+    <string name="action_mark_as_complete">Completed</string>
+    <string name="action_mark_as_uncomplete">Uncompleted</string>
+    
+    <!-- Message -->
+    <string name="message_login_failed">Login Failed!\nPlease login again!</string>
 </resources>

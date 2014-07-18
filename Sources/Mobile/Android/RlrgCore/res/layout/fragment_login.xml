@@ -28,20 +28,20 @@
             android:id="@+id/edit_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username"
+            android:hint="@string/hint_username"
             android:inputType="textNoSuggestions" />
 
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
+            android:hint="@string/hint_password"
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login" />
+            android:hint="@string/action_login" />
     </LinearLayout>
 </RelativeLayout>

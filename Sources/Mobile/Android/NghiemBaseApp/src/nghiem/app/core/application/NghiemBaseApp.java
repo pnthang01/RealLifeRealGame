@@ -1,7 +1,10 @@
 package nghiem.app.core.application;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 public class NghiemBaseApp extends Application
 {
@@ -34,5 +37,18 @@ public class NghiemBaseApp extends Application
 	{
 		super.onConfigurationChanged(newConfig);
 		sInstance = this;
+	}
+
+	public void showKeyboard(View view, boolean isShowed)
+	{
+		InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		if (isShowed)
+		{
+			inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+		}
+		else
+		{
+			inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+		}
 	}
 }

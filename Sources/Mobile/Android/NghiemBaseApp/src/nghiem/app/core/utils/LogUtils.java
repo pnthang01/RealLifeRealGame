@@ -3,7 +3,9 @@ package nghiem.app.core.utils;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import nghiem.app.core.application.NghiemBaseApp;
 import nghiem.app.gen.BuildConfig;
+import nghiem.app.gen.R;
 import android.os.Build;
 import android.util.Log;
 
@@ -103,9 +105,11 @@ public class LogUtils
 		{
 			Log.e(tag, "", throwable);
 		}
-
-		//String errorReport = getErrorReport(throwable);
-		//EmailUtils.sendMail(throwable.getMessage() + "", errorReport);
+		else
+		{
+			String errorReport = getErrorReport(throwable);
+			EmailUtils.sendMail(NghiemBaseApp.getInstance().getString(R.string.app_name) + " - " + tag + ": " + throwable.getMessage(), errorReport);
+		}
 	}
 
 	/**

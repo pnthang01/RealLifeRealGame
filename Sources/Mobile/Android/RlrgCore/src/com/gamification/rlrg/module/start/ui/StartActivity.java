@@ -20,10 +20,10 @@ import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.login.ui.LoginFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
-import com.gamification.rlrg.module.task.ui.TaskCreatorFragment;
+import com.gamification.rlrg.module.task.ui.TaskCreateFragment;
 import com.gamification.rlrg.module.task.ui.TaskPagerFragment;
 
-public class StartActivity extends NavigationActivity implements Runnable
+public final class StartActivity extends NavigationActivity implements Runnable
 {
 	private String[] mNavigationTitles;
 
@@ -83,21 +83,21 @@ public class StartActivity extends NavigationActivity implements Runnable
 				fragment = ShowRoomFragment.newInstance();
 				bgId = R.drawable.bg1;
 				break;
-            case 1:
-                fragment = TaskPagerFragment.newInstance();
-                bgId = R.drawable.bg2;
-                break;
-            case 2:
-                fragment = TaskCreatorFragment.newInstance();
-                bgId = R.drawable.bg3;
-                break;
+			case 1:
+				fragment = TaskPagerFragment.newInstance();
+				bgId = R.drawable.bg2;
+				break;
+			case 2:
+				fragment = TaskCreateFragment.newInstance();
+				bgId = R.drawable.bg3;
+				break;
 		}
 		findViewById(R.id.fragment_container).setBackgroundResource(bgId);
 		fragment.setArguments(args);
 		replaceFragment(fragment);
 	}
 
-	protected void replaceFragment(Fragment child)
+	public void replaceFragment(Fragment child)
 	{
 		replaceFragment(R.id.fragment_container, child);
 	}
@@ -134,47 +134,47 @@ public class StartActivity extends NavigationActivity implements Runnable
 			showDialog(DIALOG_EXIT, true);
 		}
 	}
-	
+
 	@Override
-    public Dialog onCreateDialog(String type)
-    {
-        super.onCreateDialog(type);
-        LogUtils.log(TAG, "alert type " + type);
-        if (type.equals(DIALOG_NETWORK_NOT_AVAILABLE))
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.no_internet_connection);
-            builder.setMessage(R.string.message_no_internet_connection);
-            builder.setPositiveButton(R.string.ok, null);
-            return builder.create();
-        }
-        if (type.equals(DIALOG_SEARCH))
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.action_search);
-            builder.setView(inflate(R.layout.dialog_search));
-            builder.setPositiveButton(R.string.ok, null);
-            builder.setNegativeButton(R.string.cancel, null);
+	public Dialog onCreateDialog(String type)
+	{
+		super.onCreateDialog(type);
+		LogUtils.log(TAG, "alert type " + type);
+		if (type.equals(DIALOG_NETWORK_NOT_AVAILABLE))
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.title_no_internet_connection);
+			builder.setMessage(R.string.message_no_internet_connection);
+			builder.setPositiveButton(R.string.action_ok, null);
+			return builder.create();
+		}
+		if (type.equals(DIALOG_SEARCH))
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.action_search);
+			builder.setView(inflate(R.layout.dialog_search));
+			builder.setPositiveButton(R.string.action_ok, null);
+			builder.setNegativeButton(R.string.action_cancel, null);
 
-            return builder.create();
-        }
-        if (type.equals(DIALOG_EXIT))
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.quit_app);
-            builder.setMessage(R.string.quit_app_message);
-            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-                    finish();
-                }
-            });
-            builder.setNegativeButton(R.string.cancel, null);
+			return builder.create();
+		}
+		if (type.equals(DIALOG_EXIT))
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.action_quit_app);
+			builder.setMessage(R.string.message_quit_app);
+			builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					finish();
+				}
+			});
+			builder.setNegativeButton(R.string.action_cancel, null);
 
-            return builder.create();
-        }
-        return null;
-    }
+			return builder.create();
+		}
+		return null;
+	}
 }

@@ -18,14 +18,14 @@
             android:id="@+id/edit_name"
             style="@style/full_width"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:hint="@string/name"
+            android:hint="@string/hint_name"
             android:inputType="textNoSuggestions" />
 
         <EditText
             android:id="@+id/edit_complete"
             style="@style/full_width"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:hint="@string/complete_time"
+            android:hint="@string/hint_complete_time"
             android:inputType="time" />
 
         <Spinner
@@ -38,7 +38,7 @@
             android:id="@+id/edit_point"
             style="@style/full_width"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:hint="@string/point"
+            android:hint="@string/hint_point"
             android:inputType="number" />
     </LinearLayout>
 

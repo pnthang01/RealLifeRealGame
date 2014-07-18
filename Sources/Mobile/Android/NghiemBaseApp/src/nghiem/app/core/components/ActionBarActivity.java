@@ -111,6 +111,14 @@ public class ActionBarActivity extends NghiemActivity
 		}
 	}
 
+	public void setBtnActionBarRightText(int title, View.OnClickListener callback)
+	{
+		if (title > 0)
+		{
+			setBtnActionBarRightText(getString(title), callback);
+		}
+	}
+
 	public void setBtnActionBarRightText(CharSequence title, View.OnClickListener callback)
 	{
 		if (title != null)
@@ -170,7 +178,7 @@ public class ActionBarActivity extends NghiemActivity
 			LogUtils.log(TAG, "set action bar button " + view.toString() + "with icon " + icon.toString());
 		}
 	}
-	
+
 	public void hideActionBarButtonRight()
 	{
 		mBtnActionBarRightOne.setVisibility(View.GONE);

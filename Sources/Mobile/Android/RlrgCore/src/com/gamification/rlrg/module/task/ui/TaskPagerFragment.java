@@ -11,16 +11,16 @@ import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
-public class TaskPagerFragment extends ViewPagerFragment implements View.OnClickListener
+public final class TaskPagerFragment extends ViewPagerFragment implements View.OnClickListener
 {
 	StartActivity mActivity;
 
 	public static TaskPagerFragment newInstance()
 	{
 		List<Fragment> pages = new ArrayList<Fragment>();
-        pages.add(TaskPageFragment.newInstance());
-        pages.add(TaskPageFragment.newInstance());
-        pages.add(TaskPageFragment.newInstance());
+		pages.add(TaskPageFragment.newInstance());
+		pages.add(TaskPageFragment.newInstance());
+		pages.add(TaskPageFragment.newInstance());
 
 		String[] titles = RlrgApp.getInstance().getResources().getStringArray(R.array.task);
 
@@ -54,7 +54,6 @@ public class TaskPagerFragment extends ViewPagerFragment implements View.OnClick
 	@Override
 	public void onClick(View v)
 	{
-		Fragment fragment = TaskCreatorFragment.newInstance();
-		mActivity.replaceFragment(R.id.fragment_container, fragment);
+		mActivity.replaceFragment(TaskCreateFragment.newInstance());
 	}
 }

@@ -18,7 +18,7 @@ import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
-public class ShowRoomFragment extends ListViewFragment<Achievement>
+public final class ShowRoomFragment extends ListViewFragment<Achievement>
 {
 	public static final String TAG = ShowRoomFragment.class.getName();
 
@@ -43,7 +43,7 @@ public class ShowRoomFragment extends ListViewFragment<Achievement>
 		StartActivity activity = (StartActivity) getActivity();
 		if (activity != null)
 		{
-		    activity.hideActionBarButtonRight();
+			activity.hideActionBarButtonRight();
 			Achievements achievements = activity.getCoreApp().getAchievements();
 			if (achievements.isSuccessful())
 			{

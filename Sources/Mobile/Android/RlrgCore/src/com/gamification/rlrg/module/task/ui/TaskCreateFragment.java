@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -27,12 +26,16 @@ import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.entity.Category;
 import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
+import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
 import com.gamification.rlrg.module.start.ui.StartActivity;
+import com.gamification.rlrg.settings.Settings;
 import com.google.gson.Gson;
 
-public class TaskCreatorFragment extends Fragment implements OnClickListener, OnDateSetListener
+public final class TaskCreateFragment extends Fragment implements OnClickListener, OnDateSetListener
 {
-	public static final String TAG = TaskCreatorFragment.class.getName();
+	public static final String TAG = TaskCreateFragment.class.getName();
+
+	private static SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
 
 	private class CategoryAdapter extends ArrayAdapter<Category>
 	{
@@ -74,9 +77,9 @@ public class TaskCreatorFragment extends Fragment implements OnClickListener, On
 	private List<Category> mCategories;
 	private Tasks mTasks;
 
-	public static TaskCreatorFragment newInstance()
+	public static TaskCreateFragment newInstance()
 	{
-		return new TaskCreatorFragment();
+		return new TaskCreateFragment();
 	}
 
 	@Override
@@ -109,10 +112,10 @@ public class TaskCreatorFragment extends Fragment implements OnClickListener, On
 			@Override
 			public void onClick(View v)
 			{
-				new DatePickerDialog(mActivity, TaskCreatorFragment.this, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH)).show();
+				new DatePickerDialog(mActivity, TaskCreateFragment.this, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH)).show();
 			}
 		});
-		mActivity.setBtnActionBarRightText("Finish", this);
+		mActivity.setBtnActionBarRightText(R.string.action_create_task, this);
 		mCategories = RlrgApp.getInstance().getCategories().getData().getElements();
 		mTasks = RlrgApp.getInstance().getTasks();
 		mSpnCategory.setAdapter(new CategoryAdapter(mActivity, android.R.layout.simple_spinner_dropdown_item));
@@ -122,7 +125,7 @@ public class TaskCreatorFragment extends Fragment implements OnClickListener, On
 	public void onClick(View view)
 	{
 		List<Task> taskList = mTasks.getData().getElements();
-		
+
 		Task task = new Task();
 		task.setId(String.valueOf(Integer.parseInt(taskList.get(taskList.size() - 1).getId()) + 1));
 		task.setName(mEdtName.getText().toString());
@@ -131,10 +134,11 @@ public class TaskCreatorFragment extends Fragment implements OnClickListener, On
 		task.setDifficultyLevel((String) mSpnDifficulty.getSelectedItem());
 		task.setPoint(mEdtPoint.getText().toString());
 		task.setStatus(mActivity.getResources().getStringArray(R.array.task_status)[0]);
-		
+
 		taskList.add(task);
 		String jsonTasks = new Gson().toJson(mTasks, Tasks.class);
 		DataPreferencesManager.getInstance().saveJsonTasks(jsonTasks);
+		mActivity.replaceFragment(ShowRoomFragment.newInstance());
 	}
 
 	@Override
@@ -143,13 +147,6 @@ public class TaskCreatorFragment extends Fragment implements OnClickListener, On
 		mCalendar.set(Calendar.YEAR, year);
 		mCalendar.set(Calendar.MONTH, month);
 		mCalendar.set(Calendar.DAY_OF_MONTH, day);
-		updateLabel();
-	}
-
-	@SuppressLint("SimpleDateFormat")
-    private void updateLabel()
-	{
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		mEdtComplete.setText(format.format(mCalendar.getTime()));
+		mEdtComplete.setText(sFormat.format(mCalendar.getTime()));
 	}
 }

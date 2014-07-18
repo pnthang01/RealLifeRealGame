@@ -87,14 +87,20 @@ public final class R {
         public static int main_view=0x7f0a0007;
         public static int navigation=0x7f0a0009;
         public static int navigation_list=0x7f0a000a;
-        public static int pager=0x7f0a0016;
-        public static int pager_strip=0x7f0a0017;
-        public static int progress_bar=0x7f0a0018;
+        public static int pager=0x7f0a001c;
+        public static int pager_strip=0x7f0a001d;
+        public static int progress_bar=0x7f0a001e;
         public static int search_box=0x7f0a000b;
         public static int spinner_category=0x7f0a000c;
         public static int spinner_difficulty=0x7f0a000f;
-        public static int title=0x7f0a001a;
-        public static int webview=0x7f0a0019;
+        public static int text_category=0x7f0a0016;
+        public static int text_complete=0x7f0a0018;
+        public static int text_difficulty=0x7f0a0019;
+        public static int text_name=0x7f0a0017;
+        public static int text_point=0x7f0a001a;
+        public static int text_status=0x7f0a001b;
+        public static int title=0x7f0a0020;
+        public static int webview=0x7f0a001f;
     }
     public static final class layout {
         public static int activity_start=0x7f030000;
@@ -104,13 +110,14 @@ public final class R {
         public static int fragment_create_task=0x7f030004;
         public static int fragment_login=0x7f030005;
         public static int fragment_showroom=0x7f030006;
-        public static int fragment_view_pager=0x7f030007;
-        public static int fragment_view_pager_with_tab_strip=0x7f030008;
-        public static int fragment_view_pager_with_title_strip=0x7f030009;
-        public static int fragment_web=0x7f03000a;
-        public static int list_item_game=0x7f03000b;
-        public static int list_item_navigation=0x7f03000c;
-        public static int list_view=0x7f03000d;
+        public static int fragment_task_detail=0x7f030007;
+        public static int fragment_view_pager=0x7f030008;
+        public static int fragment_view_pager_with_tab_strip=0x7f030009;
+        public static int fragment_view_pager_with_title_strip=0x7f03000a;
+        public static int fragment_web=0x7f03000b;
+        public static int list_item_game=0x7f03000c;
+        public static int list_item_navigation=0x7f03000d;
+        public static int list_view=0x7f03000e;
     }
     public static final class string {
         public static int action_bar=0x7f060000;
@@ -118,31 +125,60 @@ public final class R {
         public static int action_bar_btn_right_1=0x7f060002;
         public static int action_bar_btn_right_2=0x7f060003;
         public static int action_bar_btn_right_text=0x7f060004;
-        public static int action_search=0x7f06000e;
+        public static int action_cancel=0x7f060010;
+        public static int action_close=0x7f060014;
+        public static int action_create_task=0x7f060027;
+        /**  Action 
+         */
+        public static int action_login=0x7f060026;
+        public static int action_mark_as_complete=0x7f060028;
+        public static int action_mark_as_uncomplete=0x7f060029;
+        public static int action_no=0x7f060012;
+        public static int action_ok=0x7f06000f;
+        public static int action_open=0x7f060013;
+        /**  Action 
+         */
+        public static int action_quit_app=0x7f06000e;
+        public static int action_search=0x7f060015;
+        public static int action_yes=0x7f060011;
+        /**  Variable 
+         */
         public static int app_name=0x7f060007;
-        public static int cancel=0x7f06000b;
-        public static int close=0x7f060012;
-        public static int complete_time=0x7f060017;
-        public static int default_email_password=0x7f060015;
-        public static int default_email_username=0x7f060014;
+        public static int default_email_password=0x7f060009;
+        public static int default_email_username=0x7f060008;
         public static int drawer_close=0x7f060006;
         public static int drawer_open=0x7f060005;
-        public static int list_empty=0x7f060013;
-        public static int login=0x7f06001c;
-        public static int login_failed_message=0x7f06001d;
-        public static int message_no_internet_connection=0x7f060010;
-        public static int name=0x7f060016;
-        public static int no=0x7f06000d;
-        public static int no_internet_connection=0x7f06000f;
-        public static int ok=0x7f06000a;
-        public static int open=0x7f060011;
-        public static int password=0x7f06001b;
-        public static int point=0x7f060018;
-        public static int quit_app=0x7f060008;
-        public static int quit_app_message=0x7f060009;
-        public static int task_create=0x7f060019;
-        public static int username=0x7f06001a;
-        public static int yes=0x7f06000c;
+        public static int hint_category=0x7f06001f;
+        public static int hint_complete_time=0x7f060020;
+        public static int hint_difficulty_level=0x7f060021;
+        /**  Hint 
+         */
+        public static int hint_name=0x7f06001e;
+        public static int hint_password=0x7f060025;
+        public static int hint_point=0x7f060022;
+        public static int hint_status=0x7f060023;
+        public static int hint_username=0x7f060024;
+        /**  Message 
+         */
+        public static int message_login_failed=0x7f06002a;
+        public static int message_no_internet_connection=0x7f06000d;
+        /**  Message 
+         */
+        public static int message_quit_app=0x7f06000c;
+        public static int title_category=0x7f060017;
+        public static int title_complete_time=0x7f060018;
+        public static int title_difficulty_level=0x7f060019;
+        public static int title_list_empty=0x7f06000b;
+        /**  Title 
+         */
+        public static int title_name=0x7f060016;
+        /**  Title 
+         */
+        public static int title_no_internet_connection=0x7f06000a;
+        public static int title_password=0x7f06001d;
+        public static int title_point=0x7f06001a;
+        public static int title_status=0x7f06001b;
+        public static int title_username=0x7f06001c;
     }
     public static final class style {
         /**  Application theme. 

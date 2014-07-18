@@ -27,7 +27,7 @@ public class NghiemActivity extends FragmentActivity
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
 
 	protected String TAG = getClass().getName();
-	
+
 	protected FragmentManager mFragmentManager;
 
 	private Handler mHandler;
@@ -142,7 +142,7 @@ public class NghiemActivity extends FragmentActivity
 	public void alert(CharSequence title, CharSequence message)
 	{
 		LogUtils.log(TAG, "alert " + title + " width message: " + message);
-		new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton(R.string.ok, null).show();
+		new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton(R.string.action_ok, null).show();
 	}
 
 	public void alert(CharSequence message)

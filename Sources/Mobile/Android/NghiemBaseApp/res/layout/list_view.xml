@@ -13,6 +13,6 @@
         style="@style/full_screen"
         android:background="@color/divider"
         android:gravity="center_vertical|center_horizontal"
-        android:text="@string/list_empty" />
+        android:text="@string/title_list_empty" />
 
 </LinearLayout>

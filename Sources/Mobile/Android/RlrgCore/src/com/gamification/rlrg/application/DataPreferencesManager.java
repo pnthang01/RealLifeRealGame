@@ -10,9 +10,9 @@ import com.gamification.rlrg.settings.Settings;
 
 public class DataPreferencesManager
 {
-    public static final String TAG = DataPreferencesManager.class.getName();
+	public static final String TAG = DataPreferencesManager.class.getName();
 
-    public static final String PREFERENCE_UUID = "uuid";
+	public static final String PREFERENCE_UUID = "uuid";
 
 	public static final String JSON_USERS = "JSON_USERS";
 	public static final String JSON_CATEGORIES = "JSON_CATEGORIES";
@@ -90,54 +90,54 @@ public class DataPreferencesManager
 
 	public void saveJsonCategories(String json)
 	{
-	    LogUtils.log(TAG, json);
-        getStorage().edit().putString(JSON_CATEGORIES, json).commit();
+		LogUtils.log(TAG, json);
+		getStorage().edit().putString(JSON_CATEGORIES, json).commit();
 	}
 
 	public void saveJsonTasks(String json)
 	{
-	    LogUtils.log(TAG, json);
-        getStorage().edit().putString(JSON_TASKS, json).commit();
+		LogUtils.log(TAG, json);
+		getStorage().edit().putString(JSON_TASKS, json).commit();
 	}
 
 	public void saveJsonAchievements(String json)
 	{
-	    LogUtils.log(TAG, json);
-        getStorage().edit().putString(JSON_ACHIEVEMENTS, json).commit();
+		LogUtils.log(TAG, json);
+		getStorage().edit().putString(JSON_ACHIEVEMENTS, json).commit();
 	}
 
 	public String loadJsonUsers()
 	{
-		String json = getStorage().getString(JSON_USERS, AssestsManager.getData(Settings.Assets.Data.USERS));
+		String json = getStorage().getString(JSON_USERS, AssestsManager.getInstance().getData(Settings.Assets.Data.USERS));
 		LogUtils.log(TAG, json);
-        return json;
+		return json;
 	}
 
 	public String loadJsonBadges()
 	{
-	    String json = getStorage().getString(JSON_BADGES, AssestsManager.getData(Settings.Assets.Data.BADGES));
-        LogUtils.log(TAG, json);
-        return json;
+		String json = getStorage().getString(JSON_BADGES, AssestsManager.getInstance().getData(Settings.Assets.Data.BADGES));
+		LogUtils.log(TAG, json);
+		return json;
 	}
 
 	public String loadJsonCategories()
 	{
-	    String json = getStorage().getString(JSON_CATEGORIES, AssestsManager.getData(Settings.Assets.Data.CATEGORIES));
-        LogUtils.log(TAG, json);
-        return json;
+		String json = getStorage().getString(JSON_CATEGORIES, AssestsManager.getInstance().getData(Settings.Assets.Data.CATEGORIES));
+		LogUtils.log(TAG, json);
+		return json;
 	}
 
 	public String loadJsonTasks()
 	{
-	    String json = getStorage().getString(JSON_TASKS, AssestsManager.getData(Settings.Assets.Data.TASKS));
-        LogUtils.log(TAG, json);
-        return json;
+		String json = getStorage().getString(JSON_TASKS, AssestsManager.getInstance().getData(Settings.Assets.Data.TASKS));
+		LogUtils.log(TAG, json);
+		return json;
 	}
 
 	public String loadJsonAchievements()
 	{
-	    String json = getStorage().getString(JSON_ACHIEVEMENTS, AssestsManager.getData(Settings.Assets.Data.ACHIEVEMENTS));
-        LogUtils.log(TAG, json);
-        return json;
+		String json = getStorage().getString(JSON_ACHIEVEMENTS, AssestsManager.getInstance().getData(Settings.Assets.Data.ACHIEVEMENTS));
+		LogUtils.log(TAG, json);
+		return json;
 	}
 }

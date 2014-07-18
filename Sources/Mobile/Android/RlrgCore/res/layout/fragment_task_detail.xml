@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/full_screen" >
+
+    <LinearLayout
+        style="@style/full_width"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin" >
+
+        <TextView
+            style="@style/full_width"
+            android:text="@string/title_category" />
+
+        <TextView
+            android:id="@+id/text_category"
+            style="@style/full_width" />
+
+        <TextView
+            style="@style/full_width"
+            android:text="@string/title_name" />
+
+        <TextView
+            android:id="@+id/text_name"
+            style="@style/full_width" />
+
+        <TextView
+            style="@style/full_width"
+            android:text="@string/title_complete_time" />
+
+        <TextView
+            android:id="@+id/text_complete"
+            style="@style/full_width" />
+
+        <TextView
+            style="@style/full_width"
+            android:text="@string/title_difficulty_level" />
+
+        <TextView
+            android:id="@+id/text_difficulty"
+            style="@style/full_width" />
+
+        <TextView
+            style="@style/full_width"
+            android:text="@string/title_point" />
+
+        <TextView
+            android:id="@+id/text_point"
+            style="@style/full_width" />
+        
+        <TextView
+            style="@style/full_width"
+            android:text="@string/title_status" />
+
+        <TextView
+            android:id="@+id/text_status"
+            style="@style/full_width" />
+    </LinearLayout>
+
+</ScrollView>

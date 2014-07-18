@@ -5,11 +5,14 @@ import java.security.MessageDigest;
 import java.util.UUID;
 
 import nghiem.app.core.utils.LogUtils;
-
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Environment;
 import android.provider.Settings.Secure;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -18,9 +21,10 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
-public class DeviceManager
+public final class DeviceManager
 {
 	public static final String TAG = DeviceManager.class.getName();
+	public static final String GOOGLE_MAP_PACKAGE = "com.google.android.apps.maps";
 
 	private static DeviceManager sInstance;
 
@@ -122,5 +126,46 @@ public class DeviceManager
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		display.getMetrics(displayMetrics);
 		return displayMetrics;
+	}
+
+	public boolean isPackageInstalled(String packageName)
+	{
+		try
+		{
+			mContext.getPackageManager().getApplicationInfo(packageName, 0);
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * Check network is connected
+	 */
+	public final boolean isNetworkConnected()
+	{
+		ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+		boolean isConnected = networkInfo != null && networkInfo.isConnected();
+
+		if (!isConnected)
+		{
+			LogUtils.logError(TAG, "No Internet!!!!!!!!!");
+		}
+
+		return isConnected;
+	}
+
+	public boolean isGpsEnabled()
+	{
+		LocationManager manager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+		return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+	}
+
+	public boolean isExternalStorageSupportWrite()
+	{
+		return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
 	}
 }

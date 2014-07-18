@@ -6,12 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Locale;
 
-import nghiem.app.core.utils.DeviceUtils;
+import nghiem.app.core.application.DeviceManager;
 import nghiem.app.core.utils.ImageUtils;
 import nghiem.app.core.utils.LogUtils;
 import nghiem.app.core.utils.NumberUtils;
 import nghiem.app.gen.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -185,7 +184,7 @@ public class ImageManager
 			LogUtils.logError(TAG, "Save image to SDCard: cancel because bitmap is null (link: " + link + ")");
 			return;
 		}
-		if (!DeviceUtils.isExternalStorageSupportWrite())
+		if (!DeviceManager.getInstance().isExternalStorageSupportWrite())
 		{
 			LogUtils.logError(TAG, "Save image to SDCard: cancel, there is no SDCard or it is read only");
 			return;
@@ -281,7 +280,7 @@ public class ImageManager
 			LogUtils.logError(TAG, "Delete image from SDCard: cancel - Null link");
 			return;
 		}
-		if (!DeviceUtils.isExternalStorageSupportWrite())
+		if (!DeviceManager.getInstance().isExternalStorageSupportWrite())
 		{
 			LogUtils.logError(TAG, "Delete image from SDCard: cancel - There is no SDCard or it is read only");
 			return;
@@ -323,7 +322,7 @@ public class ImageManager
 			LogUtils.logError(TAG, "Load image from SDCard: cancel - Null link");
 			return null;
 		}
-		if (!DeviceUtils.isExternalStorageSupportWrite())
+		if (!DeviceManager.getInstance().isExternalStorageSupportWrite())
 		{
 			LogUtils.logError(TAG, "Load image from SDCard: cancel - There is no SDCard or it is read only");
 			return null;

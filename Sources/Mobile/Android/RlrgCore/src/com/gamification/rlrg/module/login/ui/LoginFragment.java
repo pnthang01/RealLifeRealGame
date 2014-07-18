@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class LoginFragment extends Fragment implements AnimationListener, OnClickListener
+public final class LoginFragment extends Fragment implements AnimationListener, OnClickListener
 {
 	private static final String TAG = LoginFragment.class.getName();
 
@@ -112,7 +112,7 @@ public class LoginFragment extends Fragment implements AnimationListener, OnClic
 		{
 			mEdtUsername.setText("");
 			mEdtPassword.setText("");
-			mActivity.toast(R.string.login_failed_message);
+			mActivity.toast(R.string.message_login_failed);
 		}
 	}
 }
