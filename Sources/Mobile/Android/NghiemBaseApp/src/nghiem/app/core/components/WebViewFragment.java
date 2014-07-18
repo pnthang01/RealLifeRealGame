@@ -1,13 +1,9 @@
 package nghiem.app.core.components;
 
-import nghiem.app.core.components.NghiemActivity.OnPauseListener;
-import nghiem.app.core.components.NghiemActivity.OnResumeListener;
-import nghiem.app.core.components.NghiemActivity.OnStopListener;
-import nghiem.app.core.factory.WebFactory;
+import nghiem.app.core.application.WebManager;
 import nghiem.app.core.utils.DeviceUtils;
 import nghiem.app.core.utils.StringUtils;
 import nghiem.app.gen.R;
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,7 +16,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-public class WebViewFragment extends Fragment implements OnResumeListener, OnPauseListener, OnStopListener
+public class WebViewFragment extends Fragment
 {
 	public static final String EXTRA_LINK = "EXTRA_LINK";
 	public static final String EXTRA_BG = "BG_RD";
@@ -43,7 +39,6 @@ public class WebViewFragment extends Fragment implements OnResumeListener, OnPau
 		{
 			// Make the URL open in parent view
 			view.loadUrl(url);
-
 			return true;
 		}
 
@@ -55,23 +50,20 @@ public class WebViewFragment extends Fragment implements OnResumeListener, OnPau
 			super.onPageStarted(view, url, favicon);
 		}
 
-		@SuppressLint("NewApi")
 		@Override
 		public void onPageFinished(WebView view, String url)
 		{
 			mWebView.setVisibility(View.VISIBLE);
 			mProgressBar.setVisibility(View.GONE);
 			super.onPageFinished(view, url);
-
 			mActivity.setTitle(view.getTitle());
 		}
-
 	}
 
 	private NghiemActivity mActivity;
 	private RelativeLayout mRoot;
 	private WebView mWebView;
-	private WebFactory mFactory;
+	private WebManager mFactory;
 	private ProgressBar mProgressBar;
 
 	private String mLink = "";
@@ -99,7 +91,7 @@ public class WebViewFragment extends Fragment implements OnResumeListener, OnPau
 			mActivity.showDebugToast("Activity is null!");
 		}
 
-		mFactory = new WebFactory(mActivity);
+		mFactory = new WebManager(mActivity);
 		mLink = mActivity.getIntent().getStringExtra(EXTRA_LINK);
 		if (StringUtils.isValidURL(mLink))
 		{

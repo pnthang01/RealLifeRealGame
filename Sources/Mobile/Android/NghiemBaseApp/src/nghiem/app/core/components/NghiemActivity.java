@@ -26,26 +26,7 @@ public class NghiemActivity extends FragmentActivity
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
 
-	public interface OnResumeListener
-	{
-		public void onResume();
-	}
-
-	public interface OnPauseListener
-	{
-		public void onPause();
-	}
-
-	public interface OnStopListener
-	{
-		public void onStop();
-	}
-
 	protected String TAG = getClass().getName();
-
-	private OnResumeListener mResumeCallback;
-	private OnPauseListener mPauseCallback;
-	private OnStopListener mStopCallback;
 
 	private Handler mHandler;
 
@@ -70,27 +51,6 @@ public class NghiemActivity extends FragmentActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-	}
-
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
-		mResumeCallback.onResume();
-	}
-
-	@Override
-	protected void onPause()
-	{
-		super.onPause();
-		mPauseCallback.onPause();
-	}
-
-	@Override
-	protected void onStop()
-	{
-		super.onStop();
-		mStopCallback.onStop();
 	}
 
 	protected View inflate(int layout)
@@ -224,20 +184,5 @@ public class NghiemActivity extends FragmentActivity
 	 */
 	public void handleMessage(Message message)
 	{
-	}
-
-	public void setOnResumeCallback(OnResumeListener callback)
-	{
-		mResumeCallback = callback;
-	}
-
-	public void setPauseCallback(OnPauseListener callback)
-	{
-		mPauseCallback = callback;
-	}
-
-	public void setStopCallback(OnStopListener callback)
-	{
-		mStopCallback = callback;
 	}
 }
