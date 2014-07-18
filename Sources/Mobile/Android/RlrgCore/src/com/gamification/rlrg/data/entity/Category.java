@@ -67,4 +67,10 @@ public class Category
 	{
 		this.position = position;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 }

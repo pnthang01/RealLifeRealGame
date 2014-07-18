@@ -20,7 +20,8 @@ import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.login.ui.LoginFragment;
 import com.gamification.rlrg.module.showroom.ui.ShowRoomFragment;
-import com.gamification.rlrg.module.task.ui.TaskFragment;
+import com.gamification.rlrg.module.task.ui.TaskCreatorFragment;
+import com.gamification.rlrg.module.task.ui.TaskPagerFragment;
 
 public class StartActivity extends NavigationActivity implements Runnable
 {
@@ -82,10 +83,14 @@ public class StartActivity extends NavigationActivity implements Runnable
 				fragment = ShowRoomFragment.newInstance();
 				bgId = R.drawable.bg1;
 				break;
-			case 1:
-				fragment = TaskFragment.newInstance();
-				bgId = R.drawable.bg2;
-				break;
+            case 1:
+                fragment = TaskPagerFragment.newInstance();
+                bgId = R.drawable.bg2;
+                break;
+            case 2:
+                fragment = TaskCreatorFragment.newInstance();
+                bgId = R.drawable.bg3;
+                break;
 		}
 		findViewById(R.id.fragment_container).setBackgroundResource(bgId);
 		fragment.setArguments(args);

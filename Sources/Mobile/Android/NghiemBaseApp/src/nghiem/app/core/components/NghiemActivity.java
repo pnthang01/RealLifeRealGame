@@ -27,6 +27,8 @@ public class NghiemActivity extends FragmentActivity
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
 
 	protected String TAG = getClass().getName();
+	
+	protected FragmentManager mFragmentManager;
 
 	private Handler mHandler;
 
@@ -51,6 +53,7 @@ public class NghiemActivity extends FragmentActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		mFragmentManager = getSupportFragmentManager();
 	}
 
 	protected View inflate(int layout)
@@ -74,15 +77,14 @@ public class NghiemActivity extends FragmentActivity
 	public void addFragment(int container, Fragment child)
 	{
 		LogUtils.log(TAG, "add fragment " + child.toString() + " to " + container);
-		getSupportFragmentManager().beginTransaction().addToBackStack(null).add(container, child).commit();
+		mFragmentManager.beginTransaction().addToBackStack(null).add(container, child).commit();
 	}
 
 	public void replaceFragment(int container, Fragment child)
 	{
 		LogUtils.log(TAG, "replace fragment " + child.toString() + " to " + container);
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.popBackStack();
-		fragmentManager.beginTransaction().addToBackStack(null).replace(container, child).commit();
+		mFragmentManager.popBackStack();
+		mFragmentManager.beginTransaction().addToBackStack(null).replace(container, child).commit();
 	}
 
 	public void showDialog(String type, boolean isCancelable)
@@ -94,9 +96,8 @@ public class NghiemActivity extends FragmentActivity
 			return;
 		}
 
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		Fragment oldFragment = fragmentManager.findFragmentByTag(type);
+		FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+		Fragment oldFragment = mFragmentManager.findFragmentByTag(type);
 		if (oldFragment != null)
 		{
 			fragmentTransaction.remove(oldFragment);
@@ -112,7 +113,7 @@ public class NghiemActivity extends FragmentActivity
 			}
 		};
 		baseDialogFragment.setCancelable(isCancelable);
-		baseDialogFragment.show(fragmentManager, type);
+		baseDialogFragment.show(mFragmentManager, type);
 	}
 
 	public Dialog onCreateDialog(String type)

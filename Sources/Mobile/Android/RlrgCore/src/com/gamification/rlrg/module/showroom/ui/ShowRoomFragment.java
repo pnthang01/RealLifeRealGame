@@ -43,6 +43,7 @@ public class ShowRoomFragment extends ListViewFragment<Achievement>
 		StartActivity activity = (StartActivity) getActivity();
 		if (activity != null)
 		{
+		    activity.hideActionBarButtonRight();
 			Achievements achievements = activity.getCoreApp().getAchievements();
 			if (achievements.isSuccessful())
 			{

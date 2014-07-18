@@ -4,6 +4,7 @@
     <string-array name="navigation">
         <item>Showroom</item>
         <item>Task</item>
+        <item>Create Task</item>
     </string-array>
     
     <string-array name="task">

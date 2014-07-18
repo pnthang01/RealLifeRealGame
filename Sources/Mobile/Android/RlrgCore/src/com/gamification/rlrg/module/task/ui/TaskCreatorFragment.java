@@ -115,7 +115,7 @@ public class TaskCreatorFragment extends Fragment implements OnClickListener, On
 		mActivity.setBtnActionBarRightText("Finish", this);
 		mCategories = RlrgApp.getInstance().getCategories().getData().getElements();
 		mTasks = RlrgApp.getInstance().getTasks();
-		mSpnCategory.setAdapter(new CategoryAdapter(mActivity, R.layout.list_item_game));
+		mSpnCategory.setAdapter(new CategoryAdapter(mActivity, android.R.layout.simple_spinner_dropdown_item));
 	}
 
 	@Override

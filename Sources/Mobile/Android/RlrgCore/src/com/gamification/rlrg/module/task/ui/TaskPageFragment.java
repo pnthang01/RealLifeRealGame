@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nghiem.app.core.components.ListViewFragment;
+import nghiem.app.core.utils.LogUtils;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,16 +19,18 @@ import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.start.ui.StartActivity;
 
-public class TodayFragment extends ListViewFragment<Task>
+public class TaskPageFragment extends ListViewFragment<Task>
 {
-	public static final String TAG = TodayFragment.class.getName();
+	public static final String TAG = TaskPageFragment.class.getName();
+	
+	private StartActivity mActivity;
 
-	public static TodayFragment newInstance()
+	public static TaskPageFragment newInstance()
 	{
-		return new TodayFragment(R.layout.list_view, R.layout.list_item_game);
+		return new TaskPageFragment(R.layout.list_view, R.layout.list_item_game);
 	}
 
-	public TodayFragment(int listLayout, int itemLayout)
+	public TaskPageFragment(int listLayout, int itemLayout)
 	{
 		super(listLayout, itemLayout);
 	}
@@ -40,10 +43,10 @@ public class TodayFragment extends ListViewFragment<Task>
 		{
 			// String title = mArguments.getString("title");
 		}
-		StartActivity activity = (StartActivity) getActivity();
-		if (activity != null)
+		mActivity = (StartActivity) getActivity();
+		if (mActivity != null)
 		{
-			Tasks tasks = activity.getCoreApp().getTasks();
+			Tasks tasks = mActivity.getCoreApp().getTasks();
 			if (tasks.isSuccessful())
 			{
 				setData(tasks.getData().getElements());
@@ -74,5 +77,8 @@ public class TodayFragment extends ListViewFragment<Task>
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id)
 	{
+	    Task item = (Task) getListAdapter().getItem(position);
+	    
+	    LogUtils.log(TAG, item.getCompleteTime() + "");
 	}
 }

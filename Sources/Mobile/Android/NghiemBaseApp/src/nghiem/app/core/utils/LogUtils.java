@@ -104,8 +104,8 @@ public class LogUtils
 			Log.e(tag, "", throwable);
 		}
 
-		String errorReport = getErrorReport(throwable);
-		EmailUtils.sendMail(throwable.getMessage() + "", errorReport);
+		//String errorReport = getErrorReport(throwable);
+		//EmailUtils.sendMail(throwable.getMessage() + "", errorReport);
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class LogUtils
 	 *            the error or exception thrown
 	 * @return text with error content and full device information
 	 */
-	private static String getErrorReport(Throwable throwable)
+	public static String getErrorReport(Throwable throwable)
 	{
 		String separator = "\n";
 		StringWriter stackTrace = new StringWriter();

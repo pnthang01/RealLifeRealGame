@@ -250,4 +250,11 @@ public class NavigationActivity extends NghiemActivity
 			view.setOnClickListener(callback);
 		}
 	}
+
+	public void hideActionBarButtonRight()
+	{
+		mBtnActionBarRightOne.setVisibility(View.GONE);
+		mBtnActionBarRightTwo.setVisibility(View.GONE);
+		mBtnActionBarRightText.setVisibility(View.GONE);
+	}
 }

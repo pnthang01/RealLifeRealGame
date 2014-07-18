@@ -170,4 +170,11 @@ public class ActionBarActivity extends NghiemActivity
 			LogUtils.log(TAG, "set action bar button " + view.toString() + "with icon " + icon.toString());
 		}
 	}
+	
+	public void hideActionBarButtonRight()
+	{
+		mBtnActionBarRightOne.setVisibility(View.GONE);
+		mBtnActionBarRightTwo.setVisibility(View.GONE);
+		mBtnActionBarRightText.setVisibility(View.GONE);
+	}
 }
