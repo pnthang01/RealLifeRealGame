@@ -4,6 +4,7 @@ public class Settings
 {
 	public static final String DATE_FORMAT = "dd/MM/yyyy";
 	public static final String DATETIME_FORMAT = "dd/MM/yyyy HH:mm:ss";
+	public static final String PASSWORD_COVER = "cb63a03774fdf986";
 
 	public class Assets
 	{

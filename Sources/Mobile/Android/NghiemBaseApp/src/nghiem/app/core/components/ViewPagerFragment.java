@@ -23,7 +23,7 @@ public class ViewPagerFragment extends Fragment implements OnPageChangeListener
 	public static final int TYPE_TITLE_STRIP = 1;
 	public static final int TYPE_TAB_STRIP = 2;
 
-	private class ParallaxTransformer implements ViewPager.PageTransformer
+	private static class ParallaxTransformer implements ViewPager.PageTransformer
 	{
 		/**
 		 * Both sides, each side = 0.17

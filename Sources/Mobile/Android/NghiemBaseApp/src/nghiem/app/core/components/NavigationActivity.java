@@ -73,7 +73,7 @@ public class NavigationActivity extends NghiemActivity
 		mNavigation = (LinearLayout) findViewById(R.id.navigation);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer_black, R.string.drawer_open, R.string.drawer_close);
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		mNavigationList = (ListView) findViewById(R.id.navigation_list);
@@ -86,7 +86,7 @@ public class NavigationActivity extends NghiemActivity
 		mBtnActionBarRightTwo = (ImageButton) findViewById(R.id.actionbar_btn_right_2);
 		mBtnActionBarRightText = (Button) findViewById(R.id.actionbar_btn_right_text);
 
-		mBtnActionBarLeft.setImageResource(R.drawable.ic_drawer_black);
+		mBtnActionBarLeft.setImageResource(R.drawable.ic_drawer);
 		mBtnActionBarLeft.setVisibility(View.VISIBLE);
 		mBtnActionBarLeft.setOnClickListener(new OnClickListener()
 		{

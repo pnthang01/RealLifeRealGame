@@ -10,6 +10,7 @@ public final class R {
 	public static final class color {
 		public static final int background_solid = 0x7f050000;
 		public static final int background_transparent = 0x7f050001;
+		public static final int button_action_bar_text = 0x7f050005;
 		public static final int divider = 0x7f050004;
 		public static final int view_pager_strip_bg = 0x7f050002;
 		public static final int view_pager_strip_text = 0x7f050003;
@@ -38,8 +39,8 @@ public final class R {
 		public static final int font_size_xlarge_55 = 0x7f070014;
 	}
 	public static final class drawable {
-		public static final int ic_drawer_black = 0x7f02000c;
-		public static final int ic_launcher = 0x7f02000d;
+		public static final int ic_back = 0x7f02000c;
+		public static final int ic_drawer = 0x7f02000d;
 	}
 	public static final class id {
 		public static final int actionbar = 0x7f0a0001;
@@ -52,11 +53,11 @@ public final class R {
 		public static final int main_view = 0x7f0a0007;
 		public static final int navigation = 0x7f0a0009;
 		public static final int navigation_list = 0x7f0a000a;
-		public static final int pager = 0x7f0a001c;
-		public static final int pager_strip = 0x7f0a001d;
-		public static final int progress_bar = 0x7f0a001e;
-		public static final int title = 0x7f0a0020;
-		public static final int webview = 0x7f0a001f;
+		public static final int pager = 0x7f0a001d;
+		public static final int pager_strip = 0x7f0a001e;
+		public static final int progress_bar = 0x7f0a001f;
+		public static final int title = 0x7f0a0021;
+		public static final int webview = 0x7f0a0020;
 	}
 	public static final class layout {
 		public static final int activity_with_actionbar = 0x7f030001;

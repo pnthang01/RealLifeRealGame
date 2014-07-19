@@ -8,5 +8,6 @@
     <color name="view_pager_strip_text">#FFFFFF</color>
     
     <color name="divider">#AAAAAA</color>
+    <color name="button_action_bar_text">#FFC600</color>
 
 </resources>

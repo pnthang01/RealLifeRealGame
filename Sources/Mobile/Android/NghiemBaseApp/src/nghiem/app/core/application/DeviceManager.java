@@ -164,7 +164,7 @@ public final class DeviceManager
 		return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
 
-	public boolean isExternalStorageSupportWrite()
+	public static boolean isExternalStorageSupportWrite()
 	{
 		return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
 	}

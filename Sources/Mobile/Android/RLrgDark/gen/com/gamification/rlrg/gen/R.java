@@ -19,6 +19,7 @@ public final class R {
 	public static final class color {
 		public static final int background_solid = 0x7f050000;
 		public static final int background_transparent = 0x7f050001;
+		public static final int button_action_bar_text = 0x7f050005;
 		public static final int divider = 0x7f050004;
 		public static final int view_pager_strip_bg = 0x7f050002;
 		public static final int view_pager_strip_text = 0x7f050003;
@@ -59,8 +60,8 @@ public final class R {
 		public static final int bg4 = 0x7f020009;
 		public static final int bg5 = 0x7f02000a;
 		public static final int bg6 = 0x7f02000b;
-		public static final int ic_drawer_black = 0x7f02000c;
-		public static final int ic_launcher = 0x7f02000d;
+		public static final int ic_back = 0x7f02000c;
+		public static final int ic_drawer = 0x7f02000d;
 	}
 	public static final class id {
 		public static final int actionbar = 0x7f0a0001;
@@ -70,6 +71,7 @@ public final class R {
 		public static final int actionbar_btn_right_text = 0x7f0a0006;
 		public static final int actionbar_title = 0x7f0a0003;
 		public static final int btn_login = 0x7f0a0015;
+		public static final int ckb_remember = 0x7f0a0016;
 		public static final int drawer_layout = 0x7f0a0008;
 		public static final int edit_complete = 0x7f0a000e;
 		public static final int edit_name = 0x7f0a000d;
@@ -82,20 +84,20 @@ public final class R {
 		public static final int main_view = 0x7f0a0007;
 		public static final int navigation = 0x7f0a0009;
 		public static final int navigation_list = 0x7f0a000a;
-		public static final int pager = 0x7f0a001c;
-		public static final int pager_strip = 0x7f0a001d;
-		public static final int progress_bar = 0x7f0a001e;
+		public static final int pager = 0x7f0a001d;
+		public static final int pager_strip = 0x7f0a001e;
+		public static final int progress_bar = 0x7f0a001f;
 		public static final int search_box = 0x7f0a000b;
 		public static final int spinner_category = 0x7f0a000c;
 		public static final int spinner_difficulty = 0x7f0a000f;
-		public static final int text_category = 0x7f0a0016;
-		public static final int text_complete = 0x7f0a0018;
-		public static final int text_difficulty = 0x7f0a0019;
-		public static final int text_name = 0x7f0a0017;
-		public static final int text_point = 0x7f0a001a;
-		public static final int text_status = 0x7f0a001b;
-		public static final int title = 0x7f0a0020;
-		public static final int webview = 0x7f0a001f;
+		public static final int text_category = 0x7f0a0017;
+		public static final int text_complete = 0x7f0a0019;
+		public static final int text_difficulty = 0x7f0a001a;
+		public static final int text_name = 0x7f0a0018;
+		public static final int text_point = 0x7f0a001b;
+		public static final int text_status = 0x7f0a001c;
+		public static final int title = 0x7f0a0021;
+		public static final int webview = 0x7f0a0020;
 	}
 	public static final class layout {
 		public static final int activity_start = 0x7f030000;
@@ -122,10 +124,10 @@ public final class R {
 		public static final int action_bar_btn_right_text = 0x7f060004;
 		public static final int action_cancel = 0x7f060010;
 		public static final int action_close = 0x7f060014;
-		public static final int action_create_task = 0x7f060027;
-		public static final int action_login = 0x7f060026;
-		public static final int action_mark_as_complete = 0x7f060028;
-		public static final int action_mark_as_uncomplete = 0x7f060029;
+		public static final int action_create_task = 0x7f060028;
+		public static final int action_login = 0x7f060027;
+		public static final int action_mark_as_complete = 0x7f060029;
+		public static final int action_mark_as_uncomplete = 0x7f06002a;
 		public static final int action_no = 0x7f060012;
 		public static final int action_ok = 0x7f06000f;
 		public static final int action_open = 0x7f060013;
@@ -143,9 +145,10 @@ public final class R {
 		public static final int hint_name = 0x7f06001e;
 		public static final int hint_password = 0x7f060025;
 		public static final int hint_point = 0x7f060022;
+		public static final int hint_remember_password = 0x7f060026;
 		public static final int hint_status = 0x7f060023;
 		public static final int hint_username = 0x7f060024;
-		public static final int message_login_failed = 0x7f06002a;
+		public static final int message_login_failed = 0x7f06002b;
 		public static final int message_no_internet_connection = 0x7f06000d;
 		public static final int message_quit_app = 0x7f06000c;
 		public static final int title_category = 0x7f060017;

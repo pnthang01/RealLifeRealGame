@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <TextView
-            android:id="@+id/logo"
-            style="@style/full_screen"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/font_size_xlarge_55"
-            android:textStyle="bold" />
+        android:id="@+id/logo"
+        style="@style/full_screen"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_xlarge_55"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/layout_login"
@@ -43,5 +43,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/action_login" />
+
+        <CheckBox
+            android:id="@+id/ckb_remember"
+            style="@style/wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/hint_remember_password"
+            android:textColor="@android:color/white" />
     </LinearLayout>
+
 </RelativeLayout>

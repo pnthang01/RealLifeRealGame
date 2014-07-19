@@ -13,6 +13,7 @@ public final class R {
     public static final class color {
         public static int background_solid=0x7f040000;
         public static int background_transparent=0x7f040001;
+        public static int button_action_bar_text=0x7f040005;
         public static int divider=0x7f040004;
         public static int view_pager_strip_bg=0x7f040002;
         public static int view_pager_strip_text=0x7f040003;
@@ -43,8 +44,8 @@ public final class R {
         public static int font_size_xlarge_55=0x7f060014;
     }
     public static final class drawable {
-        public static int ic_drawer_black=0x7f020000;
-        public static int ic_launcher=0x7f020001;
+        public static int ic_back=0x7f020000;
+        public static int ic_drawer=0x7f020001;
     }
     public static final class id {
         public static int actionbar=0x7f080000;

@@ -6,7 +6,8 @@
         android:id="@android:id/list"
         style="@style/full_width"
         android:divider="@color/divider"
-        android:dividerHeight="3dip" />
+        android:dividerHeight="3dip"
+        android:listSelector="@android:color/transparent" />
 
     <TextView
         android:id="@android:id/empty"

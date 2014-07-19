@@ -58,6 +58,8 @@
                 style="@style/full_height"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/action_bar_btn_right_text"
+                android:textColor="@color/button_action_bar_text"
+                android:textStyle="bold"
                 android:visibility="gone" />
         </LinearLayout>
     </RelativeLayout>
