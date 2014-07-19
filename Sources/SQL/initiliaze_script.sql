@@ -53,7 +53,7 @@ CREATE TABLE `user` (
 	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`role_id` INT(11),
 	`username` VARCHAR(30) UNIQUE NOT NULL,
-	`password` VARCHAR(30) NOT NULL,
+	`password` VARCHAR(100) NOT NULL,
 	`email` VARCHAR(50) NOT NULL UNIQUE,
 	`first_name` VARCHAR(45) NOT NULL,
 	`last_name` VARCHAR(45),
@@ -61,7 +61,7 @@ CREATE TABLE `user` (
 	`last_login` DATETIME,
 	`gender` TINYINT(4),
 	`point` INT NOT NULL DEFAULT 0,
-	`status` TINYINT(4) NOT NULL,
+	`status` VARCHAR(15) NOT NULL,
 	`token` VARCHAR(45) NULL,
 	`performed` VARCHAR(1000) NULL
 );

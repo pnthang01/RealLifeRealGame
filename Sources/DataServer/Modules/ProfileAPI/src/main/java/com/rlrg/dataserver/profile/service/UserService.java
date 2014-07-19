@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,8 @@ import com.rlrg.dataserver.profile.entity.enums.UserStatus;
 import com.rlrg.dataserver.profile.exception.LoginException;
 import com.rlrg.dataserver.profile.repository.UserRepository;
 import com.rlrg.dataserver.utillities.Constants;
+import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
+import com.rlrg.utillities.badgechecker.domain.AbstractCheckerDTO;
 
 @Service
 public class UserService extends BaseService<User, UserDTO> implements IUserService<User, UserDTO>{
@@ -41,8 +44,11 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
     private IRoleService<Role, RoleDTO> roleService;
     
     @Autowired
+    private UserLogService userLogService;
+    
+    @Autowired
     private CommonService commonService;
-
+    
     /**
      * Get UserToken from system, then retrieve User in database bases on UserToken
      * @param token
@@ -72,6 +78,10 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
     	return userRepo.findUserByUsername(username);
     }
     
+    private void logUserAction(Long userId, String action){
+    	userLogService.logUserAction(userId, action);
+    }
+    
     /**
      * Create new User with data input is #UserDTO
      * @param dto
@@ -87,15 +97,18 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
     		}
 	    	User user = new User();
 	    	user.setUsername(dto.getUsername());
-	    	user.setPassword(dto.getPassword());
+	    	user.setPassword(BaseUtils.md5(dto.getPassword()));
 	    	user.setEmail(dto.getEmail());
 	    	user.setFirstName(dto.getFirstName());
 	    	user.setCreateDate(new Date());
 	    	user.setRole(defaultRole);
-	    	user.setStatus(UserStatus.CONFIRM);
+	    	user.setStatus(UserStatus.CONFIRM.name());
 	    	user.setPoint(0);
 	    	//
 	    	userRepo.save(user);
+    	} catch(DataIntegrityViolationException e){
+	    	LOG.error("User with username:{} exists.", dto.getUsername());
+	    	throw e;
     	} catch(Exception e){
 			LOG.error(e.getMessage(), e);
 			throw e;
@@ -153,10 +166,17 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
             password = BaseUtils.md5(password);
             User user = userRepo.login(username, password);
             if (user != null) {
-                user.setLastLogin(new Date());
+            	Date lastLogin = new Date();
+                user.setLastLogin(lastLogin);
                 com.rlrg.dataserver.base.domain.User uUser = convertUserToUtilUser(user);
                 user.setToken(commonService.setUserToken(uUser));
                 //
+                AbstractCheckerDTO checkerDTO = new AbstractCheckerDTO();
+                checkerDTO.setAction(BadgeCheckerConstants.LOGIN_PROFILE);
+                checkerDTO.setActionDate(lastLogin);
+                submitValueToBadgeChecker(BadgeCheckerConstants.PROFILE_MODULE, user.getId(), checkerDTO);
+                //
+                logUserAction(user.getId(), BadgeCheckerConstants.LOGIN_PROFILE);
                 return convertObject(user);
             } else {
                 throw new LoginException("username or password is not correct!");

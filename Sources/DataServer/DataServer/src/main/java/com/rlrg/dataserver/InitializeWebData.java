@@ -18,6 +18,7 @@ import com.rlrg.dataserver.base.service.ILanguageService;
 import com.rlrg.dataserver.base.service.IPermissionService;
 import com.rlrg.dataserver.base.service.IRoleService;
 import com.rlrg.dataserver.base.service.ITaskService;
+import com.rlrg.dataserver.base.service.IUserLogService;
 import com.rlrg.dataserver.base.service.IUserService;
 import com.rlrg.dataserver.language.dto.BadgeLangDTO;
 import com.rlrg.dataserver.language.dto.CateLangDTO;
@@ -34,8 +35,10 @@ import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.entity.Permission;
 import com.rlrg.dataserver.profile.entity.Role;
 import com.rlrg.dataserver.profile.entity.User;
+import com.rlrg.dataserver.profile.entity.UserLog;
 import com.rlrg.dataserver.profile.service.PermissionService;
 import com.rlrg.dataserver.profile.service.RoleService;
+import com.rlrg.dataserver.profile.service.UserLogService;
 import com.rlrg.dataserver.profile.service.UserService;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
@@ -46,6 +49,11 @@ import com.rlrg.dataserver.task.service.TaskService;
 
 @Configuration
 public class InitializeWebData {
+	
+	@Bean
+	public IUserLogService<UserLog> getUserLogService(){
+		return new UserLogService();
+	}
 
 	@Bean
 	public IBadgeService<Badge, BadgeDTO> getBadgeService(){

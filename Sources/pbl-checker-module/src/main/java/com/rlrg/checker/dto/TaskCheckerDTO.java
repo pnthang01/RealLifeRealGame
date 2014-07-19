@@ -1,6 +1,5 @@
 package com.rlrg.checker.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.rlrg.utillities.badgechecker.domain.AbstractCheckerDTO;
@@ -23,8 +22,8 @@ public class TaskCheckerDTO extends AbstractCheckerDTO{
 	}
 	
 	public List<String> getAllPropeties(){
-		List<String> props = new ArrayList<String>();
-		props.add(action);
+		List<String> props = super.getAllPropeties();
+		//props.add(action);
 		props.add(category);
 		props.add(diffLevel);
 		//

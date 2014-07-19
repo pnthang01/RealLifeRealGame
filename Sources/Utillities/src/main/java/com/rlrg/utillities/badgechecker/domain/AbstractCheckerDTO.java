@@ -1,8 +1,10 @@
 package com.rlrg.utillities.badgechecker.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public abstract class AbstractCheckerDTO {
+public class AbstractCheckerDTO {
 	protected String action;
 	protected Date actionDate;
 
@@ -22,4 +24,10 @@ public abstract class AbstractCheckerDTO {
 		this.actionDate = actionDate;
 	}
 
+	public List<String> getAllPropeties(){
+		List<String> props = new ArrayList<String>(1);
+		props.add(action);
+		//
+		return props;
+	}
 }

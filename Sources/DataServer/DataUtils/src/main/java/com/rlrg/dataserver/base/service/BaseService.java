@@ -30,7 +30,7 @@ public abstract class BaseService <T, V> implements IBaseService<T, V>{
 	protected abstract Class<V> getVClass();
 
 	protected void submitValueToBadgeChecker(String module, Long userId, AbstractCheckerDTO dto) {
-		mainChecker.mainProcess(module, 1l, dto);
+		mainChecker.mainProcess(module, 11l, dto);
 	}
 	
 //	@Override

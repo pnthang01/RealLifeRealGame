@@ -102,7 +102,7 @@ public class JsonTest {
 	private static JsonExporter jsonExporter = new JsonExporter();
 
 	public static void main(String[] args) throws Exception {
-//		decodeExample();
+		decodeExample();
 	//	encodeCategoryObject();
 //		encodeCategoryObjects();
 //		System.out.println("\n=============\n");
@@ -116,7 +116,7 @@ public class JsonTest {
 //		System.out.println("\n=============\n");
 //		testDecodeTasks();
 		//testDecodeTask();
-		testEncodeBlankRestObject();
+		//testEncodeBlankRestObject();
 	}
 	
 	public static void testEncodeBlankRestObject(){

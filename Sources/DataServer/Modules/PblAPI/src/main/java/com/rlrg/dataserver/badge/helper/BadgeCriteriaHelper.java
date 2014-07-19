@@ -1,5 +1,6 @@
 package com.rlrg.dataserver.badge.helper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,20 +18,22 @@ public class BadgeCriteriaHelper {
 		return new Specification<Badge>() {
 			@Override
 			public Predicate toPredicate(Root<Badge> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate[] critList = new Predicate[2];
-				Predicate avaiBadge = cb.not(root.<Integer>get("id").in(usersAchie));
-				critList[0] = avaiBadge;
-				//
+				List<Predicate> critList = new ArrayList<Predicate>();
 				for(String param : params){
 					Predicate temp = cb.like(root.<String>get("eligibility"), 
 							new StringBuffer("%").append(param).append("%").toString());
-					if(null == critList[1]){
-						critList[1] = temp;
+					if(critList.size() == 0){
+						critList.add(temp);
 					} else {
-						critList[1] = cb.or(critList[1], temp);
+						critList.set(1, cb.or(critList.get(1), temp));
 					}
 				}
-				return query.where(critList).getRestriction();
+				if(usersAchie.size() > 0){
+					Predicate avaiBadge = cb.not(root.<Integer>get("id").in(usersAchie));
+					critList.add(avaiBadge);	
+				}
+				//				
+				return query.where(critList.toArray(new Predicate[critList.size()])).getRestriction();
 			}
 		};
 	}

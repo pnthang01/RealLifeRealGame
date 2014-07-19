@@ -20,7 +20,9 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rlrg.checker.MainChecker;
+import com.rlrg.checker.ProfileChecker;
 import com.rlrg.checker.TaskChecker;
 import com.rlrg.utillities.badgechecker.domain.IMainChecker;
 import com.rlrg.utillities.json.JsonExporter;
@@ -36,6 +38,11 @@ public class StartApplication {
 	private static final Logger LOG = LoggerFactory.getLogger(StartApplication.class);
 	
 	@Bean
+	public ObjectMapper objectMapper(){
+		return new ObjectMapper();
+	}
+	
+	@Bean
 	public PathMatchingResourcePatternResolver resourcePatternResolver() {
 		return new PathMatchingResourcePatternResolver();
 	}
@@ -43,6 +50,11 @@ public class StartApplication {
 	@Bean(name="taskChecker")
 	public TaskChecker getTaskChecker(){
 		return new TaskChecker();
+	}
+	
+	@Bean(name="profileChecker")
+	public ProfileChecker getProfileChecker(){
+		return new ProfileChecker();
 	}
 
 	@Bean(name="mainChecker")

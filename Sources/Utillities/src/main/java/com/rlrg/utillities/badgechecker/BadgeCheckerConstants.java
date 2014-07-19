@@ -9,6 +9,8 @@ public interface BadgeCheckerConstants {
 	public static final String CREATE_TASK = "CreateTask";
 	public static final String UPDATE_TASK = "UpdateTask";
 	
+	public static final String LOGIN_PROFILE = "Login";
+	
 	//Properties
 	public static final String EASY = "EASY";
 	public static final String NORMAL = "NORMAL";

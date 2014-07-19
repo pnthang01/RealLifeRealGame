@@ -114,11 +114,11 @@ public class UserController extends BaseController {
     
     @RequestMapping(value = "/login", produces = "application/json", method=RequestMethod.POST)
     @ResponseBody
-    public String login(@RequestBody LoginForm loginParam) throws BaseException {
+    public String login(@RequestParam(value="username") String username, @RequestParam(value="password") String password) throws BaseException {
 		String result = null;
-		LOG.info("<< Starting webservice /user/getAllUser with parameter: loginParam={}", loginParam);
+		LOG.info("<< Starting webservice /user/getAllUser with parameter: usertname={}, password={}", username, "********");
 		try {
-			UserDTO userDTO = userService.login(loginParam.getUsername(), loginParam.getPassword());
+			UserDTO userDTO = userService.login(username, password);
 			//
 			result = userService.encodeSingleObjectFromVdto(userDTO);
 		} catch(BaseException e){

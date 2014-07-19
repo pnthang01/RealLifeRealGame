@@ -32,7 +32,6 @@ import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
 import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
-import com.rlrg.utillities.badgechecker.domain.AbstractCheckerDTO;
 import com.rlrg.utillities.badgechecker.domain.ModuleName;
 
 @ModuleName(name=BadgeCheckerConstants.TASK_MODULE)
