@@ -2,12 +2,9 @@ package com.rlrg.checker;
 
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.base.service.IBadgeService;
