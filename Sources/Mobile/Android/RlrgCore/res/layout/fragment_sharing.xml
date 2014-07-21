@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/full_screen" >
+
+    <TextView
+        android:id="@+id/text_sharing"
+        style="@style/full_width"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/actionbar_padding"
+        android:text="@string/action_sharing"
+        android:textSize="@dimen/font_size_xlarge_26"
+        android:textColor="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/view_buttons"
+        android:layout_width="134dp"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/text_sharing"
+        android:background="@drawable/share"
+        android:orientation="horizontal" >
+
+        <View
+            android:id="@+id/btn_facebook"
+            style="@style/full_height_equal_width"
+            android:clickable="true" />
+
+        <View
+            android:id="@+id/btn_twitter"
+            style="@style/full_height_equal_width"
+            android:clickable="true" />
+    </LinearLayout>
+
+</RelativeLayout>

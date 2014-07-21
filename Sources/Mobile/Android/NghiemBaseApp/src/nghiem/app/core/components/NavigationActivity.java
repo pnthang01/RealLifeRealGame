@@ -265,4 +265,9 @@ public class NavigationActivity extends NghiemActivity
 		mBtnActionBarRightTwo.setVisibility(View.GONE);
 		mBtnActionBarRightText.setVisibility(View.GONE);
 	}
+	
+	public void setDrawerLockMode(int mode)
+	{
+	    mDrawerLayout.setDrawerLockMode(mode);
+	}
 }

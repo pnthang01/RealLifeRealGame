@@ -6,7 +6,13 @@ public class FragmentFactory
 {
 	public static enum Type
 	{
-		LOGIN, SHOWROOM, TASK_CREATE, TASK_DETAIL, TASK_PAGER, TASK_PAGE
+		LOGIN,
+		SHOWROOM,
+		TASK_CREATE,
+		TASK_DETAIL,
+		TASK_PAGER,
+		TASK_PAGE,
+		SHARING
 	}
 
 	public static Fragment create(Type type)
@@ -24,8 +30,10 @@ public class FragmentFactory
 			case TASK_PAGER:
 				return TaskPagerFragment.newInstance();
 			case TASK_PAGE:
-				return TaskPageFragment.newInstance();
-			default:
+                return TaskPageFragment.newInstance();
+			case SHARING:
+                return SharingFragment.newInstance();
+            default:
 				return null;
 		}
 	}

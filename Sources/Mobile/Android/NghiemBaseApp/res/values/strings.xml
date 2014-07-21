@@ -3,6 +3,8 @@
     <string name="app_name">NghiemBaseApp</string>
     <string name="default_email_username">le.vinhnghiem@gmail.com</string>
     <string name="default_email_password">He!1@ngeI</string>
+    <string name="twitter_link">https://twitter.com/intent/tweet</string>
+    <string name="facebook_link">https://www.facebook.com/sharer/sharer.php</string>
     
     <!-- Title -->
     <string name="title_no_internet_connection">No Internet Connection</string>

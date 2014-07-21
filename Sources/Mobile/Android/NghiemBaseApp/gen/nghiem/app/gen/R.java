@@ -80,16 +80,16 @@ public final class R {
         public static int action_bar_btn_right_1=0x7f050002;
         public static int action_bar_btn_right_2=0x7f050003;
         public static int action_bar_btn_right_text=0x7f050004;
-        public static int action_cancel=0x7f050010;
-        public static int action_close=0x7f050014;
-        public static int action_no=0x7f050012;
-        public static int action_ok=0x7f05000f;
-        public static int action_open=0x7f050013;
+        public static int action_cancel=0x7f050012;
+        public static int action_close=0x7f050016;
+        public static int action_no=0x7f050014;
+        public static int action_ok=0x7f050011;
+        public static int action_open=0x7f050015;
         /**  Action 
          */
-        public static int action_quit_app=0x7f05000e;
-        public static int action_search=0x7f050015;
-        public static int action_yes=0x7f050011;
+        public static int action_quit_app=0x7f050010;
+        public static int action_search=0x7f050017;
+        public static int action_yes=0x7f050013;
         /**  Variable 
          */
         public static int app_name=0x7f050007;
@@ -97,14 +97,16 @@ public final class R {
         public static int default_email_username=0x7f050008;
         public static int drawer_close=0x7f050006;
         public static int drawer_open=0x7f050005;
-        public static int message_no_internet_connection=0x7f05000d;
+        public static int facebook_link=0x7f05000b;
+        public static int message_no_internet_connection=0x7f05000f;
         /**  Message 
          */
-        public static int message_quit_app=0x7f05000c;
-        public static int title_list_empty=0x7f05000b;
+        public static int message_quit_app=0x7f05000e;
+        public static int title_list_empty=0x7f05000d;
         /**  Title 
          */
-        public static int title_no_internet_connection=0x7f05000a;
+        public static int title_no_internet_connection=0x7f05000c;
+        public static int twitter_link=0x7f05000a;
     }
     public static final class style {
         public static int app_theme=0x7f070000;

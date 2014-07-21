@@ -53,21 +53,21 @@ public final class R {
 		public static final int main_view = 0x7f0a0007;
 		public static final int navigation = 0x7f0a0009;
 		public static final int navigation_list = 0x7f0a000a;
-		public static final int pager = 0x7f0a001d;
-		public static final int pager_strip = 0x7f0a001e;
-		public static final int progress_bar = 0x7f0a001f;
-		public static final int title = 0x7f0a0021;
-		public static final int webview = 0x7f0a0020;
+		public static final int pager = 0x7f0a0021;
+		public static final int pager_strip = 0x7f0a0022;
+		public static final int progress_bar = 0x7f0a0023;
+		public static final int title = 0x7f0a0025;
+		public static final int webview = 0x7f0a0024;
 	}
 	public static final class layout {
 		public static final int activity_with_actionbar = 0x7f030001;
 		public static final int activity_with_navigation = 0x7f030002;
-		public static final int fragment_view_pager = 0x7f030008;
-		public static final int fragment_view_pager_with_tab_strip = 0x7f030009;
-		public static final int fragment_view_pager_with_title_strip = 0x7f03000a;
-		public static final int fragment_web = 0x7f03000b;
-		public static final int list_item_navigation = 0x7f03000d;
-		public static final int list_view = 0x7f03000e;
+		public static final int fragment_view_pager = 0x7f030009;
+		public static final int fragment_view_pager_with_tab_strip = 0x7f03000a;
+		public static final int fragment_view_pager_with_title_strip = 0x7f03000b;
+		public static final int fragment_web = 0x7f03000c;
+		public static final int list_item_navigation = 0x7f03000e;
+		public static final int list_view = 0x7f03000f;
 	}
 	public static final class string {
 		public static final int action_bar = 0x7f060000;
@@ -75,23 +75,25 @@ public final class R {
 		public static final int action_bar_btn_right_1 = 0x7f060002;
 		public static final int action_bar_btn_right_2 = 0x7f060003;
 		public static final int action_bar_btn_right_text = 0x7f060004;
-		public static final int action_cancel = 0x7f060010;
-		public static final int action_close = 0x7f060014;
-		public static final int action_no = 0x7f060012;
-		public static final int action_ok = 0x7f06000f;
-		public static final int action_open = 0x7f060013;
-		public static final int action_quit_app = 0x7f06000e;
-		public static final int action_search = 0x7f060015;
-		public static final int action_yes = 0x7f060011;
+		public static final int action_cancel = 0x7f060012;
+		public static final int action_close = 0x7f060016;
+		public static final int action_no = 0x7f060014;
+		public static final int action_ok = 0x7f060011;
+		public static final int action_open = 0x7f060015;
+		public static final int action_quit_app = 0x7f060010;
+		public static final int action_search = 0x7f060017;
+		public static final int action_yes = 0x7f060013;
 		public static final int app_name = 0x7f060007;
 		public static final int default_email_password = 0x7f060009;
 		public static final int default_email_username = 0x7f060008;
 		public static final int drawer_close = 0x7f060006;
 		public static final int drawer_open = 0x7f060005;
-		public static final int message_no_internet_connection = 0x7f06000d;
-		public static final int message_quit_app = 0x7f06000c;
-		public static final int title_list_empty = 0x7f06000b;
-		public static final int title_no_internet_connection = 0x7f06000a;
+		public static final int facebook_link = 0x7f06000b;
+		public static final int message_no_internet_connection = 0x7f06000f;
+		public static final int message_quit_app = 0x7f06000e;
+		public static final int title_list_empty = 0x7f06000d;
+		public static final int title_no_internet_connection = 0x7f06000c;
+		public static final int twitter_link = 0x7f06000a;
 	}
 	public static final class style {
 		public static final int app_theme = 0x7f080000;

@@ -27,6 +27,7 @@
     <string name="action_create_task">Create task</string>
     <string name="action_mark_as_complete">Completed</string>
     <string name="action_mark_as_uncomplete">Uncompleted</string>
+    <string name="action_sharing">Share on social networks</string>
     
     <!-- Message -->
     <string name="message_login_failed">Login Failed!\nPlease login again!</string>

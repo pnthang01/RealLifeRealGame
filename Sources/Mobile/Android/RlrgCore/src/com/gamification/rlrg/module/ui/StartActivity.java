@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -29,6 +30,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 		getCoreApp().init();
 
 		mNavigationTitles = getResources().getStringArray(R.array.navigation);
@@ -87,12 +89,14 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	{
 		switch (position)
 		{
+		    default:
+                return FragmentFactory.create(Type.SHOWROOM);
 			case 1:
 				return FragmentFactory.create(Type.TASK_PAGER);
-			case 2:
-				return FragmentFactory.create(Type.TASK_CREATE);
-			default:
-				return FragmentFactory.create(Type.SHOWROOM);
+            case 2:
+                return FragmentFactory.create(Type.TASK_CREATE);
+            case 3:
+                return FragmentFactory.create(Type.SHARING);
 		}
 	}
 
@@ -119,6 +123,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 		replaceFragment(fragment);
 		setActionBarOverLay(false);
 		showActionBar();
+        setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 	}
 
 	@Override

@@ -30,9 +30,9 @@ public class ImageLoader
 	private ExecutorService mExecutorService;
 	private int mAltImage;
 
-	public ImageLoader(Context ctx)
+	public ImageLoader(Context context)
 	{
-		mFileCache = new FileCache(ctx);
+		mFileCache = new FileCache(context);
 		mExecutorService = Executors.newFixedThreadPool(5);
 	}
 
