@@ -30,11 +30,10 @@ public class FragmentFactory
 			case TASK_PAGER:
 				return TaskPagerFragment.newInstance();
 			case TASK_PAGE:
-                return TaskPageFragment.newInstance();
+				return TaskPageFragment.newInstance();
 			case SHARING:
-                return SharingFragment.newInstance();
-            default:
-				return null;
+				return SharingFragment.newInstance();
 		}
+		return null;
 	}
 }

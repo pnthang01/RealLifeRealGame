@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
+import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.components.FragmentFactory;
@@ -23,6 +24,10 @@ import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
 
 public final class StartActivity extends NavigationActivity implements Runnable
 {
+	public static final String DIALOG_NETWORK_NOT_AVAILABLE = "DIALOG_NETWORK_NOT_AVAILABLE";
+	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
+	public static final String DIALOG_EXIT = "DIALOG_EXIT";
+	
 	private String[] mNavigationTitles;
 
 	@Override
@@ -115,6 +120,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 
 	public void onLoginSuccess()
 	{
+		DataPreferencesManager.getInstance().increaseLoginCount();
 		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		Fragment fragment = FragmentFactory.create(Type.SHOWROOM);
 		Bundle args = new Bundle();
@@ -123,7 +129,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 		replaceFragment(fragment);
 		setActionBarOverLay(false);
 		showActionBar();
-        setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+		setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 	}
 
 	@Override
@@ -144,27 +150,23 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	{
 		super.onCreateDialog(type);
 		LogUtils.log(TAG, "alert type " + type);
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		if (type.equals(DIALOG_NETWORK_NOT_AVAILABLE))
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.title_no_internet_connection);
 			builder.setMessage(R.string.message_no_internet_connection);
 			builder.setPositiveButton(R.string.action_ok, null);
-			return builder.create();
 		}
-		if (type.equals(DIALOG_SEARCH))
+		else if (type.equals(DIALOG_SEARCH))
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.action_search);
 			builder.setView(inflate(R.layout.dialog_search));
 			builder.setPositiveButton(R.string.action_ok, null);
 			builder.setNegativeButton(R.string.action_cancel, null);
-
-			return builder.create();
 		}
-		if (type.equals(DIALOG_EXIT))
+		else if (type.equals(DIALOG_EXIT))
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.action_quit_app);
 			builder.setMessage(R.string.message_quit_app);
 			builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
@@ -176,9 +178,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 				}
 			});
 			builder.setNegativeButton(R.string.action_cancel, null);
-
-			return builder.create();
 		}
-		return null;
+		return builder.create();
 	}
 }

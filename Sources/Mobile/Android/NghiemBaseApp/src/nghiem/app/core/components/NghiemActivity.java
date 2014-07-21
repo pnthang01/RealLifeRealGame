@@ -22,10 +22,6 @@ import nghiem.app.core.utils.LogUtils;
 
 public class NghiemActivity extends FragmentActivity
 {
-	public static final String DIALOG_NETWORK_NOT_AVAILABLE = "NETWORK_NOT_AVAILABLE";
-	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
-	public static final String DIALOG_EXIT = "DIALOG_EXIT";
-
 	protected String TAG = getClass().getName();
 
 	protected FragmentManager mFragmentManager;
