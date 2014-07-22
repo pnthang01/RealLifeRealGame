@@ -171,12 +171,13 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
                 com.rlrg.dataserver.base.domain.User uUser = convertUserToUtilUser(user);
                 user.setToken(commonService.setUserToken(uUser));
                 //
+                logUserAction(user.getId(), BadgeCheckerConstants.LOGIN_PROFILE);
+                //
                 AbstractCheckerDTO checkerDTO = new AbstractCheckerDTO();
                 checkerDTO.setAction(BadgeCheckerConstants.LOGIN_PROFILE);
                 checkerDTO.setActionDate(lastLogin);
                 submitValueToBadgeChecker(BadgeCheckerConstants.PROFILE_MODULE, user.getId(), checkerDTO);
                 //
-                logUserAction(user.getId(), BadgeCheckerConstants.LOGIN_PROFILE);
                 return convertObject(user);
             } else {
                 throw new LoginException("username or password is not correct!");

@@ -17,10 +17,15 @@ public class MainChecker implements IMainChecker{
 	
 	
 	public void mainProcess(String module, Long userId, AbstractCheckerDTO props){
-		if(BadgeCheckerConstants.TASK_MODULE.equals(module)){
-			taskChecker.process(userId, props);
-		} else if (BadgeCheckerConstants.PROFILE_MODULE.equals(module)){
-			profileChecker.process(userId, props);
+		try {
+			if(BadgeCheckerConstants.TASK_MODULE.equals(module)){
+				taskChecker.process(userId, props);
+			} else if (BadgeCheckerConstants.PROFILE_MODULE.equals(module)){
+				profileChecker.process(userId, props);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

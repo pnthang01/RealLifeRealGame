@@ -1,0 +1,253 @@
+/* 
+Optional styling for bbplayer elements.
+*/
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+
+.bbplayer {
+  	font: bold 16px/1.5 Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	color:#38E3F5;
+	margin-left: 31%;
+	padding-top: 4%;
+}
+
+.bb-play {
+  	display: inline-block;
+	vertical-align: middle;
+	height: 70px;
+	width: 70px;
+	border: 15px solid #38E3F5;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	background: #00A9BB;
+	background-image: url('../images/play-icon.png');
+	background-repeat: no-repeat;
+	background-position: 18px 16px;
+	cursor: pointer;
+}
+
+.bb-playing {
+  vertical-align: middle;
+  background-image: url('../images/pause.png');
+  background-position: center center;
+}
+
+.bb-forward {
+ 	vertical-align: middle;
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	background: #38E3F5;
+  	background-image: url('../images/next.png');
+ 	 background-position: center;
+  	background-repeat: no-repeat;
+  	cursor: pointer;
+  	border-radius: 30em;
+	-webkit-border-radius: 30em;
+	-moz-border-radius: 30em;
+	-o-border-radius: 30em;
+}
+
+.bb-rewind {
+	vertical-align: middle;
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	background: #38E3F5;
+	background-image: url('../images/pre.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	border-radius: 30em;
+	-webkit-border-radius: 30em;
+	-moz-border-radius: 30em;
+	-o-border-radius: 30em;
+	margin: 0 1.5em 0 1em;
+}
+
+.bb-trackTime {
+  	vertical-align: middle;
+	line-height: 32px;
+	display: inline-block;
+	height: 32px;
+	color: #fff;
+	margin-left: 5%;
+	font-size: 1.2em;
+}
+
+.bb-trackLength {
+  vertical-align: middle;
+  line-height: 32px;
+  display: inline-block;
+  height: 32px;
+  color:#38E3F5;
+  font-size: 1.2em;
+}
+
+.bb-trackTitle {
+ 	color: #fff;
+	font-weight: 400;
+	text-transform: uppercase;
+	position: absolute;
+	left: 53%;
+	top: 8%;
+	font-size: 0.875em;
+	border-bottom: 1px dashed #EEE;
+	padding-bottom: 0.2em;
+	width: 44%;
+}
+
+.bb-debug {
+  height:10em;
+  width: 32em;
+  border: 1px solid #DDD;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  overflow: auto;
+  font-weight: normal;
+  font-size: 14px/1.5;
+}
+
+.bb-label {
+  font-size: 14px/1.5;
+  font-weight: 300;
+  margin: 10px;
+}
+/*--media Quries for 1366px-laptops-*/
+@media only screen and (max-width: 1366px) and (min-width: 1280px) {
+	.bbplayer {
+		margin-left: 26%;
+	}
+	.audio-plyer {
+		background-size: 38% 100%;
+	}
+}
+/*--//media Quries for 1366px-laptops-*/
+/*--media Quries for 1280px-laptops-*/
+@media only screen and (max-width: 1280px) and (min-width: 1024px) {
+	.bbplayer {
+		margin-left: 20%;
+	}
+	.audio-plyer {
+		background-size: 32% 100%;
+	}
+	.bb-trackTitle {
+		left: 46%;
+	}
+}
+/*--//media Quries for 1280px-laptops-*/
+/*--media Quries for 1024px-laptops-*/
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+	.bbplayer {
+		margin-left: 0%;
+	}
+	.audio-plyer {
+		background-size: 32% 100%;
+	}
+	.bb-trackTitle {
+		left: 35%;
+	}
+	.bbplayer {
+		padding-top: 7%;
+	}
+	.audio-plyer {
+		min-height: 123px;
+	}
+}
+/*--//media Quries for 1024px-laptops-*/
+/*--media Quries for 768px-laptops-*/
+@media only screen and (max-width: 768px) and (min-width: 640px) {
+	.bbplayer {
+		margin-left: 23%;
+	}
+	.audio-plyer {
+		background-size: 32% 100%;
+	}
+	.bb-trackTitle {
+		left: 40%;
+	}
+	.audio-plyer {
+		min-height: 146px;
+	}
+	.bbplayer {
+		padding-top: 4%;
+	}
+}
+/*--//media Quries for 768px-laptops-*/
+/*--media Quries for 640px-laptops-*/
+@media only screen and (max-width: 640px) and (min-width: 480px) {
+	.bbplayer {
+		margin-left: 20%;
+	}
+	.audio-plyer {
+		background-size: 32% 100%;
+	}
+	.bb-trackTitle {
+		left: 40%;
+	}
+	.audio-plyer {
+		min-height: 146px;
+	}
+	.bbplayer {
+		padding-top: 6%;
+	}
+}
+/*--//media Quries for 640px-laptops-*/
+/*--media Quries for 480px-laptops-*/
+@media only screen and (max-width: 480px) and (min-width: 320px) {
+	.bbplayer {
+		margin-left: -1%;
+	}
+	.audio-plyer {
+		background-size: 32% 100%;
+	}
+	.bb-trackTitle {
+		left: 34%;
+	}
+	.audio-plyer {
+		min-height: 125px;
+	}
+	.bbplayer {
+		padding-top: 6%;
+	}
+}
+/*--//media Quries for 480px-laptops-*/
+/*--media Quries for 320px-laptops-*/
+@media only screen and (max-width: 320px) and (min-width: 240px) {
+	.bbplayer {
+		margin-left: -8%;
+	}
+	.audio-plyer {
+		background-size: 32% 100%;
+	}
+	.bb-trackTitle {
+		left: 40%;
+	}
+	.audio-plyer {
+		min-height: 125px;
+	}
+	.bbplayer {
+		padding-top: 6%;
+	}
+	.bb-play {
+		height: 60px;
+		width: 60px;
+		background-position: 14px 11px;
+	}
+	.bb-rewind {
+		height: 40px;
+		width: 40px;
+		margin: 0 0.5em 0 1em;
+	}
+	.bb-forward{
+		height: 40px;
+		width: 40px;
+		margin: 0 1em 0 0.5em;
+	}
+	.bb-trackTime {
+		margin-left: 44%;
+	}
+}
+/*--//media Quries for 320px-laptops-*/

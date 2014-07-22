@@ -1,5 +1,8 @@
 package com.rlrg.test.code;
 
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
+
 import org.apache.commons.lang.RandomStringUtils;
 
 import com.rlrg.dataserver.task.entity.enums.DifficultyLevel;
@@ -29,6 +32,9 @@ public class App
     	System.out.println(Math.ceil((double)10/4));
     	System.out.println(RandomStringUtils.random(8, true, true));
     	System.out.println(RandomStringUtils.random(8, "Trí thức"));
-        //testPerformance();
+    	String s = Normalizer.normalize("Đ", Form.NFD);
+    	String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        System.out.println(temp.replaceAll("[^\\p{ASCII}]", ""));
+    	System.out.println(s);
     }
 }

@@ -1,0 +1,173 @@
+/* #######################################################
+
+HOW TO CREATE AN INTERACTIVE GRAPH USING CSS3 & JQUERY [TUTORIAL]
+
+"How to create an Interactive Graph using CSS3 & jQuery [Tutorial]" was specially made for DesignModo by our friend Valeriu Timbuc.
+
+Links:
+http://vtimbuc.net
+http://designmodo.com
+http://vladimirkudinov.com
+
+######################################################## */
+
+/* Resets */
+.graph-container,
+.graph-container div,
+.graph-container a,
+.graph-container span {
+	margin: 0;
+	padding: 0;
+}
+
+/* Gradinet and Rounded Corners */
+.graph-container, #tooltip, .graph-info a {
+	background: #6440BE;
+}
+
+/*  Graph Container */
+.graph-container {
+	position: relative;
+	width: 550px;
+	height: 300px;
+	padding: 20px;
+	
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.1);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,.1);
+	box-shadow: 0px 1px 2px rgba(0,0,0,.1);
+}
+
+.graph-container > div {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	top: 10px;
+	left: 25px;
+}
+
+.graph-info {
+	width: 590px;
+	margin-bottom: 10px;
+}
+
+/* Text Styles */
+#tooltip, .graph-info a {
+	height: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	color: #fff;
+}
+
+.tickLabel {
+	font-size: 1.2em;
+	color: #B2A0DF;
+	font-family: 'Open Sans', sans-serif;
+}
+
+/* Tooltip */
+#tooltip {
+	position: absolute;
+	display: none;
+	padding: 5px 10px;
+	border: 1px solid #e1e1e1;
+}
+
+/* Links */
+.graph-info a {
+	position: relative;
+	display: inline-block;
+	float: left;
+	padding: 7px 10px 5px 30px;
+	margin-right: 10px;
+	text-decoration: none;
+	cursor: default;
+}
+
+/* Color Circle for Links */
+.graph-info a:before {
+	position: absolute;
+	display: block;
+	content: '';
+	width: 8px;
+	height: 8px;
+	top: 13px;
+	left: 13px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/* Colors For each Link */
+.graph-info .visitors { border-bottom: 2px solid #67398C; }
+.graph-info .returning { border-bottom: 2px solid #77b7c5; }
+
+.graph-info .visitors:before { background: #67398C; }
+.graph-info .returning:before { background: #67398C; }
+
+
+/* Hide the First and Last Y Label */
+.yAxis .tickLabel:first-child,
+.yAxis .tickLabel:last-child { display: none; }
+
+/* Clear Floats */
+.graph-info:before, .graph-info:after,
+.graph-container:before, .graph-container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.graph-container h3{
+	font-size:1.5em;
+	color:#FFF;
+	margin-bottom:1em;
+}
+/*--media Quries for 1366px-laptops-*/
+@media only screen and (max-width: 1366px) and (min-width: 1280px) {
+	.graph-container {
+		width: 523px;
+	}
+}
+/*--//media Quries for 1366px-laptops-*/
+/*--media Quries for 1280px-laptops-*/
+@media only screen and (max-width: 1280px) and (min-width: 1024px) {
+	.graph-container {
+		width: 485px;
+	}
+}
+/*--//media Quries for 1280px-laptops-*/
+/*--media Quries for 1024px-laptops-*/
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+	.graph-container {
+		width: 384px;
+	}
+}
+/*--//media Quries for 1024px-laptops-*/
+/*--media Quries for 768px-laptops-*/
+@media only screen and (max-width: 768px) and (min-width: 640px) {
+	.graph-container {
+		width:94%;
+	}
+}
+/*--//media Quries for 768px-laptops-*/
+/*--media Quries for 640px-laptops-*/
+@media only screen and (max-width:640px) and (min-width: 480px) {
+	.graph-container {
+		width: 93%;
+	}
+}
+/*--//media Quries for 768px-laptops-*/
+/*--media Quries for 480px-laptops-*/
+@media only screen and (max-width:480px) and (min-width: 320px) {
+	.graph-container {
+		width: 90.5%;
+	}
+}
+/*--//media Quries for 480px-laptops-*/
+/*--media Quries for 320px-laptops-*/
+@media only screen and (max-width:320px) and (min-width: 240px) {
+	.graph-container {
+		width: 85%;
+	}
+}
+/*--//media Quries for 320px-laptops-*/

@@ -10,10 +10,9 @@ public interface IAchievementService<T, V> extends IBaseService<T, V>{
 	public List<V> getUserAchievementDTOs(String username, Integer pageNumber) throws UserTokenException;
 	
 	public void addAchievement(V dto) throws Exception;
+	
+	public void addAchievementForUser(Long userId, Integer badgeId) throws Exception ;
 
 	public List<Integer> getAllBadgeIdByUserId(Long userId);
-	
-//	public List<V> searchAchievementsByKeyword(String keyword, Integer pageNumber);
-//	
-//	public Long countAchievementsByKeyword(String keyword);
+
 }
