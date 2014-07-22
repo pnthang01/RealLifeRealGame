@@ -2,6 +2,7 @@ package nghiem.app.core.components;
 
 import nghiem.app.core.application.DeviceManager;
 import nghiem.app.core.application.WebManager;
+import nghiem.app.core.utils.LogUtils;
 import nghiem.app.core.utils.StringUtils;
 import nghiem.app.gen.R;
 import android.graphics.Bitmap;
@@ -20,6 +21,8 @@ public class WebViewFragment extends Fragment
 {
 	public static final String EXTRA_LINK = "EXTRA_LINK";
 	public static final String EXTRA_BG = "BG_RD";
+	
+	protected String TAG = getClass().getName();
 
 	private class ChromeBrowser extends WebChromeClient
 	{
@@ -67,6 +70,11 @@ public class WebViewFragment extends Fragment
 	private ProgressBar mProgressBar;
 
 	private String mLink = "";
+	
+	public WebViewFragment()
+    {
+        super();
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -88,7 +96,7 @@ public class WebViewFragment extends Fragment
 		mActivity = (NghiemActivity) getActivity();
 		if (mActivity == null)
 		{
-			mActivity.showDebugToast("Activity is null!");
+			LogUtils.logError(TAG, "Activity is null!");
 		}
 
 		mFactory = new WebManager(mActivity);

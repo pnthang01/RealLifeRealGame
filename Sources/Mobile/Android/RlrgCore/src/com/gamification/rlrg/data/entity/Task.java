@@ -1,9 +1,17 @@
 package com.gamification.rlrg.data.entity;
 
+import org.joda.time.DateTime;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Task
 {
+    public static final String DIFFICULTY_LEVEL_EASY = "EASY";
+    public static final String DIFFICULTY_LEVEL_NORMAL = "NORMAL";
+    public static final String DIFFICULTY_LEVEL_HARD = "HARD";
+    public static final String STATUS_COMPLETED = "COMPLETED";
+    public static final String STATUS_NOTCOMPLETED = "NOTCOMPLETED";
+    
 	@SerializedName("ID")
 	private String id = "";
 
@@ -11,19 +19,19 @@ public class Task
 	private Category category = new Category();
 
 	@SerializedName("Name")
-	private String name = "";
+	private String name = "Unknown";
 
 	@SerializedName("Complete Time")
-	private long completeTime;
+	private long completeTime = DateTime.now().getMillis();
 
 	@SerializedName("Difficulty Level")
-	private String difficultyLevel = "";
+	private String difficultyLevel = DIFFICULTY_LEVEL_EASY;
 
 	@SerializedName("Status")
-	private String status = "";
+	private String status = STATUS_NOTCOMPLETED;
 
 	@SerializedName("Point")
-	private String point = "";
+	private String point = "0";
 
 	public String getId()
 	{

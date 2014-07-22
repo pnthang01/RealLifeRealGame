@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -20,22 +21,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.entity.Category;
-import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
 import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
 import com.gamification.rlrg.settings.Settings;
-import com.google.gson.Gson;
 
 final class TaskCreateFragment extends Fragment implements OnClickListener, OnDateSetListener
 {
 	public static final String TAG = TaskCreateFragment.class.getName();
 
-	private static SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
+	@SuppressLint("SimpleDateFormat")
+    private SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
 
 	private class CategoryAdapter extends ArrayAdapter<Category>
 	{
@@ -124,20 +123,15 @@ final class TaskCreateFragment extends Fragment implements OnClickListener, OnDa
 	@Override
 	public void onClick(View view)
 	{
-		List<Task> taskList = mTasks.getData().getElements();
-
-		Task task = new Task();
-		task.setId(String.valueOf(Integer.parseInt(taskList.get(taskList.size() - 1).getId()) + 1));
-		task.setName(mEdtName.getText().toString());
-		task.setCategory((Category) mSpnCategory.getSelectedItem());
-		task.setCompleteTime(mCalendar.getTime().getTime());
-		task.setDifficultyLevel((String) mSpnDifficulty.getSelectedItem());
-		task.setPoint(mEdtPoint.getText().toString());
-		task.setStatus(mActivity.getResources().getStringArray(R.array.task_status)[0]);
-
-		taskList.add(task);
-		String jsonTasks = new Gson().toJson(mTasks, Tasks.class);
-		DataPreferencesManager.getInstance().saveJsonTasks(jsonTasks);
+		mTasks.addTask
+		(
+		        ((Category) mSpnCategory.getSelectedItem()).getName(),
+		        mCalendar.getTime().getTime(),
+		        (String) mSpnDifficulty.getSelectedItem(),
+		        mEdtName.getText().toString(),
+		        mEdtPoint.getText().toString(),
+		        null
+		);
 		mActivity.replaceFragment(FragmentFactory.create(Type.SHOWROOM));
 	}
 

@@ -15,7 +15,7 @@
         "Name": "Reading 2",
         "Description": "Read 5 books to achieve this",
         "Status": "OPEN",
-        "Eligibility": Reading:5"
+        "Eligibility": "Reading:5"
       },
       {
         "ID": "3",

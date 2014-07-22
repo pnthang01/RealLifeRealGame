@@ -58,13 +58,17 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderCallba
 	private boolean mIsMultipleItemLayout = false;
 
 	private List<Data> mList = new ArrayList<Data>();
+	
+	public ListViewFragment()
+    {
+	    super();
+    }
 
 	public ListViewFragment(int listLayout, int itemLayout)
 	{
 		super();
 		mListLayout = listLayout;
 		mItemLayout = itemLayout;
-
 	}
 
 	public ListViewFragment(int listLayout, int[] itemLayouts)

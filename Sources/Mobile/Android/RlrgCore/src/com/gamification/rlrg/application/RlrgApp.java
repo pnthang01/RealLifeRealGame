@@ -1,8 +1,13 @@
 package com.gamification.rlrg.application;
 
+import java.util.List;
+
 import nghiem.app.core.application.DeviceManager;
 import nghiem.app.core.application.NghiemBaseApp;
 import nghiem.app.core.exception.ExceptionHandler;
+
+import org.joda.time.DateTime;
+
 import android.content.res.Configuration;
 import android.text.TextUtils;
 
@@ -11,6 +16,9 @@ import com.gamification.rlrg.data.Badges;
 import com.gamification.rlrg.data.Categories;
 import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.Users;
+import com.gamification.rlrg.data.entity.Achievement;
+import com.gamification.rlrg.data.entity.Badge;
+import com.gamification.rlrg.data.entity.Category;
 import com.google.gson.Gson;
 
 public class RlrgApp extends NghiemBaseApp
@@ -84,6 +92,28 @@ public class RlrgApp extends NghiemBaseApp
 			lastUuid = DeviceManager.getInstance().generateUuid();
 			// TODO: register UUID with server
 		}
+	}
+	
+	public void checkAchievemnt()
+	{
+	    for (Badge badge : badges.getData().getElements())
+	    {
+	        String[] eligibility = badge.getEligibility().split(":");
+	        for (Category category : categories.getData().getElements())
+	        {
+	            if (eligibility[0].equals(category.getName()) && Integer.parseInt(eligibility[1]) == tasks.getTaskCount(category))
+	            {
+	                List<Achievement> achievementList = achievements.getData().getElements();
+	                Achievement achievement = new Achievement();
+	                achievement.setId(achievementList.get(achievementList.size() - 1).getId());
+	                achievement.setBadge(badge);
+	                achievement.setAchievedTime(DateTime.now().getMillis());
+	                achievementList.add(achievement);
+	                DataPreferencesManager.getInstance().saveJsonAchievements(new Gson().toJson(achievements, Achievements.class));
+	                break;
+	            }
+	        }
+	    }
 	}
 
 	public Users getUsers()

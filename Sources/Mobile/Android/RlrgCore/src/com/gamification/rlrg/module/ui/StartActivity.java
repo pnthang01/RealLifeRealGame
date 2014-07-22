@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
-import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
+import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.components.FragmentFactory;
 import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
@@ -115,12 +115,17 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	{
 		showActionBar();
 		setActionBarOverLay(false);
-		RlrgApp.isStart = false;
+		if (RlrgApp.isStart)
+		{
+		    RlrgApp.isStart = false;
+		}
 	}
 
 	public void onLoginSuccess()
 	{
-		DataPreferencesManager.getInstance().increaseLoginCount();
+		//TODO: remove DataPreferencesManager.getInstance().increaseLoginCount();
+	    RlrgApp.getInstance().getTasks().addTask("Login", 0, null, null, null, Task.STATUS_COMPLETED);
+        
 		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		Fragment fragment = FragmentFactory.create(Type.SHOWROOM);
 		Bundle args = new Bundle();

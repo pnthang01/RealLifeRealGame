@@ -1,6 +1,7 @@
 package nghiem.app.core.application;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Locale;
 
 import nghiem.app.core.components.NghiemActivity;
@@ -182,7 +183,7 @@ public class WebManager
 			{
 				if (BuildConfig.DEBUG)
 				{
-					LogUtils.logLongText(TAG, e.getStackTrace().toString());
+					LogUtils.logLongText(TAG, Arrays.toString(e.getStackTrace()));
 				}
 			}
 		}

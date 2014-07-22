@@ -79,6 +79,9 @@ public class AsyncLoader<Data> extends AsyncTaskLoader<List<Data>>
 
 	protected void onReleaseResources(List<Data> list)
 	{
-		list = null;
+	    if (list != null)
+	    {
+	        list = null;
+	    }
 	}
 }

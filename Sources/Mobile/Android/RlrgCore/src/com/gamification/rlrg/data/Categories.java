@@ -24,4 +24,16 @@ public class Categories extends BaseEntity<Categories.CategoryList>
 			this.list = list;
 		}
 	}
+	
+	public Category getCatgory(String name)
+    {
+        for (Category category : getData().getElements())
+        {
+            if (category.getName().equals(name))
+            {
+                return category;
+            }
+        }
+        return null;
+    }
 }

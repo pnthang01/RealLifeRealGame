@@ -6,79 +6,86 @@
       {
         "ID": "1",
         "Name": "Reading 1",
-        "Description": "Reading 1",
+        "Description": "Read 3 books to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Read 3 books to achieve this"
+        "Eligibility": "Reading:3"
       },
       {
         "ID": "2",
         "Name": "Reading 2",
-        "Description": "Reading 2",
+        "Description": "Read 5 books to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Read 5 books to achieve this"
+        "Eligibility": "Reading:5"
       },
       {
         "ID": "3",
         "Name": "Reading 3",
-        "Description": "Reading 3",
+        "Description": "Read 10 books to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Read 10 books to achieve this"
+        "Eligibility": "Reading:10"
       },
       {
         "ID": "4",
         "Name": "Cycling 1",
-        "Description": "Cycling 1",
+        "Description": "Ride 3km to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Ride 3km to achieve this"
+        "Eligibility": "Cycling:3"
       },
       {
         "ID": "5",
         "Name": "Cycling 2",
-        "Description": "Cycling 2",
+        "Description": "Ride 5km to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Ride 5km to achieve this"
+        "Eligibility": "Cycling:5"
       },
       {
         "ID": "6",
         "Name": "Cycling 3",
-        "Description": "Cycling 3",
+        "Description": "Ride 10km to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Ride 10km to achieve this"
+        "Eligibility": "Cycling:10"
       },
       {
         "ID": "7",
         "Name": "Swimming 1",
-        "Description": "Swimming 1",
+        "Description": "Swim 3km to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Swim 3km to achieve this"
+        "Eligibility": "Swimming:3"
       },
       {
         "ID": "8",
         "Name": "Swimming 2",
-        "Description": "Swimming 2",
+        "Description": "Swim 5km to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Swim 5km to achieve this"
+        "Eligibility": "Swimming:5"
       },
       {
         "ID": "9",
         "Name": "Swimming 3",
-        "Description": "Swimming 3",
+        "Description": "Swim 10km to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Swim 10km to achieve this"
+        "Eligibility": "Swimming:10"
       },
       {
         "ID": "10",
         "Name": "Create 10 tasks",
-        "Description": "Create 10 tasks",
+        "Description": "Create 10 tasks to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Create 10 tasks to achieve this"
+        "Eligibility": "Task:10"
       },
       {
         "ID": "11",
         "Name": "Finish 10 tasks",
-        "Description": "Finish 10 tasks",
+        "Description": "Finish 10 tasks to achieve this",
         "Status": "OPEN",
-        "Eligibility": "Finish 10 tasks to achieve this"
+        "Eligibility": "Finish:10"
+      },
+      {
+        "ID": "12",
+        "Name": "Login 10 times",
+        "Description": "Login 10 times to achieve this",
+        "Status": "OPEN",
+        "Eligibility": "Login:10"
       }
     ]
   }

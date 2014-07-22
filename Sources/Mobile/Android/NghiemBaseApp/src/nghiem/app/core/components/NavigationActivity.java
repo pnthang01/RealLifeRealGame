@@ -1,5 +1,6 @@
 package nghiem.app.core.components;
 
+import java.util.Arrays;
 import java.util.List;
 
 import android.content.res.Configuration;
@@ -141,7 +142,7 @@ public class NavigationActivity extends NghiemActivity
 
 	protected void setNavigationData(NavigationData[] data)
 	{
-		LogUtils.log(TAG, "set navigation data: " + data.toString());
+		LogUtils.log(TAG, "set navigation data: " + Arrays.toString(data));
 		mNavigationData = data;
 	}
 

@@ -24,7 +24,8 @@ class TaskPageFragment extends ListViewFragment<Task>
 {
 	public static final String TAG = TaskPageFragment.class.getName();
 
-	private static Format sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
+	@SuppressLint("SimpleDateFormat")
+    private Format sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
 
 	private StartActivity mActivity;
 

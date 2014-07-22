@@ -23,6 +23,27 @@
         "Description": "Swimming to increase your health or cooling",
         "Position": "3",
         "status": "true"
+      },
+      {
+        "Code": "DFGTGRF8",
+        "Name": "Create",
+        "Description": "Create tasks to do",
+        "Position": "4",
+        "status": "true"
+      },
+      {
+        "Code": "CFBJGCB3",
+        "Name": "Finish",
+        "Description": "Finish tasks to get badges",
+        "Position": "5",
+        "status": "true"
+      },
+      {
+        "Code": "NBHOJRD6",
+        "Name": "Login",
+        "Description": "Login to use this application",
+        "Position": "6",
+        "status": "true"
       }
     ]
   }
