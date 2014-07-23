@@ -20,21 +20,27 @@ final class TaskPagerFragment extends ViewPagerFragment implements View.OnClickL
 	{
 		List<Fragment> pages = new ArrayList<Fragment>();
 		
-		Fragment today = TaskPageFragment.newInstance();
+		Fragment outdate = TaskPageFragment.newInstance();
+        Bundle outdateArgs = new Bundle();
+        outdateArgs.putString("time", "Uutdate");
+        outdate.setArguments(outdateArgs);
+        pages.add(outdate);
+
+        Fragment today = TaskPageFragment.newInstance();
         Bundle todayArgs = new Bundle();
-        todayArgs.putString("time", "today");
+        todayArgs.putString("time", "Today");
         today.setArguments(todayArgs);
         pages.add(today);
 
         Fragment tomorrow = TaskPageFragment.newInstance();
         Bundle tomorrowArgs = new Bundle();
-        tomorrowArgs.putString("time", "tomorrow");
+        tomorrowArgs.putString("time", "Tomorrow");
         tomorrow.setArguments(tomorrowArgs);
         pages.add(tomorrow);
 
         Fragment week = TaskPageFragment.newInstance();
         Bundle weekArgs = new Bundle();
-        weekArgs.putString("time", "week");
+        weekArgs.putString("time", "Week");
         week.setArguments(weekArgs);
         pages.add(week);
 

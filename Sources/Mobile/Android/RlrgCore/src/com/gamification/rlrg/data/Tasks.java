@@ -51,6 +51,16 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
         return Integer.parseInt(list.get(list.size() - 1).getId());
     }
     
+    public List<Task> getOutdateTasks()
+    {
+        DateTime now = new DateTime();
+        LocalDate today = now.toLocalDate();
+
+        long end = today.toDateTimeAtStartOfDay(now.getZone()).getMillis();
+        
+        return getTasksByRangeOfTime(0, end);
+    }
+    
     public List<Task> getTodayTasks()
     {
         DateTime now = new DateTime();

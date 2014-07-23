@@ -57,7 +57,11 @@ class TaskPageFragment extends ListViewFragment<Task>
 		if (mActivity != null)
 		{
 			Tasks tasks = mActivity.getCoreApp().getTasks();
-			if (time.equalsIgnoreCase("Today"))
+            if (time.equalsIgnoreCase("Outdate"))
+            {
+                data = tasks.getOutdateTasks();
+            }
+            if (time.equalsIgnoreCase("Today"))
             {
                 data = tasks.getTodayTasks();
             }
