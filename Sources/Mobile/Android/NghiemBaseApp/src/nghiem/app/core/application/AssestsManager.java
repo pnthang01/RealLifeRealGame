@@ -10,13 +10,16 @@ public class AssestsManager
 {
 	public static final String TAG = AssestsManager.class.getName();
 
+	@SuppressWarnings("rawtypes")
+	private static ThreadLocal sInitHolder = new ThreadLocal();
 	private static AssestsManager sInstance;
 
 	private Context mContext;
 
+	@SuppressWarnings("unchecked")
 	public static AssestsManager getInstance()
 	{
-		if (sInstance == null)
+		if (sInitHolder.get() == null)
 		{
 			synchronized (AssestsManager.class)
 			{
@@ -24,6 +27,7 @@ public class AssestsManager
 				{
 					sInstance = new AssestsManager();
 				}
+				sInitHolder.set(Boolean.TRUE);
 			}
 		}
 		return sInstance;

@@ -26,13 +26,16 @@ public final class DeviceManager
 	public static final String TAG = DeviceManager.class.getName();
 	public static final String GOOGLE_MAP_PACKAGE = "com.google.android.apps.maps";
 
-	private static DeviceManager sInstance;
+	@SuppressWarnings("rawtypes")
+    private static ThreadLocal sInitHolder = new ThreadLocal();
+    private static DeviceManager sInstance;
 
 	private Context mContext;
 
-	public static DeviceManager getInstance()
+	@SuppressWarnings("unchecked")
+    public static DeviceManager getInstance()
 	{
-		if (sInstance == null)
+	    if (sInitHolder.get() == null)
 		{
 			synchronized (DeviceManager.class)
 			{
@@ -40,6 +43,7 @@ public final class DeviceManager
 				{
 					sInstance = new DeviceManager();
 				}
+				sInitHolder.set(Boolean.TRUE);
 			}
 		}
 		return sInstance;

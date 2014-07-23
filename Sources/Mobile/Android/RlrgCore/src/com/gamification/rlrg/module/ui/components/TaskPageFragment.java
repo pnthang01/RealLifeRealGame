@@ -2,7 +2,9 @@ package com.gamification.rlrg.module.ui.components;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import nghiem.app.core.components.ListViewFragment;
 import android.annotation.SuppressLint;
@@ -43,17 +45,34 @@ class TaskPageFragment extends ListViewFragment<Task>
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
+		String time = "";
+		List<Task> data = new ArrayList<Task>();
+		
 		if (mArguments != null)
 		{
-			// String title = mArguments.getString("title");
+			time = mArguments.getString("time");
 		}
 		mActivity = (StartActivity) getActivity();
 		if (mActivity != null)
 		{
 			Tasks tasks = mActivity.getCoreApp().getTasks();
+			if (time.equalsIgnoreCase("Today"))
+            {
+                data = tasks.getTodayTasks();
+            }
+			if (time.equalsIgnoreCase("Tomorrow"))
+            {
+                data = tasks.getTomorrowTasks();
+            }
+			if (time.equalsIgnoreCase("Week"))
+            {
+                data = tasks.getWeekTasks();
+            }
+            
 			if (tasks.isSuccessful())
 			{
-				setData(tasks.getData().getElements());
+				setData(data);
 			}
 			else
 			{

@@ -3,6 +3,9 @@ package com.gamification.rlrg.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
 import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.data.core.BaseEntity;
@@ -46,6 +49,67 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
     {
         List<Task> list = getData().getElements();
         return Integer.parseInt(list.get(list.size() - 1).getId());
+    }
+    
+    public List<Task> getTodayTasks()
+    {
+        DateTime now = new DateTime();
+        LocalDate today = now.toLocalDate();
+
+        long start = today.toDateTimeAtStartOfDay(now.getZone()).getMillis();
+        long end = today.plusDays(1).toDateTimeAtStartOfDay(now.getZone()).getMillis();
+        
+        return getTasksByRangeOfTime(start, end);
+    }
+    
+    public List<Task> getTomorrowTasks()
+    {
+        DateTime now = new DateTime();
+        LocalDate today = now.toLocalDate();
+
+        long start = today.plusDays(1).toDateTimeAtStartOfDay(now.getZone()).getMillis();
+        long end = today.plusDays(2).toDateTimeAtStartOfDay(now.getZone()).getMillis();
+        
+        return getTasksByRangeOfTime(start, end);
+    }
+    
+    public List<Task> getWeekTasks()
+    {
+        DateTime now = new DateTime();
+        LocalDate today = now.toLocalDate();
+
+        long start = today.plusDays(2).toDateTimeAtStartOfDay(now.getZone()).getMillis();
+        long end = today.plusDays(7).toDateTimeAtStartOfDay(now.getZone()).getMillis();
+        
+        return getTasksByRangeOfTime(start, end);
+    }
+    
+    public List<Task> getTasksByRangeOfTime(long start, long end)
+    {
+        List<Task> result = new ArrayList<Task>();
+        for (Task task : getNormalTasks())
+        {
+            long complete = task.getCompleteTime();
+            if (start < complete && complete <= end)
+            {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+    
+    public List<Task> getNormalTasks()
+    {
+        List<Task> result = new ArrayList<Task>();
+        for (Task task : getData().getElements())
+        {
+            String category = task.getCategory().getName();
+            if (!category.equals("Login") && !category.equals("Create") && !category.equals("Finish"))
+            {
+                result.add(task);
+            }
+        }
+        return result;
     }
 
     public void addTask(String category, long completeTime, String difficultyLevel, String name, String point, String status)

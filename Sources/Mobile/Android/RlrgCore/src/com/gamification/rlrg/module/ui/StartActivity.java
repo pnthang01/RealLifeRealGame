@@ -125,6 +125,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	{
 		//TODO: remove DataPreferencesManager.getInstance().increaseLoginCount();
 	    RlrgApp.getInstance().getTasks().addTask("Login", 0, null, null, null, Task.STATUS_COMPLETED);
+	    RlrgApp.getInstance().checkAchievemnt();
         
 		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		Fragment fragment = FragmentFactory.create(Type.SHOWROOM);

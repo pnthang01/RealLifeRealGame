@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nghiem.app.core.components.ViewPagerFragment;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
@@ -18,11 +19,26 @@ final class TaskPagerFragment extends ViewPagerFragment implements View.OnClickL
 	static TaskPagerFragment newInstance()
 	{
 		List<Fragment> pages = new ArrayList<Fragment>();
-		pages.add(TaskPageFragment.newInstance());
-		pages.add(TaskPageFragment.newInstance());
-		pages.add(TaskPageFragment.newInstance());
+		
+		Fragment today = TaskPageFragment.newInstance();
+        Bundle todayArgs = new Bundle();
+        todayArgs.putString("time", "today");
+        today.setArguments(todayArgs);
+        pages.add(today);
 
-		String[] titles = RlrgApp.getInstance().getResources().getStringArray(R.array.task);
+        Fragment tomorrow = TaskPageFragment.newInstance();
+        Bundle tomorrowArgs = new Bundle();
+        tomorrowArgs.putString("time", "tomorrow");
+        tomorrow.setArguments(tomorrowArgs);
+        pages.add(tomorrow);
+
+        Fragment week = TaskPageFragment.newInstance();
+        Bundle weekArgs = new Bundle();
+        weekArgs.putString("time", "week");
+        week.setArguments(weekArgs);
+        pages.add(week);
+
+        String[] titles = RlrgApp.getInstance().getResources().getStringArray(R.array.task);
 
 		return new TaskPagerFragment(pages, titles, TYPE_NORMAL);
 	}

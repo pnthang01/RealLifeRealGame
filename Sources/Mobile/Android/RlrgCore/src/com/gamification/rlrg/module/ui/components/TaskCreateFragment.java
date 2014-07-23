@@ -132,6 +132,7 @@ final class TaskCreateFragment extends Fragment implements OnClickListener, OnDa
 		        mEdtPoint.getText().toString(),
 		        null
 		);
+        RlrgApp.getInstance().checkAchievemnt();
 		mActivity.replaceFragment(FragmentFactory.create(Type.SHOWROOM));
 	}
 

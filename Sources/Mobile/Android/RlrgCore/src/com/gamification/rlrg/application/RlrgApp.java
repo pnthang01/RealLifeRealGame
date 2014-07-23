@@ -26,6 +26,9 @@ public class RlrgApp extends NghiemBaseApp
 	public static final String TAG = RlrgApp.class.getName();
 
 	public static boolean isStart = true;
+	
+	@SuppressWarnings("rawtypes")
+    private static ThreadLocal sInitHolder = new ThreadLocal();
 
 	private Users users;
 	private Categories categories;
@@ -35,18 +38,20 @@ public class RlrgApp extends NghiemBaseApp
 
 	private static RlrgApp sInstance;
 
-	public static RlrgApp getInstance()
+	@SuppressWarnings("unchecked")
+    public static RlrgApp getInstance()
 	{
-		if (sInstance == null)
-		{
-			synchronized (RlrgApp.class)
-			{
-				if (sInstance == null)
-				{
-					sInstance = new RlrgApp();
-				}
-			}
-		}
+	    if (sInitHolder.get() == null)
+        {
+    		synchronized (RlrgApp.class)
+    		{
+    			if (sInstance == null)
+    			{
+    				sInstance = new RlrgApp();
+    			}
+    			sInitHolder.set(Boolean.TRUE);
+    		}
+        }
 		return sInstance;
 	}
 
@@ -54,14 +59,20 @@ public class RlrgApp extends NghiemBaseApp
 	public void onCreate()
 	{
 		super.onCreate();
-		sInstance = this;
+		if (sInstance == null)
+        {
+            sInstance = this;
+        }
 	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		sInstance = this;
+        if (sInstance == null)
+        {
+            sInstance = this;
+        }
 	}
 
 	public void init()

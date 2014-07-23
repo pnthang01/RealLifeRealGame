@@ -19,13 +19,16 @@ public class SharingManager
 {
     public static final String TAG = SharingManager.class.getName();
     
+    @SuppressWarnings("rawtypes")
+    private static ThreadLocal sInitHolder = new ThreadLocal();
     private static SharingManager sInstance;
     
     private Context mContext;
 
+    @SuppressWarnings("unchecked")
     public static SharingManager getInstance()
     {
-        if (sInstance == null)
+        if (sInitHolder.get() == null)
         {
             synchronized (DeviceManager.class)
             {
@@ -33,6 +36,7 @@ public class SharingManager
                 {
                     sInstance = new SharingManager();
                 }
+                sInitHolder.set(Boolean.TRUE);
             }
         }
         return sInstance;
