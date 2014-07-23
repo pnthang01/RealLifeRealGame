@@ -1,8 +1,6 @@
 package com.gamification.rlrg.module.ui.components;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.joda.time.DateTime;
 
 import nghiem.app.core.components.ListViewFragment;
 import android.annotation.SuppressLint;
@@ -16,6 +14,7 @@ import com.gamification.rlrg.data.Achievements;
 import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
+import com.gamification.rlrg.settings.Settings;
 
 final class ShowRoomFragment extends ListViewFragment<Achievement>
 {
@@ -61,12 +60,11 @@ final class ShowRoomFragment extends ListViewFragment<Achievement>
 	{
 		Achievement item = (Achievement) getListAdapter().getItem(position);
 
-		Date date = new Date(item.getAchievedTime());
-		Format format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		DateTime date = new DateTime(item.getAchievedTime());
 
 		String message = "AchievedTime: %s\nBadge: %s";
 
-		((TextView) view).setText(String.format(message, format.format(date), item.getBadge().getName()));
+		((TextView) view).setText(String.format(message, date.toString(Settings.DATETIME_FORMAT), item.getBadge().getName()));
 		return view;
 	}
 

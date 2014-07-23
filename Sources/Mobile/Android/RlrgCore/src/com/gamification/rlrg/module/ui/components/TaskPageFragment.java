@@ -1,12 +1,12 @@
 package com.gamification.rlrg.module.ui.components;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import nghiem.app.core.components.ListViewFragment;
+
+import org.joda.time.DateTime;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,9 +25,6 @@ import com.gamification.rlrg.settings.Settings;
 class TaskPageFragment extends ListViewFragment<Task>
 {
 	public static final String TAG = TaskPageFragment.class.getName();
-
-	@SuppressLint("SimpleDateFormat")
-    private Format sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
 
 	private StartActivity mActivity;
 
@@ -91,10 +88,10 @@ class TaskPageFragment extends ListViewFragment<Task>
 	{
 		Task item = (Task) getListAdapter().getItem(position);
 
-		Date date = new Date(item.getCompleteTime());
+		DateTime date = new DateTime(item.getCompleteTime());
 
 		String message = "Category: %s\nName: %s\nComplete Time: %s\nDifficulty Level: %s\nStatus: %s\nPoint: %s";
-		String print = String.format(message, item.getCategory().getName(), item.getName(), sFormat.format(date), item.getDifficultyLevel(), item.getStatus(), item.getPoint());
+		String print = String.format(message, item.getCategory().getName(), item.getName(), date.toString(Settings.DATETIME_FORMAT), item.getDifficultyLevel(), item.getStatus(), item.getPoint());
 
 		((TextView) view).setText(print);
 		return view;

@@ -7,6 +7,14 @@
 package nghiem.app.gen;
 
 public final class R {
+	public static final class anim {
+		public static final int hide_down = 0x7f040000;
+		public static final int hide_up = 0x7f040001;
+		public static final int left_to_right = 0x7f040002;
+		public static final int right_to_left = 0x7f040003;
+		public static final int show_down = 0x7f040004;
+		public static final int show_up = 0x7f040006;
+	}
 	public static final class color {
 		public static final int background_solid = 0x7f050000;
 		public static final int background_transparent = 0x7f050001;

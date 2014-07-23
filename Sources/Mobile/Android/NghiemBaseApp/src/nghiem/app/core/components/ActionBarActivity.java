@@ -1,6 +1,7 @@
 package nghiem.app.core.components;
 
 import nghiem.app.gen.R;
+import nghiem.app.core.components.ListViewFragment.OnScrollUpDownListener;
 import nghiem.app.core.utils.LogUtils;
 
 import android.graphics.Bitmap;
@@ -8,6 +9,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -15,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-public class ActionBarActivity extends NghiemActivity
+public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownListener
 {
 	private LinearLayout mActionBar;
 	private FrameLayout mMainView;
@@ -50,14 +54,72 @@ public class ActionBarActivity extends NghiemActivity
 	public void showActionBar()
 	{
 		LogUtils.log(TAG, "show action bar");
-		mActionBar.setVisibility(View.VISIBLE);
+		if (mActionBar.getVisibility() == View.VISIBLE)
+		{
+		    return;
+		}
+		Animation animation = AnimationUtils.loadAnimation(this, R.anim.show_down);
+		animation.setAnimationListener(new AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+                mActionBar.setVisibility(View.VISIBLE);
+            }
+        });
+		mActionBar.startAnimation(animation);
 	}
 
 	public void hideActionBar()
 	{
 		LogUtils.log(TAG, "hide action bar");
-		mActionBar.setVisibility(View.GONE);
+		if (mActionBar.getVisibility() == View.GONE)
+        {
+            return;
+        }
+		Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_up);
+        animation.setAnimationListener(new AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+                mActionBar.setVisibility(View.GONE);
+            }
+        });
+        mActionBar.startAnimation(animation);
 	}
+
+    @Override
+    public void onScrollUp()
+    {
+        showActionBar();
+    }
+
+    @Override
+    public void onScrollDown()
+    {
+        hideActionBar();
+    }
 
 	public void setActionBarOverLay(boolean isOverlay)
 	{

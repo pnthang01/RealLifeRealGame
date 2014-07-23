@@ -34,7 +34,7 @@ final class TaskCreateFragment extends Fragment implements OnClickListener, OnDa
 	public static final String TAG = TaskCreateFragment.class.getName();
 
 	@SuppressLint("SimpleDateFormat")
-    private SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
+    private static SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
 
 	private class CategoryAdapter extends ArrayAdapter<Category>
 	{

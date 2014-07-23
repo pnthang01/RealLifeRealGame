@@ -9,7 +9,13 @@ package com.gamification.rlrg.gen;
 
 public final class R {
     public static final class anim {
-        public static int show_login_form=0x7f040000;
+        public static int hide_down=0x7f040000;
+        public static int hide_up=0x7f040001;
+        public static int left_to_right=0x7f040002;
+        public static int right_to_left=0x7f040003;
+        public static int show_down=0x7f040004;
+        public static int show_login_form=0x7f040005;
+        public static int show_up=0x7f040006;
     }
     public static final class array {
         public static int difficulty=0x7f090002;

@@ -12,6 +12,9 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,10 +28,11 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import nghiem.app.gen.R;
+import nghiem.app.core.components.ListViewFragment.OnScrollUpDownListener;
 import nghiem.app.core.data.NavigationData;
 import nghiem.app.core.utils.LogUtils;
 
-public class NavigationActivity extends NghiemActivity
+public class NavigationActivity extends NghiemActivity implements OnScrollUpDownListener
 {
 	private class NavigationAdapter extends ArrayAdapter<NavigationData>
 	{
@@ -152,17 +156,75 @@ public class NavigationActivity extends NghiemActivity
 		mDrawerLayout.closeDrawers();
 	}
 
-	protected void showActionBar()
-	{
-		LogUtils.log(TAG, "show action bar");
-		mActionBar.setVisibility(View.VISIBLE);
-	}
+    public void showActionBar()
+    {
+        LogUtils.log(TAG, "show action bar");
+        if (mActionBar.getVisibility() == View.VISIBLE)
+        {
+            return;
+        }
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.show_down);
+        animation.setAnimationListener(new AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation)
+            {
+            }
 
-	protected void hideActionBar()
-	{
-		LogUtils.log(TAG, "hide action bar");
-		mActionBar.setVisibility(View.GONE);
-	}
+            @Override
+            public void onAnimationRepeat(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+                mActionBar.setVisibility(View.VISIBLE);
+            }
+        });
+        mActionBar.startAnimation(animation);
+    }
+
+    public void hideActionBar()
+    {
+        LogUtils.log(TAG, "hide action bar");
+        if (mActionBar.getVisibility() == View.GONE)
+        {
+            return;
+        }
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_up);
+        animation.setAnimationListener(new AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+                mActionBar.setVisibility(View.GONE);
+            }
+        });
+        mActionBar.startAnimation(animation);
+    }
+
+    @Override
+    public void onScrollUp()
+    {
+        showActionBar();
+    }
+
+    @Override
+    public void onScrollDown()
+    {
+        hideActionBar();
+    }
 
 	protected void setActionBarOverLay(boolean isOverlay)
 	{
