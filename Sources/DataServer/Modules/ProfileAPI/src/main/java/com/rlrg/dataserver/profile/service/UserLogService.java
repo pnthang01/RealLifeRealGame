@@ -20,6 +20,11 @@ public class UserLogService extends BaseService<UserLog, UserLog> implements IUs
 	public List<UserLog> getUserLogByUserId(Long userId){
 		return userLogRepo.getUserLogByUserId(userId);
 	}
+
+	@Override
+	public Long countUserLogByUserIdAndAction(Long userId, String action) {
+		return userLogRepo.countUserLogByUserIdAndAction(userId, action);
+	}
 	
     public void logUserAction(Long userId, String action){
     	UserLog userLog = new UserLog();

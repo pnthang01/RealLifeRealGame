@@ -1,5 +1,6 @@
 package com.rlrg.dataserver.badge.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -70,6 +71,30 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 		return achievementRepo.getUserAchievementDTOs(username, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
 	
+
+
+	@Override
+	public void addAchievementForUser(Long userId, Integer badgeId) throws Exception {
+		try {
+			Badge b = badgeService.findBadgeById(badgeId);
+			User u = userService.getUserById(userId);
+			if(null == b || null == u){
+				LOG.error("Cannot find entity Badge with ID:{} And/Or User with Id:{}", badgeId, userId);
+				throw new RepositoryException("Cannot find entity");
+			}
+			Achievement a = new Achievement();
+			a.setAchievedTime(new Date());
+			a.setBadge(b);
+			a.setUser(u);
+			//
+			achievementRepo.save(a);
+		} catch(Exception e) {
+			LOG.error(e.getMessage(), e);
+			throw e;
+		}
+	}
+
+	
 	public void addAchievement(AchievementDTO dto) throws Exception{
 		try {
 			Badge b = badgeService.findBadgeById(dto.getBadge().getId());
@@ -101,27 +126,6 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	/**
-	 * Search a list of achievement base on keyword
-	 * @param keyword
-	 * @param pageNumber
-	 * @return
-	 */
-//	public List<AchievementDTO> searchAchievementsByKeyword(String keyword, Integer pageNumber){
-//		if(null == pageNumber){
-//			pageNumber = 1;
-//		}
-//		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
-//		//
-//		return achievementRepo.searchAchievementsDTOByKeyword(keyword, pageRequest);
-//	}
-//	
-//
-//	@Override
-//	public Long countAchievementsByKeyword(String keyword) {
-//		return achievementRepo.countAchievementsByKeyword(keyword);
-//	}
 
 	@Override
 	public Class<AchievementDTO> getVClass() {
