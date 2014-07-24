@@ -120,11 +120,11 @@ public class ViewPagerFragment extends Fragment implements OnPageChangeListener
 	private ViewPager mViewPager;
 	private Adapter mAdapter;
 	private int mType = 0;
-	
+
 	public ViewPagerFragment()
-    {
-        super();
-    }
+	{
+		super();
+	}
 
 	public ViewPagerFragment(List<Fragment> pages, List<CharSequence> titles, int type)
 	{

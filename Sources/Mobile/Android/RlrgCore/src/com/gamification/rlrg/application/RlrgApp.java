@@ -26,9 +26,9 @@ public class RlrgApp extends NghiemBaseApp
 	public static final String TAG = RlrgApp.class.getName();
 
 	public static boolean isStart = true;
-	
+
 	@SuppressWarnings("rawtypes")
-    private static ThreadLocal sInitHolder = new ThreadLocal();
+	private static ThreadLocal sInitHolder = new ThreadLocal();
 
 	private Users users;
 	private Categories categories;
@@ -39,19 +39,19 @@ public class RlrgApp extends NghiemBaseApp
 	private static RlrgApp sInstance;
 
 	@SuppressWarnings("unchecked")
-    public static RlrgApp getInstance()
+	public static RlrgApp getInstance()
 	{
-	    if (sInitHolder.get() == null)
-        {
-    		synchronized (RlrgApp.class)
-    		{
-    			if (sInstance == null)
-    			{
-    				sInstance = new RlrgApp();
-    			}
-    			sInitHolder.set(Boolean.TRUE);
-    		}
-        }
+		if (sInitHolder.get() == null)
+		{
+			synchronized (RlrgApp.class)
+			{
+				if (sInstance == null)
+				{
+					sInstance = new RlrgApp();
+				}
+				sInitHolder.set(Boolean.TRUE);
+			}
+		}
 		return sInstance;
 	}
 
@@ -60,19 +60,19 @@ public class RlrgApp extends NghiemBaseApp
 	{
 		super.onCreate();
 		if (sInstance == null)
-        {
-            sInstance = this;
-        }
+		{
+			sInstance = this;
+		}
 	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-        if (sInstance == null)
-        {
-            sInstance = this;
-        }
+		if (sInstance == null)
+		{
+			sInstance = this;
+		}
 	}
 
 	public void init()
@@ -104,27 +104,27 @@ public class RlrgApp extends NghiemBaseApp
 			// TODO: register UUID with server
 		}
 	}
-	
+
 	public void checkAchievemnt()
 	{
-	    for (Badge badge : badges.getData().getElements())
-	    {
-	        String[] eligibility = badge.getEligibility().split(":");
-	        for (Category category : categories.getData().getElements())
-	        {
-	            if (eligibility[0].equals(category.getName()) && Integer.parseInt(eligibility[1]) == tasks.getTaskCount(category))
-	            {
-	                List<Achievement> achievementList = achievements.getData().getElements();
-	                Achievement achievement = new Achievement();
-	                achievement.setId(achievementList.get(achievementList.size() - 1).getId());
-	                achievement.setBadge(badge);
-	                achievement.setAchievedTime(DateTime.now().getMillis());
-	                achievementList.add(achievement);
-	                DataPreferencesManager.getInstance().saveJsonAchievements(new Gson().toJson(achievements, Achievements.class));
-	                break;
-	            }
-	        }
-	    }
+		for (Badge badge : badges.getData().getElements())
+		{
+			String[] eligibility = badge.getEligibility().split(":");
+			for (Category category : categories.getData().getElements())
+			{
+				if (eligibility[0].equals(category.getName()) && Integer.parseInt(eligibility[1]) == tasks.getTaskCount(category))
+				{
+					List<Achievement> achievementList = achievements.getData().getElements();
+					Achievement achievement = new Achievement();
+					achievement.setId(achievementList.get(achievementList.size() - 1).getId());
+					achievement.setBadge(badge);
+					achievement.setAchievedTime(DateTime.now().getMillis());
+					achievementList.add(achievement);
+					DataPreferencesManager.getInstance().saveJsonAchievements(new Gson().toJson(achievements, Achievements.class));
+					break;
+				}
+			}
+		}
 	}
 
 	public Users getUsers()

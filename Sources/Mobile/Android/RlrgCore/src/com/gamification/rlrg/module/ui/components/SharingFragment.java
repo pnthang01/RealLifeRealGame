@@ -30,23 +30,24 @@ final class SharingFragment extends Fragment
 		}
 		View root = inflater.inflate(R.layout.fragment_sharing, container, false);
 		root.findViewById(R.id.btn_facebook).setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                //TODO SharingManager.getInstance().shareOnFacebook(caption, text, facebookShareLink);
-                mActivity.showDebugToast("shareOnFacebook");
-            }
-        });
+		{
+			@Override
+			public void onClick(View v)
+			{
+				// TODO SharingManager.getInstance().shareOnFacebook(caption,
+				// text, facebookShareLink);
+				mActivity.showDebugToast("shareOnFacebook");
+			}
+		});
 		root.findViewById(R.id.btn_twitter).setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                //TODO SharingManager.getInstance().shareOnTwitter(message);
-                mActivity.showDebugToast("shareOnTwitter");
-            }
-        });
+		{
+			@Override
+			public void onClick(View v)
+			{
+				// TODO SharingManager.getInstance().shareOnTwitter(message);
+				mActivity.showDebugToast("shareOnTwitter");
+			}
+		});
 		return root;
 	}
 

@@ -2,8 +2,8 @@ package nghiem.app.core.settings;
 
 public class Settings
 {
-    public static final String CHARSET = "UTF-8";
-    
+	public static final String CHARSET = "UTF-8";
+
 	public class Assets
 	{
 		public class ScreenResolution

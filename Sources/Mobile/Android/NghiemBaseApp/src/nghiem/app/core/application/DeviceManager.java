@@ -27,15 +27,15 @@ public final class DeviceManager
 	public static final String GOOGLE_MAP_PACKAGE = "com.google.android.apps.maps";
 
 	@SuppressWarnings("rawtypes")
-    private static ThreadLocal sInitHolder = new ThreadLocal();
-    private static DeviceManager sInstance;
+	private static ThreadLocal sInitHolder = new ThreadLocal();
+	private static DeviceManager sInstance;
 
 	private Context mContext;
 
 	@SuppressWarnings("unchecked")
-    public static DeviceManager getInstance()
+	public static DeviceManager getInstance()
 	{
-	    if (sInitHolder.get() == null)
+		if (sInitHolder.get() == null)
 		{
 			synchronized (DeviceManager.class)
 			{

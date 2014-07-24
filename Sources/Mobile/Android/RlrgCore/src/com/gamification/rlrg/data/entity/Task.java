@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Task
 {
-    public static final String DIFFICULTY_LEVEL_EASY = "EASY";
-    public static final String DIFFICULTY_LEVEL_NORMAL = "NORMAL";
-    public static final String DIFFICULTY_LEVEL_HARD = "HARD";
-    public static final String STATUS_COMPLETED = "COMPLETED";
-    public static final String STATUS_NOTCOMPLETED = "NOTCOMPLETED";
-    
+	public static final String DIFFICULTY_LEVEL_EASY = "EASY";
+	public static final String DIFFICULTY_LEVEL_NORMAL = "NORMAL";
+	public static final String DIFFICULTY_LEVEL_HARD = "HARD";
+	public static final String STATUS_COMPLETED = "COMPLETED";
+	public static final String STATUS_NOTCOMPLETED = "NOTCOMPLETED";
+
 	@SerializedName("ID")
 	private String id = "";
 

@@ -19,32 +19,32 @@ final class TaskPagerFragment extends ViewPagerFragment implements View.OnClickL
 	static TaskPagerFragment newInstance()
 	{
 		List<Fragment> pages = new ArrayList<Fragment>();
-		
+
 		Fragment outdate = TaskPageFragment.newInstance();
-        Bundle outdateArgs = new Bundle();
-        outdateArgs.putString("time", "Uutdate");
-        outdate.setArguments(outdateArgs);
-        pages.add(outdate);
+		Bundle outdateArgs = new Bundle();
+		outdateArgs.putString("time", "Uutdate");
+		outdate.setArguments(outdateArgs);
+		pages.add(outdate);
 
-        Fragment today = TaskPageFragment.newInstance();
-        Bundle todayArgs = new Bundle();
-        todayArgs.putString("time", "Today");
-        today.setArguments(todayArgs);
-        pages.add(today);
+		Fragment today = TaskPageFragment.newInstance();
+		Bundle todayArgs = new Bundle();
+		todayArgs.putString("time", "Today");
+		today.setArguments(todayArgs);
+		pages.add(today);
 
-        Fragment tomorrow = TaskPageFragment.newInstance();
-        Bundle tomorrowArgs = new Bundle();
-        tomorrowArgs.putString("time", "Tomorrow");
-        tomorrow.setArguments(tomorrowArgs);
-        pages.add(tomorrow);
+		Fragment tomorrow = TaskPageFragment.newInstance();
+		Bundle tomorrowArgs = new Bundle();
+		tomorrowArgs.putString("time", "Tomorrow");
+		tomorrow.setArguments(tomorrowArgs);
+		pages.add(tomorrow);
 
-        Fragment week = TaskPageFragment.newInstance();
-        Bundle weekArgs = new Bundle();
-        weekArgs.putString("time", "Week");
-        week.setArguments(weekArgs);
-        pages.add(week);
+		Fragment week = TaskPageFragment.newInstance();
+		Bundle weekArgs = new Bundle();
+		weekArgs.putString("time", "Week");
+		week.setArguments(weekArgs);
+		pages.add(week);
 
-        String[] titles = RlrgApp.getInstance().getResources().getStringArray(R.array.task);
+		String[] titles = RlrgApp.getInstance().getResources().getStringArray(R.array.task);
 
 		return new TaskPagerFragment(pages, titles, TYPE_NORMAL);
 	}

@@ -42,10 +42,10 @@ class TaskPageFragment extends ListViewFragment<Task>
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+
 		String time = "";
 		List<Task> data = new ArrayList<Task>();
-		
+
 		if (mArguments != null)
 		{
 			time = mArguments.getString("time");
@@ -54,23 +54,23 @@ class TaskPageFragment extends ListViewFragment<Task>
 		if (mActivity != null)
 		{
 			Tasks tasks = mActivity.getCoreApp().getTasks();
-            if (time.equalsIgnoreCase("Outdate"))
-            {
-                data = tasks.getOutdateTasks();
-            }
-            if (time.equalsIgnoreCase("Today"))
-            {
-                data = tasks.getTodayTasks();
-            }
+			if (time.equalsIgnoreCase("Outdate"))
+			{
+				data = tasks.getOutdateTasks();
+			}
+			if (time.equalsIgnoreCase("Today"))
+			{
+				data = tasks.getTodayTasks();
+			}
 			if (time.equalsIgnoreCase("Tomorrow"))
-            {
-                data = tasks.getTomorrowTasks();
-            }
+			{
+				data = tasks.getTomorrowTasks();
+			}
 			if (time.equalsIgnoreCase("Week"))
-            {
-                data = tasks.getWeekTasks();
-            }
-            
+			{
+				data = tasks.getWeekTasks();
+			}
+
 			if (tasks.isSuccessful())
 			{
 				setData(data);

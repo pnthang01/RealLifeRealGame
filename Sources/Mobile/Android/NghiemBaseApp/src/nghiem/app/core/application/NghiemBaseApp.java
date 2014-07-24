@@ -8,14 +8,14 @@ import android.view.inputmethod.InputMethodManager;
 
 public class NghiemBaseApp extends Application
 {
-    @SuppressWarnings("rawtypes")
-    private static ThreadLocal sInitHolder = new ThreadLocal();
-    private static NghiemBaseApp sInstance;
+	@SuppressWarnings("rawtypes")
+	private static ThreadLocal sInitHolder = new ThreadLocal();
+	private static NghiemBaseApp sInstance;
 
-    @SuppressWarnings("unchecked")
-    public static NghiemBaseApp getInstance()
+	@SuppressWarnings("unchecked")
+	public static NghiemBaseApp getInstance()
 	{
-	    if (sInitHolder.get() == null)
+		if (sInitHolder.get() == null)
 		{
 			synchronized (NghiemBaseApp.class)
 			{
@@ -23,7 +23,7 @@ public class NghiemBaseApp extends Application
 				{
 					sInstance = new NghiemBaseApp();
 				}
-                sInitHolder.set(Boolean.TRUE);
+				sInitHolder.set(Boolean.TRUE);
 			}
 		}
 		return sInstance;
@@ -34,19 +34,19 @@ public class NghiemBaseApp extends Application
 	{
 		super.onCreate();
 		if (sInstance == null)
-        {
-		    sInstance = this;
-        }
+		{
+			sInstance = this;
+		}
 	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-        if (sInstance == null)
-        {
-            sInstance = this;
-        }
+		if (sInstance == null)
+		{
+			sInstance = this;
+		}
 	}
 
 	public void showKeyboard(View view, boolean isShowed)

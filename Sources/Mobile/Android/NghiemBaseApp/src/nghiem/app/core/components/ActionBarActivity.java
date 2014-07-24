@@ -56,27 +56,27 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 		LogUtils.log(TAG, "show action bar");
 		if (mActionBar.getVisibility() == View.VISIBLE)
 		{
-		    return;
+			return;
 		}
 		Animation animation = AnimationUtils.loadAnimation(this, R.anim.show_down);
 		animation.setAnimationListener(new AnimationListener()
-        {
-            @Override
-            public void onAnimationStart(Animation animation)
-            {
-            }
+		{
+			@Override
+			public void onAnimationStart(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationRepeat(Animation animation)
-            {
-            }
+			@Override
+			public void onAnimationRepeat(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationEnd(Animation animation)
-            {
-                mActionBar.setVisibility(View.VISIBLE);
-            }
-        });
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				mActionBar.setVisibility(View.VISIBLE);
+			}
+		});
 		mActionBar.startAnimation(animation);
 	}
 
@@ -84,42 +84,42 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 	{
 		LogUtils.log(TAG, "hide action bar");
 		if (mActionBar.getVisibility() == View.GONE)
-        {
-            return;
-        }
+		{
+			return;
+		}
 		Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_up);
-        animation.setAnimationListener(new AnimationListener()
-        {
-            @Override
-            public void onAnimationStart(Animation animation)
-            {
-            }
+		animation.setAnimationListener(new AnimationListener()
+		{
+			@Override
+			public void onAnimationStart(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationRepeat(Animation animation)
-            {
-            }
+			@Override
+			public void onAnimationRepeat(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationEnd(Animation animation)
-            {
-                mActionBar.setVisibility(View.GONE);
-            }
-        });
-        mActionBar.startAnimation(animation);
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				mActionBar.setVisibility(View.GONE);
+			}
+		});
+		mActionBar.startAnimation(animation);
 	}
 
-    @Override
-    public void onScrollUp()
-    {
-        showActionBar();
-    }
+	@Override
+	public void onScrollUp()
+	{
+		showActionBar();
+	}
 
-    @Override
-    public void onScrollDown()
-    {
-        hideActionBar();
-    }
+	@Override
+	public void onScrollDown()
+	{
+		hideActionBar();
+	}
 
 	public void setActionBarOverLay(boolean isOverlay)
 	{

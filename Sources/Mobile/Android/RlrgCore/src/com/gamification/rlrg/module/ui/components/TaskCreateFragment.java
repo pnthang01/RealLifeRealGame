@@ -34,7 +34,7 @@ final class TaskCreateFragment extends Fragment implements OnClickListener, OnDa
 	public static final String TAG = TaskCreateFragment.class.getName();
 
 	@SuppressLint("SimpleDateFormat")
-    private static SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
+	private static SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
 
 	private class CategoryAdapter extends ArrayAdapter<Category>
 	{
@@ -123,16 +123,9 @@ final class TaskCreateFragment extends Fragment implements OnClickListener, OnDa
 	@Override
 	public void onClick(View view)
 	{
-		mTasks.addTask
-		(
-		        ((Category) mSpnCategory.getSelectedItem()).getName(),
-		        mCalendar.getTime().getTime(),
-		        (String) mSpnDifficulty.getSelectedItem(),
-		        mEdtName.getText().toString(),
-		        mEdtPoint.getText().toString(),
-		        null
-		);
-        RlrgApp.getInstance().checkAchievemnt();
+		mTasks.addTask(((Category) mSpnCategory.getSelectedItem()).getName(), mCalendar.getTime().getTime(), (String) mSpnDifficulty.getSelectedItem(), mEdtName.getText().toString(), mEdtPoint
+				.getText().toString(), null);
+		RlrgApp.getInstance().checkAchievemnt();
 		mActivity.replaceFragment(FragmentFactory.create(Type.SHOWROOM));
 	}
 

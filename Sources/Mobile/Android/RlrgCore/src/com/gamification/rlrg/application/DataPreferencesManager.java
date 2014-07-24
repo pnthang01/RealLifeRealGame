@@ -25,26 +25,26 @@ public class DataPreferencesManager
 	public static final String JSON_ACHIEVEMENTS = "JSON_ACHIEVEMENTS";
 
 	@SuppressWarnings("rawtypes")
-    private static ThreadLocal sInitHolder = new ThreadLocal();
-    private static DataPreferencesManager sInstance;
+	private static ThreadLocal sInitHolder = new ThreadLocal();
+	private static DataPreferencesManager sInstance;
 
 	private Context mContext;
 	private SharedPreferences mSharedPreferences;
 
 	@SuppressWarnings("unchecked")
-    public static DataPreferencesManager getInstance()
+	public static DataPreferencesManager getInstance()
 	{
-	    if (sInitHolder.get() == null)
-        {
-            synchronized (DataPreferencesManager.class)
-    		{
-    			if (sInstance == null)
-    			{
-    				sInstance = new DataPreferencesManager();
-    			}
-                sInitHolder.set(Boolean.TRUE);
-    		}
-        }
+		if (sInitHolder.get() == null)
+		{
+			synchronized (DataPreferencesManager.class)
+			{
+				if (sInstance == null)
+				{
+					sInstance = new DataPreferencesManager();
+				}
+				sInitHolder.set(Boolean.TRUE);
+			}
+		}
 		return sInstance;
 	}
 

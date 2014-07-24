@@ -20,13 +20,13 @@ import android.widget.ListView;
 
 public class ListViewFragment<Data> extends ListFragment implements LoaderCallbacks<List<Data>>, OnScrollListener
 {
-    public interface OnScrollUpDownListener
-    {
-        public void onScrollUp();
-        
-        public void onScrollDown();
-    }
-    
+	public interface OnScrollUpDownListener
+	{
+		public void onScrollUp();
+
+		public void onScrollDown();
+	}
+
 	private class Adapter extends ArrayAdapter<Data>
 	{
 		public Adapter()
@@ -62,19 +62,19 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderCallba
 	protected ListView mListView;
 	protected Adapter mAdapter;
 	protected Bundle mArguments;
-	
+
 	protected int mListLayout, mItemLayout;
 	protected int[] mItemLayouts;
-	
+
 	private boolean mIsMultipleItemLayout = false;
 	private int mPosition = 0, mOffset = 0;
-	
+
 	private List<Data> mList = new ArrayList<Data>();
-	
+
 	public ListViewFragment()
-    {
-	    super();
-    }
+	{
+		super();
+	}
 
 	public ListViewFragment(int listLayout, int itemLayout)
 	{
@@ -150,36 +150,36 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderCallba
 		mAdapter.setData(null);
 	}
 
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState)
-    {
-    }
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState)
+	{
+	}
 
-    @Override
-    public void onScroll(AbsListView listView, int firstVisibleItem, int visibleItemCount, int totalItemCount)
-    {
-        if (!(getActivity() instanceof OnScrollUpDownListener))
-        {
-            return;
-        }
-        
-        View view = mListView.getChildAt(0);
-        int offset = (view == null) ? 0 : view.getTop();
+	@Override
+	public void onScroll(AbsListView listView, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+	{
+		if (!(getActivity() instanceof OnScrollUpDownListener))
+		{
+			return;
+		}
 
-        if (mPosition == firstVisibleItem && mOffset == offset)
-        {
-            return;
-        }
+		View view = mListView.getChildAt(0);
+		int offset = (view == null) ? 0 : view.getTop();
 
-        if (mPosition < firstVisibleItem && mOffset != offset || (mPosition == firstVisibleItem && mOffset > offset))
-        {
-            ((OnScrollUpDownListener) getActivity()).onScrollDown();
-        }
-        else
-        {
-            ((OnScrollUpDownListener) getActivity()).onScrollUp();
-        }
-        mPosition = firstVisibleItem;
-        mOffset = offset;
-    }
+		if (mPosition == firstVisibleItem && mOffset == offset)
+		{
+			return;
+		}
+
+		if (mPosition < firstVisibleItem && mOffset != offset || (mPosition == firstVisibleItem && mOffset > offset))
+		{
+			((OnScrollUpDownListener) getActivity()).onScrollDown();
+		}
+		else
+		{
+			((OnScrollUpDownListener) getActivity()).onScrollUp();
+		}
+		mPosition = firstVisibleItem;
+		mOffset = offset;
+	}
 }

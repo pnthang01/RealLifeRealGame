@@ -27,7 +27,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	public static final String DIALOG_NETWORK_NOT_AVAILABLE = "DIALOG_NETWORK_NOT_AVAILABLE";
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
-	
+
 	private String[] mNavigationTitles;
 
 	@Override
@@ -94,14 +94,14 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	{
 		switch (position)
 		{
-		    default:
-                return FragmentFactory.create(Type.SHOWROOM);
+			default:
+				return FragmentFactory.create(Type.SHOWROOM);
 			case 1:
 				return FragmentFactory.create(Type.TASK_PAGER);
-            case 2:
-                return FragmentFactory.create(Type.TASK_CREATE);
-            case 3:
-                return FragmentFactory.create(Type.SHARING);
+			case 2:
+				return FragmentFactory.create(Type.TASK_CREATE);
+			case 3:
+				return FragmentFactory.create(Type.SHARING);
 		}
 	}
 
@@ -117,16 +117,17 @@ public final class StartActivity extends NavigationActivity implements Runnable
 		setActionBarOverLay(false);
 		if (RlrgApp.isStart)
 		{
-		    RlrgApp.isStart = false;
+			RlrgApp.isStart = false;
 		}
 	}
 
 	public void onLoginSuccess()
 	{
-		//TODO: remove DataPreferencesManager.getInstance().increaseLoginCount();
-	    RlrgApp.getInstance().getTasks().addTask("Login", 0, null, null, null, Task.STATUS_COMPLETED);
-	    RlrgApp.getInstance().checkAchievemnt();
-        
+		// TODO: remove
+		// DataPreferencesManager.getInstance().increaseLoginCount();
+		RlrgApp.getInstance().getTasks().addTask("Login", 0, null, null, null, Task.STATUS_COMPLETED);
+		RlrgApp.getInstance().checkAchievemnt();
+
 		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		Fragment fragment = FragmentFactory.create(Type.SHOWROOM);
 		Bundle args = new Bundle();

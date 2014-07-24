@@ -6,13 +6,7 @@ public class FragmentFactory
 {
 	public static enum Type
 	{
-		LOGIN,
-		SHOWROOM,
-		TASK_CREATE,
-		TASK_DETAIL,
-		TASK_PAGER,
-		TASK_PAGE,
-		SHARING
+		LOGIN, SHOWROOM, TASK_CREATE, TASK_DETAIL, TASK_PAGER, TASK_PAGE, SHARING
 	}
 
 	public static Fragment create(Type type)

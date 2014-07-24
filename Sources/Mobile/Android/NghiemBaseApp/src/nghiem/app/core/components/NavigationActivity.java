@@ -156,75 +156,75 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 		mDrawerLayout.closeDrawers();
 	}
 
-    public void showActionBar()
-    {
-        LogUtils.log(TAG, "show action bar");
-        if (mActionBar.getVisibility() == View.VISIBLE)
-        {
-            return;
-        }
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.show_down);
-        animation.setAnimationListener(new AnimationListener()
-        {
-            @Override
-            public void onAnimationStart(Animation animation)
-            {
-            }
+	public void showActionBar()
+	{
+		LogUtils.log(TAG, "show action bar");
+		if (mActionBar.getVisibility() == View.VISIBLE)
+		{
+			return;
+		}
+		Animation animation = AnimationUtils.loadAnimation(this, R.anim.show_down);
+		animation.setAnimationListener(new AnimationListener()
+		{
+			@Override
+			public void onAnimationStart(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationRepeat(Animation animation)
-            {
-            }
+			@Override
+			public void onAnimationRepeat(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationEnd(Animation animation)
-            {
-                mActionBar.setVisibility(View.VISIBLE);
-            }
-        });
-        mActionBar.startAnimation(animation);
-    }
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				mActionBar.setVisibility(View.VISIBLE);
+			}
+		});
+		mActionBar.startAnimation(animation);
+	}
 
-    public void hideActionBar()
-    {
-        LogUtils.log(TAG, "hide action bar");
-        if (mActionBar.getVisibility() == View.GONE)
-        {
-            return;
-        }
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_up);
-        animation.setAnimationListener(new AnimationListener()
-        {
-            @Override
-            public void onAnimationStart(Animation animation)
-            {
-            }
+	public void hideActionBar()
+	{
+		LogUtils.log(TAG, "hide action bar");
+		if (mActionBar.getVisibility() == View.GONE)
+		{
+			return;
+		}
+		Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_up);
+		animation.setAnimationListener(new AnimationListener()
+		{
+			@Override
+			public void onAnimationStart(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationRepeat(Animation animation)
-            {
-            }
+			@Override
+			public void onAnimationRepeat(Animation animation)
+			{
+			}
 
-            @Override
-            public void onAnimationEnd(Animation animation)
-            {
-                mActionBar.setVisibility(View.GONE);
-            }
-        });
-        mActionBar.startAnimation(animation);
-    }
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				mActionBar.setVisibility(View.GONE);
+			}
+		});
+		mActionBar.startAnimation(animation);
+	}
 
-    @Override
-    public void onScrollUp()
-    {
-        showActionBar();
-    }
+	@Override
+	public void onScrollUp()
+	{
+		showActionBar();
+	}
 
-    @Override
-    public void onScrollDown()
-    {
-        hideActionBar();
-    }
+	@Override
+	public void onScrollDown()
+	{
+		hideActionBar();
+	}
 
 	protected void setActionBarOverLay(boolean isOverlay)
 	{
@@ -328,9 +328,9 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 		mBtnActionBarRightTwo.setVisibility(View.GONE);
 		mBtnActionBarRightText.setVisibility(View.GONE);
 	}
-	
+
 	public void setDrawerLockMode(int mode)
 	{
-	    mDrawerLayout.setDrawerLockMode(mode);
+		mDrawerLayout.setDrawerLockMode(mode);
 	}
 }

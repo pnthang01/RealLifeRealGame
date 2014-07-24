@@ -21,7 +21,7 @@ public class WebViewFragment extends Fragment
 {
 	public static final String EXTRA_LINK = "EXTRA_LINK";
 	public static final String EXTRA_BG = "BG_RD";
-	
+
 	protected String TAG = getClass().getName();
 
 	private class ChromeBrowser extends WebChromeClient
@@ -70,11 +70,11 @@ public class WebViewFragment extends Fragment
 	private ProgressBar mProgressBar;
 
 	private String mLink = "";
-	
+
 	public WebViewFragment()
-    {
-        super();
-    }
+	{
+		super();
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

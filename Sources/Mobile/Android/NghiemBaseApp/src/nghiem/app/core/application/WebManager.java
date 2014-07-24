@@ -20,16 +20,12 @@ public class WebManager
 {
 	public static final String TAG = WebManager.class.getName();
 
-	private static final String WEB_CONTENT = "<html><head>"
-            + "<style type='text/css'>"
-            + "body {font-size: %dpx; text-align: left; margin: 0px 0px 0px 0px;}"
-            + "</style></head>" + "<body %s>%s</body>" + "</html>";
+	private static final String WEB_CONTENT = "<html><head>" + "<style type='text/css'>" + "body {font-size: %dpx; text-align: left; margin: 0px 0px 0px 0px;}" + "</style></head>"
+			+ "<body %s>%s</body>" + "</html>";
 
-    private static final String WEB_CONTENT_FONT_FACE_APPLIED = "<html><head>"
-            + "<style type='text/css'>"
-            + "@font-face {font-family: 'custom_font'; src: url('%s')} body {font-family: 'custom_font'; "
-            + "font-size: %dpx;text-align: left; margin: 0px 0px 0px 0px;}</style></head>"
-            + "<body %s>%s</body>" + "</html>";
+	private static final String WEB_CONTENT_FONT_FACE_APPLIED = "<html><head>" + "<style type='text/css'>"
+			+ "@font-face {font-family: 'custom_font'; src: url('%s')} body {font-family: 'custom_font'; " + "font-size: %dpx;text-align: left; margin: 0px 0px 0px 0px;}</style></head>"
+			+ "<body %s>%s</body>" + "</html>";
 	private static final String MIN_DATA = "text/html";
 
 	private NghiemActivity mContext;
