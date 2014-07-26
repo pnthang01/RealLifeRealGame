@@ -32,9 +32,7 @@ import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
 import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
-import com.rlrg.utillities.badgechecker.domain.ModuleName;
 
-@ModuleName(name=BadgeCheckerConstants.TASK_MODULE)
 @Service
 public class TaskService extends BaseService<Task, TaskDTO> implements ITaskService<Task, TaskDTO>{
 	
@@ -94,19 +92,14 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 			t.setCreateTime(createDate);
 			t.setDifficultyLevel(dto.getDifficultyLevel());
 			t.setName(dto.getName());
-			t.setPoint(dto.getPoint());
+			t.setPoint(Constants.DEFAULT_CREATE_TASK_POINTS);
 			t.setStartTime(dto.getStartTime());
-			t.setStatus(dto.getStatus());
+			t.setStatus(TaskStatus.CREATED);
 			//
 			taskRepo.save(t);
 			//
-			TaskCheckerDTO checkerDTO = new TaskCheckerDTO();
-			checkerDTO.setAction(BadgeCheckerConstants.CREATE_TASK);
-			checkerDTO.setCategory(c.getTag());
-			checkerDTO.setDiffLevel(t.getDifficultyLevel().name());
-			checkerDTO.setActionDate(createDate);
-			//
-			submitValueToBadgeChecker(BadgeCheckerConstants.TASK_MODULE, u.getId(), checkerDTO);
+			u.setPoint(u.getPoint() + Constants.DEFAULT_CREATE_TASK_POINTS);
+			userService.save(u);
 		} catch(Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw e;
@@ -136,9 +129,7 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 			t.setDescription(dto.getDescription());
 			t.setDifficultyLevel(dto.getDifficultyLevel());
 			t.setName(dto.getName());
-			t.setPoint(dto.getPoint());
 			t.setStartTime(dto.getStartTime());
-			t.setStatus(dto.getStatus());
 			//
 			taskRepo.save(t);
 		} catch(Exception e){
@@ -158,6 +149,8 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, String token) throws Exception {
 		try {
 			UserToken userToken = commonService.getUserToken(token);
+			TaskCheckerDTO checkerDTO = new TaskCheckerDTO();
+			User user = userService.getUserById(userToken.getId());
 			//
 			Task t = taskRepo.getTaskByIdAndUser(taskId, userToken.getId());
 			if(null == t){
@@ -165,7 +158,21 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 				throw new RepositoryException("Cannot find entity");
 			} 
 			t.setStatus(taskStatus);
+			if(TaskStatus.COMPLETED.equals(taskStatus)){
+				t.setPoint(t.getPoint() + Constants.DEFAULT_COMPLETED_TASK_POINTS);
+				user.setPoint(user.getPoint() + + Constants.DEFAULT_COMPLETED_TASK_POINTS);
+			} else if(TaskStatus.NOTCOMPLETED.equals(taskStatus) || TaskStatus.DELETED.equals(taskStatus)){
+				t.setPoint(t.getPoint() + Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
+				user.setPoint(user.getPoint() + + Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
+			}
 			taskRepo.save(t);
+			userService.save(user);
+			//			
+			checkerDTO.setAction(taskStatus.name());
+			checkerDTO.setCategory(t.getCategory().getTag());
+			checkerDTO.setActionDate(new Date());
+			//
+			submitValueToBadgeChecker(BadgeCheckerConstants.TASK_MODULE, userToken.getId(), checkerDTO);			
 		} catch(Exception e){
 			LOG.error(e.getMessage(), e);
 			throw e;
@@ -179,7 +186,6 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	 */
 	@Override
 	public TaskDTO getTaskById(Long taskId){
-		//notifyListeners("test",1l); //TODO
 		return taskRepo.getTaskById(taskId, DEFAULT_LANGUAGE.getId());
 	}
 	
@@ -220,6 +226,20 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		return taskRepo.getTasksByCategoryAndUser(categoryCode, userToken.getId(), DEFAULT_LANGUAGE.getId(), pageRequest);
 	}	
 
+	@Override
+	public Long countTotalCreatedTaskByUserId(Long userId) {
+		return taskRepo.countTotalCreatedTaskByUserId(userId);
+	}
+
+	@Override
+	public Long countTotalCompletedTaskByUserIdAndCateTag(Long userId, String cateTag) {
+		return taskRepo.countTotalCompletedTaskByUserIdAndCateTag(userId, cateTag);
+	}
+	
+
+	public Long countTasksByKeyword(String keyword) {
+		return taskRepo.countTasksByKeyword(keyword);
+	}
 
 	@Override
 	public TaskDTO convertEntityToDTO(Task data) {
@@ -236,12 +256,6 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		//
 		return dto;
 	}
-
-	@Override
-	public Task revertDTOToEntity(TaskDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	/**
 	 * Search a list of task base on keyword
@@ -257,14 +271,17 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		//
 		return taskRepo.searchTasksDTOByKeyword(keyword, pageRequest);
 	}
-	
 
-	public Long countTasksByKeyword(String keyword) {
-		return taskRepo.countTasksByKeyword(keyword);
+	@Override
+	public Task revertDTOToEntity(TaskDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Class<TaskDTO> getVClass() {
 		return TaskDTO.class;
 	}
+
+
 }

@@ -64,4 +64,11 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 			" OR (t.name LIKE CONCAT('%', :keyword, '%')))")
 	public Long countTasksByKeyword(@Param("keyword") String keyword);
 	
+	@Query("SELECT COUNT(t.id) FROM Task t WHERE t.user.id = :userId")
+	public Long countTotalCreatedTaskByUserId(@Param("userId") Long userId);
+	
+	@Query("SELECT COUNT(t.id) FROM Task t WHERE t.user.id = :userId AND t.category.tag = :cateTag" +
+			" AND t.status = com.rlrg.dataserver.task.entity.enums.TaskStatus.COMPLETED")
+	public Long countTotalCompletedTaskByUserIdAndCateTag(@Param("userId") Long userId, @Param("cateTag") String cateTag);
+	
 }

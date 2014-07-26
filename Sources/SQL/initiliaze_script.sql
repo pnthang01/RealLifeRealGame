@@ -106,3 +106,8 @@ CREATE TABLE `user_log` (
 	CONSTRAINT fk_UserLog FOREIGN KEY(user_id) REFERENCES `user`(id)
 );
 
+CREATE TABLE `config` (
+	`key` VARCHAR(50) PRIMARY KEY NOT NULL,
+	`value` VARCHAR(100) NOT NULL
+);
+

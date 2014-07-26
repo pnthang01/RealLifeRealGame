@@ -25,7 +25,7 @@ public class BadgeCriteriaHelper {
 					if(critList.size() == 0){
 						critList.add(temp);
 					} else {
-						critList.set(1, cb.or(critList.get(1), temp));
+						critList.set(0, cb.or(critList.get(0), temp));
 					}
 				}
 				if(usersAchie.size() > 0){

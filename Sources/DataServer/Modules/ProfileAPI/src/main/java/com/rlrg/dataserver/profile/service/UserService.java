@@ -64,10 +64,21 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
      * Get User by Id
      * @param userId
      * @return
+     * @throws RepositoryException 
      */
-    public User getUserById(Long userId){
-    	return userRepo.findOne(userId);
+    public User getUserById(Long userId) throws RepositoryException{
+    	User u =  userRepo.findOne(userId);
+		if(null == u){
+			LOG.error("Cannot find entity User with UserId:{}", userId);
+			throw new RepositoryException("Cannot find entity");
+		} 
+    	return u;
     }
+   
+	@Override
+	public void save(User user) {
+		userRepo.save(user);
+	}
     
     /**
      * Get User by Username

@@ -8,6 +8,7 @@ public interface BadgeCheckerConstants {
 	//Action
 	public static final String CREATE_TASK = "CreateTask";
 	public static final String UPDATE_TASK = "UpdateTask";
+	public static final String COMPLETE_TASK = "CompleteTask";
 	
 	public static final String LOGIN_PROFILE = "Login";
 	
@@ -16,12 +17,11 @@ public interface BadgeCheckerConstants {
 	public static final String NORMAL = "NORMAL";
 	public static final String HARD = "HARD";
 
-	public static final String CATEGORY_1 = "Category_1";
-	public static final String CATEGORY_2 = "Category_2";
-	public static final String CATEGORY_3 = "Category_3";
-	public static final String CATEGORY_4 = "Category_4";
-	public static final String CATEGORY_5 = "Category_5";
-	public static final String CATEGORY_6 = "Category_6";
+	public static final String POWER_TAG = "Power";
+	public static final String INTELLIGENT_TAG = "Intelligent";
+	public static final String COMMUNICATION_TAG = "Communication";
+	public static final String CAREER_TAG = "Career";
+	public static final String ART_TAG = "Art";
 	
 	public static final String THREE_DAYS_IN_A_ROW = "3Days";
 	public static final String SEVEN_DAYS_IN_A_ROW = "7Days";

@@ -15,6 +15,12 @@
 	</properties>
 
 	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.facebook4j</groupId> -->
+<!-- 			<artifactId>facebook4j-core</artifactId> -->
+<!-- 			<version>2.1.0</version> -->
+<!-- 		</dependency> -->
+
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
@@ -42,4 +48,36 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
+	<repositories>
+		<repository>
+			<id>java.net</id>
+			<url>https://maven.java.net/content/repositories/public/</url>
+		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>http://repo.springsource.org/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>http://repo.springsource.org/milestone</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>maven-apache</id>
+			<name>Spring Milestones</name>
+			<url>http://repo.maven.apache.org</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>

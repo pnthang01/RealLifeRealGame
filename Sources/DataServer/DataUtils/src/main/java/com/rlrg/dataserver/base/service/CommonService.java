@@ -42,7 +42,7 @@ public class CommonService {
      */
     public UserToken getUserToken(String token) throws UserTokenException{
 //    	UserToken userToken = userTokens.get(token);
-    	UserToken userToken = new UserToken(1l, "username1", new Date().getTime()); // For testing //TODO
+    	UserToken userToken = new UserToken(1l, "testacc", new Date().getTime()); // For testing //TODO
     	if(null == userToken || null == userToken.getId()){
 			LOG.error("Cannot find UserToken with Token:{}", token);
 			throw new UserTokenException();

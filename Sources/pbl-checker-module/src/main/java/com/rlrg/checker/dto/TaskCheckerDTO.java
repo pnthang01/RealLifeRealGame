@@ -24,8 +24,10 @@ public class TaskCheckerDTO extends AbstractCheckerDTO{
 	public List<String> getAllPropeties(){
 		List<String> props = super.getAllPropeties();
 		//props.add(action);
-		props.add(category);
-		props.add(diffLevel);
+		if(null != category)
+			props.add(category);
+		if(null != diffLevel)
+			props.add(diffLevel);
 		//
 		return props;
 	}

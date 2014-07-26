@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
 
 import com.rlrg.dataserver.base.domain.CountableDTO;
+import com.rlrg.utillities.badgechecker.ActionExecutive;
 import com.rlrg.utillities.badgechecker.domain.AbstractCheckerDTO;
 import com.rlrg.utillities.badgechecker.domain.IMainChecker;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
-
 
 public abstract class BaseService <T, V> implements IBaseService<T, V>{
 	
@@ -24,26 +24,16 @@ public abstract class BaseService <T, V> implements IBaseService<T, V>{
 	@Autowired
 	private JsonExporter jsonExporter;
 
-	@Autowired
-	protected IMainChecker mainChecker;
+	@Autowired 	
+	private IMainChecker mainChecker;
 	
 	protected abstract Class<V> getVClass();
 
 	protected void submitValueToBadgeChecker(String module, Long userId, AbstractCheckerDTO dto) {
-		mainChecker.mainProcess(module, 11l, dto);
+		ActionExecutive exe = new ActionExecutive(mainChecker, module, userId, dto);
+		Thread newThd = new Thread(exe);
+		newThd.start();
 	}
-	
-//	@Override
-//	public void initListener(){
-//		ActionObserver actionObserver = new ActionObserver(this);
-//		ModuleName moduleAnno = this.getClass().getAnnotation(ModuleName.class);
-//		if(null == moduleAnno || null == moduleAnno.name()){
-//			LOG.debug("This {} class doesn't use ModuleName annotation, please use it if this class is for BadgeCheck.", 
-//					this.getClass().getName());
-//		} else {
-//			actionObserver.setModuleName(moduleAnno.name());
-//		}
-//	}
 
 	/**
 	 * Encode counting services for statistic to json.

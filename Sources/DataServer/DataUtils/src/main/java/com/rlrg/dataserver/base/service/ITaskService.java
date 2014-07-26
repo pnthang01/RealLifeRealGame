@@ -25,4 +25,8 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 	public List<V> searchTasksByKeyword(String keyword, Integer pageNumber);
 	
 	public Long countTasksByKeyword(String keyword);
+	
+	public Long countTotalCreatedTaskByUserId(Long userId);
+	
+	public Long countTotalCompletedTaskByUserIdAndCateTag(Long userId, String cateTag);
 }

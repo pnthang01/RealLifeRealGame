@@ -5,6 +5,7 @@ import java.text.Normalizer.Form;
 
 import org.apache.commons.lang.RandomStringUtils;
 
+import com.rlrg.dataserver.base.controller.BaseUtils;
 import com.rlrg.dataserver.task.entity.enums.DifficultyLevel;
 
 /**
@@ -36,5 +37,7 @@ public class App
     	String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
         System.out.println(temp.replaceAll("[^\\p{ASCII}]", ""));
     	System.out.println(s);
+    	//
+    	System.out.println(BaseUtils.md5("123456"));
     }
 }

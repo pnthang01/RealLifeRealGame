@@ -12,9 +12,11 @@ public interface IUserService<T, V> extends IBaseService<T, V> {
 	
 	public T getUserByToken(String token) throws UserTokenException;
 
-	public T getUserById(Long userId);
+	public T getUserById(Long userId) throws RepositoryException;
 
 	public T getUserByUsername(String username);
+	
+	public void save(T user);
 
 	public void signup(V dto) throws Exception;
 

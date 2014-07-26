@@ -41,14 +41,6 @@ public class BadgeController extends BaseController{
 		String result = null;
 		LOG.info("<< Starting webservice /badge/getAllBages with parameters: pageNumber={}", pageNumber);
 		try {
-			List<String> temp = new ArrayList<String>();
-			temp.add(BadgeCheckerConstants.CREATE_TASK);
-			temp.add(BadgeCheckerConstants.CATEGORY_1);
-			List<Badge> test = badgeService.getBadgeByEligibility(1l, temp);
-			for(Badge b : test){
-				System.out.println(b.getId());
-			}
-			//
 			List<BadgeDTO> listDto = badgeService.getAllBadges(pageNumber);
 			Long total = badgeService.countAllBadges();
 			//

@@ -14,8 +14,6 @@ public class MainChecker implements IMainChecker{
 	@Autowired
 	private ProfileChecker profileChecker;
 	
-	
-	
 	public void mainProcess(String module, Long userId, AbstractCheckerDTO props){
 		try {
 			if(BadgeCheckerConstants.TASK_MODULE.equals(module)){
