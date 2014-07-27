@@ -101,7 +101,6 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderCallba
 	{
 		super.onCreate(savedInstanceState);
 		mArguments = getArguments();
-		mListView = getListView();
 	}
 
 	@Override
@@ -119,6 +118,7 @@ public class ListViewFragment<Data> extends ListFragment implements LoaderCallba
 			mAdapter = new Adapter();
 			setListAdapter(mAdapter);
 			getLoaderManager().initLoader(0, null, this);
+			mListView = getListView();
 			mListView.setOnScrollListener(this);
 		}
 	}

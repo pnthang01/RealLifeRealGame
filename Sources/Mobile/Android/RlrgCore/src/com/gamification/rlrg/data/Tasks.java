@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
@@ -16,6 +15,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class Tasks extends BaseEntity<Tasks.TaskList>
 {
+	public static enum Type
+	{
+		OUTDATE, TODAY, TOMORROW, WEEK
+	}
+	
 	public class TaskList
 	{
 		@SerializedName("Task")
@@ -53,45 +57,28 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 
 	public List<Task> getOutdateTasks()
 	{
-		DateTime now = new DateTime();
-		LocalDate today = now.toLocalDate();
-
-		long end = today.toDateTimeAtStartOfDay(now.getZone()).getMillis();
-
-		return getTasksByRangeOfTime(0, end);
+		return getTasksByRangeOfTime(0, getTimeFromToday(0));
 	}
 
 	public List<Task> getTodayTasks()
 	{
-		DateTime now = new DateTime();
-		LocalDate today = now.toLocalDate();
-
-		long start = today.toDateTimeAtStartOfDay(now.getZone()).getMillis();
-		long end = today.plusDays(1).toDateTimeAtStartOfDay(now.getZone()).getMillis();
-
-		return getTasksByRangeOfTime(start, end);
+		return getTasksByRangeOfTime(getTimeFromToday(0), getTimeFromToday(1));
 	}
 
 	public List<Task> getTomorrowTasks()
 	{
-		DateTime now = new DateTime();
-		LocalDate today = now.toLocalDate();
-
-		long start = today.plusDays(1).toDateTimeAtStartOfDay(now.getZone()).getMillis();
-		long end = today.plusDays(2).toDateTimeAtStartOfDay(now.getZone()).getMillis();
-
-		return getTasksByRangeOfTime(start, end);
+		return getTasksByRangeOfTime(getTimeFromToday(1), getTimeFromToday(2));
 	}
 
 	public List<Task> getWeekTasks()
 	{
+		return getTasksByRangeOfTime(getTimeFromToday(2), getTimeFromToday(7));
+	}
+	
+	private long getTimeFromToday(int days)
+	{
 		DateTime now = new DateTime();
-		LocalDate today = now.toLocalDate();
-
-		long start = today.plusDays(2).toDateTimeAtStartOfDay(now.getZone()).getMillis();
-		long end = today.plusDays(7).toDateTimeAtStartOfDay(now.getZone()).getMillis();
-
-		return getTasksByRangeOfTime(start, end);
+		return now.toLocalDate().plusDays(days).toDateTimeAtStartOfDay(now.getZone()).getMillis();
 	}
 
 	public List<Task> getTasksByRangeOfTime(long start, long end)

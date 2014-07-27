@@ -111,7 +111,11 @@ final class TaskCreateFragment extends Fragment implements OnClickListener, OnDa
 			@Override
 			public void onClick(View v)
 			{
-				new DatePickerDialog(mActivity, TaskCreateFragment.this, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH)).show();
+				int year = mCalendar.get(Calendar.YEAR);
+				int month = mCalendar.get(Calendar.MONTH);
+				int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+				
+				new DatePickerDialog(mActivity, TaskCreateFragment.this, year, month, day).show();
 			}
 		});
 		mActivity.setBtnActionBarRightText(R.string.action_create_task, this);
@@ -123,8 +127,13 @@ final class TaskCreateFragment extends Fragment implements OnClickListener, OnDa
 	@Override
 	public void onClick(View view)
 	{
-		mTasks.addTask(((Category) mSpnCategory.getSelectedItem()).getName(), mCalendar.getTime().getTime(), (String) mSpnDifficulty.getSelectedItem(), mEdtName.getText().toString(), mEdtPoint
-				.getText().toString(), null);
+		String category = ((Category) mSpnCategory.getSelectedItem()).getName();
+		long completeTime = mCalendar.getTime().getTime();
+		String difficultyLevel = (String) mSpnDifficulty.getSelectedItem();
+		String name = mEdtName.getText().toString();
+		String point = mEdtPoint.getText().toString();
+		
+		mTasks.addTask(category, completeTime, difficultyLevel, name, point, null);
 		RlrgApp.getInstance().checkAchievemnt();
 		mActivity.replaceFragment(FragmentFactory.create(Type.SHOWROOM));
 	}
