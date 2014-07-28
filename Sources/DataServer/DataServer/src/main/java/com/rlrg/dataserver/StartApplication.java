@@ -33,9 +33,10 @@ import com.rlrg.utillities.json.JsonExporter;
 @PropertySources({
 	@PropertySource("classpath:application.properties")
 })
-public class StartApplication {
+public class StartApplication{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(StartApplication.class);
+
 	
 	@Bean
 	public ObjectMapper objectMapper(){
@@ -110,4 +111,5 @@ public class StartApplication {
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
+
 }

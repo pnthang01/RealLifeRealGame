@@ -36,7 +36,7 @@ public class CategoryController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/getCategoriesByStatus", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getCategoriesByStatus", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getCategoriesByStatus(@RequestParam(value="status",required=true) boolean status, @RequestParam(value="pageNumber",required=false) int pageNumber){
 		String result = null;
@@ -63,7 +63,7 @@ public class CategoryController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/getAllCategories", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getAllCategories", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getAllCategories(@RequestParam("pageNumber") int pageNumber){
 		String result = null;
@@ -89,7 +89,7 @@ public class CategoryController extends BaseController {
 	 * @param categoryId
 	 * @return
 	 */
-	@RequestMapping(value = "/getCategoryByCode", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getCategoryByCode", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getCategoryByCode(@RequestParam(value="code", required=true) String code){
 		String result = null;
@@ -116,7 +116,7 @@ public class CategoryController extends BaseController {
 	 * @param response
 	 * @throws  
 	 */
-	@RequestMapping(value = "/updateStatus", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/updateStatus", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String updateStatusByCode(@RequestParam(value="code", required=true) String code, @RequestParam(value="status", required=true) boolean status,
 			HttpServletRequest request, HttpServletResponse response){
@@ -143,7 +143,7 @@ public class CategoryController extends BaseController {
 	 * @param json
 	 * @return
 	 */
-	@RequestMapping(value = "/update", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String update(@RequestParam(value="restobject", required=true) String json){
 		String result = null;
@@ -171,7 +171,7 @@ public class CategoryController extends BaseController {
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/searchCategories", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/searchCategories", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String searchCategoriesByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
 			@RequestParam(value="pageNumber", required=false) Integer pageNumber){

@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `data`;
+CREATE DATABASE IF NOT EXISTS `data` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE `data`;
 
@@ -30,7 +30,7 @@ CREATE TABLE `category_language` (
 CREATE TABLE `badge` (
 	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`status` INT NOT NULL,
-	`image_link` VARCHAR(100) NOT NULL,
+	`file_name` VARCHAR(100) NOT NULL,
 	`eligibility` VARCHAR(100) NOT NULL
 );
 

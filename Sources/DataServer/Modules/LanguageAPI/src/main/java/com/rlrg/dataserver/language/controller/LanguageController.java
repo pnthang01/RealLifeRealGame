@@ -27,7 +27,7 @@ public class LanguageController extends BaseController{
 	@Autowired
 	private ILanguageService<Language, LanguageDTO> languageService;
 	
-	@RequestMapping(value = "/getAllLanguages", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getAllLanguages", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getAllLanguages(){
 		String result = null;
@@ -53,7 +53,7 @@ public class LanguageController extends BaseController{
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/searchLanguages", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/searchLanguages", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String searchLanguagesByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
 			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
