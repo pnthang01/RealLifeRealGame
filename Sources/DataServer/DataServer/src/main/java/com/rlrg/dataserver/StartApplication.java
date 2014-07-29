@@ -5,12 +5,14 @@ import java.io.IOException;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleEvent;
 import org.apache.catalina.LifecycleListener;
+import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
 import org.apache.naming.resources.VirtualDirContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -67,6 +69,7 @@ public class StartApplication{
 	public JsonExporter initJsonExporter(){
 		return new JsonExporter();
 	}
+
 	
 	@Bean
     public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
@@ -105,6 +108,12 @@ public class StartApplication{
 				
 			}
 		});
+	    factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
+	        @Override
+	        public void customize(Connector connector) {
+	            connector.setURIEncoding("UTF-8");
+	        }
+	    });
 		return factory;
     }
 	
