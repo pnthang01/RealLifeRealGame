@@ -47,13 +47,13 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 	@Override
 	public void setContentView(int layout)
 	{
-		LogUtils.log(TAG, "set layout " + layout + " to main view");
+		LogUtils.debug(CLASS, "set layout " + layout + " to main view");
 		inflate(layout, mMainView);
 	}
 
 	public void showActionBar()
 	{
-		LogUtils.log(TAG, "show action bar");
+		LogUtils.debug(CLASS, "show action bar");
 		if (mActionBar.getVisibility() == View.VISIBLE)
 		{
 			return;
@@ -82,7 +82,7 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 
 	public void hideActionBar()
 	{
-		LogUtils.log(TAG, "hide action bar");
+		LogUtils.debug(CLASS, "hide action bar");
 		if (mActionBar.getVisibility() == View.GONE)
 		{
 			return;
@@ -123,7 +123,7 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 
 	public void setActionBarOverLay(boolean isOverlay)
 	{
-		LogUtils.log(TAG, "set action bar overlay: " + isOverlay);
+		LogUtils.debug(CLASS, "set action bar overlay: " + isOverlay);
 		LayoutParams params = (LayoutParams) mMainView.getLayoutParams();
 		if (isOverlay)
 		{
@@ -140,13 +140,13 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 
 	public void setActionBarTitle(int text)
 	{
-		LogUtils.log(TAG, "set action bar title id: " + text);
+		LogUtils.debug(CLASS, "set action bar title id: " + text);
 		mActionBarTitle.setText(text);
 	}
 
 	public void setActionBarTitle(CharSequence text)
 	{
-		LogUtils.log(TAG, "set action bar title: " + text);
+		LogUtils.debug(CLASS, "set action bar title: " + text);
 		mActionBarTitle.setText(text);
 	}
 
@@ -188,7 +188,7 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 			mBtnActionBarRightText.setText(title);
 			mBtnActionBarRightText.setVisibility(View.VISIBLE);
 			mBtnActionBarRightText.setOnClickListener(callback);
-			LogUtils.log(TAG, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
+			LogUtils.debug(CLASS, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
 		}
 		if (mBtnActionBarRightOne.getVisibility() == View.VISIBLE)
 		{
@@ -237,7 +237,7 @@ public class ActionBarActivity extends NghiemActivity implements OnScrollUpDownL
 			view.setImageDrawable(icon);
 			view.setVisibility(View.VISIBLE);
 			view.setOnClickListener(callback);
-			LogUtils.log(TAG, "set action bar button " + view.toString() + "with icon " + icon.toString());
+			LogUtils.debug(CLASS, "set action bar button " + view.toString() + "with icon " + icon.toString());
 		}
 	}
 

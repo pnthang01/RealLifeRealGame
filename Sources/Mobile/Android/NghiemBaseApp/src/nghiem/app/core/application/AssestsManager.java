@@ -8,7 +8,7 @@ import nghiem.app.core.utils.LogUtils;
 
 public class AssestsManager
 {
-	public static final String TAG = AssestsManager.class.getName();
+	public static final Class<?> CLASS = AssestsManager.class;
 
 	@SuppressWarnings("rawtypes")
 	private static ThreadLocal sInitHolder = new ThreadLocal();
@@ -48,7 +48,7 @@ public class AssestsManager
 		}
 		catch (IOException e)
 		{
-			LogUtils.logError(TAG, "Load data from " + path + " error!", e);
+			LogUtils.error(CLASS, "Load data from " + path + " error!", e);
 			return null;
 		}
 	}

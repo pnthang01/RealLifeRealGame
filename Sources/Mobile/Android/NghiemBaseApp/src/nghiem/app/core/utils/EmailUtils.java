@@ -50,7 +50,7 @@ public final class EmailUtils
 			}
 			catch (Throwable throwable)
 			{
-				LogUtils.logError("MailApp", "Could not send email", throwable);
+				LogUtils.error(getClass(), "Could not send email", throwable);
 			}
 
 			return false;

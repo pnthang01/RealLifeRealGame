@@ -12,7 +12,7 @@ import com.gamification.rlrg.module.ui.StartActivity;
 
 final class SharingFragment extends Fragment
 {
-	public static final String TAG = SharingFragment.class.getName();
+	public static final Class<?> CLASS = SharingFragment.class;
 
 	private StartActivity mActivity;
 

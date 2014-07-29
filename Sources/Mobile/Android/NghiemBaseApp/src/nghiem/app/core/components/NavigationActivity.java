@@ -98,7 +98,7 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 			@Override
 			public void onClick(View v)
 			{
-				LogUtils.log(TAG, "open navigation");
+				LogUtils.debug(CLASS, "open navigation");
 				mDrawerLayout.openDrawer(mNavigation);
 			}
 		});
@@ -117,7 +117,7 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id)
 			{
-				LogUtils.log(TAG, "navigator item " + position + "clicked");
+				LogUtils.debug(CLASS, "navigator item " + position + "clicked");
 				onNavigationItemClick((ListView) adapter, view, position, id);
 			}
 		});
@@ -134,19 +134,19 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 	@Override
 	public void setContentView(int layout)
 	{
-		LogUtils.log(TAG, "set layout " + layout + " to main view");
+		LogUtils.debug(CLASS, "set layout " + layout + " to main view");
 		inflate(layout, mMainView);
 	}
 
 	protected void setNavigationData(List<NavigationData> data)
 	{
-		LogUtils.log(TAG, "set navigation data: " + data.toString());
+		LogUtils.debug(CLASS, "set navigation data: " + data.toString());
 		mNavigationData = data.toArray(new NavigationData[data.size()]);
 	}
 
 	protected void setNavigationData(NavigationData[] data)
 	{
-		LogUtils.log(TAG, "set navigation data: " + Arrays.toString(data));
+		LogUtils.debug(CLASS, "set navigation data: " + Arrays.toString(data));
 		mNavigationData = data;
 	}
 
@@ -158,7 +158,7 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 
 	public void showActionBar()
 	{
-		LogUtils.log(TAG, "show action bar");
+		LogUtils.debug(CLASS, "show action bar");
 		if (mActionBar.getVisibility() == View.VISIBLE)
 		{
 			return;
@@ -187,7 +187,7 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 
 	public void hideActionBar()
 	{
-		LogUtils.log(TAG, "hide action bar");
+		LogUtils.debug(CLASS, "hide action bar");
 		if (mActionBar.getVisibility() == View.GONE)
 		{
 			return;
@@ -228,7 +228,7 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 
 	protected void setActionBarOverLay(boolean isOverlay)
 	{
-		LogUtils.log(TAG, "set action bar overlay: " + isOverlay);
+		LogUtils.debug(CLASS, "set action bar overlay: " + isOverlay);
 		LayoutParams params = (LayoutParams) mMainView.getLayoutParams();
 		if (isOverlay)
 		{
@@ -245,13 +245,13 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 
 	protected void setActionBarTitle(int text)
 	{
-		LogUtils.log(TAG, "set action bar title id: " + text);
+		LogUtils.debug(CLASS, "set action bar title id: " + text);
 		mActionBarTitle.setText(text);
 	}
 
 	public void setActionBarTitle(CharSequence text)
 	{
-		LogUtils.log(TAG, "set action bar title: " + text);
+		LogUtils.debug(CLASS, "set action bar title: " + text);
 		mActionBarTitle.setText(text);
 	}
 
@@ -280,7 +280,7 @@ public class NavigationActivity extends NghiemActivity implements OnScrollUpDown
 			mBtnActionBarRightText.setText(title);
 			mBtnActionBarRightText.setVisibility(View.VISIBLE);
 			mBtnActionBarRightText.setOnClickListener(callback);
-			LogUtils.log(TAG, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
+			LogUtils.debug(CLASS, "set action bar button " + mBtnActionBarRightText.toString() + "with title " + title);
 		}
 		if (mBtnActionBarRightOne.getVisibility() == View.VISIBLE)
 		{

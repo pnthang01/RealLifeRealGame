@@ -31,7 +31,7 @@ import com.gamification.rlrg.settings.Settings;
 
 final class TaskCreateFragment extends Fragment implements OnClickListener, OnDateSetListener
 {
-	public static final String TAG = TaskCreateFragment.class.getName();
+	public static final Class<?> CLASS = TaskCreateFragment.class;
 
 	@SuppressLint("SimpleDateFormat")
 	private static SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);

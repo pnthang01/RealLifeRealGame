@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 
 public class RlrgApp extends NghiemBaseApp
 {
-	public static final String TAG = RlrgApp.class.getName();
+	public static final Class<?> CLASS = RlrgApp.class;
 
 	public static boolean isStart = true;
 

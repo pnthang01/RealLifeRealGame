@@ -156,7 +156,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	public Dialog onCreateDialog(String type)
 	{
 		super.onCreateDialog(type);
-		LogUtils.log(TAG, "alert type " + type);
+		LogUtils.debug(CLASS, "alert type " + type);
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		if (type.equals(DIALOG_NETWORK_NOT_AVAILABLE))

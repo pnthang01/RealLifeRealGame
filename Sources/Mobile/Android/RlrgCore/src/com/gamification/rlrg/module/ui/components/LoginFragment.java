@@ -25,7 +25,7 @@ import com.gamification.rlrg.settings.Settings;
 
 final class LoginFragment extends Fragment implements OnClickListener, Runnable
 {
-	public static final String TAG = LoginFragment.class.getName();
+	public static final Class<?> CLASS = LoginFragment.class;
 
 	private StartActivity mActivity;
 	private LinearLayout mLayoutLogin;

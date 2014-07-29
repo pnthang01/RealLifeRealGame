@@ -16,11 +16,10 @@ import nghiem.app.gen.BuildConfig;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Environment;
-import android.util.Log;
 
 public class StorageUtils
 {
-	private static final String TAG = StorageUtils.class.getName();
+	private static final Class<?> CLASS = StorageUtils.class;
 
 	public static class StorageInfo
 	{
@@ -78,10 +77,10 @@ public class StorageUtils
 			HashSet<String> paths = new HashSet<String>();
 			String line;
 			int currentDisplayNumber = 1;
-			LogUtils.log(TAG, "/proc/mounts");
+			LogUtils.debug(CLASS, "/proc/mounts");
 			while ((line = reader.readLine()) != null)
 			{
-				Log.d(TAG, line);
+			    LogUtils.debug(CLASS, line);
 				if (line.contains("vfat") || line.contains("/mnt"))
 				{
 					StringTokenizer tokens = new StringTokenizer(line, " ");
@@ -116,11 +115,11 @@ public class StorageUtils
 		}
 		catch (FileNotFoundException ex)
 		{
-			LogUtils.logError(TAG, ex.getMessage());
+			LogUtils.error(CLASS, ex.getMessage());
 		}
 		catch (IOException ex)
 		{
-			LogUtils.logError(TAG, ex.getMessage());
+			LogUtils.error(CLASS, ex.getMessage());
 		}
 		return list;
 	}
@@ -132,7 +131,7 @@ public class StorageUtils
 			List<StorageInfo> storageInfos = getStorageList();
 			for (StorageInfo storageInfo : storageInfos)
 			{
-				LogUtils.log(TAG, storageInfo.getDisplayName());
+				LogUtils.debug(CLASS, storageInfo.getDisplayName());
 			}
 		}
 	}
@@ -152,7 +151,7 @@ public class StorageUtils
 		}
 		catch (UnsupportedEncodingException e)
 		{
-			LogUtils.logException(e);
+			LogUtils.error(CLASS, e);
 
 			// Try with standard encode
 			content = buffer.toString();

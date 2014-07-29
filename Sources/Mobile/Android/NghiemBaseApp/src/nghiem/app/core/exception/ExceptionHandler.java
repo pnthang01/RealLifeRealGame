@@ -10,6 +10,6 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler
 	@Override
 	public void uncaughtException(Thread thread, Throwable throwable)
 	{
-		LogUtils.logErrorAndSendMail("ExceptionHandler", throwable);
+		LogUtils.errorAndSendMail(getClass(), throwable);
 	}
 }

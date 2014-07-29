@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 
 final class TaskDetailFragment extends Fragment implements OnClickListener
 {
-	public static final String TAG = TaskDetailFragment.class.getName();
+	public static final Class<?> CLASS = TaskDetailFragment.class;
 
 	private StartActivity mActivity;
 	private TextView mTxtName, mTxtCategory, mTxtDifficulty, mTxtComplete, mTxtPoint, mTxtStatus;

@@ -1,5 +1,7 @@
 package nghiem.app.core.components;
 
+import org.slf4j.LoggerFactory;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ import nghiem.app.core.utils.LogUtils;
 
 public class NghiemActivity extends FragmentActivity
 {
-	protected String TAG = getClass().getName();
+	protected Class<?> CLASS = getClass();
 
 	protected FragmentManager mFragmentManager;
 
@@ -50,35 +52,37 @@ public class NghiemActivity extends FragmentActivity
 	{
 		super.onCreate(savedInstanceState);
 		mFragmentManager = getSupportFragmentManager();
+        LoggerFactory.getLogger(NghiemActivity.class).debug("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+        LoggerFactory.getLogger(NghiemActivity.class).error("bbbbbbbbbbbbbbbbbbbbbbbbbb");
 	}
 
 	protected View inflate(int layout)
 	{
-		LogUtils.log(TAG, "inflate " + layout);
+		LogUtils.debug(CLASS, "inflate " + layout);
 		return inflate(layout, new FrameLayout(this));
 	}
 
 	protected View inflate(int layout, ViewGroup root)
 	{
-		LogUtils.log(TAG, "inflate " + layout + " to " + root.toString());
+		LogUtils.debug(CLASS, "inflate " + layout + " to " + root.toString());
 		return getLayoutInflater().inflate(layout, root);
 	}
 
 	protected View inflate(int layout, ViewGroup root, boolean attachToRoot)
 	{
-		LogUtils.log(TAG, "inflate " + layout + " no attach to " + root.toString());
+		LogUtils.debug(CLASS, "inflate " + layout + " no attach to " + root.toString());
 		return getLayoutInflater().inflate(layout, root, attachToRoot);
 	}
 
 	public void addFragment(int container, Fragment child)
 	{
-		LogUtils.log(TAG, "add fragment " + child.toString() + " to " + container);
+		LogUtils.debug(CLASS, "add fragment " + child.toString() + " to " + container);
 		mFragmentManager.beginTransaction().addToBackStack(null).add(container, child).commit();
 	}
 
 	public void replaceFragment(int container, Fragment child)
 	{
-		LogUtils.log(TAG, "replace fragment " + child.toString() + " to " + container);
+		LogUtils.debug(CLASS, "replace fragment " + child.toString() + " to " + container);
 		mFragmentManager.popBackStack();
 		mFragmentManager.beginTransaction().addToBackStack(null).replace(container, child).commit();
 	}
@@ -88,7 +92,7 @@ public class NghiemActivity extends FragmentActivity
 		final Dialog dialog = onCreateDialog(type);
 		if (dialog == null)
 		{
-			LogUtils.logError(TAG, "cannot create dialog type " + type);
+			LogUtils.error(CLASS, "cannot create dialog type " + type);
 			return;
 		}
 
@@ -116,7 +120,7 @@ public class NghiemActivity extends FragmentActivity
 	{
 		if (type == null)
 		{
-			LogUtils.logError(TAG, "type is null");
+			LogUtils.error(CLASS, "type is null");
 			return null;
 		}
 		return null;
@@ -124,26 +128,26 @@ public class NghiemActivity extends FragmentActivity
 
 	public void toast(CharSequence msg)
 	{
-		LogUtils.log(TAG, "toast: " + msg);
+		LogUtils.debug(CLASS, "toast: " + msg);
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
 
 	public void toast(int msg)
 	{
 		String text = getResources().getString(msg);
-		LogUtils.log(TAG, "toast id: " + text);
+		LogUtils.debug(CLASS, "toast id: " + text);
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 	}
 
 	public void alert(CharSequence title, CharSequence message)
 	{
-		LogUtils.log(TAG, "alert " + title + " width message: " + message);
+		LogUtils.debug(CLASS, "alert " + title + " width message: " + message);
 		new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton(R.string.action_ok, null).show();
 	}
 
 	public void alert(CharSequence message)
 	{
-		LogUtils.log(TAG, "warning: " + message);
+		LogUtils.debug(CLASS, "warning: " + message);
 		alert("Warning", message);
 	}
 
@@ -170,7 +174,7 @@ public class NghiemActivity extends FragmentActivity
 		if (BuildConfig.DEBUG)
 		{
 			showToast(message);
-			LogUtils.log(TAG, message);
+			LogUtils.debug(CLASS, message);
 		}
 	}
 

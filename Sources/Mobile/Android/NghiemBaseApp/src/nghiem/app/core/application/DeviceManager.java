@@ -23,7 +23,7 @@ import android.view.WindowManager;
 
 public final class DeviceManager
 {
-	public static final String TAG = DeviceManager.class.getName();
+	public static final Class<?> CLASS = DeviceManager.class;
 	public static final String GOOGLE_MAP_PACKAGE = "com.google.android.apps.maps";
 
 	@SuppressWarnings("rawtypes")
@@ -83,7 +83,7 @@ public final class DeviceManager
 		{
 			uuid = "FAKE" + UUID.randomUUID().toString().substring(4);
 		}
-		LogUtils.log(TAG, "###### Your Device UUID is " + uuid + " ######");
+		LogUtils.debug(CLASS, "###### Your Device UUID is " + uuid + " ######");
 		return uuid;
 	}
 
@@ -101,7 +101,7 @@ public final class DeviceManager
 		}
 		catch (Exception e)
 		{
-			LogUtils.logException(e);
+			LogUtils.error(CLASS, e);
 		}
 		return "";
 	}
@@ -156,7 +156,7 @@ public final class DeviceManager
 
 		if (!isConnected)
 		{
-			LogUtils.logError(TAG, "No Internet!!!!!!!!!");
+			LogUtils.error(CLASS, "No Internet!!!!!!!!!");
 		}
 
 		return isConnected;

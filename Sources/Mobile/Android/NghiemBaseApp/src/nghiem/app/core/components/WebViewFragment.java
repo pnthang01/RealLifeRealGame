@@ -22,7 +22,7 @@ public class WebViewFragment extends Fragment
 	public static final String EXTRA_LINK = "EXTRA_LINK";
 	public static final String EXTRA_BG = "BG_RD";
 
-	protected String TAG = getClass().getName();
+	protected Class<?> CLASS = getClass();
 
 	private class ChromeBrowser extends WebChromeClient
 	{
@@ -96,7 +96,7 @@ public class WebViewFragment extends Fragment
 		mActivity = (NghiemActivity) getActivity();
 		if (mActivity == null)
 		{
-			LogUtils.logError(TAG, "Activity is null!");
+			LogUtils.error(CLASS, "Activity is null!");
 		}
 
 		mFactory = new WebManager(mActivity);

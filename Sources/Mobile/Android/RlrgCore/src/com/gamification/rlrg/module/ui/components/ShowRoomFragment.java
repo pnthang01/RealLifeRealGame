@@ -3,9 +3,9 @@ package com.gamification.rlrg.module.ui.components;
 import org.joda.time.DateTime;
 
 import nghiem.app.core.components.ListViewFragment;
+import nghiem.app.core.utils.LogUtils;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +18,7 @@ import com.gamification.rlrg.settings.Settings;
 
 final class ShowRoomFragment extends ListViewFragment<Achievement>
 {
-	public static final String TAG = ShowRoomFragment.class.getName();
+	public static final Class<?> CLASS = ShowRoomFragment.class;
 
 	public static ShowRoomFragment newInstance()
 	{
@@ -49,7 +49,7 @@ final class ShowRoomFragment extends ListViewFragment<Achievement>
 			}
 			else
 			{
-				Log.d(TAG, achievements.getMessage());
+				LogUtils.debug(CLASS, achievements.getMessage());
 			}
 		}
 	}

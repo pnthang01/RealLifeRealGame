@@ -10,7 +10,7 @@ import com.gamification.rlrg.settings.Settings;
 
 public class DataPreferencesManager
 {
-	public static final String TAG = DataPreferencesManager.class.getName();
+	public static final Class<?> CLASS = DataPreferencesManager.class;
 
 	public static final String PREFERENCE_LOGIN_COUNT = "LOGIN_COUNT";
 	public static final String PREFERENCE_UUID = "UUID";
@@ -73,7 +73,7 @@ public class DataPreferencesManager
 	public final String getUuid()
 	{
 		String uuid = getStorage().getString(PREFERENCE_UUID, "");
-		LogUtils.log(TAG, "getUuid: " + uuid);
+		LogUtils.debug(CLASS, "getUuid: " + uuid);
 		return uuid;
 	}
 
@@ -82,7 +82,7 @@ public class DataPreferencesManager
 	 */
 	public void saveUuid(String uuid)
 	{
-		LogUtils.log(TAG, "saveUuid: " + uuid);
+		LogUtils.debug(CLASS, "saveUuid: " + uuid);
 		getStorage().edit().putString(PREFERENCE_UUID, uuid).commit();
 	}
 
@@ -92,7 +92,7 @@ public class DataPreferencesManager
 	public final String getUsername()
 	{
 		String username = getStorage().getString(PREFERENCE_USER, "");
-		LogUtils.log(TAG, "getUsername: " + username);
+		LogUtils.debug(CLASS, "getUsername: " + username);
 		return username;
 	}
 
@@ -101,7 +101,7 @@ public class DataPreferencesManager
 	 */
 	public void saveUsername(String username)
 	{
-		LogUtils.log(TAG, "saveUsername: " + username);
+		LogUtils.debug(CLASS, "saveUsername: " + username);
 		getStorage().edit().putString(PREFERENCE_USER, username).commit();
 	}
 
@@ -111,7 +111,7 @@ public class DataPreferencesManager
 	public final String getPassword()
 	{
 		String password = getStorage().getString(PREFERENCE_PASS, "");
-		LogUtils.log(TAG, "getPassword: " + password);
+		LogUtils.debug(CLASS, "getPassword: " + password);
 		return password;
 	}
 
@@ -120,7 +120,7 @@ public class DataPreferencesManager
 	 */
 	public void savePassword(String password)
 	{
-		LogUtils.log(TAG, "savePassword: " + password);
+		LogUtils.debug(CLASS, "savePassword: " + password);
 		getStorage().edit().putString(PREFERENCE_PASS, password).commit();
 	}
 
@@ -130,7 +130,7 @@ public class DataPreferencesManager
 	public final boolean getRememberPassword()
 	{
 		boolean remember = getStorage().getBoolean(PREFERENCE_REMEMBER_PASS, false);
-		LogUtils.log(TAG, "getRememberPassword: " + remember);
+		LogUtils.debug(CLASS, "getRememberPassword: " + remember);
 		return remember;
 	}
 
@@ -139,7 +139,7 @@ public class DataPreferencesManager
 	 */
 	public void saveRememberPassword(boolean isRemember)
 	{
-		LogUtils.log(TAG, "saveRememberPassword: " + isRemember);
+		LogUtils.debug(CLASS, "saveRememberPassword: " + isRemember);
 		getStorage().edit().putBoolean(PREFERENCE_REMEMBER_PASS, isRemember).commit();
 	}
 
@@ -149,7 +149,7 @@ public class DataPreferencesManager
 	public final int getLoginCount()
 	{
 		int count = getStorage().getInt(PREFERENCE_LOGIN_COUNT, 0);
-		LogUtils.log(TAG, "getLoginCount: " + count);
+		LogUtils.debug(CLASS, "getLoginCount: " + count);
 		return count;
 	}
 
@@ -159,72 +159,72 @@ public class DataPreferencesManager
 	public void increaseLoginCount()
 	{
 		int count = getLoginCount() + 1;
-		LogUtils.log(TAG, "saveLoginCount: " + count);
+		LogUtils.debug(CLASS, "saveLoginCount: " + count);
 		getStorage().edit().putInt(PREFERENCE_LOGIN_COUNT, count).commit();
 	}
 
 	public void saveJsonUsers(String json)
 	{
-		LogUtils.log(TAG, "saveJsonUsers: " + json);
+		LogUtils.debug(CLASS, "saveJsonUsers: " + json);
 		getStorage().edit().putString(JSON_USERS, json).commit();
 	}
 
 	public String loadJsonUsers()
 	{
 		String json = getStorage().getString(JSON_USERS, AssestsManager.getInstance().getData(Settings.Assets.Data.USERS));
-		LogUtils.log(TAG, "loadJsonUsers: " + json);
+		LogUtils.debug(CLASS, "loadJsonUsers: " + json);
 		return json;
 	}
 
 	public void saveJsonBadges(String json)
 	{
-		LogUtils.log(TAG, "saveJsonBadges: " + json);
+		LogUtils.debug(CLASS, "saveJsonBadges: " + json);
 		getStorage().edit().putString(JSON_BADGES, json).commit();
 	}
 
 	public String loadJsonBadges()
 	{
 		String json = getStorage().getString(JSON_BADGES, AssestsManager.getInstance().getData(Settings.Assets.Data.BADGES));
-		LogUtils.log(TAG, "loadJsonBadges: " + json);
+		LogUtils.debug(CLASS, "loadJsonBadges: " + json);
 		return json;
 	}
 
 	public void saveJsonCategories(String json)
 	{
-		LogUtils.log(TAG, "saveJsonCategories: " + json);
+		LogUtils.debug(CLASS, "saveJsonCategories: " + json);
 		getStorage().edit().putString(JSON_CATEGORIES, json).commit();
 	}
 
 	public String loadJsonCategories()
 	{
 		String json = getStorage().getString(JSON_CATEGORIES, AssestsManager.getInstance().getData(Settings.Assets.Data.CATEGORIES));
-		LogUtils.log(TAG, "loadJsonCategories: " + json);
+		LogUtils.debug(CLASS, "loadJsonCategories: " + json);
 		return json;
 	}
 
 	public void saveJsonTasks(String json)
 	{
-		LogUtils.log(TAG, "saveJsonTasks: " + json);
+		LogUtils.debug(CLASS, "saveJsonTasks: " + json);
 		getStorage().edit().putString(JSON_TASKS, json).commit();
 	}
 
 	public String loadJsonTasks()
 	{
 		String json = getStorage().getString(JSON_TASKS, AssestsManager.getInstance().getData(Settings.Assets.Data.TASKS));
-		LogUtils.log(TAG, "loadJsonTasks: " + json);
+		LogUtils.debug(CLASS, "loadJsonTasks: " + json);
 		return json;
 	}
 
 	public void saveJsonAchievements(String json)
 	{
-		LogUtils.log(TAG, "saveJsonAchievements: " + json);
+		LogUtils.debug(CLASS, "saveJsonAchievements: " + json);
 		getStorage().edit().putString(JSON_ACHIEVEMENTS, json).commit();
 	}
 
 	public String loadJsonAchievements()
 	{
 		String json = getStorage().getString(JSON_ACHIEVEMENTS, AssestsManager.getInstance().getData(Settings.Assets.Data.ACHIEVEMENTS));
-		LogUtils.log(TAG, "loadJsonAchievements: " + json);
+		LogUtils.debug(CLASS, "loadJsonAchievements: " + json);
 		return json;
 	}
 }

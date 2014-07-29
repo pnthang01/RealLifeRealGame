@@ -18,7 +18,7 @@ import android.webkit.WebSettings.RenderPriority;
 
 public class WebManager
 {
-	public static final String TAG = WebManager.class.getName();
+	public static final Class<?> CLASS = WebManager.class;
 
 	private static final String WEB_CONTENT = "<html><head>" + "<style type='text/css'>" + "body {font-size: %dpx; text-align: left; margin: 0px 0px 0px 0px;}" + "</style></head>"
 			+ "<body %s>%s</body>" + "</html>";
@@ -187,7 +187,7 @@ public class WebManager
 			{
 				if (BuildConfig.DEBUG)
 				{
-					LogUtils.logLongText(TAG, Arrays.toString(e.getStackTrace()));
+					LogUtils.debug(CLASS, Arrays.toString(e.getStackTrace()));
 				}
 			}
 		}

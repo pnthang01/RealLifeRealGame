@@ -16,7 +16,7 @@ import android.net.Uri;
 
 public class SharingManager
 {
-	public static final String TAG = SharingManager.class.getName();
+	public static final Class<?> CLASS = SharingManager.class;
 
 	@SuppressWarnings("rawtypes")
 	private static ThreadLocal sInitHolder = new ThreadLocal();
@@ -97,7 +97,7 @@ public class SharingManager
 		}
 		catch (UnsupportedEncodingException e)
 		{
-			LogUtils.log(TAG, Settings.CHARSET + " should always be supported");
+			LogUtils.debug(CLASS, Settings.CHARSET + " should always be supported");
 			return URLEncoder.encode(text);
 		}
 	}

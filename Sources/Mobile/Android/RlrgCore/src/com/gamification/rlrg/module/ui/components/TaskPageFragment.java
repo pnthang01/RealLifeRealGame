@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nghiem.app.core.components.ListViewFragment;
+import nghiem.app.core.utils.LogUtils;
 
 import org.joda.time.DateTime;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +24,7 @@ import com.gamification.rlrg.settings.Settings;
 
 class TaskPageFragment extends ListViewFragment<Task>
 {
-	public static final String TAG = TaskPageFragment.class.getName();
+	public static final Class<?> CLASS = TaskPageFragment.class;
 
 	private StartActivity mActivity;
 
@@ -77,7 +77,7 @@ class TaskPageFragment extends ListViewFragment<Task>
 			}
 			else
 			{
-				Log.d(TAG, tasks.getMessage());
+				LogUtils.debug(CLASS, tasks.getMessage());
 			}
 		}
 	}
