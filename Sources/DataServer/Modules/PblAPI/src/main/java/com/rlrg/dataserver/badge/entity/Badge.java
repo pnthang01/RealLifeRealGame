@@ -31,6 +31,9 @@ public class Badge implements java.io.Serializable {
 	
 	@Column(name = "status")
 	private BadgeStatus status;
+	
+	@Column(name = "file_name")
+	private String fileName;
 
 	@Column(name = "eligibility", length = 65535)
 	private String eligibility;
@@ -49,6 +52,14 @@ public class Badge implements java.io.Serializable {
 		this.status = status;
 		this.eligibility = eligibility;
 		this.achievements = achievements;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public Integer getId() {

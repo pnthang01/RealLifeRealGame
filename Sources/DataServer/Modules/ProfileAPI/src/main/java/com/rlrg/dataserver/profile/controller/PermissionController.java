@@ -32,7 +32,7 @@ public class PermissionController extends BaseController{
 	 * @param roleId
 	 * @return
 	 */
-	@RequestMapping(value = "/getPermissionByRole", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getPermissionByRole", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getPermissionByRole(@Param(value="roleId") Integer roleId){
 		String result = null;

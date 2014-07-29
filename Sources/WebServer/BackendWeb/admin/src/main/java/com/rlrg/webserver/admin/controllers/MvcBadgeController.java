@@ -1,5 +1,7 @@
 package com.rlrg.webserver.admin.controllers;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -18,8 +20,10 @@ import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.utillities.domain.ResultList;
 import com.rlrg.utillities.exception.ConvertException;
+import com.rlrg.webserver.admin.form.BadgeForm;
 import com.rlrg.webserver.admin.form.SearchForm;
 import com.rlrg.webserver.admin.service.MvcBadgeService;
+import com.rlrg.webserver.admin.service.MvcCommonService;
 
 @RequestMapping("/badge")
 @Controller
@@ -29,6 +33,9 @@ public class MvcBadgeController {
 
 	@Autowired
 	private MvcBadgeService badgeService;
+	
+	@Autowired
+	private MvcCommonService commonService;
 
 	@RequestMapping(value = "/manage.html", method = RequestMethod.GET)
 	public String manage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
@@ -67,7 +74,7 @@ public class MvcBadgeController {
 		try {
 			BadgeDTO data = badgeService.getBadgeById(id);
 			model.addAttribute("badgeStatus", BadgeStatus.values());
-			model.addAttribute("badgeDTO", data);
+			model.addAttribute("badgeForm", BadgeForm.formData(data));
 			//
 			return "badge.edit";
 		} catch (RestClientException | ConvertException e) {
@@ -80,21 +87,22 @@ public class MvcBadgeController {
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String edit(@Valid BadgeDTO data, BindingResult bResult) {
+	public String edit(@Valid BadgeForm form, BindingResult bResult) {
 		try {
 			if (bResult.hasErrors()) {
 				return "badge.edit";
 			} else {
-				badgeService.updateBadge(data);
+				String fileName = commonService.handleUploadFile(form.getFile());
+				badgeService.updateBadge(form.getDTO(fileName));
 				return "redirect:/badge/manage.html";
 			}
-		} catch (RestClientException e) {
+		} catch (RestClientException | IllegalStateException | IOException e) {
 			LOG.error(e.getMessage());
 			return "error";
 		} catch (ConvertException e){
 			LOG.error(e.getTechnicalMsg());
 			return "error";
-		}
+		} 
 	}
 
 }

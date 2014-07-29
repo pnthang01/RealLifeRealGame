@@ -1,6 +1,5 @@
 package com.rlrg.dataserver.badge.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,11 +16,10 @@ import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.entity.enums.BadgeStatus;
 import com.rlrg.dataserver.base.controller.BaseController;
 import com.rlrg.dataserver.base.service.IBadgeService;
-import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
-@RequestMapping("/badge")
+@RequestMapping(value = "/badge")
 @Controller
 public class BadgeController extends BaseController{
 	
@@ -35,11 +33,11 @@ public class BadgeController extends BaseController{
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/getAllBadges", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getAllBadges", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getAllBadges(@RequestParam(value="pageNumber") Integer pageNumber){
 		String result = null;
-		LOG.info("<< Starting webservice /badge/getAllBages with parameters: pageNumber={}", pageNumber);
+		LOG.info("<< Starting webservice /badge/getAllBadges with parameters: pageNumber={}", pageNumber);
 		try {
 			List<BadgeDTO> listDto = badgeService.getAllBadges(pageNumber);
 			Long total = badgeService.countAllBadges();
@@ -52,11 +50,11 @@ public class BadgeController extends BaseController{
 			RestObject restObject = RestObject.failBank(e.getMessage());
 			result = badgeService.encodeBlankRestObject(restObject);
 		}
-		LOG.info("<< End webservice /badge/getAllBages");
+		LOG.info("<< End webservice /badge/getAllBadges");
 		return result;
 	}
 	
-	@RequestMapping(value = "/getBadgeById", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getBadgeById", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getBadgeById(@RequestParam(value="id") Integer id){
 		String result = null;
@@ -82,7 +80,7 @@ public class BadgeController extends BaseController{
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/getBadgesByStatus", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getBadgesByStatus", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getBadgesByStatus(@RequestParam(value="status", required=true) BadgeStatus status,
 			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
@@ -103,7 +101,7 @@ public class BadgeController extends BaseController{
 		return result;
 	}
 	
-	@RequestMapping(value = "/updateBadge", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/updateBadge", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String updateBadge(@RequestParam(value="restobject", required=true) String json){
 		String result = null;
@@ -131,7 +129,7 @@ public class BadgeController extends BaseController{
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/searchBadges", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/searchBadges", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String searchBadgesByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
 			@RequestParam(value="pageNumber", required=false) Integer pageNumber){

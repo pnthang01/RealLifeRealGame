@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class WelcomeController {
+public class CommonController {
 	
 	@RequestMapping("/login.html")
 	public String loginForm(){
@@ -19,5 +19,11 @@ public class WelcomeController {
 	@RequestMapping("/dashboard.html")
 	public String dashboard(){
 		return "dashboard";
+	}
+	
+	@RequestMapping("/upload")
+	public String upload(){
+		
+		return null;
 	}
 }

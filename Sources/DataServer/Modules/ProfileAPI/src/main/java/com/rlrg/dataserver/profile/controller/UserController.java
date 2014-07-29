@@ -69,7 +69,7 @@ public class UserController extends BaseController {
 		return result;
     }
 	
-	@RequestMapping(value = "/getAllUser", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getAllUser", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
     public String getAllUser(@RequestParam(value="pageNumber", required=false) Integer pageNumber){
 		String result = null;
@@ -110,7 +110,7 @@ public class UserController extends BaseController {
 //		return result;
 //    }
     
-    @RequestMapping(value = "/login", produces = "application/json", method=RequestMethod.POST)
+    @RequestMapping(value = "/login", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
     @ResponseBody
     public String login(@RequestParam(value="username") String username, @RequestParam(value="password") String password) throws BaseException {
 		String result = null;
@@ -136,7 +136,7 @@ public class UserController extends BaseController {
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/searchUsers", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/searchUsers", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String searchUsersByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
 			@RequestParam(value="pageNumber", required=false) Integer pageNumber){

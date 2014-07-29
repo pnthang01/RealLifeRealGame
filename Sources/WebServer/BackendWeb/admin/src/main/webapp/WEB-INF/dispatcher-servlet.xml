@@ -14,6 +14,11 @@
 
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/main-theme/" />
+	<mvc:resources mapping="/library/**" location="/WEB-INF/resources/library/" />
+	<mvc:resources mapping="/resources-uri/**" location="/resources-uri/" />
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	
 	<bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
 		<property name="basename">
@@ -33,6 +38,8 @@
 	<bean id="urlViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
+	
+	<bean id="commonService" class="com.rlrg.webserver.admin.service.MvcCommonService" />
 
 	<bean id="categoryReader" class="com.rlrg.utillities.service.CategoryWebServiceReader" />
 	<bean id="categoryService" class="com.rlrg.webserver.admin.service.MvcCategoryService" />

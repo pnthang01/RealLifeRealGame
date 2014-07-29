@@ -22,6 +22,9 @@ public class BadgeDTO {
 
 	@JsonExport(name = "Status")
 	private BadgeStatus status;
+	
+	@JsonExport(name = "FileName")
+	private String fileName;
 
 	@NotBlank
 	@JsonExport(name = "Eligibility")
@@ -37,12 +40,21 @@ public class BadgeDTO {
 	}
 
 	public BadgeDTO(Integer id, String name, String description,
-			BadgeStatus status, String eligibility) {
+			BadgeStatus status, String fileName, String eligibility) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.status = status;
+		this.fileName = fileName;
 		this.eligibility = eligibility;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public String getEligibility() {

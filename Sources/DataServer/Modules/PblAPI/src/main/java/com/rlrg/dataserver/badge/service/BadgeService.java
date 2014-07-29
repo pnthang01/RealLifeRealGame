@@ -92,6 +92,7 @@ public class BadgeService extends BaseService<Badge, BadgeDTO> implements IBadge
 			badgeLang.setDescription(dto.getDescription());
 			badgeLangService.save(badgeLang);
 			//
+			b.setFileName(dto.getFileName());
 			b.setStatus(dto.getStatus());
 			b.setEligibility(dto.getEligibility());
 			badgeRepo.save(b);

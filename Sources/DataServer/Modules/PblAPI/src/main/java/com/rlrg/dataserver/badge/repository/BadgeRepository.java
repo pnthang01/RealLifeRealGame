@@ -18,7 +18,7 @@ public interface BadgeRepository extends JpaRepository<Badge, Integer>, JpaSpeci
 
 	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.BadgeDTO(" +
-				"b.id, bl.name, bl.description, b.status, b.eligibility" +
+				"b.id, bl.name, bl.description, b.status, b.fileName, b.eligibility" +
 				")" +
 			" FROM Badge b INNER JOIN b.badgeLangs bl WHERE bl.language.id = :languageId")
 	public List<BadgeDTO> getAllBadgeDTO(@Param("languageId") Integer languageId, Pageable pageable);
@@ -27,12 +27,12 @@ public interface BadgeRepository extends JpaRepository<Badge, Integer>, JpaSpeci
 	public Long countAllBadges();
 	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.BadgeDTO(" +
-			"b.id, bl.name, bl.description, b.status, b.eligibility)" +
+			"b.id, bl.name, bl.description, b.status, b.fileName, b.eligibility)" +
 			" FROM Badge b INNER JOIN b.badgeLangs bl WHERE bl.language.id = :languageId AND b.id = :id")
 	public BadgeDTO getBadgeDTOById(@Param("id") Integer id, @Param("languageId") Integer languageId);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.BadgeDTO(" +
-			"b.id, bl.name, bl.description, b.status, b.eligibility" +
+			"b.id, bl.name, bl.description, b.status, b.fileName, b.eligibility" +
 			")" +
 		" FROM Badge b INNER JOIN b.badgeLangs bl WHERE b.status = :status AND bl.language.id = :languageId")
 	public List<BadgeDTO> getBadgeDTOByStatus(@Param("status") BadgeStatus status, @Param("languageId") Integer languageId, Pageable pageable);

@@ -1,4 +1,3 @@
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <h2>
 	<img src="<c:url value="/resources/images/icons/user_32.png"/>"
@@ -6,7 +5,6 @@
 </h2>
 
 <div id="login">
-
 	<div class="content-box">
 		<div class="content-box-header">
 			<h3>Login</h3>
@@ -28,7 +26,6 @@
 					<label>Password</label> 
 					<input id="password" name="password" type="password" value="password" />
 				</p>
-
 				<input type="submit" value="Login" />
 			</form>
 		</div>

@@ -31,7 +31,7 @@ public class TaskController extends BaseController{
 	@Autowired
 	private ITaskService<Task, TaskDTO> taskService;
 
-	@RequestMapping(value = "/updateTask", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/updateTask", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String updateTask(@RequestParam(value="restobject", required=true) String json){
 		String result = null;
@@ -52,7 +52,7 @@ public class TaskController extends BaseController{
 		return result;
 	}
 	
-	@RequestMapping(value = "/createTask", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/createTask", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String createTask(@RequestParam(value="restobject", required=true) String json){
 		LOG.info("<< Starting webservice /task/createTask with parameters: restobject={}", json);
@@ -73,7 +73,7 @@ public class TaskController extends BaseController{
 		return result;
 	}
 	
-	@RequestMapping(value = "/updateTaskStatus", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/updateTaskStatus", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String updateTaskStatus(@RequestParam(value="taskId", required=true) Long taskId, @RequestParam(value="status", required=true) TaskStatus taskStatus,
 			@RequestParam("token") String token){
@@ -100,7 +100,7 @@ public class TaskController extends BaseController{
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/getTask", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getTask", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getTask(@RequestParam("taskId") Long taskId, HttpServletRequest request, HttpServletResponse response){
 		String result = null;
@@ -126,7 +126,7 @@ public class TaskController extends BaseController{
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/getTasksByCategoryAndUser", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getTasksByCategoryAndUser", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getTasksByCategoryAndUser(@RequestParam("categoryCode") String categoryCode, @RequestParam("token") String token,
 			@RequestParam("pageNumber") Integer pageNumber){
@@ -154,7 +154,7 @@ public class TaskController extends BaseController{
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/getTasksByNameAndUser", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/getTasksByNameAndUser", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String getTasksByNameAndUser(@RequestParam("name") String name, @RequestParam("token") String token,
 			@RequestParam("pageNumber") Integer pageNumber){
@@ -182,7 +182,7 @@ public class TaskController extends BaseController{
 	 * @param pageNumber
 	 * @return
 	 */
-	@RequestMapping(value = "/searchTasks", produces = "application/json", method=RequestMethod.GET)
+	@RequestMapping(value = "/searchTasks", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String searchTasksByKeyword(@RequestParam(value="keyword", required=true) String keyword, 
 			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
