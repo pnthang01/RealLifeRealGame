@@ -59,11 +59,10 @@ CREATE TABLE `user` (
 	`last_name` VARCHAR(45),
 	`create_date` DATETIME NOT NULL,
 	`last_login` DATETIME,
-	`gender` TINYINT(4),
+	`gender` TINYINT(4) DEFAULT 0,
 	`point` INT NOT NULL DEFAULT 0,
 	`status` VARCHAR(15) NOT NULL,
-	`token` VARCHAR(45) NULL,
-	`performed` VARCHAR(1000) NULL
+	`token` VARCHAR(45) NULL
 );
 
 CREATE TABLE `permission` (
@@ -88,11 +87,11 @@ CREATE TABLE `task` (
 	`category_id` INT,
 	`name` NVARCHAR(50) NOT NULL,
 	`description` NVARCHAR(100) NULL,
-	`create_time` DATETIME NOT NULL,
-	`complete_time` DATETIME NOT NULL,
 	`start_time` DATETIME NULL,
+	`complete_time` DATETIME NOT NULL,
 	`difficulty_level` INT(11) NOT NULL,
 	`status` INT(11) NOT NULL,
+	`create_time` DATETIME NOT NULL,
 	`point` INT NOT NULL,
 	CONSTRAINT fk_TaskUser FOREIGN KEY(user_id) REFERENCES `user`(id),
 	CONSTRAINT fk_TaskCate FOREIGN KEY(category_id) REFERENCES `category`(id)

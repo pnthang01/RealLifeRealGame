@@ -74,12 +74,13 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	 */
 	@Override
 	@Transactional
-	public void create(TaskDTO dto) throws Exception{
+	public void create(TaskDTO dto, String token) throws Exception{
 		try {
 			Category c = categoryService.getCategoryByCode(dto.getCategory().getCode());
-			User u = userService.getUserById(dto.getUserId());
+			UserToken userToken = commonService.getUserToken(token);
+			User u = userService.getUserById(userToken.getId());
 			if(null == c || null == u){
-				LOG.error("Cannot find entity Category with Code:{} And/Or User with Id:{}", dto.getCategory().getCode(), dto.getUserId());
+				LOG.error("Cannot find entity Category with Code:{} And/Or User with Id:{}", dto.getCategory().getCode(), u.getId());
 				throw new RepositoryException("Cannot find entity");
 			}
 			Task t = new Task();
@@ -115,9 +116,11 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	 */
 	@Override
 	@Transactional
-	public void update(TaskDTO dto) throws Exception{
+	public void update(TaskDTO dto, String token) throws Exception{
 		try {
-			Task t = taskRepo.getTaskByIdAndUser(dto.getId(), dto.getUserId());
+			UserToken userToken = commonService.getUserToken(token);
+			//
+			Task t = taskRepo.getTaskByIdAndUser(dto.getId(), userToken.getId());
 			Category c = categoryService.getCategoryByCode(dto.getCategory().getCode());
 			if(null == t || null == c){
 				LOG.error("Cannot find entity Task with TaskId:{} and UserId:{}", dto.getId(), dto.getUserId());

@@ -10,9 +10,9 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 
 	public T saveTask(T task);
 	
-	public void create(V dto) throws Exception;
+	public void create(V dto, String token) throws Exception;
 	
-	public void update(V dto) throws Exception;
+	public void update(V dto, String token) throws Exception;
 	
 	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, String token) throws Exception;
 	

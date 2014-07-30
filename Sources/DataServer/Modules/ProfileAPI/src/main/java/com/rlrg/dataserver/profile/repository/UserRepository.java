@@ -21,9 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 	@Query("SELECT u FROM entity.User u WHERE u.username = :username ")
 	public User findUserByUsername(@Param("username") String username);
 	
-	@Query("SELECT u.performed FROM entity.User u WHERE u.id = :userId")
-	public String getUserPerformedString(@Param("userId") Long userId);
-	
 	@Query("SELECT NEW com.rlrg.dataserver.profile.dto.UserDTO(" +
 			"u.username, u.firstName, u.email, u.lastLogin, u.gender" +
 			")" +
