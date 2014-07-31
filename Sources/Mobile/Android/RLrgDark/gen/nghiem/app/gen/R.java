@@ -61,11 +61,11 @@ public final class R {
 		public static final int main_view = 0x7f0a0007;
 		public static final int navigation = 0x7f0a0009;
 		public static final int navigation_list = 0x7f0a000a;
-		public static final int pager = 0x7f0a0021;
-		public static final int pager_strip = 0x7f0a0022;
-		public static final int progress_bar = 0x7f0a0023;
-		public static final int title = 0x7f0a0025;
-		public static final int webview = 0x7f0a0024;
+		public static final int pager = 0x7f0a0020;
+		public static final int pager_strip = 0x7f0a0021;
+		public static final int progress_bar = 0x7f0a0022;
+		public static final int title = 0x7f0a0024;
+		public static final int webview = 0x7f0a0023;
 	}
 	public static final class layout {
 		public static final int activity_with_actionbar = 0x7f030001;

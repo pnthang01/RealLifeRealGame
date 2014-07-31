@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gamification.rlrg.gen" >
+    package="com.gamification.rlrg.gen"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
-    <application>
-        <activity android:name="com.gamification.rlrg.module.ui.StartActivity" >
+    <application
+        android:allowBackup="true">
+        <activity
+            android:name="com.gamification.rlrg.module.ui.StartActivity"
+            android:configChanges="locale|mcc|touchscreen|keyboard|keyboardHidden|orientation|screenLayout|navigation|uiMode|screenSize|smallestScreenSize|layoutDirection|fontScale|mnc"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

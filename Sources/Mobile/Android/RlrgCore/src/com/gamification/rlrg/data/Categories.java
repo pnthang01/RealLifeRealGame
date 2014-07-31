@@ -9,31 +9,31 @@ import com.google.gson.annotations.SerializedName;
 
 public class Categories extends BaseEntity<Categories.CategoryList>
 {
-	public class CategoryList
-	{
-		@SerializedName("Categories")
-		private List<Category> list = new ArrayList<Category>();
+    public class CategoryList
+    {
+        @SerializedName("Categories")
+        private List<Category> list = new ArrayList<Category>();
 
-		public List<Category> getElements()
-		{
-			return list;
-		}
+        public List<Category> getElements()
+        {
+            return list;
+        }
 
-		public void setElements(List<Category> list)
-		{
-			this.list = list;
-		}
-	}
+        public void setElements(List<Category> list)
+        {
+            this.list = list;
+        }
+    }
 
-	public Category getCatgory(String name)
-	{
-		for (Category category : getData().getElements())
-		{
-			if (category.getName().equals(name))
-			{
-				return category;
-			}
-		}
-		return null;
-	}
+    public Category getCatgory(String name)
+    {
+        for (Category category : getData().getElements())
+        {
+            if (category.getName().equals(name))
+            {
+                return category;
+            }
+        }
+        return null;
+    }
 }
