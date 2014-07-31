@@ -70,9 +70,6 @@ public class User implements java.io.Serializable {
 	@Column(name = "email", length = 100)
 	private String email;
 
-	@Column(name = "performed", length = 1000)
-	private String performed;
-
 	public User() {
 	}
 
@@ -88,7 +85,7 @@ public class User implements java.io.Serializable {
 	public User(Role role, String username, String password, String firstName,
 			String lastName, Date createDate, Date lastLogin,
 			UserGender gender, Integer point, String status, String token,
-			String email, String performed) {
+			String email) {
 		this.role = role;
 		this.username = username;
 		this.password = password;
@@ -101,7 +98,6 @@ public class User implements java.io.Serializable {
 		this.status = status;
 		this.token = token;
 		this.email = email;
-		this.performed = performed;
 	}
 
 	public Long getId() {
@@ -206,14 +202,6 @@ public class User implements java.io.Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPerformed() {
-		return performed;
-	}
-
-	public void setPerformed(String performed) {
-		this.performed = performed;
 	}
 
 }

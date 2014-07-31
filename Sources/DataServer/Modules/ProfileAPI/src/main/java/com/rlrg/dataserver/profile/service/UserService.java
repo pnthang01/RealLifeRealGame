@@ -234,11 +234,6 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
 		return userRepo.getAllUserDTO(pageRequest);
     }
     
-	@Override
-	public String getUserPerformedString(Long userId) {
-		return userRepo.getUserPerformedString(userId);
-	}
-    
     private com.rlrg.dataserver.base.domain.User convertUserToUtilUser(User user){
     	com.rlrg.dataserver.base.domain.User uUser = new com.rlrg.dataserver.base.domain.User();
     	uUser.setId(user.getId());
@@ -299,5 +294,4 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
 	public Class<UserDTO> getVClass() {
 		return UserDTO.class;
 	}
-
 }

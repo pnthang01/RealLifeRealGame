@@ -33,12 +33,13 @@ public class TaskController extends BaseController{
 
 	@RequestMapping(value = "/updateTask", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateTask(@RequestParam(value="restobject", required=true) String json){
+	public String updateTask(@RequestParam(value="restobject", required=true) String json, 
+							@RequestParam(value="token", required=true) String token){
 		String result = null;
 		LOG.info("<< Starting webservice /task/updateTask with parameters: restobject={}", json);
 		try {
 			TaskDTO dto = taskService.decodeSingleObject(json);
-			taskService.update(dto);
+			taskService.update(dto, token);
 			RestObject restObject = RestObject.successBlank();
 			result = taskService.encodeBlankRestObject(restObject);
 		} catch(BaseException e){
@@ -54,12 +55,13 @@ public class TaskController extends BaseController{
 	
 	@RequestMapping(value = "/createTask", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
-	public String createTask(@RequestParam(value="restobject", required=true) String json){
+	public String createTask(@RequestParam(value="restobject", required=true) String json,
+						@RequestParam(value="token", required=true) String token){
 		LOG.info("<< Starting webservice /task/createTask with parameters: restobject={}", json);
 		String result = null;
 		try{
 			TaskDTO dto = taskService.decodeSingleObject(json);
-			taskService.create(dto);
+			taskService.create(dto, token);
 			RestObject restObject = RestObject.successBlank();
 			result = taskService.encodeBlankRestObject(restObject);
 		} catch (BaseException e) {

@@ -24,7 +24,7 @@ public class CategoryDTO{
 	@JsonExport(name="Position")
 	private Integer position;
 	
-	@JsonExport(name="status")
+	@JsonExport(name="Status")
 	private Boolean status;
 	
 	public CategoryDTO(){
