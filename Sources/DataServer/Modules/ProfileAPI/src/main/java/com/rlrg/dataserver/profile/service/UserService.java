@@ -182,10 +182,10 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
                 com.rlrg.dataserver.base.domain.User uUser = convertUserToUtilUser(user);
                 user.setToken(commonService.setUserToken(uUser));
                 //
-                logUserAction(user.getId(), BadgeCheckerConstants.LOGIN_PROFILE);
+                logUserAction(user.getId(), BadgeCheckerConstants.LOGIN_ACTION);
                 //
                 AbstractCheckerDTO checkerDTO = new AbstractCheckerDTO();
-                checkerDTO.setAction(BadgeCheckerConstants.LOGIN_PROFILE);
+                checkerDTO.setAction(BadgeCheckerConstants.LOGIN_ACTION);
                 checkerDTO.setActionDate(lastLogin);
                 submitValueToBadgeChecker(BadgeCheckerConstants.PROFILE_MODULE, user.getId(), checkerDTO);
                 //

@@ -1,13 +1,14 @@
 				<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+				<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 				<h2><img src="<c:url value="/resources/images/icons/tools_32.png"/>" alt="Manage Users" />Manage Users</h2>
 			
 				<div class="notification information">
 					This is an informative notification. Click me to hide me.
 				</div>
 				
-				<div class="content-box closed column-left sidebar"><!-- use the class .sidebar in combination with .column-left to create a sidebar --><!-- using .closed makes sure the content box is closed by default -->
+				<div class="content-box column-left sidebar"><!-- use the class .sidebar in combination with .column-left to create a sidebar --><!-- using .closed makes sure the content box is closed by default -->
 					<div class="content-box-header">
-						<h3>Closed Sidebar</h3>
+						<h3>Work to do</h3>
 					</div>
 					
 					<div class="content-box-content">
@@ -21,11 +22,7 @@
 						<h3>Statistics</h3>
 						
 						<!-- You can create tabs with unordered lists -->
-						<ul>						
-							<li>
-								<a href="#bar">Bar chart</a>
-							</li>
-													
+						<ul>															
 							<li>
 								<a href="#area">Area chart</a>
 							</li>
@@ -33,119 +30,29 @@
 					</div>
 					
 					<div class="content-box-content">												
-						<div class="tab-content" id="bar">
-							<table class="bargraph">
-								<caption>Statistics</caption>
-								<thead>
-									<tr>
-										<td></td>
-										<th scope="col">Jan</th>
-										<th scope="col">Feb</th>
-										<th scope="col">Mar</th>
-										<th scope="col">Apr</th>
-										<th scope="col">May</th>
-										<th scope="col">Jun</th>
-										<th scope="col">Jul</th>
-										<th scope="col">Aug</th>
-										<th scope="col">Sep</th>
-										<th scope="col">Oct</th>
-										<th scope="col">Nov</th>
-										<th scope="col">Dec</th>
-									</tr>
-								</thead>
-
-								<tbody>
-									<tr>
-										<th scope="row">Pageviews</th>
-										<td>40</td>
-										<td>50</td>
-										<td>88</td>
-										<td>80</td>
-										<td>125</td>
-										<td>45</td>
-										<td>34</td>
-										<td>87</td>
-										<td>94</td>
-										<td>115</td>
-										<td>86</td>
-										<td>54</td>
-									</tr>
-								
-									<tr>
-										<th scope="row">Unique visitors</th>
-										<td>20</td>
-										<td>40</td>
-										<td>68</td>
-										<td>70</td>
-										<td>102</td>
-										<td>35</td>
-										<td>14</td>
-										<td>17</td>
-										<td>74</td>
-										<td>95</td>
-										<td>45</td>
-										<td>23</td>
-									</tr>
-								</tbody>
-							</table>
-						</div><!-- end .tab-content -->
-						
 						<div class="tab-content" id="area">
 							<table class="areagraph">
-								<caption>Statistics</caption>
+								<caption>Login Statistics</caption>
 								<thead>
 									<tr>
 										<td></td>
-										<th scope="col">Jan</th>
-										<th scope="col">Feb</th>
-										<th scope="col">Mar</th>
-										<th scope="col">Apr</th>
-										<th scope="col">May</th>
-										<th scope="col">Jun</th>
-										<th scope="col">Jul</th>
-										<th scope="col">Aug</th>
-										<th scope="col">Sep</th>
-										<th scope="col">Oct</th>
-										<th scope="col">Nov</th>
-										<th scope="col">Dec</th>
+										<c:forEach var="label" items="${statisticDTO.labels}" begin="0" end="${fn:length(statisticDTO.labels)}">
+											<th scope="col"><c:out value="${label}" /></th>
+										</c:forEach>
 									</tr>
 								</thead>
 
 								<tbody>
 									<tr>
-										<th scope="row">Pageviews</th>
-										<td>40</td>
-										<td>50</td>
-										<td>88</td>
-										<td>80</td>
-										<td>125</td>
-										<td>45</td>
-										<td>34</td>
-										<td>87</td>
-										<td>94</td>
-										<td>115</td>
-										<td>86</td>
-										<td>54</td>
-									</tr>
-								
-									<tr>
-										<th scope="row">Unique visitors</th>
-										<td>20</td>
-										<td>40</td>
-										<td>68</td>
-										<td>70</td>
-										<td>102</td>
-										<td>35</td>
-										<td>14</td>
-										<td>17</td>
-										<td>74</td>
-										<td>95</td>
-										<td>45</td>
-										<td>23</td>
+										<th scope="row">Login times</th>
+										<c:forEach var="value" items="${statisticDTO.values}" begin="0" end="${fn:length(statisticDTO.values)}">
+											<td><c:out value="${value}" /></td>
+										</c:forEach>
 									</tr>
 								</tbody>
 							</table>
 						</div><!-- end .tab-content -->
+				
 					</div><!-- end .content-box-content -->
 				</div>
 		

@@ -16,7 +16,7 @@
 			</c:if>
 			<c:if test="${empty errorMessage}">
 				<h5 style="color: red">
-					Something unexpected is occured. Please try again.
+					<p>Something unexpected is occured. Please try again.</p>
 				</h5>
 			</c:if>
 			<a href="<c:url value="/dashboard.html"/>"><input type="button"

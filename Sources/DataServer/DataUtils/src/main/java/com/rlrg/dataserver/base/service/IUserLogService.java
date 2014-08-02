@@ -8,4 +8,6 @@ public interface IUserLogService<T> {
     public List<T> getUserLogByUserId(Long userId);
     
     public Long countUserLogByUserIdAndAction(Long userId, String action);
+    
+    public Long countLoginActionByTime(int month, int year);
 }

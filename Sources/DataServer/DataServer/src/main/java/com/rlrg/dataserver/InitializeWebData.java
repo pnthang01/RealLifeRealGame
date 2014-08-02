@@ -17,6 +17,7 @@ import com.rlrg.dataserver.base.service.ICategoryService;
 import com.rlrg.dataserver.base.service.ILanguageService;
 import com.rlrg.dataserver.base.service.IPermissionService;
 import com.rlrg.dataserver.base.service.IRoleService;
+import com.rlrg.dataserver.base.service.IStatisticService;
 import com.rlrg.dataserver.base.service.ITaskService;
 import com.rlrg.dataserver.base.service.IUserLogService;
 import com.rlrg.dataserver.base.service.IUserService;
@@ -40,6 +41,8 @@ import com.rlrg.dataserver.profile.service.PermissionService;
 import com.rlrg.dataserver.profile.service.RoleService;
 import com.rlrg.dataserver.profile.service.UserLogService;
 import com.rlrg.dataserver.profile.service.UserService;
+import com.rlrg.dataserver.statistic.dto.StatisticDTO;
+import com.rlrg.dataserver.statistic.service.StatisticService;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.Category;
@@ -49,6 +52,11 @@ import com.rlrg.dataserver.task.service.TaskService;
 
 @Configuration
 public class InitializeWebData {
+	
+	@Bean
+	public IStatisticService<?, StatisticDTO> getStatisticService(){
+		return new StatisticService();
+	}
 	
 	@Bean
 	public IUserLogService<UserLog> getUserLogService(){

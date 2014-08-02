@@ -21,5 +21,11 @@
 		<put-attribute name="title" value="Error Page" />
 		<put-attribute name="content" value="/WEB-INF/views/error.jsp" />
 	</definition>
+	
+	<!-- 	Forbidden page -->
+	<definition name="forbidden" extends="none-content">
+		<put-attribute name="title" value="Forbidden Page" />
+		<put-attribute name="content" value="/WEB-INF/views/forbidden.jsp" />
+	</definition>
 
 </tiles-definitions>

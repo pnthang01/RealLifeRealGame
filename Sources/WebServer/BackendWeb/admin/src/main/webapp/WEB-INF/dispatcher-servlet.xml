@@ -8,14 +8,19 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.rlrg.webserver.admin" use-default-filters="false">
+	
+	<context:component-scan base-package="com.rlrg.webserver.admin" use-default-filters="true">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+
 
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/main-theme/" />
 	<mvc:resources mapping="/library/**" location="/WEB-INF/resources/library/" />
 	<mvc:resources mapping="/resources-uri/**" location="/resources-uri/" />
+	
+	<mvc:view-controller path="/error" view-name="error"/>
+	<mvc:view-controller path="/error/403" view-name="forbidden"/>    
 	
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
@@ -38,31 +43,5 @@
 	<bean id="urlViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
-	
-	<bean id="commonService" class="com.rlrg.webserver.admin.service.MvcCommonService" />
-
-	<bean id="categoryReader" class="com.rlrg.utillities.service.CategoryWebServiceReader" />
-	<bean id="categoryService" class="com.rlrg.webserver.admin.service.MvcCategoryService" />
-
-	<bean id="badgeReader" class="com.rlrg.utillities.service.BadgeWebServiceReader" />
-	<bean id="badgeService" class="com.rlrg.webserver.admin.service.MvcBadgeService" />
-	
-	<bean id="userReader" class="com.rlrg.utillities.service.UserWebServiceReader" />
-	<bean id="userService" class="com.rlrg.webserver.admin.service.MvcUserService" />
-	
-	<bean id="taskReader" class="com.rlrg.utillities.service.TaskWebServiceReader" />
-	<bean id="taskService" class="com.rlrg.webserver.admin.service.MvcTaskService" />
-	
-	<bean id="achievementReader" class="com.rlrg.utillities.service.AchievementWebServiceReader" />
-	<bean id="achievementService" class="com.rlrg.webserver.admin.service.MvcAchievementService" />
-	
-	<bean id="languageReader" class="com.rlrg.utillities.service.LanguageWebServiceReader" />
-	<bean id="languageService" class="com.rlrg.webserver.admin.service.MvcLanguageService" />
-	
-	<bean id="permissionReader" class="com.rlrg.utillities.service.PermissionWebServiceReader" />
-	<bean id="permissionService" class="com.rlrg.webserver.admin.service.MvcPermissionService" />
-	
-	<bean id="roleReader" class="com.rlrg.utillities.service.RoleWebServiceReader" />
-	<bean id="roleService" class="com.rlrg.webserver.admin.service.MvcRoleService" />
 
 </beans>

@@ -18,4 +18,7 @@ public interface UserLogRepository extends JpaRepository<UserLog, Long>, JpaSpec
 	
 	@Query("SELECT COUNT(l.id) FROM UserLog l WHERE l.userId = :userId AND l.action =:action")
 	public Long countUserLogByUserIdAndAction(@Param("userId") Long userId, @Param("action") String action);
+
+	@Query("SELECT COUNT(l.id) FROM UserLog l WHERE MONTH(l.time) = :month AND YEAR(l.time) = :year AND l.action =:action")
+	public Long countLoginActionByTimeAndAction(@Param("month") Integer month, @Param("year") Integer year, @Param("action") String action);
 }

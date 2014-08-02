@@ -16,14 +16,14 @@ public class CommonController {
 		return "redirect:/dashboard.html";
 	}
 	
-	@RequestMapping("/dashboard.html")
-	public String dashboard(){
-		return "dashboard";
-	}
+//	@RequestMapping("/dashboard.html")
+//	public String dashboard(){
+//		return "dashboard";
+//	}
 	
 	@RequestMapping("/upload")
 	public String upload(){
-		
 		return null;
 	}
+
 }

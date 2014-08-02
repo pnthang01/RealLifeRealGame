@@ -10,6 +10,7 @@ import com.rlrg.dataserver.base.service.BaseService;
 import com.rlrg.dataserver.base.service.IUserLogService;
 import com.rlrg.dataserver.profile.entity.UserLog;
 import com.rlrg.dataserver.profile.repository.UserLogRepository;
+import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
 
 @Service
 public class UserLogService extends BaseService<UserLog, UserLog> implements IUserLogService<UserLog>{
@@ -21,6 +22,12 @@ public class UserLogService extends BaseService<UserLog, UserLog> implements IUs
 		return userLogRepo.getUserLogByUserId(userId);
 	}
 
+
+	@Override
+	public Long countLoginActionByTime(int month, int year) {
+		return userLogRepo.countLoginActionByTimeAndAction(month, year, BadgeCheckerConstants.LOGIN_ACTION);
+	}
+	
 	@Override
 	public Long countUserLogByUserIdAndAction(Long userId, String action) {
 		return userLogRepo.countUserLogByUserIdAndAction(userId, action);

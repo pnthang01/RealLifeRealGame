@@ -51,9 +51,9 @@ public class ProfileChecker implements IBadgeChecker{
 	
 	private void checking(Long userId, Badge avaiBadge) throws Exception{
 		JSONObject jObj = (JSONObject) JSONValue.parse(avaiBadge.getEligibility());
-		if(avaiBadge.getEligibility().contains((BadgeCheckerConstants.LOGIN_PROFILE))){
-			Long count = userLogService.countUserLogByUserIdAndAction(userId, BadgeCheckerConstants.LOGIN_PROFILE);
-			if(count >= Long.valueOf(jObj.get(BadgeCheckerConstants.LOGIN_PROFILE).toString())){
+		if(avaiBadge.getEligibility().contains((BadgeCheckerConstants.LOGIN_ACTION))){
+			Long count = userLogService.countUserLogByUserIdAndAction(userId, BadgeCheckerConstants.LOGIN_ACTION);
+			if(count >= Long.valueOf(jObj.get(BadgeCheckerConstants.LOGIN_ACTION).toString())){
 				achievementService.addAchievementForUser(userId, avaiBadge.getId());
 			}
 		}
