@@ -139,63 +139,63 @@ public final class R {
         public static final int action_bar_btn_right_1=0x7f060002;
         public static final int action_bar_btn_right_2=0x7f060003;
         public static final int action_bar_btn_right_text=0x7f060004;
-        public static final int action_cancel=0x7f060012;
-        public static final int action_close=0x7f060016;
-        public static final int action_create_task=0x7f06002a;
+        public static final int action_cancel=0x7f060014;
+        public static final int action_close=0x7f060018;
+        public static final int action_create_task=0x7f06002c;
         /**  Action 
          */
-        public static final int action_login=0x7f060029;
-        public static final int action_mark_as_complete=0x7f06002b;
-        public static final int action_mark_as_uncomplete=0x7f06002c;
-        public static final int action_no=0x7f060014;
-        public static final int action_ok=0x7f060011;
-        public static final int action_open=0x7f060015;
+        public static final int action_login=0x7f06002b;
+        public static final int action_mark_as_complete=0x7f06002d;
+        public static final int action_mark_as_uncomplete=0x7f06002e;
+        public static final int action_no=0x7f060016;
+        public static final int action_ok=0x7f060013;
+        public static final int action_open=0x7f060017;
         /**  Action 
          */
-        public static final int action_quit_app=0x7f060010;
-        public static final int action_search=0x7f060017;
-        public static final int action_sharing=0x7f06002d;
-        public static final int action_yes=0x7f060013;
-        /**  Variable 
-         */
+        public static final int action_quit_app=0x7f060012;
+        public static final int action_search=0x7f060019;
+        public static final int action_sharing=0x7f06002f;
+        public static final int action_yes=0x7f060015;
         public static final int app_name=0x7f060007;
+        public static final int database_name=0x7f06000c;
+        public static final int database_version=0x7f06000d;
         public static final int default_email_password=0x7f060009;
         public static final int default_email_username=0x7f060008;
         public static final int drawer_close=0x7f060006;
         public static final int drawer_open=0x7f060005;
         public static final int facebook_link=0x7f06000b;
-        public static final int hint_category=0x7f060021;
-        public static final int hint_complete_time=0x7f060022;
-        public static final int hint_difficulty_level=0x7f060023;
+        public static final int hint_category=0x7f060023;
+        public static final int hint_complete_time=0x7f060024;
+        public static final int hint_difficulty_level=0x7f060025;
         /**  Hint 
          */
-        public static final int hint_name=0x7f060020;
-        public static final int hint_password=0x7f060027;
-        public static final int hint_point=0x7f060024;
-        public static final int hint_remember_password=0x7f060028;
-        public static final int hint_status=0x7f060025;
-        public static final int hint_username=0x7f060026;
+        public static final int hint_name=0x7f060022;
+        public static final int hint_password=0x7f060029;
+        public static final int hint_point=0x7f060026;
+        public static final int hint_remember_password=0x7f06002a;
+        public static final int hint_status=0x7f060027;
+        public static final int hint_username=0x7f060028;
         /**  Message 
          */
-        public static final int message_login_failed=0x7f06002e;
-        public static final int message_no_internet_connection=0x7f06000f;
+        public static final int message_login_failed=0x7f060030;
+        public static final int message_no_internet_connection=0x7f060011;
         /**  Message 
          */
-        public static final int message_quit_app=0x7f06000e;
-        public static final int title_category=0x7f060019;
-        public static final int title_complete_time=0x7f06001a;
-        public static final int title_difficulty_level=0x7f06001b;
-        public static final int title_list_empty=0x7f06000d;
+        public static final int message_quit_app=0x7f060010;
+        public static final int title_category=0x7f06001b;
+        public static final int title_complete_time=0x7f06001c;
+        public static final int title_difficulty_level=0x7f06001d;
+        public static final int title_list_empty=0x7f06000f;
         /**  Title 
          */
-        public static final int title_name=0x7f060018;
+        public static final int title_name=0x7f06001a;
         /**  Title 
          */
-        public static final int title_no_internet_connection=0x7f06000c;
-        public static final int title_password=0x7f06001f;
-        public static final int title_point=0x7f06001c;
-        public static final int title_status=0x7f06001d;
-        public static final int title_username=0x7f06001e;
+        public static final int title_no_internet_connection=0x7f06000e;
+        public static final int title_password=0x7f060021;
+        public static final int title_point=0x7f06001e;
+        public static final int title_status=0x7f06001f;
+        public static final int title_username=0x7f060020;
         public static final int twitter_link=0x7f06000a;
     }
     public static final class style {

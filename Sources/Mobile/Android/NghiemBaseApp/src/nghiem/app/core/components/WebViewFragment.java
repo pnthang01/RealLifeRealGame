@@ -17,122 +17,120 @@ import android.widget.RelativeLayout;
 
 public class WebViewFragment extends NghiemFragment
 {
-    public static final String EXTRA_LINK = "EXTRA_LINK";
-    public static final String EXTRA_BG = "BG_RD";
+	public static final String EXTRA_LINK = "EXTRA_LINK";
+	public static final String EXTRA_BG = "BG_RD";
 
-    protected Class<?> CLASS = getClass();
+	protected Class<?> CLASS = getClass();
 
-    private class ChromeBrowser extends WebChromeClient
-    {
-        @Override
-        public void onReceivedTitle(WebView view, String title)
-        {
-            super.onReceivedTitle(view, title);
+	private class ChromeBrowser extends WebChromeClient
+	{
+		@Override
+		public void onReceivedTitle(WebView view, String title)
+		{
+			super.onReceivedTitle(view, title);
 
-            // TODO:
-        }
-    }
+			// TODO:
+		}
+	}
 
-    private class Browser extends WebViewClient
-    {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url)
-        {
-            // Make the URL open in parent view
-            view.loadUrl(url);
-            return true;
-        }
+	private class Browser extends WebViewClient
+	{
+		@Override
+		public boolean shouldOverrideUrlLoading(WebView view, String url)
+		{
+			// Make the URL open in parent view
+			view.loadUrl(url);
+			return true;
+		}
 
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon)
-        {
-            mWebView.setVisibility(View.GONE);
-            mProgressBar.setVisibility(View.VISIBLE);
-            super.onPageStarted(view, url, favicon);
-        }
+		@Override
+		public void onPageStarted(WebView view, String url, Bitmap favicon)
+		{
+			mWebView.setVisibility(View.GONE);
+			mProgressBar.setVisibility(View.VISIBLE);
+			super.onPageStarted(view, url, favicon);
+		}
 
-        @Override
-        public void onPageFinished(WebView view, String url)
-        {
-            mWebView.setVisibility(View.VISIBLE);
-            mProgressBar.setVisibility(View.GONE);
-            super.onPageFinished(view, url);
-            mActivity.setTitle(view.getTitle());
-        }
-    }
+		@Override
+		public void onPageFinished(WebView view, String url)
+		{
+			mWebView.setVisibility(View.VISIBLE);
+			mProgressBar.setVisibility(View.GONE);
+			super.onPageFinished(view, url);
+			mActivity.setTitle(view.getTitle());
+		}
+	}
 
-    private NghiemActivity mActivity;
-    private RelativeLayout mRoot;
-    private WebView mWebView;
-    private WebManager mFactory;
-    private ProgressBar mProgressBar;
+	private NghiemActivity mActivity;
+	private RelativeLayout mRoot;
+	private WebView mWebView;
+	private WebManager mFactory;
+	private ProgressBar mProgressBar;
 
-    private String mLink = "";
+	private String mLink = "";
 
-    public WebViewFragment()
-    {
-        super();
-    }
+	public WebViewFragment()
+	{
+		super();
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState)
-    {
-        if (container == null)
-        {
-            return null;
-        }
-        mRoot = (RelativeLayout) inflater.inflate(R.layout.fragment_web,
-                container, false);
-        mWebView = (WebView) mRoot.findViewById(R.id.webview);
-        mProgressBar = (ProgressBar) mRoot.findViewById(R.id.progress_bar);
-        return mRoot;
-    }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		if (container == null)
+		{
+			return null;
+		}
+		mRoot = (RelativeLayout) inflater.inflate(R.layout.fragment_web, container, false);
+		mWebView = (WebView) mRoot.findViewById(R.id.webview);
+		mProgressBar = (ProgressBar) mRoot.findViewById(R.id.progress_bar);
+		return mRoot;
+	}
 
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-        mActivity = (NghiemActivity) getActivity();
-        if (mActivity == null)
-        {
-            LOG.error("Activity is null!");
-        }
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		mActivity = (NghiemActivity) getActivity();
+		if (mActivity == null)
+		{
+			LOG.error("Activity is null!");
+		}
 
-        mFactory = new WebManager(mActivity);
-        mLink = mActivity.getIntent().getStringExtra(EXTRA_LINK);
-        if (StringUtils.isValidURL(mLink))
-        {
-            mActivity.showDebugToast(mLink);
-        }
-        else
-        {
-            mActivity.showDebugToast("The link is wrong format: " + mLink);
-        }
+		mFactory = new WebManager(mActivity);
+		mLink = mActivity.getIntent().getStringExtra(EXTRA_LINK);
+		if (StringUtils.isValidURL(mLink))
+		{
+			mActivity.showDebugToast(mLink);
+		}
+		else
+		{
+			mActivity.showDebugToast("The link is wrong format: " + mLink);
+		}
 
-        if (DeviceManager.getInstance().isNetworkConnected())
-        {
-            mWebView.setWebViewClient(new Browser());
-            mFactory.configure(mWebView, new ChromeBrowser());
-            mWebView.loadUrl(mLink);
-        }
-        else
-        {
-            mProgressBar.setVisibility(View.GONE);
-        }
-    }
+		if (DeviceManager.getInstance().isNetworkConnected())
+		{
+			mWebView.setWebViewClient(new Browser());
+			mFactory.configure(mWebView, new ChromeBrowser());
+			mWebView.loadUrl(mLink);
+		}
+		else
+		{
+			mProgressBar.setVisibility(View.GONE);
+		}
+	}
 
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        mFactory.resumeWeb(mWebView);
-    }
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		mFactory.resumeWeb(mWebView);
+	}
 
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        mFactory.pauseWeb(mWebView);
-    }
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		mFactory.pauseWeb(mWebView);
+	}
 }

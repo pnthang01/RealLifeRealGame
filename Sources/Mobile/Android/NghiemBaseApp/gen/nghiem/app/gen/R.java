@@ -88,32 +88,32 @@ public final class R {
         public static int action_bar_btn_right_1=0x7f060002;
         public static int action_bar_btn_right_2=0x7f060003;
         public static int action_bar_btn_right_text=0x7f060004;
-        public static int action_cancel=0x7f060012;
-        public static int action_close=0x7f060016;
-        public static int action_no=0x7f060014;
-        public static int action_ok=0x7f060011;
-        public static int action_open=0x7f060015;
+        public static int action_cancel=0x7f060014;
+        public static int action_close=0x7f060018;
+        public static int action_no=0x7f060016;
+        public static int action_ok=0x7f060013;
+        public static int action_open=0x7f060017;
         /**  Action 
          */
-        public static int action_quit_app=0x7f060010;
-        public static int action_search=0x7f060017;
-        public static int action_yes=0x7f060013;
-        /**  Variable 
-         */
+        public static int action_quit_app=0x7f060012;
+        public static int action_search=0x7f060019;
+        public static int action_yes=0x7f060015;
         public static int app_name=0x7f060007;
+        public static int database_name=0x7f06000c;
+        public static int database_version=0x7f06000d;
         public static int default_email_password=0x7f060009;
         public static int default_email_username=0x7f060008;
         public static int drawer_close=0x7f060006;
         public static int drawer_open=0x7f060005;
         public static int facebook_link=0x7f06000b;
-        public static int message_no_internet_connection=0x7f06000f;
+        public static int message_no_internet_connection=0x7f060011;
         /**  Message 
          */
-        public static int message_quit_app=0x7f06000e;
-        public static int title_list_empty=0x7f06000d;
+        public static int message_quit_app=0x7f060010;
+        public static int title_list_empty=0x7f06000f;
         /**  Title 
          */
-        public static int title_no_internet_connection=0x7f06000c;
+        public static int title_no_internet_connection=0x7f06000e;
         public static int twitter_link=0x7f06000a;
     }
     public static final class style {

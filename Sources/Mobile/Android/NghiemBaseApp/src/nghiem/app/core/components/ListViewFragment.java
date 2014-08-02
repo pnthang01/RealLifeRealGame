@@ -18,176 +18,170 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class ListViewFragment<Data> extends ListFragment implements
-        LoaderCallbacks<List<Data>>, OnScrollListener
+public class ListViewFragment<Data> extends ListFragment implements LoaderCallbacks<List<Data>>, OnScrollListener
 {
-    public interface OnScrollUpDownListener
-    {
-        public void onScrollUp();
+	public interface OnScrollUpDownListener
+	{
+		public void onScrollUp();
 
-        public void onScrollDown();
-    }
+		public void onScrollDown();
+	}
 
-    private class Adapter extends ArrayAdapter<Data>
-    {
-        public Adapter()
-        {
-            super(getActivity(), mListLayout);
-        }
+	private class Adapter extends ArrayAdapter<Data>
+	{
+		public Adapter()
+		{
+			super(getActivity(), mListLayout);
+		}
 
-        public void setData(List<Data> list)
-        {
-            clear();
-            if (list != null)
-            {
-                for (Data item : list)
-                {
-                    add(item);
-                }
-            }
-        }
+		public void setData(List<Data> list)
+		{
+			clear();
+			if (list != null)
+			{
+				for (Data item : list)
+				{
+					add(item);
+				}
+			}
+		}
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent)
-        {
-            View view = convertView;
-            if (view == null)
-            {
-                int layoutResId = mIsMultipleItemLayout ? mItemLayouts[position] : mItemLayout;
-                view = ((LayoutInflater) getActivity().getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE)).inflate(layoutResId,
-                        parent, false);
-            }
-            return getListItemView((ListView) parent, view, position);
-        }
-    }
-    
-    protected final Logger LOG = new Logger(getClass());
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent)
+		{
+			View view = convertView;
+			if (view == null)
+			{
+				int layoutResId = mIsMultipleItemLayout ? mItemLayouts[position] : mItemLayout;
+				view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(layoutResId, parent, false);
+			}
+			return getListItemView((ListView) parent, view, position);
+		}
+	}
 
-    protected ListView mListView;
-    protected Adapter mAdapter;
-    protected Bundle mArguments;
+	protected final Logger LOG = new Logger(getClass());
 
-    protected int mListLayout, mItemLayout;
-    protected int[] mItemLayouts;
+	protected ListView mListView;
+	protected Adapter mAdapter;
+	protected Bundle mArguments;
 
-    private boolean mIsMultipleItemLayout = false;
-    private int mPosition = 0, mOffset = 0;
+	protected int mListLayout, mItemLayout;
+	protected int[] mItemLayouts;
 
-    private List<Data> mList = new ArrayList<Data>();
+	private boolean mIsMultipleItemLayout = false;
+	private int mPosition = 0, mOffset = 0;
 
-    public ListViewFragment()
-    {
-        super();
-    }
+	private List<Data> mList = new ArrayList<Data>();
 
-    public ListViewFragment(int listLayout, int itemLayout)
-    {
-        super();
-        mListLayout = listLayout;
-        mItemLayout = itemLayout;
-    }
+	public ListViewFragment()
+	{
+		super();
+	}
 
-    public ListViewFragment(int listLayout, int[] itemLayouts)
-    {
-        super();
-        mListLayout = listLayout;
-        mItemLayouts = itemLayouts;
-        mIsMultipleItemLayout = true;
-    }
+	public ListViewFragment(int listLayout, int itemLayout)
+	{
+		super();
+		mListLayout = listLayout;
+		mItemLayout = itemLayout;
+	}
 
-    public void setData(List<Data> list)
-    {
-        mList = list;
-    }
+	public ListViewFragment(int listLayout, int[] itemLayouts)
+	{
+		super();
+		mListLayout = listLayout;
+		mItemLayouts = itemLayouts;
+		mIsMultipleItemLayout = true;
+	}
 
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        mArguments = getArguments();
-    }
+	public void setData(List<Data> list)
+	{
+		mList = list;
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState)
-    {
-        return inflater.inflate(mListLayout, container, false);
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		mArguments = getArguments();
+	}
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-        if (getActivity() != null)
-        {
-            mAdapter = new Adapter();
-            setListAdapter(mAdapter);
-            getLoaderManager().initLoader(0, null, this);
-            mListView = getListView();
-            mListView.setOnScrollListener(this);
-        }
-    }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		return inflater.inflate(mListLayout, container, false);
+	}
 
-    protected View getListItemView(ListView parent, View view, int position)
-    {
-        return view;
-    }
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+		if (getActivity() != null)
+		{
+			mAdapter = new Adapter();
+			setListAdapter(mAdapter);
+			getLoaderManager().initLoader(0, null, this);
+			mListView = getListView();
+			mListView.setOnScrollListener(this);
+		}
+	}
 
-    @Override
-    public Loader<List<Data>> onCreateLoader(int id, Bundle args)
-    {
-        if (getActivity() == null)
-        {
-            return null;
-        }
-        return new AsyncLoader<Data>(getActivity(), mList);
-    }
+	protected View getListItemView(ListView parent, View view, int position)
+	{
+		return view;
+	}
 
-    @Override
-    public void onLoadFinished(Loader<List<Data>> loader, List<Data> data)
-    {
-        mAdapter.setData(data);
-    }
+	@Override
+	public Loader<List<Data>> onCreateLoader(int id, Bundle args)
+	{
+		if (getActivity() == null)
+		{
+			return null;
+		}
+		return new AsyncLoader<Data>(getActivity(), mList);
+	}
 
-    @Override
-    public void onLoaderReset(Loader<List<Data>> loader)
-    {
-        mAdapter.setData(null);
-    }
+	@Override
+	public void onLoadFinished(Loader<List<Data>> loader, List<Data> data)
+	{
+		mAdapter.setData(data);
+	}
 
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState)
-    {
-    }
+	@Override
+	public void onLoaderReset(Loader<List<Data>> loader)
+	{
+		mAdapter.setData(null);
+	}
 
-    @Override
-    public void onScroll(AbsListView listView, int firstVisibleItem,
-            int visibleItemCount, int totalItemCount)
-    {
-        if (!(getActivity() instanceof OnScrollUpDownListener))
-        {
-            return;
-        }
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState)
+	{
+	}
 
-        View view = mListView.getChildAt(0);
-        int offset = (view == null) ? 0 : view.getTop();
+	@Override
+	public void onScroll(AbsListView listView, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+	{
+		if (!(getActivity() instanceof OnScrollUpDownListener))
+		{
+			return;
+		}
 
-        if (mPosition == firstVisibleItem && mOffset == offset)
-        {
-            return;
-        }
+		View view = mListView.getChildAt(0);
+		int offset = (view == null) ? 0 : view.getTop();
 
-        if (mPosition < firstVisibleItem && mOffset != offset
-                || (mPosition == firstVisibleItem && mOffset > offset))
-        {
-            ((OnScrollUpDownListener) getActivity()).onScrollDown();
-        }
-        else
-        {
-            ((OnScrollUpDownListener) getActivity()).onScrollUp();
-        }
-        mPosition = firstVisibleItem;
-        mOffset = offset;
-    }
+		if (mPosition == firstVisibleItem && mOffset == offset)
+		{
+			return;
+		}
+
+		if (mPosition < firstVisibleItem && mOffset != offset || (mPosition == firstVisibleItem && mOffset > offset))
+		{
+			((OnScrollUpDownListener) getActivity()).onScrollDown();
+		}
+		else
+		{
+			((OnScrollUpDownListener) getActivity()).onScrollUp();
+		}
+		mPosition = firstVisibleItem;
+		mOffset = offset;
+	}
 }

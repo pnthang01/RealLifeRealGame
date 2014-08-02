@@ -4,5 +4,5 @@ import nghiem.app.core.utils.Logger;
 
 public class BaseController
 {
-    protected final Logger LOG = new Logger(getClass());
+	protected final Logger LOG = new Logger(getClass());
 }

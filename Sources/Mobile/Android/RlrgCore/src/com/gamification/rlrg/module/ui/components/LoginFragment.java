@@ -26,111 +26,108 @@ import com.gamification.rlrg.settings.Settings;
 
 final class LoginFragment extends NghiemFragment implements OnClickListener, Runnable
 {
-    private StartActivity mActivity;
-    private LinearLayout mLayoutLogin;
-    private TextView mTxtLogo;
-    private EditText mEdtUsername, mEdtPassword;
-    private Button mBtnLogin;
-    private CheckBox mCkbRemember;
+	private StartActivity mActivity;
+	private LinearLayout mLayoutLogin;
+	private TextView mTxtLogo;
+	private EditText mEdtUsername, mEdtPassword;
+	private Button mBtnLogin;
+	private CheckBox mCkbRemember;
 
-    private DataPreferencesManager mPreferencesManager;
+	private DataPreferencesManager mPreferencesManager;
 
-    private String mLastPassword;
+	private String mLastPassword;
 
-    public static Fragment newInstance()
-    {
-        return new LoginFragment();
-    }
+	public static Fragment newInstance()
+	{
+		return new LoginFragment();
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState)
-    {
-        if (container == null)
-        {
-            return null;
-        }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		if (container == null)
+		{
+			return null;
+		}
 
-        mPreferencesManager = DataPreferencesManager.getInstance();
-        String lastUsername = mPreferencesManager.getUsername();
-        mLastPassword = mPreferencesManager.getPassword();
+		mPreferencesManager = DataPreferencesManager.getInstance();
+		String lastUsername = mPreferencesManager.getUsername();
+		mLastPassword = mPreferencesManager.getPassword();
 
-        mActivity = (StartActivity) getActivity();
-        RelativeLayout root = (RelativeLayout) inflater.inflate(
-                R.layout.fragment_login, container, false);
-        mLayoutLogin = (LinearLayout) root.findViewById(R.id.layout_login);
-        mTxtLogo = (TextView) root.findViewById(R.id.logo);
-        mEdtUsername = (EditText) root.findViewById(R.id.edit_username);
-        mEdtPassword = (EditText) root.findViewById(R.id.edit_password);
-        mBtnLogin = (Button) root.findViewById(R.id.btn_login);
-        mCkbRemember = (CheckBox) root.findViewById(R.id.ckb_remember);
+		mActivity = (StartActivity) getActivity();
+		RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.fragment_login, container, false);
+		mLayoutLogin = (LinearLayout) root.findViewById(R.id.layout_login);
+		mTxtLogo = (TextView) root.findViewById(R.id.logo);
+		mEdtUsername = (EditText) root.findViewById(R.id.edit_username);
+		mEdtPassword = (EditText) root.findViewById(R.id.edit_password);
+		mBtnLogin = (Button) root.findViewById(R.id.btn_login);
+		mCkbRemember = (CheckBox) root.findViewById(R.id.ckb_remember);
 
-        mEdtUsername.setText(lastUsername);
-        mEdtPassword.setText(TextUtils.isEmpty(mLastPassword) ? "" : Settings.PASSWORD_COVER);
-        mBtnLogin.setOnClickListener(this);
-        mCkbRemember.setChecked(mPreferencesManager.getRememberPassword());
-        return root;
-    }
+		mEdtUsername.setText(lastUsername);
+		mEdtPassword.setText(TextUtils.isEmpty(mLastPassword) ? "" : Settings.PASSWORD_COVER);
+		mBtnLogin.setOnClickListener(this);
+		mCkbRemember.setChecked(mPreferencesManager.getRememberPassword());
+		return root;
+	}
 
-    public void onStart()
-    {
-        super.onStart();
+	public void onStart()
+	{
+		super.onStart();
 
-        if (getActivity() != null)
-        {
-            showLoginForm();
-        }
-    }
+		if (getActivity() != null)
+		{
+			showLoginForm();
+		}
+	}
 
-    private void showLoginForm()
-    {
-        new Handler().postDelayed(this, 2000);
-    }
+	private void showLoginForm()
+	{
+		new Handler().postDelayed(this, 2000);
+	}
 
-    @Override
-    public void run()
-    {
-        int screenHeight = DeviceManager.getInstance().getScreenHeight();
-        // Animation animation =
-        // AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
-        // R.anim.show_login_form);
-        Animation animation = new SlideAnimation(mTxtLogo, screenHeight / 4,
-                screenHeight, 40, true, true)
-        {
-            @Override
-            public void onAnimationEnd(Animation animation)
-            {
-                super.onAnimationEnd(animation);
-                mLayoutLogin.setVisibility(View.VISIBLE);
-            }
-        };
-        mTxtLogo.startAnimation(animation);
-    }
+	@Override
+	public void run()
+	{
+		int screenHeight = DeviceManager.getInstance().getScreenHeight();
+		// Animation animation =
+		// AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+		// R.anim.show_login_form);
+		Animation animation = new SlideAnimation(mTxtLogo, screenHeight / 4, screenHeight, 40, true, true)
+		{
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				super.onAnimationEnd(animation);
+				mLayoutLogin.setVisibility(View.VISIBLE);
+			}
+		};
+		mTxtLogo.startAnimation(animation);
+	}
 
-    @Override
-    public void onClick(View view)
-    {
-        String username = mEdtUsername.getText().toString();
-        String password = mEdtPassword.getText().toString();
-        if (password.equals(Settings.PASSWORD_COVER))
-        {
-            password = mLastPassword;
-        }
-        mPreferencesManager.saveRememberPassword(mCkbRemember.isChecked());
-        login(username, password);
-    }
+	@Override
+	public void onClick(View view)
+	{
+		String username = mEdtUsername.getText().toString();
+		String password = mEdtPassword.getText().toString();
+		if (password.equals(Settings.PASSWORD_COVER))
+		{
+			password = mLastPassword;
+		}
+		mPreferencesManager.saveRememberPassword(mCkbRemember.isChecked());
+		login(username, password);
+	}
 
-    private void login(String username, String password)
-    {
-        if (TextUtils.isEmpty(username) && TextUtils.isEmpty(password))
-        {
-            mActivity.onLoginSuccess();
-        }
-        else
-        {
-            mEdtUsername.setText("");
-            mEdtPassword.setText("");
-            mActivity.toast(R.string.message_login_failed);
-        }
-    }
+	private void login(String username, String password)
+	{
+		if (TextUtils.isEmpty(username) && TextUtils.isEmpty(password))
+		{
+			mActivity.onLoginSuccess();
+		}
+		else
+		{
+			mEdtUsername.setText("");
+			mEdtPassword.setText("");
+			mActivity.toast(R.string.message_login_failed);
+		}
+	}
 }

@@ -7,9 +7,9 @@ import nghiem.app.core.utils.Logger;
  */
 public class ExceptionHandler implements Thread.UncaughtExceptionHandler
 {
-    @Override
-    public void uncaughtException(Thread thread, Throwable throwable)
-    {
-        new Logger(ExceptionHandler.class).errorAndSendMail(throwable);
-    }
+	@Override
+	public void uncaughtException(Thread thread, Throwable throwable)
+	{
+		new Logger(ExceptionHandler.class).errorAndSendMail(throwable);
+	}
 }
