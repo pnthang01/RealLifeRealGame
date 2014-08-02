@@ -5,87 +5,248 @@
     "Badges": [
       {
         "ID": "1",
-        "Name": "Reading 1",
-        "Description": "Read 3 books to achieve this",
+        "Name": "Login1",
+        "Description": "Login continuous for 3 days",
         "Status": "OPEN",
-        "Eligibility": "Reading:3"
+        "Eligibility": "Login:3"
       },
       {
         "ID": "2",
-        "Name": "Reading 2",
-        "Description": "Read 5 books to achieve this",
+        "Name": "Login2",
+        "Description": "Login continuous for 7 days",
         "Status": "OPEN",
-        "Eligibility": "Reading:5"
+        "Eligibility": "Login:7"
       },
       {
         "ID": "3",
-        "Name": "Reading 3",
-        "Description": "Read 10 books to achieve this",
+        "Name": "Login33",
+        "Description": "Login continuous for 15 days",
         "Status": "OPEN",
-        "Eligibility": "Reading:10"
+        "Eligibility": "Login:15"
       },
       {
         "ID": "4",
-        "Name": "Cycling 1",
-        "Description": "Ride 3km to achieve this",
+        "Name": "Login4",
+        "Description": "Login continuous for 30 days",
         "Status": "OPEN",
-        "Eligibility": "Cycling:3"
+        "Eligibility": "Login:30"
       },
       {
         "ID": "5",
-        "Name": "Cycling 2",
-        "Description": "Ride 5km to achieve this",
+        "Name": "Login5",
+        "Description": "Login continuous for 60 days",
         "Status": "OPEN",
-        "Eligibility": "Cycling:5"
+        "Eligibility": "Login:60"
       },
       {
         "ID": "6",
-        "Name": "Cycling 3",
-        "Description": "Ride 10km to achieve this",
+        "Name": "Social1",
+        "Description": "Share your activities on social networks 10 times",
         "Status": "OPEN",
-        "Eligibility": "Cycling:10"
+        "Eligibility": "Social:10"
       },
       {
         "ID": "7",
-        "Name": "Swimming 1",
-        "Description": "Swim 3km to achieve this",
+        "Name": "Social2",
+        "Description": "Share your activities on social networks 20 times",
         "Status": "OPEN",
-        "Eligibility": "Swimming:3"
+        "Eligibility": "Social:20"
       },
       {
         "ID": "8",
-        "Name": "Swimming 2",
-        "Description": "Swim 5km to achieve this",
+        "Name": "Social3",
+        "Description": "Share your activities on social networks 40 times",
         "Status": "OPEN",
-        "Eligibility": "Swimming:5"
+        "Eligibility": "Social:40"
       },
       {
         "ID": "9",
-        "Name": "Swimming 3",
-        "Description": "Swim 10km to achieve this",
+        "Name": "Social4",
+        "Description": "Share your activities on social networks 70 times",
         "Status": "OPEN",
-        "Eligibility": "Swimming:10"
+        "Eligibility": "Social:70"
       },
       {
         "ID": "10",
-        "Name": "Create 10 tasks",
-        "Description": "Create 10 tasks to achieve this",
+        "Name": "Social5",
+        "Description": "Share your activities on social networks 120 times",
         "Status": "OPEN",
-        "Eligibility": "Task:10"
+        "Eligibility": "Social:120"
       },
       {
         "ID": "11",
-        "Name": "Finish 10 tasks",
-        "Description": "Finish 10 tasks to achieve this",
+        "Name": "Communication1",
+        "Description": "Finish 3 Communication Task",
         "Status": "OPEN",
-        "Eligibility": "Finish:10"
+        "Eligibility": "Communication:3"
       },
       {
         "ID": "12",
-        "Name": "Login 10 times",
-        "Description": "Login 10 times to achieve this",
+        "Name": "Communication2",
+        "Description": "Finish 7 Communication Task",
         "Status": "OPEN",
-        "Eligibility": "Login:10"
+        "Eligibility": "Communication:7"
+      },
+      {
+        "ID": "13",
+        "Name": "Communication3",
+        "Description": "Finish 16 Communication Task",
+        "Status": "OPEN",
+        "Eligibility": "Communication:16"
+      },
+      {
+        "ID": "14",
+        "Name": "Communication4",
+        "Description": "Finish 36 Communication Task",
+        "Status": "OPEN",
+        "Eligibility": "Communication:36"
+      },
+      {
+        "ID": "15",
+        "Name": "Communication5",
+        "Description": "Finish 81 Communication Task",
+        "Status": "OPEN",
+        "Eligibility": "Communication:81"
+      },
+      {
+        "ID": "16",
+        "Name": "Physical1",
+        "Description": "Finish 3 Physical Task",
+        "Status": "OPEN",
+        "Eligibility": "Physical:3"
+      },
+      {
+        "ID": "17",
+        "Name": "Physical2",
+        "Description": "Finish 7 Physical Task",
+        "Status": "OPEN",
+        "Eligibility": "Physical:7"
+      },
+      {
+        "ID": "18",
+        "Name": "Physical3",
+        "Description": "Finish 16 Physical Task",
+        "Status": "OPEN",
+        "Eligibility": "Physical:16"
+      },
+      {
+        "ID": "19",
+        "Name": "Physical4",
+        "Description": "Finish 36 Physical Task",
+        "Status": "OPEN",
+        "Eligibility": "Physical:36"
+      },
+      {
+        "ID": "20",
+        "Name": "Physical5",
+        "Description": "Finish 81 Physical Task",
+        "Status": "OPEN",
+        "Eligibility": "Physical:81"
+      },
+      {
+        "ID": "21",
+        "Name": "Art1",
+        "Description": "Finish 3 Art Task",
+        "Status": "OPEN",
+        "Eligibility": "Art:3"
+      },
+      {
+        "ID": "22",
+        "Name": "Art2",
+        "Description": "Finish 7 Art Task",
+        "Status": "OPEN",
+        "Eligibility": "Art:7"
+      },
+      {
+        "ID": "23",
+        "Name": "Art3",
+        "Description": "Finish 16 Art Task",
+        "Status": "OPEN",
+        "Eligibility": "Art:16"
+      },
+      {
+        "ID": "24",
+        "Name": "Art4",
+        "Description": "Finish 36 Art Task",
+        "Status": "OPEN",
+        "Eligibility": "Art:36"
+      },
+      {
+        "ID": "25",
+        "Name": "Art5",
+        "Description": "Finish 81 Art Task",
+        "Status": "OPEN",
+        "Eligibility": "Art:81"
+      },
+      {
+        "ID": "26",
+        "Name": "Knowledge1",
+        "Description": "Finish 3 Knowledge Task",
+        "Status": "OPEN",
+        "Eligibility": "Knowledge:3"
+      },
+      {
+        "ID": "27",
+        "Name": "Knowledge2",
+        "Description": "Finish 7 Knowledge Task",
+        "Status": "OPEN",
+        "Eligibility": "Knowledge:7"
+      },
+      {
+        "ID": "28",
+        "Name": "Knowledge3",
+        "Description": "Finish 16 Knowledge Task",
+        "Status": "OPEN",
+        "Eligibility": "Knowledge:16"
+      },
+      {
+        "ID": "29",
+        "Name": "Knowledge4",
+        "Description": "Finish 36 Knowledge Task",
+        "Status": "OPEN",
+        "Eligibility": "Knowledge:36"
+      },
+      {
+        "ID": "30",
+        "Name": "Knowledge5",
+        "Description": "Finish 81 Knowledge Task",
+        "Status": "OPEN",
+        "Eligibility": "Knowledge:81"
+      },
+      {
+        "ID": "31",
+        "Name": "Career1",
+        "Description": "Finish 3 Career Task",
+        "Status": "OPEN",
+        "Eligibility": "Career:3"
+      },
+      {
+        "ID": "32",
+        "Name": "Career2",
+        "Description": "Finish 7 Career Task",
+        "Status": "OPEN",
+        "Eligibility": "Career:7"
+      },
+      {
+        "ID": "33",
+        "Name": "Career3",
+        "Description": "Finish 16 Career Task",
+        "Status": "OPEN",
+        "Eligibility": "Career:16"
+      },
+      {
+        "ID": "34",
+        "Name": "Career4",
+        "Description": "Finish 36 Career Task",
+        "Status": "OPEN",
+        "Eligibility": "Career:36"
+      },
+      {
+        "ID": "35",
+        "Name": "Career5",
+        "Description": "Finish 81 Career Task",
+        "Status": "OPEN",
+        "Eligibility": "Career:81"
       }
     ]
   }
