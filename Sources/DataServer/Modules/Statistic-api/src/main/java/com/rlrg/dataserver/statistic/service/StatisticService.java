@@ -6,6 +6,7 @@ import javax.persistence.Transient;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.service.BaseService;
@@ -18,12 +19,14 @@ public class StatisticService extends BaseService<StatisticDTO, StatisticDTO> im
 	@Transient
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
+	@Autowired
 	private IUserLogService<?> userLogService;
 
 	@Override
 	public StatisticDTO getLoginStatistic(int months) {
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		Calendar calendar = Calendar.getInstance();
+        int currentMonth = calendar.get(Calendar.MONTH);
+        int currentYear = calendar.get(Calendar.YEAR);
         Long[] values = new Long[months];
         String[] labels = new String[months];
         for (int i = 1; i <= months; i++) {

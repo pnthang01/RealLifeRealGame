@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.Task;
+import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
@@ -71,4 +72,15 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 			" AND t.status = com.rlrg.dataserver.task.entity.enums.TaskStatus.COMPLETED")
 	public Long countTotalCompletedTaskByUserIdAndCateTag(@Param("userId") Long userId, @Param("cateTag") String cateTag);
 	
+	@Query("SELECT t FROM Task t WHERE t.status = :status AND (" +
+			"(DAY(t.completeTime) = :day AND MONTH(t.completeTime) = :month)" +
+			"OR (DAY(t.startTime) = :day AND MONTH(t.startTime) = :month) )")
+	public List<Task> getTasksByStatusSpecial1(@Param("status") TaskStatus status, @Param("day") Integer day, @Param("month") Integer month);
+	
+	@Query("SELECT t FROM Task t WHERE t.status = :status AND " +
+			"(DAY(t.completeTime) = :day AND MONTH(t.completeTime) = :month)" )
+	public List<Task> getTasksByStatusSpecial2(@Param("status") TaskStatus status, @Param("day") Integer day, @Param("month") Integer month);
+
+	@Query("SELECT t FROM Task t WHERE t.status = :status")
+	public List<Task> getTasksByStatus(@Param("status") TaskStatus status);
 }

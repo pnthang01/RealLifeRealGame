@@ -52,7 +52,25 @@ INSERT INTO `badge` VALUES
 
 INSERT INTO `badge_language` VALUES
 	(1, 1, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
-	(2, 2, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!');
+	(2, 2, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(3, 3, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(4, 4, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(5, 5, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(6, 6, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(7, 7, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(8, 8, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(9, 9, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(10, 10, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(11, 11, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(12, 12, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(13, 13, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(14, 14, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(15, 15, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(16, 16, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(17, 17, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(18, 18, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!'),
+	(19, 19, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
+	(20, 20, 1, N'Sức khỏe là trên hết', N'Bạn đã tạo 3 nhiệm vụ tăng thể lực, chúc mừng bạn!');
 
 INSERT INTO `role` VALUES
 	(1, 'Basic'),
@@ -62,4 +80,6 @@ INSERT INTO `user` VALUES
 	(1, 1, 'testacc','e10adc3949ba59abbe56e057f20f883e','testacc@gmail.com','FirstName',null,'2014-07-22',null,0,0,'CONFIRM',null);
 
 INSERT INTO `config` VALUES
-	('RESOURCES_URI', 'http://localhost:8080/resource/');
+	('RESOURCES_URI', 'http://localhost:8080/resource/'),
+	('PAGE_SIZE', '10'),
+	('TOTAL_STATISTIC_ROWS', '5');

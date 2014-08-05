@@ -19,6 +19,7 @@ import com.rlrg.dataserver.base.service.ICategoryService;
 import com.rlrg.dataserver.language.dto.CateLangDTO;
 import com.rlrg.dataserver.language.entity.CategoryLanguage;
 import com.rlrg.dataserver.language.entity.Language;
+import com.rlrg.dataserver.service.ConfigService;
 import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.repository.CategoryRepository;
@@ -31,9 +32,12 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 	@Transient
 	private final static Logger LOG = LoggerFactory.getLogger(CategoryService.class);
 
+	@Autowired 
+	private ConfigService configService;
+	
 	@Autowired
 	private CategoryRepository cateRepo;
-	
+
 	@Autowired
 	private Language DEFAULT_LANGUAGE;
 	
@@ -47,7 +51,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		return cateRepo.save(c);
 	}
 	
-	private String getNewCode(){
+	public String getNewCode(){
 		String newCode = RandomStringUtils.random(8, true, true);
 		while(cateRepo.exitsCategoryCode(newCode)){
 			newCode = RandomStringUtils.random(8, true, true);
@@ -107,7 +111,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Integer.valueOf(configService.getConfig(Constants.PAGE_SIZE_KEY)));
 		//
 		return cateRepo.searchCategoriesDTOByKeyword(keyword, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
@@ -127,7 +131,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Integer.valueOf(configService.getConfig(Constants.PAGE_SIZE_KEY)));
 		//
 		return cateRepo.getAllCategoriesDTO(DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
@@ -165,7 +169,7 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
-		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Integer.valueOf(configService.getConfig(Constants.PAGE_SIZE_KEY)));
 		//
 		return cateRepo.getCategoriesDTOByStatus(status, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}

@@ -1,12 +1,15 @@
 package com.rlrg.dataserver.base.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.controller.BaseUtils;
@@ -15,6 +18,9 @@ import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.repository.CommonRepository;
+import com.rlrg.dataserver.entity.Config;
+import com.rlrg.dataserver.service.ConfigService;
+import com.rlrg.dataserver.utillities.Constants;
 
 @Service
 public class CommonService {
@@ -23,7 +29,7 @@ public class CommonService {
 	
     @Autowired
     private CommonRepository commonRepo;
-
+    
     private static Map<String, UserToken> userTokens;
     
     public CommonService(){

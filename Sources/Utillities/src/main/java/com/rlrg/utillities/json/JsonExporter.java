@@ -33,6 +33,7 @@ public class JsonExporter {
 	 * @return
 	 * @throws IllegalAccessException 
 	 */
+	@SuppressWarnings("unchecked")
 	private Map<String, Object> putObjectToJSONMap(final Object value,final Class<?> clazz){
 		final Map<String, Object> jsonValue = new LinkedHashMap<String, Object>();
 		final Field[] fields = clazz.getDeclaredFields();
@@ -44,7 +45,22 @@ public class JsonExporter {
 				// and add it to json
 				JsonExport jsonAnno = field.getAnnotation(JsonExport.class);
 				if (null != jsonAnno && null != field.get(value)) {
-					jsonValue.put(jsonAnno.name().toString(), parseValueToString(field.get(value)));
+					final Object fieldValue = field.get(value);
+					final Class<?> objClass = fieldValue.getClass();
+					if(objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")
+							|| objClass.getName().equals("java.util.Arrays$ArrayList")) {
+						List<?> list = (List<?>) objClass.cast(fieldValue);
+						if(!list.isEmpty()){
+							JSONArray array = new JSONArray();
+							for (Object obj : list) {
+								array.add(obj);		
+							}
+							//
+							jsonValue.put(jsonAnno.name().toString(), array);
+						}
+					} else {
+						jsonValue.put(jsonAnno.name().toString(), parseValueToString(field.get(value)));
+					}
 				}
 				// if this field is object type, it will check if it is an
 				// object or a list of object
@@ -54,9 +70,9 @@ public class JsonExporter {
 					final Class<?> objClass = fieldValue.getClass();
 					// This field is a list, so it would be parse each object
 					// from the list to json
-					Object storedValue = null;
-					if(objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")) {
-						List list = (List) objClass.cast(fieldValue);
+					if(objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")
+							|| objClass.getName().equals("java.util.Arrays$ArrayList")) {
+						List<?> list = (List<?>) objClass.cast(fieldValue);
 						if(!list.isEmpty()){
 							JSONArray array = new JSONArray();
 							for (Object obj : list) {
@@ -159,6 +175,15 @@ public class JsonExporter {
 		return JSONValue.toJSONString(jsonValue);
 	}
 	
+	/**
+	 * Encode a list of object to a json string, and it's total count
+	 * 
+	 * @param values
+	 * @param clazz
+	 * @return
+	 * @throws ConvertException 
+	 * @throws IllegalAccessException 
+	 */
 	public <T> String encodeObjectsToJson(final List<T> values, Long total) throws ConvertException {
 		if(null == values || values.isEmpty() || null == values.get(0)){
 			throw new ConvertException("The list of T values is null or empty.");
@@ -195,8 +220,17 @@ public class JsonExporter {
 				// We will cast string to their type and set value
 				JsonExport jsonAnno = field.getAnnotation(JsonExport.class);
 				if (null != jsonAnno && null != jObj.get(jsonAnno.name())) {
+					Class<?> objClass = field.getType();
 					String valueTmp = jObj.get(jsonAnno.name()).toString();
-					field.set(returnedObj, castValue(field.getType(), valueTmp));
+					//
+					if(objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")){
+						Class<?> genericClass = getGenericClassOfList(field);
+						JSONArray array = (JSONArray) jObj.get(jsonAnno.name());
+						//
+						field.set(returnedObj, array);
+					} else {
+						field.set(returnedObj, castValue(field.getType(), valueTmp));
+					}
 				}
 				// Otherwise, this field is a object type.
 				JsonObject jsonObj = field.getAnnotation(JsonObject.class);
@@ -206,11 +240,10 @@ public class JsonExporter {
 					//After that, do a recursive loop of this method to decode json to this class and set value.
 					if (objClass.getName().equals("java.util.List") || objClass.getName().equals("java.util.ArrayList")) {
 						List list = new ArrayList();
-						Class genericClass = getGenericClassOfList(field);
+						Class<?> genericClass = getGenericClassOfList(field);
 						JsonDTO objAnno = (JsonDTO) genericClass.getAnnotation(JsonDTO.class);
 						if (null != jObj.get(objAnno.pluralName())) {
-							JSONArray array = (JSONArray) jObj.get(objAnno
-									.pluralName());
+							JSONArray array = (JSONArray) jObj.get(objAnno.pluralName());
 							//
 							for (Object obj : array) {
 								list.add(getObjectFromJSONString(obj.toString(), genericClass));
