@@ -40,6 +40,10 @@ public class UserToken {
         this.time = time;
     }
 
+    public void increaseTime(long time){
+    	this.time += time;
+    }
+    
     public void increaseTime() {
         this.time += (60 * 30 * 1000);
     }

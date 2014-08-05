@@ -1,15 +1,14 @@
 package com.rlrg.dataserver.base.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.rlrg.dataserver.base.controller.BaseUtils;
@@ -18,8 +17,6 @@ import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.repository.CommonRepository;
-import com.rlrg.dataserver.entity.Config;
-import com.rlrg.dataserver.service.ConfigService;
 import com.rlrg.dataserver.utillities.Constants;
 
 @Service
@@ -40,6 +37,26 @@ public class CommonService {
     	return userTokens.size();
     }
     
+    @Scheduled(cron="* 0/15 * * * ?")
+	public void removeLongUsedToken() throws Exception{
+		try {
+			long currentTime = BaseUtils.truncateMiliSecondDate(new Date());
+			//
+			Iterator<String> iter = userTokens.keySet().iterator();
+			while(iter.hasNext()){
+				String key = iter.next();
+				UserToken userToken = userTokens.get(key);
+				if(currentTime >= userToken.getTime() + Constants.TOKEN_TIMEOUT){
+					userTokens.remove(key);
+				}
+
+			}
+		} catch(Exception e){
+			LOG.error("Error occurs when running removeLongUsedToken:", e);
+			throw e;
+		}
+	}
+    
     /**
      * Get UserToken bases on token parameter
      * @param token
@@ -48,6 +65,7 @@ public class CommonService {
      */
     public UserToken getUserToken(String token) throws UserTokenException{
 //    	UserToken userToken = userTokens.get(token);
+//    	userToken.increaseTime(Constants.TOKEN_INCREASEMENT);
     	UserToken userToken = new UserToken(1l, "testacc", new Date().getTime()); // For testing //TODO
     	if(null == userToken || null == userToken.getId()){
 			LOG.error("Cannot find UserToken with Token:{}", token);

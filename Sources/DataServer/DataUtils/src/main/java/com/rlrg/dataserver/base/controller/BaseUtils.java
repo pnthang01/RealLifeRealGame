@@ -27,6 +27,14 @@ public class BaseUtils {
 		e.printStackTrace(new PrintWriter(sw, true));
 		return sw.toString();
 	}
+	
+	public static long truncateMiliSecondDate(Date date){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.MILLISECOND, 0);
+		//
+		return calendar.getTime().getTime();
+	}
 
 	public static String getCurrentTimeStamp() {
 		SimpleDateFormat sdfDate = new SimpleDateFormat(
