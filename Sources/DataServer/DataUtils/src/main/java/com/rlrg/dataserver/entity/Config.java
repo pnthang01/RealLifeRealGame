@@ -5,12 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.rlrg.utillities.annotation.JsonDTO;
 import com.rlrg.utillities.annotation.JsonExport;
 
 @Entity
 @Table(name = "config")
-@JsonDTO(singularName = "Configuration", pluralName = "Configurations")
 public class Config {
 
 	@Id

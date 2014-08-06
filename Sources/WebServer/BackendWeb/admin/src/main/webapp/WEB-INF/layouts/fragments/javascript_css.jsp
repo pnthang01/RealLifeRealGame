@@ -16,6 +16,8 @@
 		<!-- This stylesheet contains advanced CSS3 features that do not validate yet -->
 		<link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/resources/css/css3.css" />" />
 		
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+		
 		<!-- JavaScript -->
 		
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
