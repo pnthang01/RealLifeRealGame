@@ -13,9 +13,9 @@ goto :deploy
 :deploy
 echo -------------------------------------------------------
 echo -------- All builds are completed succesfully. --------
-echo ---- The data server will be deployed in 10 seconds. ----
+echo ---- The data server will be deployed in 2 seconds. ----
 echo -------------------------------------------------------
-timeout /t 10 /nobreak > NUL
+timeout /t 2 /nobreak > NUL
 
 cd "%CURRENT_DIR%\DataServer\DataServer\target"
 call java -jar .\data.war

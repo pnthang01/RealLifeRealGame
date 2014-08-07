@@ -9,35 +9,45 @@
 
   <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
 
-   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-   <script src="/rlrg/js/jquery-2.1.0.min.js" type="text/javascript"></script>
-   <script  type="text/javascript">
-	$(document).ready(function(){
-		$("#formLogin").submit(function(){
-		   var dataSend =  $("#formLogin").serialize();
-		   var url="/rlrg/info.php"
-		   $.ajax({
-           type: "POST",
-           url: url,
-           data: dataSend, 
-           success: function(data)
-           { 
-            console.log(data);
-    			  var objData = JSON.parse(data);
-    			  if(objData.ErrorCode == 1){
-    				    alert(objData.Msg);
-                $("#username").focus();
+  <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+  <script src="/js/common.js" type="text/javascript"></script>
+  <script src="/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+  <script  type="text/javascript">
+      //kiem tra neu da dang nhap thi chuyen huong nguoi dung den trang chur
+       var token =   getCookie(TOKEN);
+       console.log(token+"gia tri ");
+       if(!token=="" || token == undefined){
+          window.location.href = '/home.php'; 
+       }
 
-    			  } else {
-    				    alert("xin chao "+objData.data.User.Username);
-                window.location.href = '/rlrg/home.php'; 
-
-			       }
-           }
-         });
-			return false;
-		});
-	});
+    	$(document).ready(function(){
+    
+    		$("#formLogin").submit(function(){
+    		   var dataSend =  $(this).serialize();
+    		   var url="/info.php"
+    		   $.ajax({
+               type: "POST",
+               url: url,
+               data: dataSend, 
+               success: function(data)
+               { 
+                console.log(data);
+        			  var objData = JSON.parse(data);
+        			  if(objData.ErrorCode == 1){
+        				    alert(objData.Msg);
+                    $("#username").focus();
+        			  } else {
+        				    alert("xin chao "+objData.data.User.FirstName);
+                    setCookie(TOKEN,objData.data.User.Token,1);
+                    setCookie(FIRST_NAME,objData.data.User.FirstName,1);
+                    setCookie(LAST_NAME,objData.data.User.LastName,1);
+                    window.location.href = '/home.php'; 
+    			       }
+               }
+             });
+    			return false;
+    		});
+    	});
    </script>
 
 </head>

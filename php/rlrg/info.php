@@ -1,9 +1,11 @@
 <?php
-//set POST variables
+
+include 'common.php';
+
 if(isset($_POST['user']) && isset ($_POST['pass'])){
 	$username = $_POST['user'];
 	$password = $_POST['pass'];
-	$url = 'http://localhost:9090/data/user/login';
+	$url = HOT_SERVER.'/user/login';
 	$fields_string="";
 	$fields = array(
 		'username' => urlencode($username),
