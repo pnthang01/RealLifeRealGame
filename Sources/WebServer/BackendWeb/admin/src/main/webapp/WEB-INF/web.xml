@@ -27,7 +27,10 @@
 			,/WEB-INF/init-webmvc.xml
 		</param-value>
 	</context-param>
-
+	<mime-mapping>
+		<extension>ico</extension>
+		<mime-type>image/x-icon</mime-type>
+	</mime-mapping>
 	<!-- Spring Security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

@@ -2,7 +2,7 @@
 
 setlocal
 
-set CURRENT_DIR="D:\project\game\RealLifeRealGame\Sources"
+set CURRENT_DIR="E:\Workspace\Projects\RealLifeRealGame\Sources"
 
 if not exist "%CURRENT_DIR%\Utillities\pom.xml" goto :error
 cd "%CURRENT_DIR%\Utillities\"
@@ -10,6 +10,10 @@ call mvn clean install
 
 if not exist "%CURRENT_DIR%\DataServer\DataUtils\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\DataUtils\"
+call mvn install clean
+
+if not exist "%CURRENT_DIR%\DataServer\Modules\Statistic-api\pom.xml" goto :error
+cd "%CURRENT_DIR%\DataServer\Modules\Statistic-api\"
 call mvn install clean
 
 if not exist "%CURRENT_DIR%\DataServer\Modules\LanguageAPI\pom.xml" goto :error
