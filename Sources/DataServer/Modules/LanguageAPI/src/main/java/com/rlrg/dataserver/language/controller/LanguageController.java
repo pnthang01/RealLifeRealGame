@@ -22,6 +22,7 @@ import com.rlrg.utillities.exception.BaseException;
 @RequestMapping("/language")
 @Controller
 public class LanguageController extends BaseController{
+	
 	public static final Logger LOG = LoggerFactory.getLogger(LanguageController.class);
 	
 	@Autowired

@@ -23,7 +23,7 @@ public class CommonService {
 	
     @Autowired
     private CommonRepository commonRepo;
-
+    
     private static Map<String, UserToken> userTokens;
     
     public CommonService(){
@@ -34,6 +34,10 @@ public class CommonService {
     	return userTokens.size();
     }
     
+    public Map<String, UserToken> getUserTokens(){
+    	return userTokens;
+    }
+
     /**
      * Get UserToken bases on token parameter
      * @param token
@@ -42,6 +46,7 @@ public class CommonService {
      */
     public UserToken getUserToken(String token) throws UserTokenException{
 //    	UserToken userToken = userTokens.get(token);
+//    	userToken.increaseTime(Constants.TOKEN_INCREASEMENT);
     	UserToken userToken = new UserToken(1l, "testacc", new Date().getTime()); // For testing //TODO
     	if(null == userToken || null == userToken.getId()){
 			LOG.error("Cannot find UserToken with Token:{}", token);

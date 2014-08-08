@@ -16,4 +16,5 @@
 	<bean id="permissionReader" class="com.rlrg.utillities.service.PermissionWebServiceReader" />
 	<bean id="roleReader" class="com.rlrg.utillities.service.RoleWebServiceReader" />
 	<bean id="statisticReader" class="com.rlrg.utillities.service.StatisticWebServiceReader" />
+	<bean id="configReader" class="com.rlrg.utillities.service.ConfigurationWebServiceReader" />
 </beans>

@@ -63,7 +63,23 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	public Task saveTask(Task task){
 		return taskRepo.save(task);
 	}
-
+	
+	@Override
+	public List<Task> saveTasks(List<Task> tasks){
+		return taskRepo.save(tasks);
+	}
+	
+	public List<Task> getTasksByStatus(TaskStatus status, Integer day, Integer month){
+		if (TaskStatus.PROGRESSING.equals(status)){
+			return taskRepo.getTasksByStatusSpecial2(status, day, month);
+		} else {
+			return taskRepo.getTasksByStatusSpecial1(status, day, month);
+		}
+	}
+	
+	public List<Task> getTasksByStatus(TaskStatus status){
+		return taskRepo.getTasksByStatus(status);
+	}
 	
 	/**
 	 * Create new #Task entity, the method will get #User and #Category from database.

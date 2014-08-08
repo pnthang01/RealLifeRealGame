@@ -1,29 +1,20 @@
 package com.rlrg.webserver.admin.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.statistic.dto.StatisticDTO;
+import com.rlrg.utillities.exception.ConvertException;
+import com.rlrg.utillities.service.StatisticWebServiceReader;
 
 @Service
 public class MvcStatisticService {
+	
+	@Autowired
+	private StatisticWebServiceReader statisticReader;
 
-	public StatisticDTO getLoginStatistic(){
-		StatisticDTO dto = new StatisticDTO();
-        int[] values = new int[4];
-        String[] labels = new String[4];
-        //
-        labels[0] = "Last 4 week";
-        labels[1] = "Last 3 week";
-        labels[2] = "Last 2 week";
-        labels[3] = "Last week";
-        //
-        values[0] = 278823;
-        values[1] = 652465;
-        values[2] = 485756;
-        values[3] = 555658;
-        //
-        dto.setLabels(labels);
-        dto.setValues(values);
-		return dto;
+	public StatisticDTO getLoginStatistic(int months) throws RestClientException, ConvertException{
+		return statisticReader.getLoginStatistic(months);
 	}
 }

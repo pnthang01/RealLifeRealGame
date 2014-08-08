@@ -2,7 +2,7 @@
 
 setlocal
 
-set CURRENT_DIR="E:\Workspace\Projects\RealLifeRealGame\Sources"
+set CURRENT_DIR="D:\project\game\RealLifeRealGame\Sources"
 
 if not exist "%CURRENT_DIR%\Utillities\pom.xml" goto :error
 cd "%CURRENT_DIR%\Utillities\"

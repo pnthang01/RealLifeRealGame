@@ -31,7 +31,7 @@ public abstract class BaseWebServiceReader<T>{
 	 * @return
 	 * @throws ConvertException
 	 */
-	public ResultList<T> getListOfObjects(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
+	protected ResultList<T> getListOfObjects(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String json = restTemplate.getForObject(finalUrl, String.class, urlParams);
@@ -72,7 +72,7 @@ public abstract class BaseWebServiceReader<T>{
 	 * @throws ConvertException
 	 * @throws RestClientException
 	 */
-	public T getAnObject(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
+	protected T getAnObject(String url, String moduleName, Object... urlParams) throws ConvertException, RestClientException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String json = restTemplate.getForObject(finalUrl, String.class, urlParams);
@@ -103,7 +103,7 @@ public abstract class BaseWebServiceReader<T>{
 	 * @return
 	 * @throws ConvertException
 	 */
-	public boolean postAnObjectT(String url, String moduleName, T objectT) throws ConvertException{
+	protected boolean postAnObjectT(String url, String moduleName, T objectT) throws ConvertException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String json = jsonExporter.encodeObjectToJson(objectT);
@@ -131,7 +131,7 @@ public abstract class BaseWebServiceReader<T>{
 	 * @param urlParams
 	 * @return
 	 */
-	public boolean postListOfParameters(String url, String moduleName, Object... urlParams){
+	protected boolean postListOfParameters(String url, String moduleName, Object... urlParams){
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		String resultJson = restTemplate.postForObject(finalUrl, null, String.class, urlParams);

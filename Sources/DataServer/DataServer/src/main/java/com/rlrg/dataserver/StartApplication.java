@@ -21,6 +21,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rlrg.checker.MainChecker;
@@ -32,6 +34,8 @@ import com.rlrg.utillities.json.JsonExporter;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
+@EnableTransactionManagement
+@EnableScheduling
 @PropertySources({
 	@PropertySource("classpath:application.properties")
 })

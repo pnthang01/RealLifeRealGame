@@ -31,7 +31,6 @@
 	<li><a href="#"> Settings </a>
 
 		<ul>
-			<li><a href="#">Account settings</a></li>
-			<li><a href="#">Domain settings</a></li>
+			<li><a href="<c:url value="/config/manage.html"/>">System settings</a></li>
 		</ul></li>
 </ul>

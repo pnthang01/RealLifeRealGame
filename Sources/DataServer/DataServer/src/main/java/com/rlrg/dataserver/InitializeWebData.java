@@ -47,11 +47,17 @@ import com.rlrg.dataserver.task.dto.CategoryDTO;
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.Category;
 import com.rlrg.dataserver.task.entity.Task;
+import com.rlrg.dataserver.task.scheduler.TaskScheduler;
 import com.rlrg.dataserver.task.service.CategoryService;
 import com.rlrg.dataserver.task.service.TaskService;
 
 @Configuration
 public class InitializeWebData {
+	
+	@Bean
+	public TaskScheduler taskScheduler(){
+		return new TaskScheduler();
+	}
 	
 	@Bean
 	public IStatisticService<?, StatisticDTO> getStatisticService(){

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rlrg.dataserver.statistic.dto.StatisticDTO;
+import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.webserver.admin.service.MvcStatisticService;
 
 @RequestMapping("/statistic")
@@ -19,10 +20,10 @@ public class MvcStatisticController {
 	@Autowired
 	private MvcStatisticService statisticService;
 	
-	@RequestMapping(value = "/dahsboard.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/dashboard.html", method = RequestMethod.GET)
 	public String edit(ModelMap model) {
 		try {
-			StatisticDTO data = statisticService.getLoginStatistic();
+			StatisticDTO data = statisticService.getLoginStatistic(Constants.TOTAL_STATISTIC_ROWS);
 			model.addAttribute("statisticDTO", data);
 			//
 			return "dashboard";

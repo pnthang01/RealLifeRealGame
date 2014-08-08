@@ -1,6 +1,7 @@
 package com.rlrg.dataserver.base.service;
 
 import java.util.List;
+
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
@@ -10,6 +11,8 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 
 	public T saveTask(T task);
 	
+	public List<T> saveTasks(List<T> tasks);
+	
 	public void create(V dto, String token) throws Exception;
 	
 	public void update(V dto, String token) throws Exception;
@@ -18,9 +21,13 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 	
 	public TaskDTO getTaskById(Long taskId);
 	
-	public List<TaskDTO> getTasksByNameAndUser(String name, String token, Integer pageNumber) throws UserTokenException;
+	public List<T> getTasksByStatus(TaskStatus status);
 	
-	public List<TaskDTO> getTaskByCategoryAndUser(String categoryCode, String token, Integer pageNumber) throws UserTokenException;
+	public List<T> getTasksByStatus(TaskStatus status, Integer day, Integer month);
+	
+	public List<V> getTasksByNameAndUser(String name, String token, Integer pageNumber) throws UserTokenException;
+	
+	public List<V> getTaskByCategoryAndUser(String categoryCode, String token, Integer pageNumber) throws UserTokenException;
 	
 	public List<V> searchTasksByKeyword(String keyword, Integer pageNumber);
 	
