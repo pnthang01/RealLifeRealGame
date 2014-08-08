@@ -3,7 +3,7 @@ package com.gamification.rlrg.module.ui.components;
 import java.util.ArrayList;
 import java.util.List;
 
-import nghiem.app.core.components.ViewPagerFragment;
+import lvnghiem.app.core.components.ViewPagerFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;

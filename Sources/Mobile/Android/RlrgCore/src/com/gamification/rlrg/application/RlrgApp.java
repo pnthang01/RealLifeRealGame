@@ -2,9 +2,9 @@ package com.gamification.rlrg.application;
 
 import java.util.List;
 
-import nghiem.app.core.application.DeviceManager;
-import nghiem.app.core.application.NghiemBaseApp;
-import nghiem.app.core.exception.ExceptionHandler;
+import lvnghiem.app.core.application.DeviceManager;
+import lvnghiem.app.core.application.NghiemBaseApp;
+import lvnghiem.app.core.exception.ExceptionHandler;
 
 import org.joda.time.DateTime;
 

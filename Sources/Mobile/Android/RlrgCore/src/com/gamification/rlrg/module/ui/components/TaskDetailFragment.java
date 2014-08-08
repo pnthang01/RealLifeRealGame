@@ -3,7 +3,7 @@ package com.gamification.rlrg.module.ui.components;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import nghiem.app.core.components.NghiemFragment;
+import lvnghiem.app.core.components.NghiemFragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;

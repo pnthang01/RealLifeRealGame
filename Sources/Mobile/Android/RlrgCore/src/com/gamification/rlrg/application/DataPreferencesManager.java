@@ -1,7 +1,7 @@
 package com.gamification.rlrg.application;
 
-import nghiem.app.core.application.AssestsManager;
-import nghiem.app.core.utils.Logger;
+import lvnghiem.app.core.application.AssestsManager;
+import lvnghiem.app.core.utils.Logger;
 import android.content.Context;
 import android.content.SharedPreferences;
 

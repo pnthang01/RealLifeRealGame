@@ -1,6 +1,6 @@
 package com.gamification.rlrg.module.ui.components;
 
-import nghiem.app.core.components.NghiemFragment;
+import lvnghiem.app.core.components.NghiemFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

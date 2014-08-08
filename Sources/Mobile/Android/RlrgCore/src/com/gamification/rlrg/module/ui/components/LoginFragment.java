@@ -1,8 +1,8 @@
 package com.gamification.rlrg.module.ui.components;
 
-import nghiem.app.core.animation.SlideAnimation;
-import nghiem.app.core.application.DeviceManager;
-import nghiem.app.core.components.NghiemFragment;
+import lvnghiem.app.core.animation.SlideAnimation;
+import lvnghiem.app.core.application.DeviceManager;
+import lvnghiem.app.core.components.NghiemFragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;

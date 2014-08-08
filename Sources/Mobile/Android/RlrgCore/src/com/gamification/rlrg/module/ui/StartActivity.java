@@ -3,8 +3,8 @@ package com.gamification.rlrg.module.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import nghiem.app.core.components.NavigationActivity;
-import nghiem.app.core.data.NavigationData;
+import lvnghiem.app.core.components.NavigationActivity;
+import lvnghiem.app.core.data.NavigationData;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;

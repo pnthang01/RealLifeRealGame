@@ -1,6 +1,6 @@
 package com.gamification.rlrg.module.ui.components;
 
-import nghiem.app.core.components.ListViewFragment;
+import lvnghiem.app.core.components.ListViewFragment;
 
 import org.joda.time.DateTime;
 
