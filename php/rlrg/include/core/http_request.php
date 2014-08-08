@@ -36,12 +36,4 @@
 	}
 
 
-	$anhdt = new Core();
-	$anhdt->setParam("number","anh dinh dep trai");
-	$anhdt->setParam("number2","anh dinh dep traidasd");
-	$anhdt->setParam("number3","anh dinh dep tradasdasi");
-	$arrayResult =  $anhdt -> getTest();
 
-	echo "<pre>";
-		print_r($arrayResult);
-	echo "<pre>";
