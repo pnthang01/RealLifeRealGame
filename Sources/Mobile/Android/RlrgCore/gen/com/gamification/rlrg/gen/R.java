@@ -24,16 +24,6 @@ public final class R {
         public static int task_status=0x7f0a0003;
     }
     public static final class attr {
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static int collapse=0x7f010002;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -41,7 +31,15 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int duration=0x7f010001;
+        public static int duration=0x7f010000;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int isVertical=0x7f010003;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -51,15 +49,17 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int expand=0x7f010003;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+        public static int max=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int fragment=0x7f010000;
+        public static int min=0x7f010001;
     }
     public static final class color {
         public static int background_solid=0x7f050000;
@@ -107,38 +107,40 @@ containing a value of this type.
         public static int actionbar_btn_right_2=0x7f0b0004;
         public static int actionbar_btn_right_text=0x7f0b0006;
         public static int actionbar_title=0x7f0b0003;
-        public static int btn_facebook=0x7f0b0019;
-        public static int btn_login=0x7f0b0015;
-        public static int btn_twitter=0x7f0b001a;
-        public static int ckb_remember=0x7f0b0016;
+        public static int btn_facebook=0x7f0b0018;
+        public static int btn_login=0x7f0b0014;
+        public static int btn_show=0x7f0b001b;
+        public static int btn_twitter=0x7f0b0019;
+        public static int ckb_remember=0x7f0b0015;
         public static int drawer_layout=0x7f0b0008;
-        public static int edit_complete=0x7f0b000f;
-        public static int edit_name=0x7f0b000e;
-        public static int edit_password=0x7f0b0014;
-        public static int edit_username=0x7f0b0013;
+        public static int edit_complete=0x7f0b000e;
+        public static int edit_name=0x7f0b000d;
+        public static int edit_password=0x7f0b0013;
+        public static int edit_username=0x7f0b0012;
         public static int fragment_container=0x7f0b0000;
-        public static int layout_content=0x7f0b000c;
-        public static int layout_login=0x7f0b0012;
-        public static int logo=0x7f0b0011;
+        public static int layout_expand=0x7f0b001c;
+        public static int layout_login=0x7f0b0011;
+        public static int logo=0x7f0b0010;
         public static int main_view=0x7f0b0007;
         public static int navigation=0x7f0b0009;
         public static int navigation_list=0x7f0b000a;
-        public static int pager=0x7f0b0021;
-        public static int pager_strip=0x7f0b0022;
-        public static int progress_bar=0x7f0b0023;
+        public static int pager=0x7f0b0023;
+        public static int pager_strip=0x7f0b0024;
+        public static int pgb_angel_devil=0x7f0b001a;
+        public static int progress_bar=0x7f0b0025;
         public static int search_box=0x7f0b000b;
-        public static int spinner_category=0x7f0b000d;
-        public static int spinner_difficulty=0x7f0b0010;
-        public static int text_category=0x7f0b001b;
-        public static int text_complete=0x7f0b001d;
-        public static int text_difficulty=0x7f0b001e;
-        public static int text_name=0x7f0b001c;
-        public static int text_point=0x7f0b001f;
-        public static int text_sharing=0x7f0b0017;
-        public static int text_status=0x7f0b0020;
-        public static int title=0x7f0b0025;
-        public static int view_buttons=0x7f0b0018;
-        public static int webview=0x7f0b0024;
+        public static int spinner_category=0x7f0b000c;
+        public static int spinner_difficulty=0x7f0b000f;
+        public static int text_category=0x7f0b001d;
+        public static int text_complete=0x7f0b001f;
+        public static int text_difficulty=0x7f0b0020;
+        public static int text_name=0x7f0b001e;
+        public static int text_point=0x7f0b0021;
+        public static int text_sharing=0x7f0b0016;
+        public static int text_status=0x7f0b0022;
+        public static int title=0x7f0b0027;
+        public static int view_buttons=0x7f0b0017;
+        public static int webview=0x7f0b0026;
     }
     public static final class integer {
         public static int settings_database_version=0x7f080000;
@@ -155,19 +157,18 @@ containing a value of this type.
         public static int activity_with_actionbar=0x7f030001;
         public static int activity_with_navigation=0x7f030002;
         public static int dialog_search=0x7f030003;
-        public static int expand_collapse=0x7f030004;
-        public static int fragment_create_task=0x7f030005;
-        public static int fragment_login=0x7f030006;
-        public static int fragment_sharing=0x7f030007;
-        public static int fragment_showroom=0x7f030008;
-        public static int fragment_task_detail=0x7f030009;
-        public static int fragment_view_pager=0x7f03000a;
-        public static int fragment_view_pager_with_tab_strip=0x7f03000b;
-        public static int fragment_view_pager_with_title_strip=0x7f03000c;
-        public static int fragment_web=0x7f03000d;
-        public static int list_item_game=0x7f03000e;
-        public static int list_item_navigation=0x7f03000f;
-        public static int list_view=0x7f030010;
+        public static int fragment_create_task=0x7f030004;
+        public static int fragment_login=0x7f030005;
+        public static int fragment_sharing=0x7f030006;
+        public static int fragment_showroom=0x7f030007;
+        public static int fragment_task_detail=0x7f030008;
+        public static int fragment_view_pager=0x7f030009;
+        public static int fragment_view_pager_with_tab_strip=0x7f03000a;
+        public static int fragment_view_pager_with_title_strip=0x7f03000b;
+        public static int fragment_web=0x7f03000c;
+        public static int list_item_game=0x7f03000d;
+        public static int list_item_navigation=0x7f03000e;
+        public static int list_view=0x7f03000f;
     }
     public static final class string {
         public static int action_bar=0x7f060000;
@@ -191,6 +192,8 @@ containing a value of this type.
         public static int action_quit_app=0x7f060018;
         public static int action_search=0x7f06001f;
         public static int action_sharing=0x7f06003d;
+        public static int action_show_less=0x7f06003e;
+        public static int action_show_more=0x7f06003f;
         public static int action_yes=0x7f06001b;
         /**  General 
          */
@@ -211,7 +214,7 @@ containing a value of this type.
         public static int hint_username=0x7f060036;
         /**  Message 
          */
-        public static int message_login_failed=0x7f06003e;
+        public static int message_login_failed=0x7f060040;
         public static int message_no_internet_connection=0x7f060017;
         /**  Message 
          */
@@ -275,35 +278,19 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #expand_collapse_collapse com.gamification.rlrg.gen:collapse}</code></td><td></td></tr>
            <tr><td><code>{@link #expand_collapse_duration com.gamification.rlrg.gen:duration}</code></td><td></td></tr>
-           <tr><td><code>{@link #expand_collapse_expand com.gamification.rlrg.gen:expand}</code></td><td></td></tr>
-           <tr><td><code>{@link #expand_collapse_fragment com.gamification.rlrg.gen:fragment}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_isVertical com.gamification.rlrg.gen:isVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_max com.gamification.rlrg.gen:max}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_min com.gamification.rlrg.gen:min}</code></td><td></td></tr>
            </table>
-           @see #expand_collapse_collapse
            @see #expand_collapse_duration
-           @see #expand_collapse_expand
-           @see #expand_collapse_fragment
+           @see #expand_collapse_isVertical
+           @see #expand_collapse_max
+           @see #expand_collapse_min
          */
         public static final int[] expand_collapse = {
             0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
         };
-        /**
-          <p>This symbol is the offset where the {@link com.gamification.rlrg.gen.R.attr#collapse}
-          attribute's value can be found in the {@link #expand_collapse} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.gamification.rlrg.gen:collapse
-        */
-        public static final int expand_collapse_collapse = 2;
         /**
           <p>This symbol is the offset where the {@link com.gamification.rlrg.gen.R.attr#duration}
           attribute's value can be found in the {@link #expand_collapse} array.
@@ -317,9 +304,23 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.gamification.rlrg.gen:duration
         */
-        public static final int expand_collapse_duration = 1;
+        public static final int expand_collapse_duration = 0;
         /**
-          <p>This symbol is the offset where the {@link com.gamification.rlrg.gen.R.attr#expand}
+          <p>This symbol is the offset where the {@link com.gamification.rlrg.gen.R.attr#isVertical}
+          attribute's value can be found in the {@link #expand_collapse} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.gamification.rlrg.gen:isVertical
+        */
+        public static final int expand_collapse_isVertical = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.gamification.rlrg.gen.R.attr#max}
           attribute's value can be found in the {@link #expand_collapse} array.
 
 
@@ -331,22 +332,24 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.gamification.rlrg.gen:expand
+          @attr name com.gamification.rlrg.gen:max
         */
-        public static final int expand_collapse_expand = 3;
+        public static final int expand_collapse_max = 2;
         /**
-          <p>This symbol is the offset where the {@link com.gamification.rlrg.gen.R.attr#fragment}
+          <p>This symbol is the offset where the {@link com.gamification.rlrg.gen.R.attr#min}
           attribute's value can be found in the {@link #expand_collapse} array.
 
 
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.gamification.rlrg.gen:fragment
+          @attr name com.gamification.rlrg.gen:min
         */
-        public static final int expand_collapse_fragment = 0;
+        public static final int expand_collapse_min = 1;
     };
 }

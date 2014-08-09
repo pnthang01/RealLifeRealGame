@@ -17,16 +17,6 @@ public final class R {
         public static int show_up=0x7f040005;
     }
     public static final class attr {
-        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static int collapse=0x7f010002;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -34,7 +24,15 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int duration=0x7f010001;
+        public static int duration=0x7f010000;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int isVertical=0x7f010003;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -44,15 +42,17 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int expand=0x7f010003;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+        public static int max=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int fragment=0x7f010000;
+        public static int min=0x7f010001;
     }
     public static final class color {
         public static int background_solid=0x7f050000;
@@ -100,15 +100,14 @@ containing a value of this type.
         public static int actionbar_btn_right_text=0x7f0a0005;
         public static int actionbar_title=0x7f0a0002;
         public static int drawer_layout=0x7f0a0007;
-        public static int layout_content=0x7f0a000a;
         public static int main_view=0x7f0a0006;
         public static int navigation=0x7f0a0008;
         public static int navigation_list=0x7f0a0009;
-        public static int pager=0x7f0a000b;
-        public static int pager_strip=0x7f0a000c;
-        public static int progress_bar=0x7f0a000d;
-        public static int title=0x7f0a000f;
-        public static int webview=0x7f0a000e;
+        public static int pager=0x7f0a000a;
+        public static int pager_strip=0x7f0a000b;
+        public static int progress_bar=0x7f0a000c;
+        public static int title=0x7f0a000e;
+        public static int webview=0x7f0a000d;
     }
     public static final class integer {
         public static int settings_database_version=0x7f080000;
@@ -116,13 +115,12 @@ containing a value of this type.
     public static final class layout {
         public static int activity_with_actionbar=0x7f030000;
         public static int activity_with_navigation=0x7f030001;
-        public static int expand_collapse=0x7f030002;
-        public static int fragment_view_pager=0x7f030003;
-        public static int fragment_view_pager_with_tab_strip=0x7f030004;
-        public static int fragment_view_pager_with_title_strip=0x7f030005;
-        public static int fragment_web=0x7f030006;
-        public static int list_item_navigation=0x7f030007;
-        public static int list_view=0x7f030008;
+        public static int fragment_view_pager=0x7f030002;
+        public static int fragment_view_pager_with_tab_strip=0x7f030003;
+        public static int fragment_view_pager_with_title_strip=0x7f030004;
+        public static int fragment_web=0x7f030005;
+        public static int list_item_navigation=0x7f030006;
+        public static int list_view=0x7f030007;
     }
     public static final class string {
         public static int action_bar=0x7f060000;
@@ -184,35 +182,19 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #expand_collapse_collapse nghiem.app.gen:collapse}</code></td><td></td></tr>
            <tr><td><code>{@link #expand_collapse_duration nghiem.app.gen:duration}</code></td><td></td></tr>
-           <tr><td><code>{@link #expand_collapse_expand nghiem.app.gen:expand}</code></td><td></td></tr>
-           <tr><td><code>{@link #expand_collapse_fragment nghiem.app.gen:fragment}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_isVertical nghiem.app.gen:isVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_max nghiem.app.gen:max}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_min nghiem.app.gen:min}</code></td><td></td></tr>
            </table>
-           @see #expand_collapse_collapse
            @see #expand_collapse_duration
-           @see #expand_collapse_expand
-           @see #expand_collapse_fragment
+           @see #expand_collapse_isVertical
+           @see #expand_collapse_max
+           @see #expand_collapse_min
          */
         public static final int[] expand_collapse = {
             0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
         };
-        /**
-          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#collapse}
-          attribute's value can be found in the {@link #expand_collapse} array.
-
-
-          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
-Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
-in (inches), mm (millimeters).
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name nghiem.app.gen:collapse
-        */
-        public static final int expand_collapse_collapse = 2;
         /**
           <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#duration}
           attribute's value can be found in the {@link #expand_collapse} array.
@@ -226,9 +208,23 @@ theme attribute (in the form
 containing a value of this type.
           @attr name nghiem.app.gen:duration
         */
-        public static final int expand_collapse_duration = 1;
+        public static final int expand_collapse_duration = 0;
         /**
-          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#expand}
+          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#isVertical}
+          attribute's value can be found in the {@link #expand_collapse} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nghiem.app.gen:isVertical
+        */
+        public static final int expand_collapse_isVertical = 3;
+        /**
+          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#max}
           attribute's value can be found in the {@link #expand_collapse} array.
 
 
@@ -240,22 +236,24 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name nghiem.app.gen:expand
+          @attr name nghiem.app.gen:max
         */
-        public static final int expand_collapse_expand = 3;
+        public static final int expand_collapse_max = 2;
         /**
-          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#fragment}
+          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#min}
           attribute's value can be found in the {@link #expand_collapse} array.
 
 
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name nghiem.app.gen:fragment
+          @attr name nghiem.app.gen:min
         */
-        public static final int expand_collapse_fragment = 0;
+        public static final int expand_collapse_min = 1;
     };
 }

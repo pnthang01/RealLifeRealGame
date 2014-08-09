@@ -16,10 +16,10 @@ public final class R {
 		public static final int show_up = 0x7f040006;
 	}
 	public static final class attr {
-		public static final int collapse = 0x7f010002;
-		public static final int duration = 0x7f010001;
-		public static final int expand = 0x7f010003;
-		public static final int fragment = 0x7f010000;
+		public static final int duration = 0x7f010000;
+		public static final int isVertical = 0x7f010003;
+		public static final int max = 0x7f010002;
+		public static final int min = 0x7f010001;
 	}
 	public static final class color {
 		public static final int background_solid = 0x7f050000;
@@ -65,15 +65,14 @@ public final class R {
 		public static final int actionbar_btn_right_text = 0x7f0b0006;
 		public static final int actionbar_title = 0x7f0b0003;
 		public static final int drawer_layout = 0x7f0b0008;
-		public static final int layout_content = 0x7f0b000c;
 		public static final int main_view = 0x7f0b0007;
 		public static final int navigation = 0x7f0b0009;
 		public static final int navigation_list = 0x7f0b000a;
-		public static final int pager = 0x7f0b0021;
-		public static final int pager_strip = 0x7f0b0022;
-		public static final int progress_bar = 0x7f0b0023;
-		public static final int title = 0x7f0b0025;
-		public static final int webview = 0x7f0b0024;
+		public static final int pager = 0x7f0b0023;
+		public static final int pager_strip = 0x7f0b0024;
+		public static final int progress_bar = 0x7f0b0025;
+		public static final int title = 0x7f0b0027;
+		public static final int webview = 0x7f0b0026;
 	}
 	public static final class integer {
 		public static final int settings_database_version = 0x7f080000;
@@ -81,13 +80,12 @@ public final class R {
 	public static final class layout {
 		public static final int activity_with_actionbar = 0x7f030001;
 		public static final int activity_with_navigation = 0x7f030002;
-		public static final int expand_collapse = 0x7f030004;
-		public static final int fragment_view_pager = 0x7f03000a;
-		public static final int fragment_view_pager_with_tab_strip = 0x7f03000b;
-		public static final int fragment_view_pager_with_title_strip = 0x7f03000c;
-		public static final int fragment_web = 0x7f03000d;
-		public static final int list_item_navigation = 0x7f03000f;
-		public static final int list_view = 0x7f030010;
+		public static final int fragment_view_pager = 0x7f030009;
+		public static final int fragment_view_pager_with_tab_strip = 0x7f03000a;
+		public static final int fragment_view_pager_with_title_strip = 0x7f03000b;
+		public static final int fragment_web = 0x7f03000c;
+		public static final int list_item_navigation = 0x7f03000e;
+		public static final int list_view = 0x7f03000f;
 	}
 	public static final class string {
 		public static final int action_bar = 0x7f060000;
@@ -136,9 +134,9 @@ public final class R {
 	}
 	public static final class styleable {
 		public static final int[] expand_collapse = { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003 };
-		public static final int expand_collapse_collapse = 2;
-		public static final int expand_collapse_duration = 1;
-		public static final int expand_collapse_expand = 3;
-		public static final int expand_collapse_fragment = 0;
+		public static final int expand_collapse_duration = 0;
+		public static final int expand_collapse_isVertical = 3;
+		public static final int expand_collapse_max = 2;
+		public static final int expand_collapse_min = 1;
 	}
 }

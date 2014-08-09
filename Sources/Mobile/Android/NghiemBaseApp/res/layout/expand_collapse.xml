@@ -1,8 +1,0 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/full_screen" >
-
-    <View
-        android:id="@+id/layout_content"
-        style="@style/full_width" />
-
-</ScrollView>

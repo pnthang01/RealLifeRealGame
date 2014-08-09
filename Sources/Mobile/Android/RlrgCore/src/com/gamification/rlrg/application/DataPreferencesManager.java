@@ -12,12 +12,12 @@ import com.gamification.rlrg.gen.R;
 public class DataPreferencesManager
 {
 	private static final Logger LOG = new Logger(DataPreferencesManager.class);
-	private static final int MAX_POINT = RlrgApp.getInstance().getResources().getInteger(R.integer.settings_rules_point_max);
+	private static int sMaxPoint = 0;
 
 	public static final String PREFERENCE_USER_POINT = "USER_POINT";
-    public static final String PREFERENCE_LAST_LOGIN = "LAST_LOGIN";
-    public static final String PREFERENCE_CONTINUOUS_LOGIN = "CONTINUOUS_LOGIN";
-    public static final String PREFERENCE_UUID = "UUID";
+	public static final String PREFERENCE_LAST_LOGIN = "LAST_LOGIN";
+	public static final String PREFERENCE_CONTINUOUS_LOGIN = "CONTINUOUS_LOGIN";
+	public static final String PREFERENCE_UUID = "UUID";
 	public static final String PREFERENCE_USER = "USER";
 	public static final String PREFERENCE_PASS = "PASS";
 	public static final String PREFERENCE_REMEMBER_PASS = "REMEMBER_PASS";
@@ -28,17 +28,14 @@ public class DataPreferencesManager
 	public static final String JSON_TASKS = "JSON_TASKS";
 	public static final String JSON_ACHIEVEMENTS = "JSON_ACHIEVEMENTS";
 
-	@SuppressWarnings("rawtypes")
-	private static ThreadLocal sInitHolder = new ThreadLocal();
 	private static DataPreferencesManager sInstance;
 
 	private Context mContext;
 	private SharedPreferences mSharedPreferences;
 
-	@SuppressWarnings("unchecked")
 	public static DataPreferencesManager getInstance()
 	{
-		if (sInitHolder.get() == null)
+		if (sInstance == null)
 		{
 			synchronized (DataPreferencesManager.class)
 			{
@@ -46,7 +43,6 @@ public class DataPreferencesManager
 				{
 					sInstance = new DataPreferencesManager();
 				}
-				sInitHolder.set(Boolean.TRUE);
 			}
 		}
 		return sInstance;
@@ -55,6 +51,10 @@ public class DataPreferencesManager
 	private DataPreferencesManager()
 	{
 		mContext = RlrgApp.getInstance();
+		if (sMaxPoint == 0)
+		{
+			sMaxPoint = RlrgApp.getInstance().getResources().getInteger(R.integer.settings_rules_point_max);
+		}
 	}
 
 	public SharedPreferences getSharedPreferences(String fileName)
@@ -147,89 +147,89 @@ public class DataPreferencesManager
 		getStorage().edit().putBoolean(PREFERENCE_REMEMBER_PASS, isRemember).commit();
 	}
 
-    /**
-     * Get last login
-     */
-    public final long getLastLogin()
-    {
-        long last = getStorage().getLong(PREFERENCE_LAST_LOGIN, DateTime.now().getMillis());
-        LOG.debug("getLastLogin: " + last);
-        return last;
-    }
+	/**
+	 * Get last login
+	 */
+	public final long getLastLogin()
+	{
+		long last = getStorage().getLong(PREFERENCE_LAST_LOGIN, DateTime.now().getMillis());
+		LOG.debug("getLastLogin: " + last);
+		return last;
+	}
 
-    /**
-     * Save last login
-     */
-    public void saveLastLogin(long last)
-    {
-        LOG.debug("saveLastLogin: " + last);
-        getStorage().edit().putLong(PREFERENCE_LAST_LOGIN, last).commit();
-    }
+	/**
+	 * Save last login
+	 */
+	public void saveLastLogin(long last)
+	{
+		LOG.debug("saveLastLogin: " + last);
+		getStorage().edit().putLong(PREFERENCE_LAST_LOGIN, last).commit();
+	}
 
-    /**
-     * Get continuous login count
-     */
-    public final int getContinuousLogin()
-    {
-        int count = getStorage().getInt(PREFERENCE_CONTINUOUS_LOGIN, 0);
-        LOG.debug("getContinuousLogin: " + count);
-        return count;
-    }
+	/**
+	 * Get continuous login count
+	 */
+	public final int getContinuousLogin()
+	{
+		int count = getStorage().getInt(PREFERENCE_CONTINUOUS_LOGIN, 0);
+		LOG.debug("getContinuousLogin: " + count);
+		return count;
+	}
 
-    /**
-     * Save continuous login count
-     */
-    public void saveContinuousLogin(int count)
-    {
-        LOG.debug("saveContinuousLogin: " + count);
-        getStorage().edit().putInt(PREFERENCE_CONTINUOUS_LOGIN, count).commit();
-    }
+	/**
+	 * Save continuous login count
+	 */
+	public void saveContinuousLogin(int count)
+	{
+		LOG.debug("saveContinuousLogin: " + count);
+		getStorage().edit().putInt(PREFERENCE_CONTINUOUS_LOGIN, count).commit();
+	}
 
-    /**
-     * Increase continuous login count
-     */
-    public void increaseContinuousLogin()
-    {
-        saveContinuousLogin(getContinuousLogin() + 1);
-    }
+	/**
+	 * Increase continuous login count
+	 */
+	public void increaseContinuousLogin()
+	{
+		saveContinuousLogin(getContinuousLogin() + 1);
+	}
 
-    /**
-     * Get user point
-     */
-    public final int getUserPoint()
-    {
-        int point = getStorage().getInt(PREFERENCE_USER_POINT, 0);
-        LOG.debug("getUserPoint: " + point);
-        return point;
-    }
+	/**
+	 * Get user point
+	 */
+	public final int getUserPoint()
+	{
+		int point = getStorage().getInt(PREFERENCE_USER_POINT, 0);
+		LOG.debug("getUserPoint: " + point);
+		return point;
+	}
 
-    /**
-     * Save user point
-     */
-    public void saveUserPoint(int point)
-    {
-        int maxPoint = MAX_POINT;
-        if (point < -maxPoint)
-        {
-            point = -maxPoint;
-        }
-        if (point > maxPoint)
-        {
-            point = maxPoint;
-        }
-        LOG.debug("saveUserPoint: " + point);
-        getStorage().edit().putLong(PREFERENCE_USER_POINT, point).commit();
-    }
+	/**
+	 * Save user point
+	 */
+	public void saveUserPoint(int point)
+	{
+		int maxPoint = sMaxPoint;
+		if (point < -maxPoint)
+		{
+			point = -maxPoint;
+		}
+		if (point > maxPoint)
+		{
+			point = maxPoint;
+		}
+		LOG.debug("saveUserPoint: " + point);
+		getStorage().edit().putLong(PREFERENCE_USER_POINT, point).commit();
+	}
 
-    /**
-     * Add user point
-     */
-    public int addUserPoint(int point)
-    {
-        int newPoint = getUserPoint() + point;
-        saveUserPoint(newPoint);
-        return newPoint;
-    }
+	/**
+	 * Add user point
+	 */
+	public int addUserPoint(int point)
+	{
+		int newPoint = getUserPoint() + point;
+		saveUserPoint(newPoint);
+		return newPoint;
+	}
 
 	public void saveJsonUsers(String json)
 	{
@@ -239,7 +239,7 @@ public class DataPreferencesManager
 
 	public String loadJsonUsers()
 	{
-	    String json = getStorage().getString(JSON_USERS, AssestsManager.getInstance().getData(RlrgApp.getInstance().getString(R.string.settings_path_users)));
+		String json = getStorage().getString(JSON_USERS, AssestsManager.getInstance().getData(RlrgApp.getInstance().getString(R.string.settings_path_users)));
 		LOG.debug("loadJsonUsers: " + json);
 		return json;
 	}

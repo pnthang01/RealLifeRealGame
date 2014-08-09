@@ -2,10 +2,10 @@
 <resources>
 
     <declare-styleable name="expand_collapse">
-        <attr name="fragment" format="string" />
         <attr name="duration" format="integer" />
-        <attr name="collapse" format="dimension" />
-        <attr name="expand" format="dimension" />
+        <attr name="min" format="dimension" />
+        <attr name="max" format="dimension" />
+        <attr name="isVertical" format="boolean" />
     </declare-styleable>
 
 </resources>

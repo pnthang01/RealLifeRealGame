@@ -1,0 +1,57 @@
+{
+  "ErrorCode": "0",
+  "Msg": "Success",
+  "data": {
+    "Categories": [
+      {
+        "Code": "LKSJDKFL",
+        "Name": "Social",
+        "Description": "Share your activities on social networks",
+        "Position": "1",
+        "status": "true"
+      },
+      {
+        "Code": "AH6B769F",
+        "Name": "Communication",
+        "Description": "Communicate with other people around",
+        "Position": "2",
+        "status": "true"
+      },
+      {
+        "Code": "BNZBZBE6",
+        "Name": "Physical",
+        "Description": "Play sports",
+        "Position": "3",
+        "status": "true"
+      },
+      {
+        "Code": "RFYHJGDF",
+        "Name": "Art",
+        "Description": "Create artworks",
+        "Position": "4",
+        "status": "true"
+      },
+      {
+        "Code": "JIKASXDF",
+        "Name": "Knowledge",
+        "Description": "Read books or join training courses",
+        "Position": "5",
+        "status": "true"
+      },
+      {
+        "Code": "BHYTGFRG",
+        "Name": "Career",
+        "Description": "Do your jobs",
+        "Position": "6",
+        "status": "true"
+      },
+      {
+        "Code": "NBHOJRD6",
+        "Name": "Login",
+        "Description": "Login to use this application",
+        "Position": "7",
+        "status": "true"
+      }
+    ]
+  }
+}

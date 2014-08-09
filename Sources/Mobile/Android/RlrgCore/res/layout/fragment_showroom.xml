@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lvnghiem="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/full_screen"
-    android:orientation="vertical" >
+    style="@style/full_screen" >
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/pgb_angel_devil"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:max="3600" />
+
+    <LinearLayout
+        style="@style/full_width"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_show"
+            style="@style/wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:text="@string/action_show_more" />
+
+        <lvnghiem.app.core.components.ExpandCollapseView
+            android:id="@+id/layout_expand"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            lvnghiem:duration="5"
+            lvnghiem:isVertical="true"
+            lvnghiem:max="350dp"
+            lvnghiem:min="100dp" />
+    </LinearLayout>
+
+</RelativeLayout>

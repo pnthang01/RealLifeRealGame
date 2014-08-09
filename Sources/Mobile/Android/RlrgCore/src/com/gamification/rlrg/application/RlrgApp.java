@@ -25,26 +25,23 @@ import com.google.gson.Gson;
 
 public class RlrgApp extends NghiemBaseApp
 {
-    private static final DataPreferencesManager DATA = DataPreferencesManager.getInstance();
     private static final Gson GSON = new Gson();
     
 	public static boolean isStart = true;
 
-	@SuppressWarnings("rawtypes")
-	private static ThreadLocal sInitHolder = new ThreadLocal();
-
+	private static DataPreferencesManager sDataPreferencesManager;
+	private static RlrgApp sInstance;
+    
 	private Users users;
 	private Categories categories;
 	private Tasks tasks;
 	private Achievements achievements;
 	private Badges badges;
 
-	private static RlrgApp sInstance;
 
-	@SuppressWarnings("unchecked")
 	public static RlrgApp getInstance()
 	{
-		if (sInitHolder.get() == null)
+		if (sInstance == null)
 		{
 			synchronized (RlrgApp.class)
 			{
@@ -52,7 +49,6 @@ public class RlrgApp extends NghiemBaseApp
 				{
 					sInstance = new RlrgApp();
 				}
-				sInitHolder.set(Boolean.TRUE);
 			}
 		}
 		return sInstance;
@@ -66,6 +62,7 @@ public class RlrgApp extends NghiemBaseApp
 		{
 			sInstance = this;
 		}
+		sDataPreferencesManager = DataPreferencesManager.getInstance();
 	}
 
 	@Override
@@ -83,11 +80,11 @@ public class RlrgApp extends NghiemBaseApp
 		initUuid();
 		initErrorHandle();
 
-		users = (Users) GSON.fromJson(DATA.loadJsonUsers(), Users.class);
-		badges = (Badges) GSON.fromJson(DATA.loadJsonBadges(), Badges.class);
-		categories = (Categories) GSON.fromJson(DATA.loadJsonCategories(), Categories.class);
-		tasks = (Tasks) GSON.fromJson(DATA.loadJsonTasks(), Tasks.class);
-		achievements = (Achievements) GSON.fromJson(DATA.loadJsonAchievements(), Achievements.class);
+		users = (Users) GSON.fromJson(sDataPreferencesManager.loadJsonUsers(), Users.class);
+		badges = (Badges) GSON.fromJson(sDataPreferencesManager.loadJsonBadges(), Badges.class);
+		categories = (Categories) GSON.fromJson(sDataPreferencesManager.loadJsonCategories(), Categories.class);
+		tasks = (Tasks) GSON.fromJson(sDataPreferencesManager.loadJsonTasks(), Tasks.class);
+		achievements = (Achievements) GSON.fromJson(sDataPreferencesManager.loadJsonAchievements(), Achievements.class);
 	}
 
 	private void initErrorHandle()
@@ -113,10 +110,10 @@ public class RlrgApp extends NghiemBaseApp
             if (task.getCompleteTime() < DateTime.now().getMillis() && task.getStatus().equals(statuses[0]))
             {
                 task.setStatus(statuses[2]);
-                DATA.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_task_unfinish));
+                sDataPreferencesManager.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_task_unfinish));
             }
         }
-        DATA.saveJsonTasks(GSON.toJson(tasks, Tasks.class));
+        sDataPreferencesManager.saveJsonTasks(GSON.toJson(tasks, Tasks.class));
     }
 
 	public void checkAchievements()
