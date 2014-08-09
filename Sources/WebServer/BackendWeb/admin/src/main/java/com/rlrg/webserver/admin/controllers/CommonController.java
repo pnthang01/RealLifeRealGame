@@ -42,6 +42,12 @@ public class CommonController {
 		}
 	}
 	
+    @RequestMapping("favicon.ico")
+    public String favicon() {
+        return "forward:/resources/favicon.ico";
+    }
+    
+	
 	@RequestMapping("/upload")
 	public String upload(){
 		return null;

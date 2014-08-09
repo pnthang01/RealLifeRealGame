@@ -2,7 +2,7 @@
 
 setlocal
 
-set CURRENT_DIR="D:\project\game\RealLifeRealGame\Sources"
+set CURRENT_DIR="E:\Workspace\Projects\RealLifeRealGame\Sources"
 
 if not exist "%CURRENT_DIR%\DataServer\DataServer\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\DataServer\"
