@@ -19,10 +19,15 @@ import com.gamification.rlrg.data.Users;
 import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.data.entity.Badge;
 import com.gamification.rlrg.data.entity.Category;
+import com.gamification.rlrg.data.entity.Task;
+import com.gamification.rlrg.gen.R;
 import com.google.gson.Gson;
 
 public class RlrgApp extends NghiemBaseApp
 {
+    private static final DataPreferencesManager DATA = DataPreferencesManager.getInstance();
+    private static final Gson GSON = new Gson();
+    
 	public static boolean isStart = true;
 
 	@SuppressWarnings("rawtypes")
@@ -78,14 +83,11 @@ public class RlrgApp extends NghiemBaseApp
 		initUuid();
 		initErrorHandle();
 
-		Gson gson = new Gson();
-		DataPreferencesManager preferences = DataPreferencesManager.getInstance();
-
-		users = (Users) gson.fromJson(preferences.loadJsonUsers(), Users.class);
-		badges = (Badges) gson.fromJson(preferences.loadJsonBadges(), Badges.class);
-		categories = (Categories) gson.fromJson(preferences.loadJsonCategories(), Categories.class);
-		tasks = (Tasks) gson.fromJson(preferences.loadJsonTasks(), Tasks.class);
-		achievements = (Achievements) gson.fromJson(preferences.loadJsonAchievements(), Achievements.class);
+		users = (Users) GSON.fromJson(DATA.loadJsonUsers(), Users.class);
+		badges = (Badges) GSON.fromJson(DATA.loadJsonBadges(), Badges.class);
+		categories = (Categories) GSON.fromJson(DATA.loadJsonCategories(), Categories.class);
+		tasks = (Tasks) GSON.fromJson(DATA.loadJsonTasks(), Tasks.class);
+		achievements = (Achievements) GSON.fromJson(DATA.loadJsonAchievements(), Achievements.class);
 	}
 
 	private void initErrorHandle()
@@ -102,8 +104,22 @@ public class RlrgApp extends NghiemBaseApp
 			// TODO: register UUID with server
 		}
 	}
+    
+    public void checkTask()
+    {
+        String[] statuses = getResources().getStringArray(R.array.task_status);
+        for (Task task : tasks.getData().getElements())
+        {
+            if (task.getCompleteTime() < DateTime.now().getMillis() && task.getStatus().equals(statuses[0]))
+            {
+                task.setStatus(statuses[2]);
+                DATA.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_task_unfinish));
+            }
+        }
+        DATA.saveJsonTasks(GSON.toJson(tasks, Tasks.class));
+    }
 
-	public void checkAchievemnt()
+	public void checkAchievements()
 	{
 		for (Badge badge : badges.getData().getElements())
 		{

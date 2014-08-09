@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <string name="settings_date_format">dd/MM/yyyy</string>
+    <string name="settings_date_time_format">dd/MM/yyyy HH:mm:ss</string>
+    <string name="settings_password_cover">cb63a03774fdf986</string>
+    
+    <!-- Assets -->
+    <string name="settings_path_users">data/users.json</string>
+    <string name="settings_path_badges">data/badges.json</string>
+    <string name="settings_path_categories">data/categories.json</string>
+    <string name="settings_path_tasks">data/tasks.json</string>
+    <string name="settings_path_achievements">data/achievements.json</string>
+    
+    <!-- Rules -->
+    <integer name="settings_rules_point_max">1800</integer>
+    <integer name="settings_rules_point_login_over_period">-10</integer>
+    <integer name="settings_rules_point_task_add">2</integer>
+    <integer name="settings_rules_point_task_finish">4</integer>
+    <integer name="settings_rules_point_task_unfinish">-5</integer>
+    
+
+</resources>

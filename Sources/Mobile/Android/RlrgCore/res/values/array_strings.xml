@@ -25,6 +25,7 @@
     <string-array name="task_status">
         <item>NOTCOMPLETED</item>
         <item>COMPLETED</item>
+        <item>DELAYED</item>
     </string-array>
 
 </resources>

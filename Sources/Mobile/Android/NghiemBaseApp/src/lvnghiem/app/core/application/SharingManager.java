@@ -43,21 +43,22 @@ public class SharingManager extends BaseController
 		mContext = NghiemBaseApp.getInstance();
 	}
 
-	public void shareOnFacebook(String caption, String text, String facebookShareLink)
+	public void shareOnFacebook(String subject, String text)
 	{
-		caption = urlEncode(caption);
+	    subject = urlEncode(subject);
 		text = urlEncode(text);
+		String facebookShareLink = NghiemBaseApp.getInstance().getString(R.string.app_url);
 
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_SUBJECT, caption);
-		intent.putExtra(Intent.EXTRA_TITLE, text);
+		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+		intent.putExtra(Intent.EXTRA_TITLE, NghiemBaseApp.getInstance().getString(R.string.app_name));
 		intent.putExtra(Intent.EXTRA_TEXT, text + " " + facebookShareLink);
 
 		boolean facebookAppFound = processIntent(intent, "com.facebook");
 		if (!facebookAppFound)
 		{
-			String sharerUrl = mContext.getString(R.string.facebook_link) + "?u=" + facebookShareLink;
+			String sharerUrl = mContext.getString(R.string.settings_facebook_link) + "?u=" + facebookShareLink;
 			intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
 		}
 		mContext.startActivity(intent);
@@ -65,7 +66,7 @@ public class SharingManager extends BaseController
 
 	public void shareOnTwitter(String message)
 	{
-		String tweetUrl = String.format(mContext.getString(R.string.twitter_link) + "?text=%s", message);
+		String tweetUrl = String.format(mContext.getString(R.string.settings_twitter_link) + "?text=%s", message);
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(tweetUrl));
 		processIntent(intent, "com.twitter");
 		mContext.startActivity(intent);

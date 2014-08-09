@@ -19,7 +19,6 @@ import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
 import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
-import com.gamification.rlrg.settings.Settings;
 import com.google.gson.Gson;
 
 final class TaskDetailFragment extends NghiemFragment implements OnClickListener
@@ -65,7 +64,7 @@ final class TaskDetailFragment extends NghiemFragment implements OnClickListener
 			return;
 		}
 		mStatus = mActivity.getResources().getStringArray(R.array.task_status);
-		SimpleDateFormat format = new SimpleDateFormat(Settings.DATE_FORMAT);
+		SimpleDateFormat format = new SimpleDateFormat(RlrgApp.getInstance().getString(R.string.settings_date_format));
 		Bundle args = getArguments();
 		if (args == null)
 		{
@@ -87,7 +86,9 @@ final class TaskDetailFragment extends NghiemFragment implements OnClickListener
 	@Override
 	public void onClick(View view)
 	{
+	    int finishPoint = getResources().getInteger(R.integer.settings_rules_point_task_finish);
 		mTask.setStatus(mTask.getStatus().equals(mStatus[0]) ? mStatus[1] : mStatus[0]);
+		DataPreferencesManager.getInstance().addUserPoint(mTask.getStatus().equals(mStatus[0]) ? -finishPoint : finishPoint);
 		DataPreferencesManager.getInstance().saveJsonTasks(new Gson().toJson(mTasks, Tasks.class));
 		mActivity.replaceFragment(FragmentFactory.create(Type.SHOWROOM));
 	}

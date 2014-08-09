@@ -5,6 +5,10 @@ import java.util.List;
 
 import lvnghiem.app.core.components.NavigationActivity;
 import lvnghiem.app.core.data.NavigationData;
+
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -15,8 +19,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
+import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
-import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.components.FragmentFactory;
 import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
@@ -27,6 +31,8 @@ public final class StartActivity extends NavigationActivity implements Runnable
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
 
+	private static final DataPreferencesManager DATA = DataPreferencesManager.getInstance();
+	
 	private String[] mNavigationTitles;
 
 	@Override
@@ -122,10 +128,20 @@ public final class StartActivity extends NavigationActivity implements Runnable
 
 	public void onLoginSuccess()
 	{
-		// TODO: remove
-		// DataPreferencesManager.getInstance().increaseLoginCount();
-		RlrgApp.getInstance().getTasks().addTask("Login", 0, null, null, null, Task.STATUS_COMPLETED);
-		RlrgApp.getInstance().checkAchievemnt();
+		DateTime lastLogin = new DateTime(DATA.getLastLogin());
+		if (new Period(lastLogin, DateTime.now()).getDays() > 1)
+		{
+		    DATA.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_login_over_period));
+		    DATA.saveContinuousLogin(0);
+		}
+		else
+		{
+		    DATA.increaseContinuousLogin();
+		}
+		DATA.saveLastLogin(lastLogin.getMillis());
+
+		RlrgApp.getInstance().checkTask();
+		RlrgApp.getInstance().checkAchievements();
 
 		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		Fragment fragment = FragmentFactory.create(Type.SHOWROOM);

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- General -->
+    
     <!-- Title -->
     <string name="title_name">Name:</string>
     <string name="title_category">Category:</string>

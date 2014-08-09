@@ -1,14 +1,17 @@
 <resources>
 
-    <string name="app_name">NghiemBaseApp</string>
+    <string name="settings_default_charset">UTF-8</string>
+    <string name="settings_default_email_username">le.vinhnghiem@gmail.com</string>
+    <string name="settings_default_email_password">He!1@ngeI</string>
+    <string name="settings_twitter_link">https://twitter.com/intent/tweet</string>
+    <string name="settings_facebook_link">https://www.facebook.com/sharer/sharer.php</string>
+    <string name="settings_database_name">database_name.db</string>
+    <integer name="settings_database_version">1</integer>
     
-    <string name="default_email_username">le.vinhnghiem@gmail.com</string>
-    <string name="default_email_password">He!1@ngeI</string>
-    
-    <string name="twitter_link">https://twitter.com/intent/tweet</string>
-    <string name="facebook_link">https://www.facebook.com/sharer/sharer.php</string>
-    
-    <string name="database_name">database_name</string>
-    <string name="database_version">database_version</string>
+    <string name="settings_resolution_low">sw320</string>
+    <string name="settings_resolution_normal">sw480</string>
+    <string name="settings_resolution_high">sw640</string>
+    <string name="settings_resolution_xhigh">sw800</string>
+    <string name="settings_resolution_xxhigh">sw1024</string>
 
 </resources>

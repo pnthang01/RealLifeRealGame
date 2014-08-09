@@ -14,12 +14,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
 import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
-import com.gamification.rlrg.settings.Settings;
 
 class TaskPageFragment extends ListViewFragment<Task>
 {
@@ -88,7 +88,7 @@ class TaskPageFragment extends ListViewFragment<Task>
 		DateTime date = new DateTime(item.getCompleteTime());
 
 		String message = "Category: %s\nName: %s\nComplete Time: %s\nDifficulty Level: %s\nStatus: %s\nPoint: %s";
-		String print = String.format(message, item.getCategory().getName(), item.getName(), date.toString(Settings.DATETIME_FORMAT), item.getDifficultyLevel(), item.getStatus(), item.getPoint());
+		String print = String.format(message, item.getCategory().getName(), item.getName(), date.toString(RlrgApp.getInstance().getString(R.string.settings_date_time_format)), item.getDifficultyLevel(), item.getStatus(), item.getPoint());
 
 		((TextView) view).setText(print);
 		return view;

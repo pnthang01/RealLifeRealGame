@@ -20,12 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gamification.rlrg.application.DataPreferencesManager;
+import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
-import com.gamification.rlrg.settings.Settings;
 
 final class LoginFragment extends NghiemFragment implements OnClickListener, Runnable
 {
+    private static final String PASSWORD_COVER = RlrgApp.getInstance().getString(R.string.settings_password_cover);
+    
 	private StartActivity mActivity;
 	private LinearLayout mLayoutLogin;
 	private TextView mTxtLogo;
@@ -49,7 +51,6 @@ final class LoginFragment extends NghiemFragment implements OnClickListener, Run
 		{
 			return null;
 		}
-
 		mPreferencesManager = DataPreferencesManager.getInstance();
 		String lastUsername = mPreferencesManager.getUsername();
 		mLastPassword = mPreferencesManager.getPassword();
@@ -64,7 +65,7 @@ final class LoginFragment extends NghiemFragment implements OnClickListener, Run
 		mCkbRemember = (CheckBox) root.findViewById(R.id.ckb_remember);
 
 		mEdtUsername.setText(lastUsername);
-		mEdtPassword.setText(TextUtils.isEmpty(mLastPassword) ? "" : Settings.PASSWORD_COVER);
+		mEdtPassword.setText(TextUtils.isEmpty(mLastPassword) ? "" : PASSWORD_COVER);
 		mBtnLogin.setOnClickListener(this);
 		mCkbRemember.setChecked(mPreferencesManager.getRememberPassword());
 		return root;
@@ -109,7 +110,7 @@ final class LoginFragment extends NghiemFragment implements OnClickListener, Run
 	{
 		String username = mEdtUsername.getText().toString();
 		String password = mEdtPassword.getText().toString();
-		if (password.equals(Settings.PASSWORD_COVER))
+		if (password.equals(PASSWORD_COVER))
 		{
 			password = mLastPassword;
 		}

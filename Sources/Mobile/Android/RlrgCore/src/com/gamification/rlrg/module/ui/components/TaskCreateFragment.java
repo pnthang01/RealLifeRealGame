@@ -22,18 +22,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
 import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.entity.Category;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
-import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
-import com.gamification.rlrg.settings.Settings;
 
 final class TaskCreateFragment extends NghiemFragment implements OnClickListener, OnDateSetListener
 {
 	@SuppressLint("SimpleDateFormat")
-	private static SimpleDateFormat sFormat = new SimpleDateFormat(Settings.DATETIME_FORMAT);
+	private static SimpleDateFormat sFormat = new SimpleDateFormat(RlrgApp.getInstance().getString(R.string.settings_date_format));
 
 	private class CategoryAdapter extends ArrayAdapter<Category>
 	{
@@ -135,8 +134,8 @@ final class TaskCreateFragment extends NghiemFragment implements OnClickListener
 		String name = mEdtName.getText().toString();
 
 		mTasks.addTask(category, completeTime, difficultyLevel, name, "10", null);
-		RlrgApp.getInstance().checkAchievemnt();
-		mActivity.replaceFragment(FragmentFactory.create(Type.SHOWROOM));
+		DataPreferencesManager.getInstance().addUserPoint(getResources().getInteger(R.integer.settings_rules_point_task_add));
+		RlrgApp.getInstance().checkAchievements();
 	}
 
 	@Override

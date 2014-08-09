@@ -17,6 +17,42 @@ public final class R {
         public static int show_up=0x7f040005;
     }
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int collapse=0x7f010002;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int duration=0x7f010001;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int expand=0x7f010003;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int fragment=0x7f010000;
     }
     public static final class color {
         public static int background_solid=0x7f050000;
@@ -54,33 +90,39 @@ public final class R {
     public static final class drawable {
         public static int ic_back=0x7f020000;
         public static int ic_drawer=0x7f020001;
+        public static int share=0x7f020002;
     }
     public static final class id {
-        public static int actionbar=0x7f090000;
-        public static int actionbar_btn_left=0x7f090001;
-        public static int actionbar_btn_right_1=0x7f090004;
-        public static int actionbar_btn_right_2=0x7f090003;
-        public static int actionbar_btn_right_text=0x7f090005;
-        public static int actionbar_title=0x7f090002;
-        public static int drawer_layout=0x7f090007;
-        public static int main_view=0x7f090006;
-        public static int navigation=0x7f090008;
-        public static int navigation_list=0x7f090009;
-        public static int pager=0x7f09000a;
-        public static int pager_strip=0x7f09000b;
-        public static int progress_bar=0x7f09000c;
-        public static int title=0x7f09000e;
-        public static int webview=0x7f09000d;
+        public static int actionbar=0x7f0a0000;
+        public static int actionbar_btn_left=0x7f0a0001;
+        public static int actionbar_btn_right_1=0x7f0a0004;
+        public static int actionbar_btn_right_2=0x7f0a0003;
+        public static int actionbar_btn_right_text=0x7f0a0005;
+        public static int actionbar_title=0x7f0a0002;
+        public static int drawer_layout=0x7f0a0007;
+        public static int layout_content=0x7f0a000a;
+        public static int main_view=0x7f0a0006;
+        public static int navigation=0x7f0a0008;
+        public static int navigation_list=0x7f0a0009;
+        public static int pager=0x7f0a000b;
+        public static int pager_strip=0x7f0a000c;
+        public static int progress_bar=0x7f0a000d;
+        public static int title=0x7f0a000f;
+        public static int webview=0x7f0a000e;
+    }
+    public static final class integer {
+        public static int settings_database_version=0x7f080000;
     }
     public static final class layout {
         public static int activity_with_actionbar=0x7f030000;
         public static int activity_with_navigation=0x7f030001;
-        public static int fragment_view_pager=0x7f030002;
-        public static int fragment_view_pager_with_tab_strip=0x7f030003;
-        public static int fragment_view_pager_with_title_strip=0x7f030004;
-        public static int fragment_web=0x7f030005;
-        public static int list_item_navigation=0x7f030006;
-        public static int list_view=0x7f030007;
+        public static int expand_collapse=0x7f030002;
+        public static int fragment_view_pager=0x7f030003;
+        public static int fragment_view_pager_with_tab_strip=0x7f030004;
+        public static int fragment_view_pager_with_title_strip=0x7f030005;
+        public static int fragment_web=0x7f030006;
+        public static int list_item_navigation=0x7f030007;
+        public static int list_view=0x7f030008;
     }
     public static final class string {
         public static int action_bar=0x7f060000;
@@ -88,43 +130,132 @@ public final class R {
         public static int action_bar_btn_right_1=0x7f060002;
         public static int action_bar_btn_right_2=0x7f060003;
         public static int action_bar_btn_right_text=0x7f060004;
-        public static int action_cancel=0x7f060014;
-        public static int action_close=0x7f060018;
-        public static int action_no=0x7f060016;
-        public static int action_ok=0x7f060013;
-        public static int action_open=0x7f060017;
+        public static int action_cancel=0x7f06001a;
+        public static int action_close=0x7f06001e;
+        public static int action_no=0x7f06001c;
+        public static int action_ok=0x7f060019;
+        public static int action_open=0x7f06001d;
         /**  Action 
          */
-        public static int action_quit_app=0x7f060012;
-        public static int action_search=0x7f060019;
-        public static int action_yes=0x7f060015;
-        public static int app_name=0x7f060007;
-        public static int database_name=0x7f06000c;
-        public static int database_version=0x7f06000d;
-        public static int default_email_password=0x7f060009;
-        public static int default_email_username=0x7f060008;
+        public static int action_quit_app=0x7f060018;
+        public static int action_search=0x7f06001f;
+        public static int action_yes=0x7f06001b;
+        /**  General 
+         */
+        public static int app_name=0x7f060012;
+        public static int app_url=0x7f060013;
         public static int drawer_close=0x7f060006;
         public static int drawer_open=0x7f060005;
-        public static int facebook_link=0x7f06000b;
-        public static int message_no_internet_connection=0x7f060011;
+        public static int message_no_internet_connection=0x7f060017;
         /**  Message 
          */
-        public static int message_quit_app=0x7f060010;
-        public static int title_list_empty=0x7f06000f;
+        public static int message_quit_app=0x7f060016;
+        public static int settings_database_name=0x7f06000c;
+        public static int settings_default_charset=0x7f060007;
+        public static int settings_default_email_password=0x7f060009;
+        public static int settings_default_email_username=0x7f060008;
+        public static int settings_facebook_link=0x7f06000b;
+        public static int settings_resolution_high=0x7f06000f;
+        public static int settings_resolution_low=0x7f06000d;
+        public static int settings_resolution_normal=0x7f06000e;
+        public static int settings_resolution_xhigh=0x7f060010;
+        public static int settings_resolution_xxhigh=0x7f060011;
+        public static int settings_twitter_link=0x7f06000a;
+        public static int title_list_empty=0x7f060015;
         /**  Title 
          */
-        public static int title_no_internet_connection=0x7f06000e;
-        public static int twitter_link=0x7f06000a;
+        public static int title_no_internet_connection=0x7f060014;
     }
     public static final class style {
-        public static int app_theme=0x7f080000;
-        public static int full_height=0x7f080006;
-        public static int full_height_dynamic_width=0x7f080007;
-        public static int full_height_equal_width=0x7f080008;
-        public static int full_screen=0x7f080001;
-        public static int full_width=0x7f080003;
-        public static int full_width_dynamic_height=0x7f080004;
-        public static int full_width_equal_height=0x7f080005;
-        public static int wrap_content=0x7f080002;
+        public static int app_theme=0x7f090000;
+        public static int full_height=0x7f090006;
+        public static int full_height_dynamic_width=0x7f090007;
+        public static int full_height_equal_width=0x7f090008;
+        public static int full_screen=0x7f090001;
+        public static int full_width=0x7f090003;
+        public static int full_width_dynamic_height=0x7f090004;
+        public static int full_width_equal_height=0x7f090005;
+        public static int wrap_content=0x7f090002;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a expand_collapse.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #expand_collapse_collapse nghiem.app.gen:collapse}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_duration nghiem.app.gen:duration}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_expand nghiem.app.gen:expand}</code></td><td></td></tr>
+           <tr><td><code>{@link #expand_collapse_fragment nghiem.app.gen:fragment}</code></td><td></td></tr>
+           </table>
+           @see #expand_collapse_collapse
+           @see #expand_collapse_duration
+           @see #expand_collapse_expand
+           @see #expand_collapse_fragment
+         */
+        public static final int[] expand_collapse = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#collapse}
+          attribute's value can be found in the {@link #expand_collapse} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nghiem.app.gen:collapse
+        */
+        public static final int expand_collapse_collapse = 2;
+        /**
+          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#duration}
+          attribute's value can be found in the {@link #expand_collapse} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nghiem.app.gen:duration
+        */
+        public static final int expand_collapse_duration = 1;
+        /**
+          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#expand}
+          attribute's value can be found in the {@link #expand_collapse} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nghiem.app.gen:expand
+        */
+        public static final int expand_collapse_expand = 3;
+        /**
+          <p>This symbol is the offset where the {@link nghiem.app.gen.R.attr#fragment}
+          attribute's value can be found in the {@link #expand_collapse} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nghiem.app.gen:fragment
+        */
+        public static final int expand_collapse_fragment = 0;
+    };
 }

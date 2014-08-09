@@ -19,8 +19,8 @@ import com.j256.ormlite.table.TableUtils;
 public class DatabaseHelper<Data, Id> extends OrmLiteSqliteOpenHelper
 {
 	private static final Logger LOGGER = new Logger(DatabaseHelper.class);
-	private static final String DB_NAME = NghiemBaseApp.getInstance().getString(R.string.database_name) + ".db";
-	private static final int DB_VERSION = Integer.parseInt(NghiemBaseApp.getInstance().getString(R.string.database_version));
+	private static final String DB_NAME = NghiemBaseApp.getInstance().getString(R.string.settings_database_name) + ".db";
+	private static final int DB_VERSION = NghiemBaseApp.getInstance().getResources().getInteger(R.integer.settings_database_version);
 
 	private Dao<Data, Id> mDao = null;
 	private Class<Data> mClass = null;

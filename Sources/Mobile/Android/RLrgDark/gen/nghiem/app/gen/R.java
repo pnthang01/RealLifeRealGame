@@ -15,6 +15,12 @@ public final class R {
 		public static final int show_down = 0x7f040004;
 		public static final int show_up = 0x7f040006;
 	}
+	public static final class attr {
+		public static final int collapse = 0x7f010002;
+		public static final int duration = 0x7f010001;
+		public static final int expand = 0x7f010003;
+		public static final int fragment = 0x7f010000;
+	}
 	public static final class color {
 		public static final int background_solid = 0x7f050000;
 		public static final int background_transparent = 0x7f050001;
@@ -47,35 +53,41 @@ public final class R {
 		public static final int font_size_xlarge_55 = 0x7f070014;
 	}
 	public static final class drawable {
-		public static final int ic_back = 0x7f02000c;
-		public static final int ic_drawer = 0x7f02000d;
+		public static final int ic_back = 0x7f020001;
+		public static final int ic_drawer = 0x7f020002;
+		public static final int share = 0x7f020004;
 	}
 	public static final class id {
-		public static final int actionbar = 0x7f0a0001;
-		public static final int actionbar_btn_left = 0x7f0a0002;
-		public static final int actionbar_btn_right_1 = 0x7f0a0005;
-		public static final int actionbar_btn_right_2 = 0x7f0a0004;
-		public static final int actionbar_btn_right_text = 0x7f0a0006;
-		public static final int actionbar_title = 0x7f0a0003;
-		public static final int drawer_layout = 0x7f0a0008;
-		public static final int main_view = 0x7f0a0007;
-		public static final int navigation = 0x7f0a0009;
-		public static final int navigation_list = 0x7f0a000a;
-		public static final int pager = 0x7f0a0020;
-		public static final int pager_strip = 0x7f0a0021;
-		public static final int progress_bar = 0x7f0a0022;
-		public static final int title = 0x7f0a0024;
-		public static final int webview = 0x7f0a0023;
+		public static final int actionbar = 0x7f0b0001;
+		public static final int actionbar_btn_left = 0x7f0b0002;
+		public static final int actionbar_btn_right_1 = 0x7f0b0005;
+		public static final int actionbar_btn_right_2 = 0x7f0b0004;
+		public static final int actionbar_btn_right_text = 0x7f0b0006;
+		public static final int actionbar_title = 0x7f0b0003;
+		public static final int drawer_layout = 0x7f0b0008;
+		public static final int layout_content = 0x7f0b000c;
+		public static final int main_view = 0x7f0b0007;
+		public static final int navigation = 0x7f0b0009;
+		public static final int navigation_list = 0x7f0b000a;
+		public static final int pager = 0x7f0b0021;
+		public static final int pager_strip = 0x7f0b0022;
+		public static final int progress_bar = 0x7f0b0023;
+		public static final int title = 0x7f0b0025;
+		public static final int webview = 0x7f0b0024;
+	}
+	public static final class integer {
+		public static final int settings_database_version = 0x7f080000;
 	}
 	public static final class layout {
 		public static final int activity_with_actionbar = 0x7f030001;
 		public static final int activity_with_navigation = 0x7f030002;
-		public static final int fragment_view_pager = 0x7f030009;
-		public static final int fragment_view_pager_with_tab_strip = 0x7f03000a;
-		public static final int fragment_view_pager_with_title_strip = 0x7f03000b;
-		public static final int fragment_web = 0x7f03000c;
-		public static final int list_item_navigation = 0x7f03000e;
-		public static final int list_view = 0x7f03000f;
+		public static final int expand_collapse = 0x7f030004;
+		public static final int fragment_view_pager = 0x7f03000a;
+		public static final int fragment_view_pager_with_tab_strip = 0x7f03000b;
+		public static final int fragment_view_pager_with_title_strip = 0x7f03000c;
+		public static final int fragment_web = 0x7f03000d;
+		public static final int list_item_navigation = 0x7f03000f;
+		public static final int list_view = 0x7f030010;
 	}
 	public static final class string {
 		public static final int action_bar = 0x7f060000;
@@ -83,37 +95,50 @@ public final class R {
 		public static final int action_bar_btn_right_1 = 0x7f060002;
 		public static final int action_bar_btn_right_2 = 0x7f060003;
 		public static final int action_bar_btn_right_text = 0x7f060004;
-		public static final int action_cancel = 0x7f060014;
-		public static final int action_close = 0x7f060018;
-		public static final int action_no = 0x7f060016;
-		public static final int action_ok = 0x7f060013;
-		public static final int action_open = 0x7f060017;
-		public static final int action_quit_app = 0x7f060012;
-		public static final int action_search = 0x7f060019;
-		public static final int action_yes = 0x7f060015;
-		public static final int app_name = 0x7f060007;
-		public static final int database_name = 0x7f06000c;
-		public static final int database_version = 0x7f06000d;
-		public static final int default_email_password = 0x7f060009;
-		public static final int default_email_username = 0x7f060008;
+		public static final int action_cancel = 0x7f06001a;
+		public static final int action_close = 0x7f06001e;
+		public static final int action_no = 0x7f06001c;
+		public static final int action_ok = 0x7f060019;
+		public static final int action_open = 0x7f06001d;
+		public static final int action_quit_app = 0x7f060018;
+		public static final int action_search = 0x7f06001f;
+		public static final int action_yes = 0x7f06001b;
+		public static final int app_name = 0x7f060012;
+		public static final int app_url = 0x7f060013;
 		public static final int drawer_close = 0x7f060006;
 		public static final int drawer_open = 0x7f060005;
-		public static final int facebook_link = 0x7f06000b;
-		public static final int message_no_internet_connection = 0x7f060011;
-		public static final int message_quit_app = 0x7f060010;
-		public static final int title_list_empty = 0x7f06000f;
-		public static final int title_no_internet_connection = 0x7f06000e;
-		public static final int twitter_link = 0x7f06000a;
+		public static final int message_no_internet_connection = 0x7f060017;
+		public static final int message_quit_app = 0x7f060016;
+		public static final int settings_database_name = 0x7f06000c;
+		public static final int settings_default_charset = 0x7f060007;
+		public static final int settings_default_email_password = 0x7f060009;
+		public static final int settings_default_email_username = 0x7f060008;
+		public static final int settings_facebook_link = 0x7f06000b;
+		public static final int settings_resolution_high = 0x7f06000f;
+		public static final int settings_resolution_low = 0x7f06000d;
+		public static final int settings_resolution_normal = 0x7f06000e;
+		public static final int settings_resolution_xhigh = 0x7f060010;
+		public static final int settings_resolution_xxhigh = 0x7f060011;
+		public static final int settings_twitter_link = 0x7f06000a;
+		public static final int title_list_empty = 0x7f060015;
+		public static final int title_no_internet_connection = 0x7f060014;
 	}
 	public static final class style {
-		public static final int app_theme = 0x7f080000;
-		public static final int full_height = 0x7f080006;
-		public static final int full_height_dynamic_width = 0x7f080007;
-		public static final int full_height_equal_width = 0x7f080008;
-		public static final int full_screen = 0x7f080001;
-		public static final int full_width = 0x7f080003;
-		public static final int full_width_dynamic_height = 0x7f080004;
-		public static final int full_width_equal_height = 0x7f080005;
-		public static final int wrap_content = 0x7f080002;
+		public static final int app_theme = 0x7f090000;
+		public static final int full_height = 0x7f090006;
+		public static final int full_height_dynamic_width = 0x7f090007;
+		public static final int full_height_equal_width = 0x7f090008;
+		public static final int full_screen = 0x7f090001;
+		public static final int full_width = 0x7f090003;
+		public static final int full_width_dynamic_height = 0x7f090004;
+		public static final int full_width_equal_height = 0x7f090005;
+		public static final int wrap_content = 0x7f090002;
+	}
+	public static final class styleable {
+		public static final int[] expand_collapse = { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003 };
+		public static final int expand_collapse_collapse = 2;
+		public static final int expand_collapse_duration = 1;
+		public static final int expand_collapse_expand = 3;
+		public static final int expand_collapse_fragment = 0;
 	}
 }
