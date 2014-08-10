@@ -1,30 +1,26 @@
 <?php
 	
 	include 'base_service.php';
+	include '../domain/user_vo.php';
 
 	class UserService extends BaseService {
 
-	
-		private $username;
-		private $password;
-		private $sex;
 
 		function __construct() {
        		parent::__construct();
    		}
 
 
-
-		private function exeLogin(){
+		public function exeLogin($userVO){
 
 			$request = $this->getResquet();
-			$request->setParam('username',$this->username);
-			$request->setParam('password',$this->password);
+			$request->setParam('username',$userVO->getUsername());
+			$request->setParam('password',$userVO->getPassword());
 			$request->http_post(HOT_SERVER."login");
 
 		}
 
-		private function exeRegister(){
+		public function exeRegister(){
 
 
 

@@ -1,5 +1,6 @@
 <?php
  	include '../lib/common.php';
+ 	
 
  	class BaseService {
 
@@ -10,7 +11,7 @@
    		}
 
 
-   		public getResquet(){
+   		public function getResquet(){
    			return $this->request;
    		}
 
