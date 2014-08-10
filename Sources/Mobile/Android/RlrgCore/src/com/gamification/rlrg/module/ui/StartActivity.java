@@ -3,6 +3,7 @@ package com.gamification.rlrg.module.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import lvnghiem.app.core.application.SharingManager;
 import lvnghiem.app.core.components.NavigationActivity;
 import lvnghiem.app.core.data.NavigationData;
 
@@ -21,6 +22,7 @@ import android.widget.ListView;
 
 import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
+import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.components.FragmentFactory;
 import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
@@ -29,10 +31,11 @@ public final class StartActivity extends NavigationActivity implements Runnable
 {
 	public static final String DIALOG_NETWORK_NOT_AVAILABLE = "DIALOG_NETWORK_NOT_AVAILABLE";
 	public static final String DIALOG_SEARCH = "DIALOG_SEARCH";
+	public static final String DIALOG_SHARE = "DIALOG_SHARE";
 	public static final String DIALOG_EXIT = "DIALOG_EXIT";
 
 	private static final DataPreferencesManager DATA = DataPreferencesManager.getInstance();
-	
+
 	private String[] mNavigationTitles;
 
 	@Override
@@ -50,15 +53,6 @@ public final class StartActivity extends NavigationActivity implements Runnable
 			list.add(new NavigationData(title, getResources().getDrawable(R.drawable.ic_drawer)));
 		}
 		setNavigationData(list);
-
-		setBtnActionBarRightOne(android.R.drawable.ic_search_category_default, new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				showDialog(DIALOG_SEARCH, true);
-			}
-		});
 
 		if (RlrgApp.isStart)
 		{
@@ -131,12 +125,12 @@ public final class StartActivity extends NavigationActivity implements Runnable
 		DateTime lastLogin = new DateTime(DATA.getLastLogin());
 		if (new Period(lastLogin, DateTime.now()).getDays() > 1)
 		{
-		    DATA.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_login_over_period));
-		    DATA.saveContinuousLogin(0);
+			DATA.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_login_over_period));
+			DATA.saveContinuousLogin(0);
 		}
 		else
 		{
-		    DATA.increaseContinuousLogin();
+			DATA.increaseContinuousLogin();
 		}
 		DATA.saveLastLogin(lastLogin.getMillis());
 
@@ -180,14 +174,46 @@ public final class StartActivity extends NavigationActivity implements Runnable
 			builder.setMessage(R.string.message_no_internet_connection);
 			builder.setPositiveButton(R.string.action_ok, null);
 		}
-		else if (type.equals(DIALOG_SEARCH))
+		if (type.equals(DIALOG_SEARCH))
 		{
 			builder.setTitle(R.string.action_search);
 			builder.setView(inflate(R.layout.dialog_search));
 			builder.setPositiveButton(R.string.action_ok, null);
 			builder.setNegativeButton(R.string.action_cancel, null);
 		}
-		else if (type.equals(DIALOG_EXIT))
+		if (type.equals(DIALOG_SHARE))
+		{
+			String badgeNames = "";
+			for (Achievement achievement : RlrgApp.getInstance().getAchievements().getData().getElements())
+			{
+				badgeNames += ", " + achievement.getBadge().getName();
+			}
+			badgeNames.replaceFirst(", ", "");
+			final String args = badgeNames;
+			View view = inflate(R.layout.dialog_share);
+			view.findViewById(R.id.btn_twitter).setOnClickListener(new OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					SharingManager.getInstance().shareOnTwitter(String.format(RlrgApp.getInstance().getString(R.string.message_share_twitter), args));
+				}
+			});
+			view.findViewById(R.id.btn_facebook).setOnClickListener(new OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					String subject = RlrgApp.getInstance().getString(R.string.title_share_facebook);
+					String message = String.format(RlrgApp.getInstance().getString(R.string.message_share_facebook), args);
+					SharingManager.getInstance().shareOnFacebook(subject, message);
+				}
+			});
+			builder.setTitle(R.string.action_sharing);
+			builder.setView(view);
+			builder.setNegativeButton(R.string.action_cancel, null);
+		}
+		if (type.equals(DIALOG_EXIT))
 		{
 			builder.setTitle(R.string.action_quit_app);
 			builder.setMessage(R.string.message_quit_app);

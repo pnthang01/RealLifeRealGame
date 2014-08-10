@@ -26,8 +26,8 @@ import com.gamification.rlrg.module.ui.StartActivity;
 
 final class LoginFragment extends NghiemFragment implements OnClickListener, Runnable
 {
-    private static final String PASSWORD_COVER = RlrgApp.getInstance().getString(R.string.settings_password_cover);
-    
+	private static final String PASSWORD_COVER = RlrgApp.getInstance().getString(R.string.settings_password_cover);
+
 	private StartActivity mActivity;
 	private LinearLayout mLayoutLogin;
 	private TextView mTxtLogo;

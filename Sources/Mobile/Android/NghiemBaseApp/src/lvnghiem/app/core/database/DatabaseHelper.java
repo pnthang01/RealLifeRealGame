@@ -88,10 +88,10 @@ public class DatabaseHelper<Data, Id> extends OrmLiteSqliteOpenHelper
 		return getDao().queryForId(id);
 	}
 
-    public int insert(Data item) throws SQLException
-    {
-        return getDao().create(item);
-    }
+	public int insert(Data item) throws SQLException
+	{
+		return getDao().create(item);
+	}
 
 	public void insert(Collection<Data> collection) throws SQLException
 	{
@@ -105,23 +105,23 @@ public class DatabaseHelper<Data, Id> extends OrmLiteSqliteOpenHelper
 			clear();
 		}
 		for (Data item : collection)
-        {
-            insert(item);
-        }
+		{
+			insert(item);
+		}
 	}
 
 	public int update(Data item) throws SQLException
 	{
 		return getDao().update(item);
 	}
-    
-    public void update(Collection<Data> collection) throws SQLException
-    {
-        for (Data item : collection)
-        {
-            update(item);
-        }
-    }
+
+	public void update(Collection<Data> collection) throws SQLException
+	{
+		for (Data item : collection)
+		{
+			update(item);
+		}
+	}
 
 	public int deleteById(Id id) throws SQLException
 	{

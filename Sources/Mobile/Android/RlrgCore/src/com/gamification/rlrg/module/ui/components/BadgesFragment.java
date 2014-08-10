@@ -23,16 +23,16 @@ final class BadgesFragment extends ListViewFragment<Achievement>
 	}
 
 	public BadgesFragment()
-    {
-        super(R.layout.list_view, R.layout.list_item_game);
-    }
+	{
+		super(R.layout.list_view_badges, R.layout.list_item_game);
+	}
 
 	public BadgesFragment(int listLayout, int itemLayout)
-    {
-        super(listLayout, itemLayout);
-    }
+	{
+		super(listLayout, itemLayout);
+	}
 
-    @Override
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -43,7 +43,6 @@ final class BadgesFragment extends ListViewFragment<Achievement>
 		StartActivity activity = (StartActivity) getActivity();
 		if (activity != null)
 		{
-			activity.hideActionBarButtonRight();
 			Achievements achievements = activity.getCoreApp().getAchievements();
 			if (achievements.isSuccessful())
 			{

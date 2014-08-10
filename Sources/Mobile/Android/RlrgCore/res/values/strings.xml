@@ -12,6 +12,7 @@
     <string name="title_status">Status:</string>
     <string name="title_username">Username:</string>
     <string name="title_password">Password:</string>
+    <string name="title_share_facebook">Badges from Real Life Real Game</string>
     
     <!-- Hint -->
     <string name="hint_name">Name</string>
@@ -29,10 +30,13 @@
     <string name="action_create_task">Create task</string>
     <string name="action_mark_as_complete">Completed</string>
     <string name="action_mark_as_uncomplete">Uncompleted</string>
+    <string name="action_share">Share</string>
     <string name="action_sharing">Share on social networks</string>
     <string name="action_show_less">Show less</string>
     <string name="action_show_more">Show more</string>
     
     <!-- Message -->
     <string name="message_login_failed">Login Failed!\nPlease login again!</string>
+    <string name="message_share_facebook">I get these badges from Real Life Real Game: %s</string>
+    <string name="message_share_twitter">I get these badges from Real Life Real Game: %s</string>
 </resources>

@@ -11,7 +11,7 @@ import android.os.Build;
 
 public class Logger
 {
-    private static final String SERPERATOR = "\n";
+	private static final String SERPERATOR = "\n";
 
 	private org.slf4j.Logger mLogger;
 
@@ -21,54 +21,54 @@ public class Logger
 	}
 
 	public void debug(String string)
-    {
-        if (BuildConfig.DEBUG)
-        {
-            mLogger.debug(string);
-        }
-    }
+	{
+		if (BuildConfig.DEBUG)
+		{
+			mLogger.debug(string);
+		}
+	}
 
-    public void debug(Throwable throwable)
-    {
-        if (BuildConfig.DEBUG)
-        {
-            mLogger.debug(throwable.toString());
-        }
-    }
+	public void debug(Throwable throwable)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			mLogger.debug(throwable.toString());
+		}
+	}
 
-    public void debug(String string, Throwable throwable)
-    {
-        if (BuildConfig.DEBUG)
-        {
-            mLogger.debug(string, throwable);
-        }
-    }
+	public void debug(String string, Throwable throwable)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			mLogger.debug(string, throwable);
+		}
+	}
 
-    public void error(Throwable throwable)
-    {
-        if (BuildConfig.DEBUG)
-        {
-            mLogger.debug(throwable.toString());
-        }
-        else
-        {
-            String errorReport = getErrorReport(throwable);
-            mLogger.error(errorReport);
-        }
-    }
+	public void error(Throwable throwable)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			mLogger.debug(throwable.toString());
+		}
+		else
+		{
+			String errorReport = getErrorReport(throwable);
+			mLogger.error(errorReport);
+		}
+	}
 
-    public void error(String string, Throwable throwable)
-    {
-        if (BuildConfig.DEBUG)
-        {
-            mLogger.debug(string, throwable);
-        }
-        else
-        {
-            String errorReport = getErrorReport(throwable);
-            mLogger.error(string + SERPERATOR + errorReport);
-        }
-    }
+	public void error(String string, Throwable throwable)
+	{
+		if (BuildConfig.DEBUG)
+		{
+			mLogger.debug(string, throwable);
+		}
+		else
+		{
+			String errorReport = getErrorReport(throwable);
+			mLogger.error(string + SERPERATOR + errorReport);
+		}
+	}
 
 	public String getErrorReport(Throwable throwable)
 	{

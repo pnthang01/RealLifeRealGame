@@ -22,6 +22,7 @@ public final class R {
 		public static final int min = 0x7f010001;
 	}
 	public static final class color {
+		public static final int background_list_item = 0x7f050006;
 		public static final int background_solid = 0x7f050000;
 		public static final int background_transparent = 0x7f050001;
 		public static final int button_action_bar_text = 0x7f050005;
@@ -68,11 +69,11 @@ public final class R {
 		public static final int main_view = 0x7f0b0007;
 		public static final int navigation = 0x7f0b0009;
 		public static final int navigation_list = 0x7f0b000a;
-		public static final int pager = 0x7f0b0023;
-		public static final int pager_strip = 0x7f0b0024;
-		public static final int progress_bar = 0x7f0b0025;
-		public static final int title = 0x7f0b0027;
-		public static final int webview = 0x7f0b0026;
+		public static final int pager = 0x7f0b0024;
+		public static final int pager_strip = 0x7f0b0025;
+		public static final int progress_bar = 0x7f0b0026;
+		public static final int title = 0x7f0b0028;
+		public static final int webview = 0x7f0b0027;
 	}
 	public static final class integer {
 		public static final int settings_database_version = 0x7f080000;
@@ -80,12 +81,12 @@ public final class R {
 	public static final class layout {
 		public static final int activity_with_actionbar = 0x7f030001;
 		public static final int activity_with_navigation = 0x7f030002;
-		public static final int fragment_view_pager = 0x7f030009;
-		public static final int fragment_view_pager_with_tab_strip = 0x7f03000a;
-		public static final int fragment_view_pager_with_title_strip = 0x7f03000b;
-		public static final int fragment_web = 0x7f03000c;
-		public static final int list_item_navigation = 0x7f03000e;
-		public static final int list_view = 0x7f03000f;
+		public static final int fragment_view_pager = 0x7f03000a;
+		public static final int fragment_view_pager_with_tab_strip = 0x7f03000b;
+		public static final int fragment_view_pager_with_title_strip = 0x7f03000c;
+		public static final int fragment_web = 0x7f03000d;
+		public static final int list_item_navigation = 0x7f030010;
+		public static final int list_view = 0x7f030011;
 	}
 	public static final class string {
 		public static final int action_bar = 0x7f060000;

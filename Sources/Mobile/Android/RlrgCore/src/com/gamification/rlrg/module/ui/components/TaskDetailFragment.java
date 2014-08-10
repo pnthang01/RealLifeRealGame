@@ -86,7 +86,7 @@ final class TaskDetailFragment extends NghiemFragment implements OnClickListener
 	@Override
 	public void onClick(View view)
 	{
-	    int finishPoint = getResources().getInteger(R.integer.settings_rules_point_task_finish);
+		int finishPoint = getResources().getInteger(R.integer.settings_rules_point_task_finish);
 		mTask.setStatus(mTask.getStatus().equals(mStatus[0]) ? mStatus[1] : mStatus[0]);
 		DataPreferencesManager.getInstance().addUserPoint(mTask.getStatus().equals(mStatus[0]) ? -finishPoint : finishPoint);
 		DataPreferencesManager.getInstance().saveJsonTasks(new Gson().toJson(mTasks, Tasks.class));

@@ -15,24 +15,20 @@ import android.net.Uri;
 
 public class SharingManager extends BaseController
 {
-	@SuppressWarnings("rawtypes")
-	private static ThreadLocal sInitHolder = new ThreadLocal();
 	private static SharingManager sInstance;
 
 	private Context mContext;
 
-	@SuppressWarnings("unchecked")
 	public static SharingManager getInstance()
 	{
-		if (sInitHolder.get() == null)
+		if (sInstance == null)
 		{
-			synchronized (DeviceManager.class)
+			synchronized (SharingManager.class)
 			{
 				if (sInstance == null)
 				{
 					sInstance = new SharingManager();
 				}
-				sInitHolder.set(Boolean.TRUE);
 			}
 		}
 		return sInstance;
@@ -45,12 +41,13 @@ public class SharingManager extends BaseController
 
 	public void shareOnFacebook(String subject, String text)
 	{
-	    subject = urlEncode(subject);
+		subject = urlEncode(subject);
 		text = urlEncode(text);
 		String facebookShareLink = NghiemBaseApp.getInstance().getString(R.string.app_url);
 
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType("text/plain");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 		intent.putExtra(Intent.EXTRA_TITLE, NghiemBaseApp.getInstance().getString(R.string.app_name));
 		intent.putExtra(Intent.EXTRA_TEXT, text + " " + facebookShareLink);
@@ -68,6 +65,7 @@ public class SharingManager extends BaseController
 	{
 		String tweetUrl = String.format(mContext.getString(R.string.settings_twitter_link) + "?text=%s", message);
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(tweetUrl));
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		processIntent(intent, "com.twitter");
 		mContext.startActivity(intent);
 	}

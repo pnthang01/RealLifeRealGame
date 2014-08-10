@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/full_screen"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@android:id/list"
+        style="@style/full_width"
+        android:divider="@color/divider"
+        android:dividerHeight="1dip"
+        android:listSelector="@android:color/transparent" />
+
+    <TextView
+        android:id="@android:id/empty"
+        style="@style/full_screen"
+        android:background="@color/background_list_item"
+        android:cacheColorHint="@android:color/transparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/title_list_empty" />
+
+</LinearLayout>

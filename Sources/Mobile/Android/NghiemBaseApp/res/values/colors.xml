@@ -9,5 +9,7 @@
     
     <color name="divider">#AAAAAA</color>
     <color name="button_action_bar_text">#FFC600</color>
+    
+    <color name="background_list_item">#99FFFFFF</color>
 
 </resources>

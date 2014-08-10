@@ -55,6 +55,7 @@ containing a value of this type.
         public static int min=0x7f010001;
     }
     public static final class color {
+        public static int background_list_item=0x7f050006;
         public static int background_solid=0x7f050000;
         public static int background_transparent=0x7f050001;
         public static int button_action_bar_text=0x7f050005;

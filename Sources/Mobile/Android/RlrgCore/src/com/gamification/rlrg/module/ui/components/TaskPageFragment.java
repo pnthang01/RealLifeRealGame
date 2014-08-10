@@ -27,7 +27,7 @@ class TaskPageFragment extends ListViewFragment<Task>
 
 	static TaskPageFragment newInstance()
 	{
-		return new TaskPageFragment(R.layout.list_view, R.layout.list_item_game);
+		return new TaskPageFragment(R.layout.list_view_badges, R.layout.list_item_game);
 	}
 
 	private TaskPageFragment(int listLayout, int itemLayout)
@@ -88,7 +88,8 @@ class TaskPageFragment extends ListViewFragment<Task>
 		DateTime date = new DateTime(item.getCompleteTime());
 
 		String message = "Category: %s\nName: %s\nComplete Time: %s\nDifficulty Level: %s\nStatus: %s\nPoint: %s";
-		String print = String.format(message, item.getCategory().getName(), item.getName(), date.toString(RlrgApp.getInstance().getString(R.string.settings_date_time_format)), item.getDifficultyLevel(), item.getStatus(), item.getPoint());
+		String print = String.format(message, item.getCategory().getName(), item.getName(), date.toString(RlrgApp.getInstance().getString(R.string.settings_date_time_format)),
+				item.getDifficultyLevel(), item.getStatus(), item.getPoint());
 
 		((TextView) view).setText(print);
 		return view;

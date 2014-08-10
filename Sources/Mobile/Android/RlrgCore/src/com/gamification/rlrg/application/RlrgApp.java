@@ -25,19 +25,18 @@ import com.google.gson.Gson;
 
 public class RlrgApp extends NghiemBaseApp
 {
-    private static final Gson GSON = new Gson();
-    
+	private static final Gson GSON = new Gson();
+
 	public static boolean isStart = true;
 
 	private static DataPreferencesManager sDataPreferencesManager;
 	private static RlrgApp sInstance;
-    
+
 	private Users users;
 	private Categories categories;
 	private Tasks tasks;
 	private Achievements achievements;
 	private Badges badges;
-
 
 	public static RlrgApp getInstance()
 	{
@@ -101,20 +100,20 @@ public class RlrgApp extends NghiemBaseApp
 			// TODO: register UUID with server
 		}
 	}
-    
-    public void checkTask()
-    {
-        String[] statuses = getResources().getStringArray(R.array.task_status);
-        for (Task task : tasks.getData().getElements())
-        {
-            if (task.getCompleteTime() < DateTime.now().getMillis() && task.getStatus().equals(statuses[0]))
-            {
-                task.setStatus(statuses[2]);
-                sDataPreferencesManager.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_task_unfinish));
-            }
-        }
-        sDataPreferencesManager.saveJsonTasks(GSON.toJson(tasks, Tasks.class));
-    }
+
+	public void checkTask()
+	{
+		String[] statuses = getResources().getStringArray(R.array.task_status);
+		for (Task task : tasks.getData().getElements())
+		{
+			if (task.getCompleteTime() < DateTime.now().getMillis() && task.getStatus().equals(statuses[0]))
+			{
+				task.setStatus(statuses[2]);
+				sDataPreferencesManager.addUserPoint(getResources().getInteger(R.integer.settings_rules_point_task_unfinish));
+			}
+		}
+		sDataPreferencesManager.saveJsonTasks(GSON.toJson(tasks, Tasks.class));
+	}
 
 	public void checkAchievements()
 	{

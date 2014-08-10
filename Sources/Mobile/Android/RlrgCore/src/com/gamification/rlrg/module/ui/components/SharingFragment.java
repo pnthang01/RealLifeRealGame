@@ -1,5 +1,6 @@
 package com.gamification.rlrg.module.ui.components;
 
+import lvnghiem.app.core.application.SharingManager;
 import lvnghiem.app.core.components.NghiemFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +8,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
+import com.gamification.rlrg.application.RlrgApp;
+import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
 
 final class SharingFragment extends NghiemFragment
 {
 	private StartActivity mActivity;
+	private String mBadgeNames = "";
 
 	static SharingFragment newInstance()
 	{
@@ -32,10 +36,9 @@ final class SharingFragment extends NghiemFragment
 			@Override
 			public void onClick(View v)
 			{
-				// TODO
-				// SharingManager.getInstance().shareOnFacebook(caption,
-				// text, facebookShareLink);
-				mActivity.showDebugToast("shareOnFacebook");
+				String subject = RlrgApp.getInstance().getString(R.string.title_share_facebook);
+				String message = String.format(RlrgApp.getInstance().getString(R.string.message_share_facebook), mBadgeNames);
+				SharingManager.getInstance().shareOnFacebook(subject, message);
 			}
 		});
 		root.findViewById(R.id.btn_twitter).setOnClickListener(new OnClickListener()
@@ -43,9 +46,7 @@ final class SharingFragment extends NghiemFragment
 			@Override
 			public void onClick(View v)
 			{
-				// TODO
-				// SharingManager.getInstance().shareOnTwitter(message);
-				mActivity.showDebugToast("shareOnTwitter");
+				SharingManager.getInstance().shareOnTwitter(String.format(RlrgApp.getInstance().getString(R.string.message_share_twitter), mBadgeNames));
 			}
 		});
 		return root;
@@ -61,5 +62,10 @@ final class SharingFragment extends NghiemFragment
 			return;
 		}
 		mActivity.hideActionBarButtonRight();
+		for (Achievement achievement : RlrgApp.getInstance().getAchievements().getData().getElements())
+		{
+			mBadgeNames += ", " + achievement.getBadge().getName();
+		}
+		mBadgeNames.replaceFirst(", ", "");
 	}
 }

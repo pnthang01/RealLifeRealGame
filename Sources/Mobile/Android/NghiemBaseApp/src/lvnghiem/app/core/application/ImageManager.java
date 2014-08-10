@@ -55,7 +55,7 @@ public class ImageManager extends BaseController
 	{
 		if (TextUtils.isEmpty(link))
 		{
-		    LOG.debug("Load drawble from link --- null image URL!!!");
+			LOG.debug("Load drawble from link --- null image URL!!!");
 			return true;
 		}
 
