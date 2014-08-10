@@ -16,7 +16,7 @@
 			$request = $this->getResquet();
 			$request->setParam('username',$userVO->getUsername());
 			$request->setParam('password',$userVO->getPassword());
-			$request->http_post(HOT_SERVER."login");
+			$request->http_post(HOT_SERVER."/user/login");
 
 		}
 
