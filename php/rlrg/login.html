@@ -15,8 +15,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//webfonts-->
 <script src="/js/common.js" type="text/javascript"></script>
 <script src="/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<style type="text/css">
+	#error{
+		text-align: center;
+		color: red;
+	}
+</style>
 <script type="text/javascript">
-	
 
        var token =   getCookie(TOKEN);
        if(!token=="" || token == undefined){
@@ -26,8 +31,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	$(document).ready(function(){
 
     		$("#formLogin").submit(function(){
-    			alert("anh dep trai");
-    
     		   var dataSend =  $(this).serialize();
     		   var url="/include/controler/login.php"
     		   $.ajax({
@@ -39,7 +42,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 console.log(data);
         			  var objData = JSON.parse(data);
         			  if(objData.ErrorCode == 1){
-        				    alert(objData.Msg);
+        			  	 $('#error').show();
+        				    $('#error').text(objData.Msg);
+        				    setTimeout(function(){$('#error').fadeOut();$('#error').text('');}, 3000);
                     $("#username").focus();
         			  } else {
         				    alert("xin chao "+objData.data.User.FirstName);
@@ -78,9 +83,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="clear"> </div>	
       </div>
       <h2>hoặc đăng nhập bằng Tài khoản</h2>
+      <div id="error"></div>
 		<form id="formLogin">
 		   <div class="lable-2">
-		        <input name="user" type="text" class="text" value="Tài khoản " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tài khoản ';}">
+		        <input name="user" id="username" type="text" class="text" value="Tài khoản " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tài khoản ';}">
 		        <input name="pass" type="password" class="text" value="Mật khẩu " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mật khẩu ';}">
 		   </div>
 		   <div class="submit">
