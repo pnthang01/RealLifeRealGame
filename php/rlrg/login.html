@@ -1,0 +1,93 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="css/login.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--webfonts-->
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<script src="/js/common.js" type="text/javascript"></script>
+<script src="/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	
+
+       var token =   getCookie(TOKEN);
+       if(!token=="" || token == undefined){
+          window.location.href = '/home.php'; 
+       }
+
+    	$(document).ready(function(){
+
+    		$("#formLogin").submit(function(){
+    			alert("anh dep trai");
+    
+    		   var dataSend =  $(this).serialize();
+    		   var url="/include/controler/login.php"
+    		   $.ajax({
+               type: "POST",
+               url: url,
+               data: dataSend, 
+               success: function(data)
+               { 
+                console.log(data);
+        			  var objData = JSON.parse(data);
+        			  if(objData.ErrorCode == 1){
+        				    alert(objData.Msg);
+                    $("#username").focus();
+        			  } else {
+        				    alert("xin chao "+objData.data.User.FirstName);
+                    setCookie(TOKEN,objData.data.User.Token,1);
+                    setCookie(FIRST_NAME,objData.data.User.FirstName,1);
+                    setCookie(LAST_NAME,objData.data.User.LastName,1);
+                    window.location.href = '/home.php'; 
+    			       }
+               }
+             });
+    			return false;
+    		});
+    	});
+  
+</script>
+</head>
+<body>
+<div class="main">
+	<div class="social-icons">
+		 <div class="col_1_of_f span_1_of_f"><a href="#">
+		    <ul class='facebook'>
+		    	<i class="fb"> </i>
+		    	<li>Đăng nhập bằng Facebook</li>
+		    	<div class='clear'> </div>
+		    </ul>
+		    </a>
+		 </div>	
+		 <div class="col_1_of_f span_1_of_f"><a href="#">
+		    <ul class='twitter'>
+		      <i class="tw"> </i>
+		      <li>Đăng nhập bằng Twitter</li>
+		      <div class='clear'> </div>
+		    </ul>
+		    </a>
+		</div>
+		<div class="clear"> </div>	
+      </div>
+      <h2>hoặc đăng nhập bằng Tài khoản</h2>
+		<form id="formLogin">
+		   <div class="lable-2">
+		        <input name="user" type="text" class="text" value="Tài khoản " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tài khoản ';}">
+		        <input name="pass" type="password" class="text" value="Mật khẩu " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mật khẩu ';}">
+		   </div>
+		   <div class="submit">
+			  <input type="submit"  value="Đăng nhập" >
+		   </div>
+		   <div class="clear"> </div>
+		</form>
+		</div>
+</body>
+</html>
