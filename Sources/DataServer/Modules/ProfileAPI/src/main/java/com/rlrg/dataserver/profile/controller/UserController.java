@@ -114,7 +114,7 @@ public class UserController extends BaseController {
     @ResponseBody
     public String login(@RequestParam(value="username") String username, @RequestParam(value="password") String password) throws BaseException {
 		String result = null;
-		LOG.info("<< Starting webservice /user/getAllUser with parameter: usertname={}, password={}", username, "********");
+		LOG.info("<< Starting webservice /user/login with parameter: usertname={}, password={}", username, "********");
 		try {
 			UserDTO userDTO = userService.login(username, password);
 			//
@@ -126,7 +126,7 @@ public class UserController extends BaseController {
 			RestObject restObject = RestObject.failBank(e.getMessage());
 			result = userService.encodeBlankRestObject(restObject);
 		}
-		LOG.info("<< End webservice /user/getAllUser");
+		LOG.info("<< End webservice /user/login");
 		return result;
     }
     

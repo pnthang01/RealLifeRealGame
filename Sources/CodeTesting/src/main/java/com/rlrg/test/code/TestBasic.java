@@ -37,6 +37,8 @@ public class TestBasic {
 		System.out.println(calendar.getTime().getTime());
 		calendar.set(Calendar.MILLISECOND, 0);
 		System.out.println(calendar.getTime().getTime());
+		//
+		System.out.println("\074settings>\n \074localRepository>$OPENSHIFT_DATA_DIR\074/localRepository>\n\074/settings>\n\" > settings.xml");
 	}
 
 }

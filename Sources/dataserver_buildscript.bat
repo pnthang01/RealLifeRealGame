@@ -10,31 +10,31 @@ call mvn clean install
 
 if not exist "%CURRENT_DIR%\DataServer\DataUtils\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\DataUtils\"
-call mvn install clean
-
-if not exist "%CURRENT_DIR%\DataServer\Modules\Statistic-api\pom.xml" goto :error
-cd "%CURRENT_DIR%\DataServer\Modules\Statistic-api\"
-call mvn install clean
+call mvn clean install
 
 if not exist "%CURRENT_DIR%\DataServer\Modules\LanguageAPI\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\Modules\LanguageAPI\"
-call mvn install clean
+call mvn clean install
 
-if not exist "%CURRENT_DIR%\DataServer\Modules\PblAPI\pom.xml" goto :error
-cd "%CURRENT_DIR%\DataServer\Modules\PblAPI\"
-call mvn install clean
+if not exist "%CURRENT_DIR%\DataServer\Modules\Statistic-api\pom.xml" goto :error
+cd "%CURRENT_DIR%\DataServer\Modules\Statistic-api\"
+call mvn clean install
 
 if not exist "%CURRENT_DIR%\DataServer\Modules\ProfileAPI\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\Modules\ProfileAPI\"
-call mvn install clean
+call mvn clean install
 
-if not exist "%CURRENT_DIR%\DataServer\Modules\TaskAPI\pom.xml" goto :error
-cd "%CURRENT_DIR%\DataServer\Modules\TaskAPI\"
-call mvn install clean
+if not exist "%CURRENT_DIR%\DataServer\Modules\PblAPI\pom.xml" goto :error
+cd "%CURRENT_DIR%\DataServer\Modules\PblAPI\"
+call mvn clean install
 
 if not exist "%CURRENT_DIR%\pbl-checker-module\pom.xml" goto :error
 cd "%CURRENT_DIR%\pbl-checker-module\"
-call mvn install clean
+call mvn clean install
+
+if not exist "%CURRENT_DIR%\DataServer\Modules\TaskAPI\pom.xml" goto :error
+cd "%CURRENT_DIR%\DataServer\Modules\TaskAPI\"
+call mvn clean install
 
 if not exist "%CURRENT_DIR%\DataServer\DataServer\pom.xml" goto :error
 cd "%CURRENT_DIR%\DataServer\DataServer\"
