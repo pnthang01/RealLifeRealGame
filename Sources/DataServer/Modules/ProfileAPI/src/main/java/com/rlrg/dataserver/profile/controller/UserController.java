@@ -26,6 +26,26 @@ public class UserController extends BaseController {
 	
     @Autowired
     private IUserService<User, UserDTO> userService;
+    
+	@RequestMapping(value = "/checkUsername", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
+	@ResponseBody
+    public String checkUsername(@RequestParam(value="username", required=false) String username){
+		String result = null;
+		LOG.info("<< Starting webservice /user/checkUsername with parameter: username={}", username);
+		try {
+			boolean checking = userService.checkUsername(username);
+			//
+			result = userService.encodeCheckingRestObject(checking);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = userService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = userService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /user/checkUsername");
+		return result;
+    }
 
 	@RequestMapping(value = "/signup", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody
@@ -88,6 +108,8 @@ public class UserController extends BaseController {
 		LOG.info("<< End webservice /user/getAllUser");
 		return result;
     }
+	
+	
     
 //	
 //	@RequestMapping(value = "/updateUserRole", produces = "application/json", method=RequestMethod.POST)

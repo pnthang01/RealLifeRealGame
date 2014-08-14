@@ -96,15 +96,17 @@ public class JsonExporter {
 						JsonDTO objAnno = (JsonDTO) objClass.getAnnotation(JsonDTO.class);
 						if (null != objAnno) {
 							objTempValue = putObjectToJSONMap(field.get(value), objClass);
-							//jsonValue.put(objAnno.singularName(), objTempValue);
-						}
-						if(null != jsonObjAnno && !jsonObjAnno.name().isEmpty()){
-							Map<String, Object> jsonObj = new LinkedHashMap<String, Object>();
-							jsonObj.put(objAnno.singularName(), objTempValue);
-							jsonValue.put(jsonObjAnno.name(), jsonObj);
+							if(null != jsonObjAnno && !jsonObjAnno.name().isEmpty()){
+								Map<String, Object> jsonObj = new LinkedHashMap<String, Object>();
+								jsonObj.put(objAnno.singularName(), objTempValue);
+								jsonValue.put(jsonObjAnno.name(), jsonObj);
+							} else {
+								jsonValue.put(objAnno.singularName(), objTempValue);
+							}
 						} else {
-							jsonValue.put(objAnno.singularName(), objTempValue);
+							jsonValue.put(jsonObjAnno.name(), field.get(value));
 						}
+
 					}
 				}
 			}
@@ -146,6 +148,19 @@ public class JsonExporter {
 		if(null == dtoAnno){
 			throw new ConvertException("This DTO doesn't containt JsonDTO annotation.");
 		}
+		final RestObject restObject = RestObject.fromData(value);
+		//
+		final Map<String, Object> jsonValue = putObjectToJSONMap(restObject, RestObject.class);
+		return JSONValue.toJSONString(jsonValue);
+	}
+	
+	/**
+	 * Encode a primitive value to json string
+	 * @param value
+	 * @return
+	 * @throws ConvertException
+	 */
+	public <T> String encodeSingleValueToJson(final Object value) throws ConvertException{
 		final RestObject restObject = RestObject.fromData(value);
 		//
 		final Map<String, Object> jsonValue = putObjectToJSONMap(restObject, RestObject.class);

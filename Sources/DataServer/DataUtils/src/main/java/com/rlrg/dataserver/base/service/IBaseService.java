@@ -10,6 +10,8 @@ public interface IBaseService<T, V> {
 	public V convertEntityToDTO(T data);
 	
 	public T revertDTOToEntity(V dto);
+	
+	public String encodeCheckingRestObject(Boolean result) throws ConvertException;
 
 	public String encodeCountingRestObject(Long count, String controllerName) throws ConvertException;
 	
