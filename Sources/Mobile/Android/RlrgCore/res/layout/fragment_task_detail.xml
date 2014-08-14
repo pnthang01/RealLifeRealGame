@@ -27,6 +27,14 @@
 
         <TextView
             style="@style/full_width"
+            android:text="@string/title_start_time" />
+
+        <TextView
+            android:id="@+id/text_start"
+            style="@style/full_width" />
+
+        <TextView
+            style="@style/full_width"
             android:text="@string/title_complete_time" />
 
         <TextView
@@ -39,14 +47,6 @@
 
         <TextView
             android:id="@+id/text_difficulty"
-            style="@style/full_width" />
-
-        <TextView
-            style="@style/full_width"
-            android:text="@string/title_point" />
-
-        <TextView
-            android:id="@+id/text_point"
             style="@style/full_width" />
         
         <TextView

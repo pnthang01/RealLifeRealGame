@@ -21,17 +21,17 @@ public class Task
 	@SerializedName("Name")
 	private String name = "Unknown";
 
-	@SerializedName("Complete Time")
-	private long completeTime = DateTime.now().getMillis();
+    @SerializedName("Start Time")
+    private long startTime = DateTime.now().getMillis();
+
+    @SerializedName("Complete Time")
+    private long completeTime = DateTime.now().getMillis();
 
 	@SerializedName("Difficulty Level")
 	private String difficultyLevel = DIFFICULTY_LEVEL_EASY;
 
 	@SerializedName("Status")
 	private String status = STATUS_NOTCOMPLETED;
-
-	@SerializedName("Point")
-	private String point = "0";
 
 	public String getId()
 	{
@@ -63,15 +63,25 @@ public class Task
 		this.name = name;
 	}
 
-	public long getCompleteTime()
-	{
-		return completeTime;
-	}
+    public long getStartTime()
+    {
+        return startTime;
+    }
 
-	public void setCompleteTime(long completeTime)
-	{
-		this.completeTime = completeTime;
-	}
+    public void setStartTime(long startTime)
+    {
+        this.startTime = startTime;
+    }
+
+    public long getCompleteTime()
+    {
+        return completeTime;
+    }
+
+    public void setCompleteTime(long completeTime)
+    {
+        this.completeTime = completeTime;
+    }
 
 	public String getDifficultyLevel()
 	{
@@ -91,15 +101,5 @@ public class Task
 	public void setStatus(String status)
 	{
 		this.status = status;
-	}
-
-	public String getPoint()
-	{
-		return point;
-	}
-
-	public void setPoint(String point)
-	{
-		this.point = point;
 	}
 }

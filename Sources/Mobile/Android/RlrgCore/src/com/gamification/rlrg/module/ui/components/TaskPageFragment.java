@@ -85,11 +85,10 @@ class TaskPageFragment extends ListViewFragment<Task>
 	{
 		Task item = (Task) getListAdapter().getItem(position);
 
-		DateTime date = new DateTime(item.getCompleteTime());
-
-		String message = "Category: %s\nName: %s\nComplete Time: %s\nDifficulty Level: %s\nStatus: %s\nPoint: %s";
-		String print = String.format(message, item.getCategory().getName(), item.getName(), date.toString(RlrgApp.getInstance().getString(R.string.settings_date_time_format)),
-				item.getDifficultyLevel(), item.getStatus(), item.getPoint());
+		String start = new DateTime(item.getStartTime()).toString(RlrgApp.getInstance().getString(R.string.settings_date_time_format));
+		String complete = new DateTime(item.getCompleteTime()).toString(RlrgApp.getInstance().getString(R.string.settings_date_time_format));
+        String message = "Category: %s\nName: %s\nStart Time: %s\nComplete Time: %s\nDifficulty Level: %s\nStatus: %s";
+		String print = String.format(message, item.getCategory().getName(), item.getName(), start, complete, item.getDifficultyLevel(), item.getStatus());
 
 		((TextView) view).setText(print);
 		return view;

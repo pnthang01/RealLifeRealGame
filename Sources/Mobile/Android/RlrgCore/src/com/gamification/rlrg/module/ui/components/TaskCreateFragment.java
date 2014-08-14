@@ -29,7 +29,7 @@ import com.gamification.rlrg.data.entity.Category;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
 
-final class TaskCreateFragment extends NghiemFragment implements OnClickListener, OnDateSetListener
+final class TaskCreateFragment extends NghiemFragment implements OnClickListener, OnDateSetListener, OnFocusChangeListener
 {
 	@SuppressLint("SimpleDateFormat")
 	private static SimpleDateFormat sFormat = new SimpleDateFormat(RlrgApp.getInstance().getString(R.string.settings_date_format));
@@ -67,12 +67,14 @@ final class TaskCreateFragment extends NghiemFragment implements OnClickListener
 	}
 
 	private StartActivity mActivity;
-	private EditText mEdtName, mEdtComplete;
+	private EditText mEdtName, mEdtStart, mEdtComplete;
 	private Spinner mSpnCategory, mSpnDifficulty;
 	private Calendar mCalendar = Calendar.getInstance();
 
 	private List<Category> mCategories;
 	private Tasks mTasks;
+	private boolean mIsStart = true;
+	private long mStartTime, mCompleteTime;
 
 	static TaskCreateFragment newInstance()
 	{
@@ -88,7 +90,8 @@ final class TaskCreateFragment extends NghiemFragment implements OnClickListener
 		}
 		View root = inflater.inflate(R.layout.fragment_create_task, container, false);
 		mEdtName = (EditText) root.findViewById(R.id.edit_name);
-		mEdtComplete = (EditText) root.findViewById(R.id.edit_complete);
+        mEdtStart = (EditText) root.findViewById(R.id.edit_start);
+        mEdtComplete = (EditText) root.findViewById(R.id.edit_complete);
 		mSpnDifficulty = (Spinner) root.findViewById(R.id.spinner_difficulty);
 		mSpnCategory = (Spinner) root.findViewById(R.id.spinner_category);
 		return root;
@@ -103,37 +106,40 @@ final class TaskCreateFragment extends NghiemFragment implements OnClickListener
 		{
 			return;
 		}
-		mEdtComplete.setOnFocusChangeListener(new OnFocusChangeListener()
-		{
-			@Override
-			public void onFocusChange(View v, boolean hasFocus)
-			{
-				if (!hasFocus)
-				{
-					return;
-				}
-				int year = mCalendar.get(Calendar.YEAR);
-				int month = mCalendar.get(Calendar.MONTH);
-				int day = mCalendar.get(Calendar.DAY_OF_MONTH);
-
-				new DatePickerDialog(mActivity, TaskCreateFragment.this, year, month, day).show();
-			}
-		});
-		mActivity.setBtnActionBarRightText(R.string.action_create_task, this);
+        mActivity.setBtnActionBarRightText(R.string.action_create_task, this);
 		mCategories = RlrgApp.getInstance().getCategories().getData().getElements();
-		mTasks = RlrgApp.getInstance().getTasks();
+		mEdtStart.setOnFocusChangeListener(this);
+        mEdtComplete.setOnFocusChangeListener(this);
+        mTasks = RlrgApp.getInstance().getTasks();
 		mSpnCategory.setAdapter(new CategoryAdapter(mActivity, android.R.layout.simple_spinner_dropdown_item));
 	}
+	
+	@Override
+    public void onFocusChange(View view, boolean hasFocus)
+    {
+        if (!hasFocus)
+        {
+            return;
+        }
+        if (view == mEdtStart)
+        {
+            mIsStart = true;
+        }
+        else if (view == mEdtComplete)
+        {
+            mIsStart = false;
+        }
+        new DatePickerDialog(mActivity, this, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
 
 	@Override
 	public void onClick(View view)
 	{
 		String category = ((Category) mSpnCategory.getSelectedItem()).getName();
-		long completeTime = mCalendar.getTime().getTime();
 		String difficultyLevel = (String) mSpnDifficulty.getSelectedItem();
 		String name = mEdtName.getText().toString();
 
-		mTasks.addTask(category, completeTime, difficultyLevel, name, "10", null);
+		mTasks.addTask(category, mStartTime, mCompleteTime, difficultyLevel, name, null);
 		DataPreferencesManager.getInstance().addUserPoint(getResources().getInteger(R.integer.settings_rules_point_task_add));
 		RlrgApp.getInstance().checkAchievements();
 	}
@@ -144,6 +150,15 @@ final class TaskCreateFragment extends NghiemFragment implements OnClickListener
 		mCalendar.set(Calendar.YEAR, year);
 		mCalendar.set(Calendar.MONTH, month);
 		mCalendar.set(Calendar.DAY_OF_MONTH, day);
-		mEdtComplete.setText(sFormat.format(mCalendar.getTime()));
+		if (mIsStart)
+		{
+		    mStartTime = mCalendar.getTime().getTime();
+		    mEdtStart.setText(sFormat.format(mCalendar.getTime()));
+		}
+		else
+		{
+		    mCompleteTime = mCalendar.getTime().getTime();
+            mEdtComplete.setText(sFormat.format(mCalendar.getTime()));
+		}
 	}
 }

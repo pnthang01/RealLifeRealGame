@@ -109,40 +109,41 @@ containing a value of this type.
         public static int actionbar_btn_right_text=0x7f0b0006;
         public static int actionbar_title=0x7f0b0003;
         public static int btn_facebook=0x7f0b000e;
-        public static int btn_login=0x7f0b0018;
-        public static int btn_show=0x7f0b001c;
+        public static int btn_login=0x7f0b0019;
+        public static int btn_show=0x7f0b001d;
         public static int btn_twitter=0x7f0b000f;
-        public static int ckb_remember=0x7f0b0019;
+        public static int ckb_remember=0x7f0b001a;
         public static int drawer_layout=0x7f0b0008;
-        public static int edit_complete=0x7f0b0012;
+        public static int edit_complete=0x7f0b0013;
         public static int edit_name=0x7f0b0011;
-        public static int edit_password=0x7f0b0017;
-        public static int edit_username=0x7f0b0016;
+        public static int edit_password=0x7f0b0018;
+        public static int edit_start=0x7f0b0012;
+        public static int edit_username=0x7f0b0017;
         public static int fragment_container=0x7f0b0000;
-        public static int layout_expand=0x7f0b001d;
-        public static int layout_login=0x7f0b0015;
-        public static int logo=0x7f0b0014;
+        public static int layout_expand=0x7f0b001e;
+        public static int layout_login=0x7f0b0016;
+        public static int logo=0x7f0b0015;
         public static int main_view=0x7f0b0007;
         public static int navigation=0x7f0b0009;
         public static int navigation_list=0x7f0b000a;
-        public static int pager=0x7f0b0024;
-        public static int pager_strip=0x7f0b0025;
-        public static int pgb_angel_devil=0x7f0b001b;
-        public static int progress_bar=0x7f0b0026;
+        public static int pager=0x7f0b0025;
+        public static int pager_strip=0x7f0b0026;
+        public static int pgb_angel_devil=0x7f0b001c;
+        public static int progress_bar=0x7f0b0027;
         public static int search_box=0x7f0b000b;
         public static int share_box=0x7f0b000c;
         public static int spinner_category=0x7f0b0010;
-        public static int spinner_difficulty=0x7f0b0013;
-        public static int text_category=0x7f0b001e;
-        public static int text_complete=0x7f0b0020;
-        public static int text_difficulty=0x7f0b0021;
-        public static int text_name=0x7f0b001f;
-        public static int text_point=0x7f0b0022;
-        public static int text_sharing=0x7f0b001a;
-        public static int text_status=0x7f0b0023;
-        public static int title=0x7f0b0028;
+        public static int spinner_difficulty=0x7f0b0014;
+        public static int text_category=0x7f0b001f;
+        public static int text_complete=0x7f0b0022;
+        public static int text_difficulty=0x7f0b0023;
+        public static int text_name=0x7f0b0020;
+        public static int text_sharing=0x7f0b001b;
+        public static int text_start=0x7f0b0021;
+        public static int text_status=0x7f0b0024;
+        public static int title=0x7f0b0029;
         public static int view_buttons=0x7f0b000d;
-        public static int webview=0x7f0b0027;
+        public static int webview=0x7f0b0028;
     }
     public static final class integer {
         public static int settings_database_version=0x7f080000;
@@ -183,12 +184,12 @@ containing a value of this type.
         public static int action_bar_btn_right_text=0x7f060004;
         public static int action_cancel=0x7f06001a;
         public static int action_close=0x7f06001e;
-        public static int action_create_task=0x7f06003b;
+        public static int action_create_task=0x7f06003d;
         /**  Action 
          */
-        public static int action_login=0x7f06003a;
-        public static int action_mark_as_complete=0x7f06003c;
-        public static int action_mark_as_uncomplete=0x7f06003d;
+        public static int action_login=0x7f06003c;
+        public static int action_mark_as_complete=0x7f06003e;
+        public static int action_mark_as_uncomplete=0x7f06003f;
         public static int action_no=0x7f06001c;
         public static int action_ok=0x7f060019;
         public static int action_open=0x7f06001d;
@@ -196,10 +197,10 @@ containing a value of this type.
          */
         public static int action_quit_app=0x7f060018;
         public static int action_search=0x7f06001f;
-        public static int action_share=0x7f06003e;
-        public static int action_sharing=0x7f06003f;
-        public static int action_show_less=0x7f060040;
-        public static int action_show_more=0x7f060041;
+        public static int action_share=0x7f060040;
+        public static int action_sharing=0x7f060041;
+        public static int action_show_less=0x7f060042;
+        public static int action_show_more=0x7f060043;
         public static int action_yes=0x7f06001b;
         /**  General 
          */
@@ -207,26 +208,27 @@ containing a value of this type.
         public static int app_url=0x7f060013;
         public static int drawer_close=0x7f060006;
         public static int drawer_open=0x7f060005;
-        public static int hint_category=0x7f060032;
-        public static int hint_complete_time=0x7f060033;
-        public static int hint_difficulty_level=0x7f060034;
+        public static int hint_category=0x7f060033;
+        public static int hint_complete_time=0x7f060035;
+        public static int hint_difficulty_level=0x7f060036;
         /**  Hint 
          */
-        public static int hint_name=0x7f060031;
-        public static int hint_password=0x7f060038;
-        public static int hint_point=0x7f060035;
-        public static int hint_remember_password=0x7f060039;
-        public static int hint_status=0x7f060036;
-        public static int hint_username=0x7f060037;
+        public static int hint_name=0x7f060032;
+        public static int hint_password=0x7f06003a;
+        public static int hint_point=0x7f060037;
+        public static int hint_remember_password=0x7f06003b;
+        public static int hint_start_time=0x7f060034;
+        public static int hint_status=0x7f060038;
+        public static int hint_username=0x7f060039;
         /**  Message 
          */
-        public static int message_login_failed=0x7f060042;
+        public static int message_login_failed=0x7f060044;
         public static int message_no_internet_connection=0x7f060017;
         /**  Message 
          */
         public static int message_quit_app=0x7f060016;
-        public static int message_share_facebook=0x7f060043;
-        public static int message_share_twitter=0x7f060044;
+        public static int message_share_facebook=0x7f060045;
+        public static int message_share_twitter=0x7f060046;
         public static int settings_database_name=0x7f06000c;
         /**  General 
          */
@@ -251,8 +253,8 @@ containing a value of this type.
         public static int settings_resolution_xxhigh=0x7f060011;
         public static int settings_twitter_link=0x7f06000a;
         public static int title_category=0x7f060029;
-        public static int title_complete_time=0x7f06002a;
-        public static int title_difficulty_level=0x7f06002b;
+        public static int title_complete_time=0x7f06002b;
+        public static int title_difficulty_level=0x7f06002c;
         public static int title_list_empty=0x7f060015;
         /**  General 
  Title 
@@ -261,11 +263,12 @@ containing a value of this type.
         /**  Title 
          */
         public static int title_no_internet_connection=0x7f060014;
-        public static int title_password=0x7f06002f;
-        public static int title_point=0x7f06002c;
-        public static int title_share_facebook=0x7f060030;
-        public static int title_status=0x7f06002d;
-        public static int title_username=0x7f06002e;
+        public static int title_password=0x7f060030;
+        public static int title_point=0x7f06002d;
+        public static int title_share_facebook=0x7f060031;
+        public static int title_start_time=0x7f06002a;
+        public static int title_status=0x7f06002e;
+        public static int title_username=0x7f06002f;
     }
     public static final class style {
         /**  Application theme. 

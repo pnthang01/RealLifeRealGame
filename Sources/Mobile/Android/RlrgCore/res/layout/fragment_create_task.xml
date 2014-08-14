@@ -22,6 +22,13 @@
             android:inputType="textNoSuggestions" />
 
         <EditText
+            android:id="@+id/edit_start"
+            style="@style/full_width"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:hint="@string/hint_start_time"
+            android:inputType="time" />
+
+        <EditText
             android:id="@+id/edit_complete"
             style="@style/full_width"
             android:layout_margin="@dimen/activity_vertical_margin"

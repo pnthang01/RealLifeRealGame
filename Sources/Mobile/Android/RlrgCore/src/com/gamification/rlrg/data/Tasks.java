@@ -109,16 +109,20 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 		return result;
 	}
 
-	public void addTask(String category, long completeTime, String difficultyLevel, String name, String point, String status)
+	public void addTask(String category, long startTime, long completeTime, String difficultyLevel, String name, String status)
 	{
 		String id = String.valueOf(getTaskLastId() + 1);
 		Task task = new Task();
 		task.setCategory(RlrgApp.getInstance().getCategories().getCatgory(category));
+		if (startTime != 0)
+        {
+            task.setStartTime(startTime);
+        }
 		if (completeTime != 0)
-		{
-			task.setCompleteTime(completeTime);
-		}
-		if (difficultyLevel != null)
+        {
+            task.setCompleteTime(completeTime);
+        }
+        if (difficultyLevel != null)
 		{
 			task.setDifficultyLevel(difficultyLevel);
 		}
@@ -130,10 +134,6 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 		else
 		{
 			task.setName(category + " " + id);
-		}
-		if (point != null)
-		{
-			task.setPoint(point);
 		}
 		if (status != null)
 		{

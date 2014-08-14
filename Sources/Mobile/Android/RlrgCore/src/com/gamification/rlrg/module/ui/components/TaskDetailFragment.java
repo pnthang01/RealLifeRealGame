@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 final class TaskDetailFragment extends NghiemFragment implements OnClickListener
 {
 	private StartActivity mActivity;
-	private TextView mTxtName, mTxtCategory, mTxtDifficulty, mTxtComplete, mTxtPoint, mTxtStatus;
+	private TextView mTxtName, mTxtCategory, mTxtDifficulty, mTxtStart, mTxtComplete, mTxtStatus;
 	private Task mTask;
 
 	private String[] mStatus;
@@ -47,8 +47,8 @@ final class TaskDetailFragment extends NghiemFragment implements OnClickListener
 		mTxtName = (TextView) root.findViewById(R.id.text_name);
 		mTxtCategory = (TextView) root.findViewById(R.id.text_category);
 		mTxtDifficulty = (TextView) root.findViewById(R.id.text_difficulty);
-		mTxtComplete = (TextView) root.findViewById(R.id.text_complete);
-		mTxtPoint = (TextView) root.findViewById(R.id.text_point);
+        mTxtStart = (TextView) root.findViewById(R.id.text_start);
+        mTxtComplete = (TextView) root.findViewById(R.id.text_complete);
 		mTxtStatus = (TextView) root.findViewById(R.id.text_status);
 		return root;
 	}
@@ -76,8 +76,8 @@ final class TaskDetailFragment extends NghiemFragment implements OnClickListener
 		mTxtName.setText(mTask.getName());
 		mTxtCategory.setText(mTask.getCategory().getName());
 		mTxtDifficulty.setText(mTask.getDifficultyLevel());
+		mTxtStart.setText(format.format(new Date(mTask.getStartTime())));
 		mTxtComplete.setText(format.format(new Date(mTask.getCompleteTime())));
-		mTxtPoint.setText(mTask.getPoint());
 		mTxtStatus.setText(mTask.getStatus());
 
 		mActivity.setBtnActionBarRightText(mTask.getStatus().equals(mStatus[0]) ? R.string.action_mark_as_complete : R.string.action_mark_as_uncomplete, this);
