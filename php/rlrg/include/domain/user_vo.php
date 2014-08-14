@@ -1,35 +1,31 @@
 
  <?php
  class UserVO {
-		private $username;
-		private $password;
-		private $sex;
+
+		public $Username;
+		public $Password;
+		public $Email;
+		public $FirstName;
 
 		public function setUsername($username){
-			$this->username=$username;
+			$this->Username=$username;
 		}
 
 		public function setPassword($password){
-			$this->password=$password;
+			$this->Password=$password;
 
 		}
 
-		public function setSex($sex){
-			$this->sex=$sex;
-		}
+		
 
 		public function getUsername(){
-			return $this->username;
+			return $this->Username;
 
 		}
 
 		public function getPassword(){
-			return $this->password;
+			return $this->Password;
 		}
 
-		public function getSex(){
-			return $this->sex;
-			
-		}
 
 	}

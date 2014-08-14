@@ -7,7 +7,9 @@
 
 
 		function __construct() {
+
        		parent::__construct();
+       		
    		}
 
 
@@ -20,9 +22,21 @@
 
 		}
 
-		public function exeRegister(){
+		public function exeRegister($user){
 
+			$request = $this->getResquet();
+			$request->setParam('restobject',$this->dataSendRegister($user));
+			$request->http_post(HOT_SERVER."/user/signup");
 
+		}
+
+		function dataSendRegister($user){
+
+			$dataSend =	array();
+			$dataSend['ErrorCode'] = 0;
+			$dataSend['Msg']='Success';
+			$dataSend['data']=array('User'=>$user);
+			return json_encode($dataSend);
 
 		}
 
