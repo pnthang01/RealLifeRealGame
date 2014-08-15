@@ -13,6 +13,8 @@ public interface IUserService<T, V> extends IBaseService<T, V> {
 
 	public T getUserByUsername(String username);
 	
+	public Boolean checkUsername(String username);
+	
 	public void save(T user);
 
 	public void signup(V dto) throws Exception;

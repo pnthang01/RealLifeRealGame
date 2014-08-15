@@ -198,6 +198,12 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
         }
     }
     
+	@Override
+	public Boolean checkUsername(String username) { 
+		Long total = userRepo.selectUsername(username);
+		return 1l == total;
+	}
+    
     public boolean updateUserPerformed(Long userId, String performed){
     	return false;
     }
@@ -294,4 +300,5 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
 	public Class<UserDTO> getVClass() {
 		return UserDTO.class;
 	}
+
 }

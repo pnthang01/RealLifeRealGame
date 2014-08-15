@@ -34,6 +34,17 @@ public abstract class BaseService <T, V> implements IBaseService<T, V>{
 		Thread newThd = new Thread(exe);
 		newThd.start();
 	}
+	
+	/**
+	 * Encode counting services for statistic to json.
+	 * @param count
+	 * @param controllerName
+	 * @return
+	 * @throws ConvertException
+	 */
+	public String encodeCheckingRestObject(Boolean result) throws ConvertException{
+		return jsonExporter.encodeSingleValueToJson(result);
+	}
 
 	/**
 	 * Encode counting services for statistic to json.
