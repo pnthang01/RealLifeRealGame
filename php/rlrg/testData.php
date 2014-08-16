@@ -1,25 +1,23 @@
 <?php 
-	$test =	array();
-	$test['ErrorCode'] = 0;
-	$test['Msg']='Success';
+	class BaseVO{
 
+		public $ErrorCode=1;
+		public $Msg="ok";
+		public $data;
+
+	}
 
 	class User {
 
 		public $userName;
 		public $email;
 
-		function tet(){
-
-		}
-
-
 	}
 
-	
-	$user = new User();
-	$user->userName = "anh dt";
-	$user->email = "anhdt@yahoo.com";
+	$test = new BaseVO();
+	$user =  new User();
+	$user->userName="anhdinh";
+	$user->email="dta89uct@gmail.com";
+	$test->data['user']=$user;
 
-	$test['data']=array('User'=>$user);
 	echo json_encode($test);

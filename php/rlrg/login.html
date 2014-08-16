@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <link href="css/login.css" rel='stylesheet' type='text/css' />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login</title>
         <!--webfonts-->
         <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
         <!--//webfonts-->
@@ -23,6 +24,7 @@
 
                 $("#formLogin").submit(function() {
                     var dataSend = $(this).serialize();
+                    
                     var url = "/include/controler/login.php";
                     $.ajax({
                         type: "POST",
@@ -32,7 +34,7 @@
                         {
                             console.log(data);
                             var objData = JSON.parse(data);
-                            if (objData.ErrorCode === 1) {
+                            if (objData.ErrorCode ==1) {
                                 $('#error').show();
                                 $('#error').text(objData.Msg);
                                 setTimeout(function() {
@@ -45,7 +47,7 @@
                                 setCookie(TOKEN, objData.data.User.Token, 1);
                                 setCookie(FIRST_NAME, objData.data.User.FirstName, 1);
                                 setCookie(LAST_NAME, objData.data.User.Username, 1);
-                                window.location.href = 'index.html';
+                                window.location.href = '/index.html';
                             }
                         }
                     });
