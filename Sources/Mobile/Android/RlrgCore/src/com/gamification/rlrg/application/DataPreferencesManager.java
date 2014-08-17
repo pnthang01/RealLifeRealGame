@@ -218,13 +218,13 @@ public class DataPreferencesManager
 			point = maxPoint;
 		}
 		LOG.debug("saveUserPoint: " + point);
-		getStorage().edit().putLong(PREFERENCE_USER_POINT, point).commit();
+		getStorage().edit().putInt(PREFERENCE_USER_POINT, point).commit();
 	}
 
 	/**
 	 * Add user point
 	 */
-	public int addUserPoint(int point)
+	public long addUserPoint(int point)
 	{
 		int newPoint = getUserPoint() + point;
 		saveUserPoint(newPoint);

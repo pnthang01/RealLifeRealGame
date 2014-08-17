@@ -52,6 +52,10 @@ public class Tasks extends BaseEntity<Tasks.TaskList>
 	public int getTaskLastId()
 	{
 		List<Task> list = getData().getElements();
+		if (list.size() == 0)
+		{
+			return 0;
+		}
 		return Integer.parseInt(list.get(list.size() - 1).getId());
 	}
 

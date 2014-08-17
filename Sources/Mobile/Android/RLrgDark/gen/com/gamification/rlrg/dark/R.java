@@ -20,6 +20,7 @@ public final class R {
     public static final class array {
         public static final int difficulty=0x7f0a0002;
         public static final int navigation=0x7f0a0000;
+        public static final int point_level=0x7f0a0004;
         public static final int task=0x7f0a0001;
         public static final int task_status=0x7f0a0003;
     }
@@ -229,6 +230,8 @@ containing a value of this type.
          */
         public static final int message_quit_app=0x7f060016;
         public static final int message_share_facebook=0x7f060045;
+        public static final int message_share_finish=0x7f060047;
+        public static final int message_share_reach_level=0x7f060048;
         public static final int message_share_twitter=0x7f060046;
         public static final int settings_database_name=0x7f06000c;
         /**  General 

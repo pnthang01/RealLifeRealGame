@@ -3,6 +3,8 @@ package com.gamification.rlrg.module.ui.components;
 import lvnghiem.app.core.components.ExpandCollapseView;
 
 import com.gamification.rlrg.application.DataPreferencesManager;
+import com.gamification.rlrg.application.RlrgApp;
+import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
 
@@ -80,6 +82,12 @@ final class ShowRoomFragment extends Fragment implements OnClickListener
 	@Override
 	public void onClick(View view)
 	{
+		String badgeNames = "";
+		for (Achievement achievement : RlrgApp.getInstance().getAchievements().getData().getElements())
+		{
+			badgeNames += ", " + achievement.getBadge().getName();
+		}
+		RlrgApp.getInstance().setSharingMessage(badgeNames.replaceFirst(", ", ""));
 		mActivity.showDialog(StartActivity.DIALOG_SHARE, true);
 	}
 }

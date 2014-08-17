@@ -37,6 +37,7 @@ public class RlrgApp extends NghiemBaseApp
 	private Tasks tasks;
 	private Achievements achievements;
 	private Badges badges;
+	private String mSharingMessage = "";
 
 	public static RlrgApp getInstance()
 	{
@@ -76,8 +77,8 @@ public class RlrgApp extends NghiemBaseApp
 
 	public void init()
 	{
-		initUuid();
-		initErrorHandle();
+		//initUuid();
+		//initErrorHandle();
 
 		users = (Users) GSON.fromJson(sDataPreferencesManager.loadJsonUsers(), Users.class);
 		badges = (Badges) GSON.fromJson(sDataPreferencesManager.loadJsonBadges(), Badges.class);
@@ -86,12 +87,22 @@ public class RlrgApp extends NghiemBaseApp
 		achievements = (Achievements) GSON.fromJson(sDataPreferencesManager.loadJsonAchievements(), Achievements.class);
 	}
 
-	private void initErrorHandle()
+	public void initErrorHandle()
 	{
 		Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
 	}
+	
+	public void setSharingMessage(String message)
+	{
+		mSharingMessage = message;
+	}
+	
+	public String getSharingMessage()
+	{
+		return mSharingMessage;
+	}
 
-	private void initUuid()
+	public void initUuid()
 	{
 		String lastUuid = DataPreferencesManager.getInstance().getUuid();
 		if (TextUtils.isEmpty(lastUuid) || lastUuid.startsWith("FAKE"))

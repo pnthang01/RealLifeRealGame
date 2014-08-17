@@ -18,7 +18,6 @@ import com.gamification.rlrg.data.Tasks;
 import com.gamification.rlrg.data.entity.Task;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.StartActivity;
-import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
 import com.google.gson.Gson;
 
 final class TaskDetailFragment extends NghiemFragment implements OnClickListener
@@ -88,8 +87,23 @@ final class TaskDetailFragment extends NghiemFragment implements OnClickListener
 	{
 		int finishPoint = getResources().getInteger(R.integer.settings_rules_point_task_finish);
 		mTask.setStatus(mTask.getStatus().equals(mStatus[0]) ? mStatus[1] : mStatus[0]);
+		mTxtStatus.setText(mTask.getStatus());
 		DataPreferencesManager.getInstance().addUserPoint(mTask.getStatus().equals(mStatus[0]) ? -finishPoint : finishPoint);
 		DataPreferencesManager.getInstance().saveJsonTasks(new Gson().toJson(mTasks, Tasks.class));
-		mActivity.replaceFragment(FragmentFactory.create(Type.SHOWROOM));
+		if (mTask.getStatus().equals(mStatus[1]))
+		{
+			RlrgApp.getInstance().setSharingMessage(String.format(getString(R.string.message_share_finish), mTask.getName()));
+			mActivity.showDialog(StartActivity.DIALOG_SHARE, true);
+		}
+
+		int currentPoint = DataPreferencesManager.getInstance().getUserPoint();
+		for (int pointLevel : getResources().getIntArray(R.array.point_level))
+		{
+			if (currentPoint - finishPoint < pointLevel && currentPoint + finishPoint > pointLevel)
+			{
+				RlrgApp.getInstance().setSharingMessage(String.format(getString(R.string.message_share_reach_level), currentPoint));
+				mActivity.showDialog(StartActivity.DIALOG_SHARE, true);
+			}
+		}
 	}
 }

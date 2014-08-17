@@ -183,13 +183,7 @@ public final class StartActivity extends NavigationActivity implements Runnable
 		}
 		if (type.equals(DIALOG_SHARE))
 		{
-			String badgeNames = "";
-			for (Achievement achievement : RlrgApp.getInstance().getAchievements().getData().getElements())
-			{
-				badgeNames += ", " + achievement.getBadge().getName();
-			}
-			badgeNames.replaceFirst(", ", "");
-			final String args = badgeNames;
+			final String args = RlrgApp.getInstance().getSharingMessage();
 			View view = inflate(R.layout.dialog_share);
 			view.findViewById(R.id.btn_twitter).setOnClickListener(new OnClickListener()
 			{
