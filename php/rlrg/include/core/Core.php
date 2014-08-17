@@ -23,6 +23,15 @@
 
 			//close connection
 			curl_close($ch);
+			
+		}
+
+
+		public function http_get($url){
+			$ch = curl_init();
+			curl_setopt($ch,CURLOPT_URL, $url);
+			$result = curl_exec($ch);
+			curl_close($ch);
 		}
 
 		public function setParam($name,$value){
