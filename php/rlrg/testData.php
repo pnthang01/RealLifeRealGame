@@ -1,23 +1,19 @@
-<?php 
-	class BaseVO{
+﻿<?php 
+ class A {
+ 	public $name1;
+ 	public $name2;
+ }
 
-		public $ErrorCode=1;
-		public $Msg="ok";
-		public $data;
+ class B {
+ 	public $abc;
+ 	public $dasda;
+ }
 
-	}
+$a= new A();
+$a->name1="anhdt";
+$b = new B();
+$b->abc="cai gi do";
+$b->dasda="asdas";
+$a->name2=$b;
 
-	class User {
-
-		public $userName;
-		public $email;
-
-	}
-
-	$test = new BaseVO();
-	$user =  new User();
-	$user->userName="anhdinh";
-	$user->email="dta89uct@gmail.com";
-	$test->data['user']=$user;
-
-	echo json_encode($test);
+echo json_encode($a);
