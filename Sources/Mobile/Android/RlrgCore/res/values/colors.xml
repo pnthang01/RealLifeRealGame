@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background_solid">#E15B4A</color>
+    <color name="background_transparent">#90E15B4A</color>
+    
+    <color name="background_list_item">#99999999</color>
+
+</resources>

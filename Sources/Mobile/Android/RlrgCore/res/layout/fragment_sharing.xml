@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/full_screen" >
+    style="@style/full_screen"
+    android:background="@drawable/bg1" >
 
     <TextView
         android:id="@+id/text_sharing"

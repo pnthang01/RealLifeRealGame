@@ -22,7 +22,6 @@ import android.widget.ListView;
 
 import com.gamification.rlrg.application.DataPreferencesManager;
 import com.gamification.rlrg.application.RlrgApp;
-import com.gamification.rlrg.data.entity.Achievement;
 import com.gamification.rlrg.gen.R;
 import com.gamification.rlrg.module.ui.components.FragmentFactory;
 import com.gamification.rlrg.module.ui.components.FragmentFactory.Type;
@@ -137,7 +136,6 @@ public final class StartActivity extends NavigationActivity implements Runnable
 		RlrgApp.getInstance().checkTask();
 		RlrgApp.getInstance().checkAchievements();
 
-		findViewById(R.id.fragment_container).setBackgroundResource(R.drawable.bg1);
 		Fragment fragment = FragmentFactory.create(Type.SHOWROOM);
 		Bundle args = new Bundle();
 		args.putString("title", mNavigationTitles[0]);

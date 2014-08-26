@@ -83,6 +83,8 @@ final class LoginFragment extends NghiemFragment implements OnClickListener, Run
 
 	private void showLoginForm()
 	{
+		mTxtLogo.getLayoutParams().height = DeviceManager.getInstance().getScreenHeight();
+		mLayoutLogin.setVisibility(View.GONE);
 		new Handler().postDelayed(this, 2000);
 	}
 
