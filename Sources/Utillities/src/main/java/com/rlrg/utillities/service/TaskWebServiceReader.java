@@ -17,7 +17,12 @@ public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
 	private final String GET_ALL_TASKS_BY_LEVEL_URL = "task/getAllTasksByLevel?difficultyLevel={difficultyLevel}";
 	private final String GET_ALL_TASKS_BY_POINT_URL = "task/getAllTasksByPoint?point={point}";
 	private final String SEARCH_TASKS_BY_KEYWORD_URL = "task/searchTasks?keyword={keyword}&pageNumber={pageNumber}";
+	private final String GET_AVAILABLE_TASK_BY_TIME_URL = "task/getAvailableTasksByTime?token={token}&days={days}&pageNumber={pageNumber}";
 	private final String UPDATE_TASK_URL = "task/update?restobject={restobject}";
+	
+	public ResultList<TaskDTO> getAvailableTasksByTime(String token, Integer days, Integer pageNumber) throws RestClientException, ConvertException{
+		return this.getListOfObjects(GET_AVAILABLE_TASK_BY_TIME_URL, MODULE_NAME, token, days, pageNumber);
+	}
 	
 	public ResultList<TaskDTO> getTasksByStatus(boolean status, Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_TASKS_BY_STATUS_URL, MODULE_NAME, status, pageNumber);

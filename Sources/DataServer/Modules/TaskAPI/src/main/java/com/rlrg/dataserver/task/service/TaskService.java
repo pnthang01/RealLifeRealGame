@@ -1,5 +1,6 @@
 package com.rlrg.dataserver.task.service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rlrg.checker.dto.TaskCheckerDTO;
+import com.rlrg.dataserver.base.controller.BaseUtils;
 import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
@@ -207,6 +209,34 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	public TaskDTO getTaskById(Long taskId){
 		return taskRepo.getTaskById(taskId, DEFAULT_LANGUAGE.getId());
 	}
+
+	/**
+	 * Get list of available Tasks base on token and days
+	 * Then convert this list of DTO
+	 * @param name
+	 * @param userId
+	 * @param pageNumber
+	 * @return
+	 * @throws UserTokenException 
+	 */
+	@Override
+	public List<TaskDTO> getTasksByTimeAndStatuses(String token, Integer days, Integer pageNumber, TaskStatus... taskStatuses) throws UserTokenException {
+		UserToken userToken = commonService.getUserToken(token);
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		//
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(BaseUtils.truncateDate(calendar.getTime()));
+		Date start = calendar.getTime();
+		calendar.add(Calendar.DATE, days);
+		Date end = calendar.getTime();
+		//
+		return taskRepo.getTasksByTimeAndStatuses(userToken.getId(), start, end, pageRequest, taskStatuses);
+	}
+
+
 	
 	/**
 	 * Get list of Task bases on task's name, user of this tasks and user's language.
@@ -301,6 +331,5 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	public Class<TaskDTO> getVClass() {
 		return TaskDTO.class;
 	}
-
 
 }

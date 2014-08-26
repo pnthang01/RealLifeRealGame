@@ -2,9 +2,6 @@ package com.rlrg.dataserver.task.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +101,7 @@ public class TaskController extends BaseController{
 	 */
 	@RequestMapping(value = "/getTask", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
-	public String getTask(@RequestParam("taskId") Long taskId, HttpServletRequest request, HttpServletResponse response){
+	public String getTask(@RequestParam("taskId") Long taskId){
 		String result = null;
 		LOG.info("<< Starting webservice /task/getTask with parameters: taskId={}", taskId);
 		try{
@@ -119,6 +116,35 @@ public class TaskController extends BaseController{
 			result = taskService.encodeBlankRestObject(restObject);
 		}
 		LOG.info("<< End webservice /task/getTask");
+		return result;
+	}
+	
+	/**
+	 * Get All tasks bases on range time and all tasks are available to complete
+	 * @param categoryId
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/getAvailableTasksByTime", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
+	@ResponseBody
+	public String getAvailableTasksByTime(@RequestParam("token") String token, 
+			@RequestParam("days") Integer days,@RequestParam(value="pageNumber", required=false) Integer pageNumber){
+		String result = null;
+		LOG.info("<< Starting webservice /task/getAvailableTasksByTime with parameters: " +
+				"token={}, days={}", token, days);
+		try{
+			List<TaskDTO> tasks = taskService.getTasksByTimeAndStatuses(token, days, pageNumber, TaskStatus.CREATED, TaskStatus.PROGRESSING);
+			Long total = 10l;//taskService.countTasksByKeyword(keyword); //TODO
+			//
+			result = taskService.encodeMutipleObjectsFromListV(tasks, total);
+		} catch (BaseException e) {
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = taskService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = taskService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /task/getAvailableTasksByTime");
 		return result;
 	}
 	

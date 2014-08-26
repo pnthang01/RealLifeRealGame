@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="index" template="/WEB-INF/layouts/index-template.jsp">
+		<put-attribute name="title" value="Real Life Real Game" />
+		<put-attribute name="header" value="/WEB-INF/layouts/include/index/header.jsp" />
+		<put-attribute name="slider" value="/WEB-INF/layouts/include/index/slider.jsp" />
+		<put-attribute name="features" value="/WEB-INF/layouts/include/index/features.jsp" />
+<!-- 		<put-attribute name="footer-top" value="/WEB-INF/layouts/include/index/footer-top.jsp" /> -->
+		<put-attribute name="footer-bottom" value="/WEB-INF/layouts/include/index/footer-bottom.jsp" />
+	</definition>
+	
+	<definition name="form" template="/WEB-INF/layouts/form-template.jsp">
+		<put-attribute name="title" value="page.title.main" />
+		<put-attribute name="body" value="" />
+	</definition>
+	
+	<definition name="main" template="/WEB-INF/layouts/main-template.jsp">
+		<put-attribute name="title" value="page.title.main" />
+		<put-attribute name="header" value="/WEB-INF/layouts/include/main/header.jsp" />
+		<put-attribute name="user-block" value="/WEB-INF/layouts/include/main/user-block.jsp" />
+		<put-attribute name="badge-block" value="/WEB-INF/layouts/include/main/badge-block.jsp" />
+		<put-attribute name="point-image-block" value="/WEB-INF/layouts/include/main/point-image-block.jsp" />
+		<put-attribute name="task-block" value="/WEB-INF/layouts/include/main/task-block.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/layouts/include/main/footer.jsp" />
+	</definition>
+
+	<definition name="point-image-block">
+		<put-attribute name="point-image-block" value="/WEB-INF/layouts/include/main/point-image-block.jsp" />
+	</definition>
+</tiles-definitions>

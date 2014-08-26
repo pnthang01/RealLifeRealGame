@@ -27,16 +27,16 @@ public class TaskDTO {
 	@JsonExport(name = "Description")
 	private String description;
 	
-	@JsonExport(name = "Create Time")
+	@JsonExport(name = "CreateTime")
 	private Date createTime;
 
-	@JsonExport(name = "Complete Time")
+	@JsonExport(name = "CompleteTime")
 	private Date completeTime;
 
-	@JsonExport(name = "Start Time")
+	@JsonExport(name = "StartTime")
 	private Date startTime;
 
-	@JsonExport(name = "Difficulty Level")
+	@JsonExport(name = "DifficultyLevel")
 	private DifficultyLevel difficultyLevel;
 
 	@JsonExport(name = "Status")

@@ -14,6 +14,7 @@ import com.rlrg.dataserver.badge.dto.BadgeDTO;
 import com.rlrg.dataserver.badge.entity.Achievement;
 import com.rlrg.dataserver.badge.entity.Badge;
 import com.rlrg.dataserver.badge.repository.AchievementRepository;
+import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.service.BaseService;
@@ -55,6 +56,25 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 		return achievementRepo.getAllBadgeIdByUserId(userId);
 	}
 	
+
+
+	@Override
+	public List<AchievementDTO> getAchievementDTOs(String token, Integer pageNumber) throws UserTokenException {
+		UserToken userToken = commonService.getUserToken(token);
+		if(null == pageNumber){
+			pageNumber = 1;
+		}
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
+		//
+		return achievementRepo.getAchievementDTOs(userToken.getId(), DEFAULT_LANGUAGE.getId(), pageRequest);
+	}
+	
+	public Long countAchievements(String token) throws UserTokenException{
+		UserToken userToken = commonService.getUserToken(token);
+		return achievementRepo.countAchievements(userToken.getId());
+	}
+
+	
 	/**
 	 * 
 	 * @param token
@@ -62,7 +82,7 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 	 * @return
 	 * @throws UserTokenException 
 	 */
-	public List<AchievementDTO> getUserAchievementDTOs(String username, Integer pageNumber) throws UserTokenException{
+	public List<AchievementDTO> getUserAchievementDTOs(String username, Integer pageNumber){
 		if(null == pageNumber){
 			pageNumber = 1;
 		}
@@ -70,8 +90,6 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 		//
 		return achievementRepo.getUserAchievementDTOs(username, DEFAULT_LANGUAGE.getId(), pageRequest);
 	}
-	
-
 
 	@Override
 	public void addAchievementForUser(Long userId, Integer badgeId) throws Exception {

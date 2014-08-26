@@ -46,6 +46,26 @@ public class AchievementController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/getAchievements", produces = "application/json", method = RequestMethod.GET)
+	@ResponseBody
+	public String getAchievements(@RequestParam(value="token", required=true) String token, @RequestParam("pageNumber") Integer pageNumber) {
+		String result = null;
+		LOG.info("<< Starting webservice /achievement/getAchievements with parameters: token={}, pageNumber={}", token, pageNumber);
+		try {
+			List<AchievementDTO> listDto = achievementService.getAchievementDTOs(token, pageNumber);
+			Long count = achievementService.countAchievements(token);
+			//
+			result = achievementService.encodeMutipleObjectsFromListV(listDto, count);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = achievementService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = achievementService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /achievement/getAchievements");
+		return result;
+	}
 	
 	@RequestMapping(value = "/addAchievement", produces = "application/json", method=RequestMethod.POST)
 	@ResponseBody

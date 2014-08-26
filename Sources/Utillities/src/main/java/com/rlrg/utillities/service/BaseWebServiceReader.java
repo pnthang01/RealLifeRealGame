@@ -96,6 +96,37 @@ public abstract class BaseWebServiceReader<T>{
 	}
 	
 	/**
+	 * Accept part of url and their url parameters, combine that url with the uri domain to fully url
+	 * Then post a json string from the fully url and decode it to an object of class T
+	 * @param url
+	 * @param moduleName
+	 * @param params
+	 * @return
+	 * @throws ConvertException
+	 */
+	protected T postAnObject(String url, String moduleName, Object... params) throws ConvertException{
+		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
+		//
+		String json = restTemplate.postForObject(finalUrl, null, String.class, params);
+		if(null == json){
+			LOG.error("Received null result when reading data from url:{}.", finalUrl);
+			throw new RestClientException("Received null result from url.");
+		}
+		//TODO
+		//
+		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
+		if(restobject.getErrorCode() == RestObject.ERROR){
+			LOG.error("Error occurs when reading data from url:{}.", finalUrl);
+			throw new ConvertException(restobject.getMsg());
+		}
+		if(null == restobject.getData()){
+			LOG.error("Decode json to object failed with json:{}", json);
+			throw new ConvertException("Error occurs when decoding json to objects.");
+		}
+		return jsonExporter.decodeJsonToObject(restobject.getData().toString(), getTClass());
+	}
+	
+	/**
 	 * Accept part of url and an object of class T, then encode it to json.
 	 * And post this json to data server, the result will be whether OK or ERROR
 	 * @param url

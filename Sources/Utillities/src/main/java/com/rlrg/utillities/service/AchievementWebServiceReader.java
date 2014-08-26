@@ -10,9 +10,14 @@ public class AchievementWebServiceReader extends BaseWebServiceReader<Achievemen
 	
 	private final String MODULE_NAME = "AchievementModule";
 	
-	private final String GET_ALL_ACHIEVEMENTS_BY_USER_NAME_URL = "achievement/getAllAchivementsByUserName?username={username}&pageNumber={pageNumber}";
+	private final String GET_ACHIEVEMENTS_URL = "achievement/getAchievements?token={token}&pageNumber={pageNumber}";
+	private final String GET_ALL_ACHIEVEMENTS_BY_USER_NAME_URL = "achievement/getAllAchivementsByUserName?token={token}&pageNumber={pageNumber}";
 	private final String GET_ALL_ACHIEVEMENTS_BY_BADGE_ID_URL = "achievement/getAllAchivementsByBadgeId?badgeId={badgeId}";
 	private final String ADD_AN_ACHIEVEMENT_URL = "achievement/add?restobject={restobject}";
+	
+	public ResultList<AchievementDTO> getAchievements(String token, Integer pageNumber) throws RestClientException, ConvertException{
+		return this.getListOfObjects(GET_ACHIEVEMENTS_URL, MODULE_NAME, token, pageNumber);
+	}
 	
 	public ResultList<AchievementDTO> getAllAchievementsByUserName(String username, Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_ACHIEVEMENTS_BY_USER_NAME_URL, MODULE_NAME, username, pageNumber);

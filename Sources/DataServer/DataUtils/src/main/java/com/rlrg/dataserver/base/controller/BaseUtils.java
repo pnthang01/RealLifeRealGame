@@ -47,6 +47,7 @@ public class BaseUtils {
 	public static Date truncateDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
+		calendar.set(Calendar.AM_PM, Calendar.AM);
 		calendar.set(Calendar.HOUR, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);

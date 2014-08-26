@@ -1,0 +1,1 @@
+XCOPY E:\Workspace\Projects\RealLifeRealGame\Sources\WebServer\Frontend\* E:\Workspace\Servers\xampp\htdocs\Frontend /s/h/e/k/f/c/-y

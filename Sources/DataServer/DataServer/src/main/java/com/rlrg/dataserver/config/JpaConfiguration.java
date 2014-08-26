@@ -36,6 +36,18 @@ public class JpaConfiguration implements EnvironmentAware {
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL             = "hibernate.show_sql";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
 
+
+    private RelaxedPropertyResolver environment;
+    
+    public JpaConfiguration(){
+    	super();
+    }
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        this.environment = new RelaxedPropertyResolver(environment, CONFIGURATION_PREFIX + ".");
+    }
+    	
     @Bean
     @ConditionalOnExpression("${spring.datasource.pooled:false} == false")
     public DataSource simpleDataSource() {
@@ -48,7 +60,6 @@ public class JpaConfiguration implements EnvironmentAware {
             @SuppressWarnings("unchecked")
             final Class<Driver> driverClass = (Class<Driver>) Class
                     .forName(driverClassName);
-
             return new SimpleDriverDataSource() {
                 {
                     setDriverClass(driverClass);
@@ -154,16 +165,6 @@ public class JpaConfiguration implements EnvironmentAware {
     // public PlatformTransactionManager transactionManager() {
     // return new JpaTransactionManager();
     // }
-
-    private RelaxedPropertyResolver environment;
-
-    @Override
-    public void setEnvironment(Environment environment) {
-        this.environment = new RelaxedPropertyResolver(environment,
-                                                       CONFIGURATION_PREFIX
-                                                               + ".");
-
-    }
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource ds) {

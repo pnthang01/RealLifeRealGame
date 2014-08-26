@@ -12,6 +12,8 @@ public class UserWebServiceReader extends BaseWebServiceReader<UserDTO> {
 	
 	private final String GET_ALL_USERS_URL = "user/getUsers?pageNumber={pageNumber}";
 	private final String UPDATE_USER_URL = "user/update?restobject={restobject}";
+	private final String LOGIN_URL = "user/login?username={username}&password={password}";
+	private final String SIGNUP_URL = "user/signup?restobject={restobject}";
 	
 	public ResultList<UserDTO> getAllUsers(Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_USERS_URL, MODULE_NAME, pageNumber);
@@ -26,6 +28,22 @@ public class UserWebServiceReader extends BaseWebServiceReader<UserDTO> {
 	 */
 	public boolean updateUser(UserDTO dto) throws RestClientException, ConvertException{
 		return this.postAnObjectT(UPDATE_USER_URL, MODULE_NAME, dto);
+	}
+	
+	/**
+	 * Login method
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws RestClientException
+	 * @throws ConvertException
+	 */
+	public UserDTO login(String username, String password) throws RestClientException, ConvertException {
+		return this.postAnObject(LOGIN_URL, MODULE_NAME, username, password);
+	}
+	
+	public boolean signup(UserDTO dto) throws ConvertException{
+		return this.postAnObjectT(SIGNUP_URL, MODULE_NAME, dto);
 	}
 
 	@Override

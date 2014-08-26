@@ -1,5 +1,6 @@
 package com.rlrg.dataserver.task.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -42,6 +43,15 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl" +
 			" WHERE t.id = :taskId AND cl.language.id = :languageId")
 	public TaskDTO getTaskById(@Param("taskId") Long taskId, @Param("languageId") Integer languageId);
+	
+	@Query("SELECT NEW com.rlrg.dataserver.task.dto.TaskDTO(" +
+			"t.id, c.code, cl.cateName, t.name, t.description, t.createTime," +
+			" t.completeTime, t.startTime, t.difficultyLevel, t.status, t.point"	+
+			")"  +
+			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl" +
+			" WHERE t.user.id = :userId AND t.status IN :statuses AND (t.completeTime BETWEEN :start AND :end)")
+	public List<TaskDTO> getTasksByTimeAndStatuses(@Param("userId") Long userId, 
+			@Param("start") Date start, @Param("end") Date end, Pageable pageable, @Param("statuses") TaskStatus... statuses);
 	
 	@Query("SELECT t FROM Task t WHERE t.user.id = :userId")
 	public Page<Task> getTasksByUser(@Param("userId") Integer userId, Pageable pageable);

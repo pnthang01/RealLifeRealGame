@@ -25,6 +25,19 @@ public interface AchievementRepository extends JpaRepository<Achievement, Long>,
 	public List<AchievementDTO> getUserAchievementDTOs(@Param("username") String username, 
 			@Param("languageId") Integer languageId, Pageable pageable);
 	
+	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.AchievementDTO(" +
+			"a.id, b.id, bl.name, bl.description, a.achievedTime" +
+			")" +
+		" FROM Achievement a INNER JOIN a.badge b" +
+		" INNER JOIN b.badgeLangs bl" +
+		" INNER JOIN a.user u" +
+		" WHERE u.id = :userId AND bl.language.id = :languageId")
+	public List<AchievementDTO> getAchievementDTOs(@Param("userId") Long userId, 
+			@Param("languageId") Integer languageId, Pageable pageable);
+	
+	@Query("SELECT COUNT(a) FROM Achievement a WHERE a.user.id = :userId")
+	public Long countAchievements(@Param("userId") Long userId);
+
 	@Query("SELECT COUNT(a) FROM Achievement a WHERE a.badge.id = :badgeId")
 	public Long countTimeBadgeBeAchieved(@Param("badgeId") Integer badgeId);
 

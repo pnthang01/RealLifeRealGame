@@ -21,6 +21,7 @@ header {
 	margin: auto;
 	width: 960px;
 	height:50px;
+	margin-bottom:30px;
 	vertical-align: baseline;
 	
 }
@@ -83,7 +84,7 @@ ul.sub li a:hover{
 }
 /* btn_style*/
 .btn_style.blue{
-	background: #766FB5;
+	background: #0013ff;
 	border-bottom: 1px solid #615B99;
 }
 .btn_style.brown{
@@ -207,15 +208,30 @@ ul.sub li a:hover{
 	text-transform: capitalize;
 	font-weight: 400;
 }
-.user-statistic span {
+.user-statistic a {
 	display: block;
 	color: #ffffff;
 	font-size: 2em;
 	font-weight: 100;
 }
-
+.profile-menu{
+	padding: 15px;
+	background: rgba(255, 255, 255, 0.18);
+	text-align:left;
+	border-radius: 0px 0px 10px 10px;
+	-webkit-border-radius: 0px 0px 10px 10px;
+	-moz-border-radius:0px 0px 10px 10px;
+	-o-border-radius:0px 0px 10px 10px;
+}
+.profile-menu a {
+	padding-top:10px;
+	display: block;
+	color: #ffffff;
+	font-size: 1.2em;
+	font-weight: 100;
+}
 /* badge shelf */
-.loader_main{
+.loader_left{
 	position: relative;
 	padding: 3px;
 	background: rgba(255, 255, 255, 0.18);
@@ -224,7 +240,20 @@ ul.sub li a:hover{
 	-moz-border-radius: 0px 0px 10px 10px;
 	-o-border-radius: 0px 0px 10px 10px;
 }
-.loader_main a {
+.loader_left a {
+	display:block;
+	color: #ffffff;
+	text-align:right;
+	font-size: 1em;
+	text-transform: capitalize;
+	font-weight: 400;
+}
+.loader_right{
+	position: relative;
+	padding: 3px;
+	background: rgba(255, 255, 255, 0.18);
+}
+.loader_right a {
 	display:block;
 	color: #ffffff;
 	text-align:right;
@@ -247,7 +276,21 @@ ul.sub li a:hover{
 	display:block;
 	width:100%;
 }
-
+.badge-photos-big{
+	padding:1%;
+}
+.badge-photos-big li{
+	float:left;
+	width:17%;
+	padding:1.5%;
+}
+.badge-photos-big li a{
+	display:block;
+}
+.badge-photos-big li a img{
+	display:block;
+	width:100%;
+}
 /* Point display */
 .point_img{
 	position: relative;
@@ -279,78 +322,6 @@ ul.sub li a:hover{
 	text-transform: capitalize;
 	font-weight: 400;
 }
-/*start task list */
-/*
-.menu_box_list{
-	border-radius: 0px 0px 10px 10px;
-	-webkit-border-radius: 0px 0px 10px 10px;
-	-moz-border-radius:0px 0px 10px 10px;
-	-o-border-radius:0px 0px 10px 10px;
-	background: rgba(255, 255, 255, 0.13);
-}
-.menu_box_list li{
-	border-bottom: 1px solid #BBA9E2;	
-	margin-bottom:0px; 
-}
-.menu_box_list li:last-child{
-	border-bottom: none;
-}
-.menu_box_list li a{
-	display:block;
-	color:#ffffff;
-	text-transform:capitalize;
-	font-size:1em;
-	line-height:1.8em;
-	font-weight: 400;
-	padding:18px 30px 16px;
-	border-left: 8px solid rgba(255, 255, 255, 0);
-	-webkit-transition: color .2s linear,background .2s linear;
-	-moz-transition: color .2s linear,background .2s linear;
-	-o-transition: color .2s linear,background .2s linear;
-	transition: color .2s linear,background .2s linear;
-}
-.menu_box_list li a > i{
-	width:26px;
-	height:26px;
-	display:inline-block;
-	background:url(images/sprite_nav.png) no-repeat;	
-	vertical-align:middle;
-	transition:none;
-	float: right;
-}
-.menu_box_list li a:hover > i{
-	background:url(images/sprite_nav.png) no-repeat;	
-}
-.menu_box_list li a:hover,.menu_box_list li.active a{
-	color: #ffffff;
-	background-color: rgba(255, 255, 255, 0.22);
-	border-left: 8px solid #ffffff;
-}
-.menu_box_list li a span{
-	float: left;
-}
-.menu_box_list li a > i.settings{
-	background-position:0px 0px;
-}
-.menu_box_list li a:hover > i.settings{
-	background-position:1px -33px;
-}
-.menu_box_list li a > i.location{
-	background-position: -32px 1px;
-}
-.menu_box_list li a:hover > i.location{
-	background-position: -31px -32px;
-}
-.menu_box_list li.active a > i.favorite{
-	background-position: -62px -32px;
-}
-.menu_box_list li a > i.food {
-	background-position: -94px 0px;
-}
-.menu_box_list li a:hover > i.food{
-	background-position: -93px -33px;
-}
-*/
 /***** Tasks ******/
 .tasks{
 	float:left;
@@ -362,11 +333,11 @@ ul.sub li a:hover{
 	margin-top:4px;
 	margin-bottom:0px;
 }
-.power{
-	background:red;
+.task_bg{
+	background: rgba(255, 255, 255, 0.18);
 }
 .communication{
-	background:yellow;
+	background: rgba(255, 255, 255, 0.18);
 }
 .tasks li:first-child{
 	margin-top:0;

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.profile.dto.UserDTO;
-import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.utillities.domain.ResultList;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.service.UserWebServiceReader;
