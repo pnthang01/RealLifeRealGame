@@ -26,7 +26,7 @@ public class CommonController {
 	
 	@Autowired
 	private CommonService commonService;
-	
+
 	@RequestMapping(value="/welcome")
 	public String index(){
 		return "index";	
@@ -95,9 +95,5 @@ public class CommonController {
 			return "error";
 		}
 	}
-	
-	@RequestMapping("/home")
-	public String home(){
-		return "home";
-	}
+
 }

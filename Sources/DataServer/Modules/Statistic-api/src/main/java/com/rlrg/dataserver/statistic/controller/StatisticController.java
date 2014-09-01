@@ -41,4 +41,24 @@ public class StatisticController {
 		LOG.info("<< End webservice /statistic/getLoginStatistic");
 		return result;
 	}
+	
+	@RequestMapping(value = "/getBasicUserStatistic", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
+	@ResponseBody
+	public String getBasicUserStatistic(@RequestParam("token") String token){
+		String result = null;
+		LOG.info("<< Starting webservice /statistic/getBasicUserStatistic with parameters: token={}", token);
+		try {
+			StatisticDTO dto = statisticService.getBasicUserStatistic(token);
+			//
+			result = statisticService.encodeSingleObjectFromVdto(dto);
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = statisticService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = statisticService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /statistic/getBasicUserStatistic");
+		return result;
+	}
 }

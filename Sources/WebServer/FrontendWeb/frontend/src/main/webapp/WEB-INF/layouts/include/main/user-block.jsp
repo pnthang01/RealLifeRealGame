@@ -2,28 +2,29 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <script type="text/javascript">
 	function loadUserData() {
+		$("#user-detail h4 a").text($.cookie('Profile_Firstname'));
 		$.ajax({
-			url : "<c:url value="/user/getUserProfile"/>",
+			url : "<c:url value="/user/getBasicUserStatistics"/>",
 			type : "GET",
 			success : function(response) {
-				$("#user-detail h4 a").text(response.firstName);
-				$("#user-statistic-task span").text(response.completedTask);
+				$("#user-statistic-task span").text(response.values[0]);
+				$("#user-statistic-point span").text(response.values[1]);
 			}
 		});	
 	}
 </script>
 <div>
 	<!--Start User block -->
-	<div class="btn_style blue">
+	<div class="btn_style lightgreen">
 		<h4>Profile</h4>
 	</div>
 	<div class="cover">
-		<img src="<c:url value="/main/images/pic2.jpg" />" alt="" />
+		<img src="<c:url value="/main/images/default-cover.jpg" />" alt="" />
 	</div>
 	<div class="user">
 		<div class="user-info">
 			<div class="avatar">
-				<a href="#"><img src="<c:url value="/main/images/user.jpg" />" alt="" /></a>
+				<a href="#"><img src="<c:url value="/main/images/default-male.jpg" />" alt="" /></a>
 			</div>
 			<div id="user-detail" class="user-detail">
 				<h4>
@@ -36,11 +37,11 @@
 	<div class="user-statistics">
 		<div id="user-statistic-task" class="user-statistic">
 			<p>Completed Tasks</p>
-			<span>345</span>
+			<span>0</span>
 		</div>
 		<div id="user-statistic-point" class="user-statistic">
 			<p>Points</p>
-			<span>498</span>
+			<span>0</span>
 		</div>
 		<div class="clear"></div>
 	</div>

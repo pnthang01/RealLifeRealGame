@@ -26,6 +26,8 @@ public interface IUserService<T, V> extends IBaseService<T, V> {
 	public V login(String username, String password) throws RepositoryException, InvalidParamExeption, Exception;
 
 	public void updateUserPoint(String token, Integer point) throws Exception;
+	
+	public Integer getUserPoint(String token) throws UserTokenException;
 
 	public List<V> getAllUserDTO(Integer pageNumber);
 	

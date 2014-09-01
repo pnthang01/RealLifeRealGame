@@ -26,7 +26,7 @@
 <form:form method="POST" commandName="loginForm" action="login.do">
 	<div class="lable-2">
 		<form:input path="username" class="text" value="testacc" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tài khoản ';}"/>
-		<form:password path="password"  class="text" name="123456" value="Mật khẩu " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mật khẩu ';}"/>
+		<form:password path="password" class="text" value="123456" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mật khẩu ';}"/>
 	</div>
 	<div class="submit">
 		<input type="submit" onclick="myFunction()" value="Đăng nhập">

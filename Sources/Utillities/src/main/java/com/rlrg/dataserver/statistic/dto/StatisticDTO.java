@@ -1,5 +1,6 @@
 package com.rlrg.dataserver.statistic.dto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +17,13 @@ public class StatisticDTO {
 	private List<Long> values;
 	
 	public StatisticDTO(){
+		this.labels = new ArrayList<String>();
+		this.values = new ArrayList<Long>();
+	}
+	
+	public void addStatistic(String label, Long value){
+		this.labels.add(label);
+		this.values.add(value);
 	}
 
 	public StatisticDTO(String[] labels, Long[] values) {

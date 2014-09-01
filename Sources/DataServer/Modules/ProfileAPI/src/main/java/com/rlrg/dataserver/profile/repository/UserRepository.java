@@ -46,4 +46,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 			" OR (u.email LIKE CONCAT('%', :keyword, '%')))")
 	public Long countUsersByKeyword(@Param("keyword") String keyword);
 	
+	@Query("SELECT u.point FROM entity.User u WHERE u.id = :userId")
+	public Integer getUserPoint(@Param("userId") Long userId);
+	
 }

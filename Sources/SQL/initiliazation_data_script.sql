@@ -1,14 +1,14 @@
 USE `data`;
 
 INSERT INTO `category` VALUES
-	(1, '5k23e7zB', 1, 1, 'Power'),
-	(2, 'HUesJMM6', 2, 1, 'Intelligent'),
-	(3, 'WpxxS9ZS', 3, 1, 'Communication'),
-	(4, 'wYaviD74', 4, 1, 'Career'),
-	(5, '5nrGZSco', 5, 1, 'Art');
+	(1, '5k23e7zB', 1, 1, 'Power','power-symbol.jpg'),
+	(2, 'HUesJMM6', 2, 1, 'Intelligent','intelligent-symbol.jpg'),
+	(3, 'WpxxS9ZS', 3, 1, 'Communication','communication-symbol.jpg'),
+	(4, 'wYaviD74', 4, 1, 'Career','career-symbol.jpg'),
+	(5, '5nrGZSco', 5, 1, 'Art','art-symbol.jpg');
 
 INSERT INTO `language` VALUES
-	(1, 'vn','VN', 'vn_VN'),
+	(1, 'vi','VN', 'vi_VN'),
 	(2, 'en','US', 'en_US');
 
 INSERT INTO `category_language` VALUES
@@ -19,36 +19,36 @@ INSERT INTO `category_language` VALUES
 	(5, 5, 1, N'Nghề nghiệp', N'Các hoạt động chú tâm về nghề nghiệp');
 
 INSERT INTO `badge` VALUES 
-	(1, 1, 'test.jpg','{"Login":"3"}'),
-	(2, 1, 'test.jpg','{"Login":"7"}'),
-	(3, 1, 'test.jpg','{"Login":"15"}'),
-	(4, 1, 'test.jpg','{"Login":"30"}'),
-	(5, 1, 'test.jpg','{"Login":"60"}'),
-	(6, 1, 'test.jpg','{"CompleteTask_Communication":"3"}'),
-	(7, 1, 'test.jpg','{"CompleteTask_Communication":"7"}'),
-	(8, 1, 'test.jpg','{"CompleteTask_Communication":"16"}'),
-	(9, 1, 'test.jpg','{"CompleteTask_Communication":"36"}'),
-	(10, 1, 'test.jpg','{"CompleteTask_Communication":"81"}'),
-	(11, 1, 'test.jpg','{"CompleteTask_Power":"3"}'),
-	(12, 1, 'test.jpg','{"CompleteTask_Power":"7"}'),
-	(13, 1, 'test.jpg','{"CompleteTask_Power":"16"}'),
-	(14, 1, 'test.jpg','{"CompleteTask_Power":"36"}'),
-	(15, 1, 'test.jpg','{"CompleteTask_Power":"81"}'),
-	(16, 1, 'test.jpg','{"CompleteTask_Intelligent":"2"}'),
-	(17, 1, 'test.jpg','{"CompleteTask_Intelligent":"4"}'),
-	(18, 1, 'test.jpg','{"CompleteTask_Intelligent":"8"}'),
-	(19, 1, 'test.jpg','{"CompleteTask_Intelligent":"16"}'),
-	(20, 1, 'test.jpg','{"CompleteTask_Intelligent":"32"}'),
-	(21, 1, 'test.jpg','{"CompleteTask_Career":"2"}'),
-	(22, 1, 'test.jpg','{"CompleteTask_Career":"4"}'),
-	(23, 1, 'test.jpg','{"CompleteTask_Career":"8"}'),
-	(24, 1, 'test.jpg','{"CompleteTask_Career":"16"}'),
-	(25, 1, 'test.jpg','{"CompleteTask_Career":"32"}'),
-	(26, 1, 'test.jpg','{"CompleteTask_Art":"2"}'),
-	(27, 1, 'test.jpg','{"CompleteTask_Art":"4"}'),
-	(28, 1, 'test.jpg','{"CompleteTask_Art":"8"}'),
-	(29, 1, 'test.jpg','{"CompleteTask_Art":"16"}'),
-	(30, 1, 'test.jpg','{"CompleteTask_Art":"32"}');
+	(1, 1, 'cartton-img1.jpg','{"Login":"3"}'),
+	(2, 1, 'cartton-img2.jpg','{"Login":"7"}'),
+	(3, 1, 'cartton-img3.jpg','{"Login":"15"}'),
+	(4, 1, 'cartton-img4.jpg','{"Login":"30"}'),
+	(5, 1, 'cartton-img5.jpg','{"Login":"60"}'),
+	(6, 1, 'cartton-img6.jpg','{"CompleteTask_Communication":"3"}'),
+	(7, 1, 'cartton-img7.jpg','{"CompleteTask_Communication":"7"}'),
+	(8, 1, 'cartton-img8.jpg','{"CompleteTask_Communication":"16"}'),
+	(9, 1, 'cartton-img9.jpg','{"CompleteTask_Communication":"36"}'),
+	(10, 1, 'cartton-img1.jpg','{"CompleteTask_Communication":"81"}'),
+	(11, 1, 'cartton-img2.jpg','{"CompleteTask_Power":"3"}'),
+	(12, 1, 'cartton-img3.jpg','{"CompleteTask_Power":"7"}'),
+	(13, 1, 'cartton-img4.jpg','{"CompleteTask_Power":"16"}'),
+	(14, 1, 'cartton-img5.jpg','{"CompleteTask_Power":"36"}'),
+	(15, 1, 'cartton-img6.jpg','{"CompleteTask_Power":"81"}'),
+	(16, 1, 'cartton-img7.jpg','{"CompleteTask_Intelligent":"2"}'),
+	(17, 1, 'cartton-img8.jpg','{"CompleteTask_Intelligent":"4"}'),
+	(18, 1, 'cartton-img9.jpg','{"CompleteTask_Intelligent":"8"}'),
+	(19, 1, 'cartton-img1.jpg','{"CompleteTask_Intelligent":"16"}'),
+	(20, 1, 'cartton-img2.jpg','{"CompleteTask_Intelligent":"32"}'),
+	(21, 1, 'cartton-img3.jpg','{"CompleteTask_Career":"2"}'),
+	(22, 1, 'cartton-img4.jpg','{"CompleteTask_Career":"4"}'),
+	(23, 1, 'cartton-img5.jpg','{"CompleteTask_Career":"8"}'),
+	(24, 1, 'cartton-img6.jpg','{"CompleteTask_Career":"16"}'),
+	(25, 1, 'cartton-img7.jpg','{"CompleteTask_Career":"32"}'),
+	(26, 1, 'cartton-img8.jpg','{"CompleteTask_Art":"2"}'),
+	(27, 1, 'cartton-img9.jpg','{"CompleteTask_Art":"4"}'),
+	(28, 1, 'cartton-img1.jpg','{"CompleteTask_Art":"8"}'),
+	(29, 1, 'cartton-img2.jpg','{"CompleteTask_Art":"16"}'),
+	(30, 1, 'cartton-img3.jpg','{"CompleteTask_Art":"32"}');
 
 INSERT INTO `badge_language` VALUES
 	(1, 1, 1, N'Người năng động', N'Bạn rất năng động, tặng bạn huy hiệu này vì đã đăng nhập 5 lần!'),
@@ -81,5 +81,6 @@ INSERT INTO `user` VALUES
 
 INSERT INTO `config` VALUES
 	('RESOURCES_URI', 'http://localhost:8080/resource/'),
+	('STATIC_RESOURCES_URI', 'http://localhost:8080/resource/statics/'),
 	('PAGE_SIZE', '10'),
 	('TOTAL_STATISTIC_ROWS', '5');

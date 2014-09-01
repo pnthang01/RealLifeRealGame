@@ -8,7 +8,6 @@
 			success : function(response) {
 				$("#point_image").attr('alt', response.point).attr('src', response.display);
 				$("#point_title span").text(response.ranked);
-				$("#user-statistic-point span").text(response.point);
 			}
 		});
 	}

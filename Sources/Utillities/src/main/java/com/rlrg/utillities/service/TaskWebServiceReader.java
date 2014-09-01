@@ -19,6 +19,7 @@ public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
 	private final String SEARCH_TASKS_BY_KEYWORD_URL = "task/searchTasks?keyword={keyword}&pageNumber={pageNumber}";
 	private final String GET_AVAILABLE_TASK_BY_TIME_URL = "task/getAvailableTasksByTime?token={token}&days={days}&pageNumber={pageNumber}";
 	private final String UPDATE_TASK_URL = "task/update?restobject={restobject}";
+	private final String CREATE_TASK_URL = "task/createTask?restobject={restobject}&token={token}";
 	
 	public ResultList<TaskDTO> getAvailableTasksByTime(String token, Integer days, Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_AVAILABLE_TASK_BY_TIME_URL, MODULE_NAME, token, days, pageNumber);
@@ -54,6 +55,10 @@ public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
 	
 	public boolean updateTask(TaskDTO dto) throws RestClientException, ConvertException{
 		return this.postAnObjectT(UPDATE_TASK_URL, MODULE_NAME, dto);
+	}
+	
+	public TaskDTO createTask(TaskDTO dto, String token) throws ConvertException{
+		return this.postAnObject(CREATE_TASK_URL, MODULE_NAME, dto, token);
 	}
 
 	@Override

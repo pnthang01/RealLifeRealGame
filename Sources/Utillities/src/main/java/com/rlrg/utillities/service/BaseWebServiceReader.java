@@ -107,6 +107,17 @@ public abstract class BaseWebServiceReader<T>{
 	protected T postAnObject(String url, String moduleName, Object... params) throws ConvertException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
+		for(int i = 0; i < params.length ; i++){
+			if(params[i].getClass().equals(getTClass())){
+				String postRO = jsonExporter.encodeObjectToJson(params[i]);
+				if(null == postRO){
+					LOG.error("Encode object {} with class {} to json failed.", params[i], params[i].getClass());
+					throw new ConvertException("Error when encoding an object to json string.");
+				}
+				params[i] = postRO;
+			}
+		}
+		//
 		String json = restTemplate.postForObject(finalUrl, null, String.class, params);
 		if(null == json){
 			LOG.error("Received null result when reading data from url:{}.", finalUrl);

@@ -26,6 +26,7 @@
 		<put-attribute name="badge-block" value="/WEB-INF/layouts/include/main/badge-block.jsp" />
 		<put-attribute name="point-image-block" value="/WEB-INF/layouts/include/main/point-image-block.jsp" />
 		<put-attribute name="task-block" value="/WEB-INF/layouts/include/main/task-block.jsp"/>
+		<put-attribute name="content-block" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/layouts/include/main/footer.jsp" />
 	</definition>
 

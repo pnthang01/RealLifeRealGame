@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rlrg.checker.dto.TaskCheckerDTO;
-import com.rlrg.dataserver.base.controller.BaseUtils;
 import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
@@ -33,6 +32,7 @@ import com.rlrg.dataserver.task.entity.Task;
 import com.rlrg.dataserver.task.entity.enums.TaskStatus;
 import com.rlrg.dataserver.task.repository.TaskRepository;
 import com.rlrg.dataserver.utillities.Constants;
+import com.rlrg.dataserver.utillities.Utils;
 import com.rlrg.utillities.badgechecker.BadgeCheckerConstants;
 
 @Service
@@ -92,7 +92,7 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	 */
 	@Override
 	@Transactional
-	public void create(TaskDTO dto, String token) throws Exception{
+	public TaskDTO create(TaskDTO dto, String token) throws Exception{
 		try {
 			Category c = categoryService.getCategoryByCode(dto.getCategory().getCode());
 			UserToken userToken = commonService.getUserToken(token);
@@ -115,10 +115,11 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 			t.setStartTime(dto.getStartTime());
 			t.setStatus(TaskStatus.CREATED);
 			//
-			taskRepo.save(t);
+			Task entity = taskRepo.save(t);
 			//
 			u.setPoint(u.getPoint() + Constants.DEFAULT_CREATE_TASK_POINTS);
 			userService.save(u);
+			return convertEntityToDTO(entity);
 		} catch(Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw e;
@@ -228,7 +229,7 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, Constants.PAGE_SIZE);
 		//
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(BaseUtils.truncateDate(calendar.getTime()));
+		calendar.setTime(Utils.truncateDate(calendar.getTime()));
 		Date start = calendar.getTime();
 		calendar.add(Calendar.DATE, days);
 		Date end = calendar.getTime();
@@ -278,6 +279,11 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	@Override
 	public Long countTotalCreatedTaskByUserId(Long userId) {
 		return taskRepo.countTotalCreatedTaskByUserId(userId);
+	}
+	
+	@Override
+	public Long countTaskByStatus(Long userId, TaskStatus taskStatus){
+		return taskRepo.countTaskByStatus(userId, taskStatus);
 	}
 
 	@Override

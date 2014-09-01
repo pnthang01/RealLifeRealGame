@@ -15,6 +15,7 @@ import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.repository.CommonRepository;
+import com.rlrg.dataserver.utillities.Utils;
 
 @Service
 public class CommonService {
@@ -63,7 +64,7 @@ public class CommonService {
      * @throws RepositoryException
      */
     public String setUserToken(User user) throws RepositoryException {
-        String token = BaseUtils.hashPassword(user.getUsername(), BaseUtils.getCurrentTimeStamp());
+        String token = BaseUtils.hashPassword(user.getUsername(), Utils.getCurrentTimeStamp());
         user.setToken(token);
         UserToken userTk = new UserToken();
         userTokens.put(token, userTk.convertUser2UserToken(user));

@@ -204,9 +204,11 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
 		return 1l == total;
 	}
     
-    public boolean updateUserPerformed(Long userId, String performed){
-    	return false;
-    }
+	@Override
+	public Integer getUserPoint(String token) throws UserTokenException {
+		UserToken userToken = commonService.getUserToken(token);
+		return userRepo.getUserPoint(userToken.getId());
+	}
     
     /**
      * Update #User's point bases on token, which is can retrieve UserId from UserSystem

@@ -1,6 +1,5 @@
 body {
-	background:url('../images/bg.jpg');
-	background-color:grey;
+	background-color:#E9EAED;
 	background-size:100% 100%;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 100%;
@@ -11,11 +10,12 @@ header {
 	margin: 0px;
 	padding: 0px;
 	word-wrap: break-word;
-	background: rgba(255, 255, 255, 0.18);
+	background-color:#FFF;
 	border-radius: 0px 0px 10px 10px;
 	-webkit-border-radius: 0px 0px 10px 10px;
 	-moz-border-radius:0px 0px 10px 10px;
 	-o-border-radius:0px 0px 10px 10px;
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 }
 .wrapper{
 	margin: auto;
@@ -103,11 +103,14 @@ ul.sub li a:hover{
 	border-bottom: 1px solid #B09471;
 }
 .btn_style{
+	background-color:#B8BEC2;
+	width:100%;
+	display:inline-block;	
+	box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
 	border-radius: 10px 10px 0 0;
 	-webkit-border-radius: 10px 10px 0 0;
 	-moz-border-radius: 10px 10px 0 0;
 	-o-border-radius: 10px 10px 0 0;
-	box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
 	-webkit-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
 	-moz-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
 	-o-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
@@ -120,6 +123,133 @@ ul.sub li a:hover{
 	text-transform: uppercase;
 	text-align: center;
 }
+.icon-dropdown{
+	float:right;
+}
+.wrapper-dropdown-3 {
+    /* Size & position */
+    position: relative;
+    margin: 0 auto;
+    padding: 16px 15px;
+
+    /* Styles */
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.wrapper-dropdown-3 i.dropdown-icon{
+	width:36px;
+	height:36px;
+	display:block;
+	background:url(../icons/list-32.png) no-repeat;
+}
+
+.wrapper-dropdown-3 .dropdown {
+    /* Size & position */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width:160px;
+    margin-top:10px;
+    /* Styles */
+    background:#0c203c;
+    list-style: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    /* Hiding */
+    max-height: 0;
+    overflow: hidden;
+    z-index:1;
+}
+.wrapper-dropdown-3 .dropdown li{
+	margin-bottom: 0px;
+}
+.wrapper-dropdown-3 .dropdown li:first-child a{
+	border-top:none;
+}
+.wrapper-dropdown-3 .dropdown li a {
+    display: block;
+    text-decoration: none;
+    color:#9DAEC0;
+    font-size:0.8em;
+    border-top:1px solid #243750;
+    padding: 15px;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+/* Hover state */
+.wrapper-dropdown-3 .dropdown li:hover a {
+    color: #FFF;
+    background:#2da5da;
+}
+/* Active state */
+.wrapper-dropdown-3.active {
+    background: #FFF;
+    color:#FFF;
+	border-radius: 0px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-o-border-radius: 10px 10px 0 0;
+	-webkit-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+	-moz-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+	-o-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+}
+.wrapper-dropdown-3.active .dropdown {
+    max-height: 400px;
+}
+/*---start-top-search-box-----*/
+.top-search-box{
+	float: left;
+	background: #FFF;
+	margin:2.5% 0% 0px 2%;
+	padding:3px 0px 3px 0px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	-o-border-radius:3px;
+	width: 70%;
+}
+.top-search-box input[type="text"]{
+	background: none;
+	border: none;
+	outline: none;
+	font-family: 'Open Sans', sans-serif;
+	color:black;
+	font-size:0.8em;
+	font-style: italic;
+	padding:5px;
+	width:88%;
+	margin:0;
+	display:inline-block;
+}
+.top-search-box input[type="text"]:focus{
+	color:#black;
+}
+.top-search-box input[type="submit"]{
+	background: url(../icons/search-24.png) no-repeat #FFF 50%;
+	border: none;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	-o-border-radius:3px;
+	padding:7px 13px;
+	outline: none;
+	cursor: pointer;
+	margin:0;
+	float:right;
+	margin-right:3px;
+}
+/*---End-top-search-box-----*/
 /* user-info*/
 .cover{
 	margin-bottom: -4px;
@@ -137,6 +267,8 @@ ul.sub li a:hover{
 	display: inline-flex;
 }
 .avatar a img{
+	width:100px;
+	height:100px;
 	border: 5px solid #B9B9B9;
 	border-radius: 75px;
 	-webkit-border-radius: 75px;
@@ -183,7 +315,7 @@ ul.sub li a:hover{
 }
 .user-statistics{
 	padding: 30px;
-	background: rgba(255, 255, 255, 0.18);
+	background: #FFF;
 	text-align:center;
 	border-radius: 0px 0px 10px 10px;
 	-webkit-border-radius: 0px 0px 10px 10px;
@@ -202,7 +334,7 @@ ul.sub li a:hover{
 }
 .user-statistic p {
 	display: block;
-	color: #ffffff;
+	color: black;
 	font-size: 1em;
 	text-transform: capitalize;
 	font-weight: 400;
@@ -233,7 +365,7 @@ ul.sub li a:hover{
 .loader_left{
 	position: relative;
 	padding: 3px;
-	background: rgba(255, 255, 255, 0.18);
+	background: #FFF;
 	border-radius: 0px 0px 10px 10px;
 	-webkit-border-radius: 0px 0px 10px 10px;
 	-moz-border-radius: 0px 0px 10px 10px;
@@ -241,7 +373,7 @@ ul.sub li a:hover{
 }
 .loader_left a {
 	display:block;
-	color: #ffffff;
+	color: #blue;
 	text-align:right;
 	font-size: 1em;
 	text-transform: capitalize;
@@ -296,7 +428,7 @@ ul.sub li a:hover{
 	margin-bottom: -4px;
 }
 .point_img img{
-	height: 220px;
+	height: 100px;
 	width: 100%;
 	border-radius: 10px 10px 0 0;
 	-webkit-border-radius: 10px 10px 0 0;
@@ -333,7 +465,8 @@ ul.sub li a:hover{
 	margin-bottom:0px;
 }
 .task_bg{
-	background: rgba(255, 255, 255, 0.18);
+/* 	background: rgba(255, 255, 255, 0.18); */
+	background-color:#FFF;
 }
 .tasks li:first-child{
 	margin-top:0;
@@ -347,14 +480,19 @@ ul.sub li a:hover{
 	float:left;
 	width:88%;	
 }
-.task h4 a{
-	font-size:0.95em;
-	color:#FFF;
+
+.task a{
+	font-size:1.1em;
+	color:#3B5998;
 	font-weight:600;
+	margin-right:10px;
 }
-.task h4 a:hover{
+.task a:hover{
 	color:#D0EDFD;
 	text-decoration:underline;
+}
+.task span{
+	font-size:13px;'
 }
 .task p{
 	font-size:0.8em;
@@ -364,7 +502,7 @@ ul.sub li a:hover{
 }
 .task p a{
 	font-size:0.85em;
-	color:#0b5071;
+	color:#3B5998;
 	text-transform:uppercase;
 	font-weight:700;
 	padding:0 10px;
@@ -379,38 +517,42 @@ ul.sub li a:hover{
 	padding-left:0;
 }
 .task p a:hover{
-	color:#FFF;
+	color:#3B5998;
 }
-.task p span.likes a{
-	float:right;
-	color:#84CBEC;
-	font-size:1em;
-	padding:0;
-	transition:none;
-	font-weight:normal;
+
+.create-task-form{
+	font-size: 62.5%;
 }
-.task p span.likes a > i{
-	width:15px;
-	height:15px;
-	display:inline-block;
-	background: url(../images/sprite.png) no-repeat -44px -91px;
-	vertical-align:sub;
+
+.create-task-form label,input,select{
+	display: block;
 }
-.task p span.likes a:hover,.comment_desc p span.likes a.active{
-	color:#FFF;	
+
+.create-task-form input.text,select {
+	margin-bottom: 12px;
+	width: 95%;
+	padding: .4em;
 }
-.task p span.likes a:hover > i,.comment_desc p span.likes a.active > i{
-	background-position:-44px -112px;
+
+.create-task-form fieldset {
+	padding: 0;
+	border: 0;
+	margin-top: 25px;
+}
+
+.create-task-form h1 {
+	font-size: 1.2em;
+	margin: .6em 0;
 }
 
 /* start copy_rights*/
 .copy{
-	background: rgba(255, 255, 255, 0.18);
+	background: #FFF;
 	text-align:center;
 }
 .copy p{
 	font-size: 0.8125em;
-	color: #ffffff;
+	color: blue;
 	line-height: 1.8em;
 	text-transform:uppercase;
 }
@@ -422,7 +564,7 @@ ul.sub li a:hover{
 	transition: all 0.3s ease-in-out;
 }
 .copy p a:hover{
-	color: #ffffff;
+	color: blue;
 }
 
 .custom-clear{clear:both;}

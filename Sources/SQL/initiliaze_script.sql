@@ -7,7 +7,8 @@ CREATE TABLE `category` (
 	`code` VARCHAR(15) UNIQUE NOT NULL,
 	`position` INT(11) NOT NULL,
 	`status` TINYINT NOT NULL,
-	`tag` VARCHAR(15) NOT NULL
+	`tag` VARCHAR(15) NOT NULL,
+	`file_name` VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE `language`(

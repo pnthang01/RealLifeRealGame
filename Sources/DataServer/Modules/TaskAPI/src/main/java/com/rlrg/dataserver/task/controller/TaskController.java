@@ -58,9 +58,8 @@ public class TaskController extends BaseController{
 		String result = null;
 		try{
 			TaskDTO dto = taskService.decodeSingleObject(json);
-			taskService.create(dto, token);
-			RestObject restObject = RestObject.successBlank();
-			result = taskService.encodeBlankRestObject(restObject);
+			TaskDTO createdDTO = taskService.create(dto, token);
+			result = taskService.encodeSingleObjectFromVdto(createdDTO);
 		} catch (BaseException e) {
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = taskService.encodeBlankRestObject(restObject);

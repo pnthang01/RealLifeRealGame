@@ -13,7 +13,7 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 	
 	public List<T> saveTasks(List<T> tasks);
 	
-	public void create(V dto, String token) throws Exception;
+	public V create(V dto, String token) throws Exception;
 	
 	public void update(V dto, String token) throws Exception;
 	
@@ -34,6 +34,8 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 	public List<V> searchTasksByKeyword(String keyword, Integer pageNumber);
 	
 	public Long countTasksByKeyword(String keyword);
+	
+	public Long countTaskByStatus(Long userId, TaskStatus taskStatus);
 	
 	public Long countTotalCreatedTaskByUserId(Long userId);
 	

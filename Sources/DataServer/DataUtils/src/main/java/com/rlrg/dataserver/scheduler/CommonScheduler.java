@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.rlrg.dataserver.base.controller.BaseUtils;
 import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.service.CommonService;
 import com.rlrg.dataserver.utillities.Constants;
+import com.rlrg.dataserver.utillities.Utils;
 
 public class CommonScheduler {
 	
@@ -25,7 +25,7 @@ public class CommonScheduler {
 	public void removeLongUsedToken() throws Exception{
 		try {
 			Map<String, UserToken> userTokens = commonService.getUserTokens();
-			long currentTime = BaseUtils.truncateMiliSecondDate(new Date());
+			long currentTime = Utils.truncateMiliSecondDate(new Date());
 			//
 			Iterator<String> iter = userTokens.keySet().iterator();
 			while(iter.hasNext()){

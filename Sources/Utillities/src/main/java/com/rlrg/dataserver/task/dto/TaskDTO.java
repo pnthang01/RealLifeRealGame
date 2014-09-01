@@ -158,21 +158,21 @@ public class TaskDTO {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder("Task:");
-		sb.append(" [ID = ").append(id).append("]");
-		if(null != category){
-			sb.append(" [Category = ").append(category.toString()).append("]");
-		}
-		sb.append(" [Name = ").append(name).append("]");
-		sb.append(" [Complete Time = ").append(completeTime).append("]");
-		sb.append(" [Point = ").append(point).append("]");
-		sb.append(" [Status = ").append(status.name()).append("]");
-		//
-		return sb.toString();
-	}
+//
+//	@Override
+//	public String toString() {
+//		StringBuilder sb = new StringBuilder("Task:");
+//		sb.append(" [ID = ").append(id).append("]");
+//		if(null != category){
+//			sb.append(" [Category = ").append(category.toString()).append("]");
+//		}
+//		sb.append(" [Name = ").append(name).append("]");
+//		sb.append(" [Complete Time = ").append(completeTime).append("]");
+//		sb.append(" [Point = ").append(point).append("]");
+//		sb.append(" [Status = ").append(status.name()).append("]");
+//		//
+//		return sb.toString();
+//	}
 
 	
 }

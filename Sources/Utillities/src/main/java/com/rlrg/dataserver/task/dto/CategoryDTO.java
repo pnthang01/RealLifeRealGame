@@ -30,6 +30,10 @@ public class CategoryDTO{
 	public CategoryDTO(){
 	}
 	
+	public CategoryDTO(String code){
+		this.code = code;
+	}
+	
 	public CategoryDTO(String code, String name){
 		this.code = code;
 		this.name = name;
