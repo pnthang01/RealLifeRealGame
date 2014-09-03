@@ -13,7 +13,12 @@ public class UserWebServiceReader extends BaseWebServiceReader<UserDTO> {
 	private final String GET_ALL_USERS_URL = "user/getUsers?pageNumber={pageNumber}";
 	private final String UPDATE_USER_URL = "user/update?restobject={restobject}";
 	private final String LOGIN_URL = "user/login?username={username}&password={password}";
+	private final String LOGOUT_URL = "user/logout?token={token}";
 	private final String SIGNUP_URL = "user/signup?restobject={restobject}";
+	
+	public void logout(String token) throws RestClientException, ConvertException{
+		this.getForVoid(LOGOUT_URL, MODULE_NAME, token);
+	}
 	
 	public ResultList<UserDTO> getAllUsers(Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_ALL_USERS_URL, MODULE_NAME, pageNumber);

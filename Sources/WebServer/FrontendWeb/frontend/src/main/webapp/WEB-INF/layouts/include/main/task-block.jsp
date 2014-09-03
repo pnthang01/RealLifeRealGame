@@ -4,7 +4,7 @@
 	$(function() {
 		function createTask(){
 			var valid = true;
-			valid = valid && checkLength($("#name"), 3, 16);
+			valid = valid && checkLength($("#name"), 3, 70);
 			if(valid){
 				$.ajax({
 					type : "POST",

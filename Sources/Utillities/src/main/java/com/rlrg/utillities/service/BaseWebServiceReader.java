@@ -65,6 +65,30 @@ public abstract class BaseWebServiceReader<T>{
 	
 	/**
 	 * Accept part of url and their url parameters, combine that url with the uri domain to fully url
+	 * Then get a json string from the fully url, check the restoject is OK, no return.
+	 * @param url
+	 * @param moduleName
+	 * @param urlParams
+	 * @throws ConvertException
+	 */
+	protected void getForVoid(String url, String moduleName, Object...urlParams) throws ConvertException, RestClientException{
+		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
+		//
+		String json = restTemplate.getForObject(finalUrl, String.class, urlParams);
+		if(null == json){
+			LOG.error("Received null result when reading data from url:{}.", finalUrl);
+			throw new RestClientException("Received null result from url.");
+		}	
+		//
+		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
+		if(restobject.getErrorCode() == RestObject.ERROR){
+			LOG.error("Error occurs when reading data from url:{}.", finalUrl);
+			throw new ConvertException(restobject.getMsg());
+		}
+	}
+	
+	/**
+	 * Accept part of url and their url parameters, combine that url with the uri domain to fully url
 	 * Then get a json string from the fully url and decode it to an object of class T
 	 * @param url
 	 * @param urlVars

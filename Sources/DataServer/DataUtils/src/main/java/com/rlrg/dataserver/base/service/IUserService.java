@@ -24,6 +24,8 @@ public interface IUserService<T, V> extends IBaseService<T, V> {
 	public void updateUserRole(String token, Integer roleId) throws Exception;
 
 	public V login(String username, String password) throws RepositoryException, InvalidParamExeption, Exception;
+	
+	public void logout(String token);
 
 	public void updateUserPoint(String token, Integer point) throws Exception;
 	

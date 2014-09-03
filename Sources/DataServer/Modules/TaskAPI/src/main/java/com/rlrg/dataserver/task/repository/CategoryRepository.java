@@ -16,7 +16,7 @@ import com.rlrg.dataserver.task.entity.Category;
 public interface CategoryRepository extends JpaRepository<Category, Integer>, JpaSpecificationExecutor<Category>{
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.CategoryDTO(" +
-			"c.code, cl.cateName, cl.description, c.position, c.status)" + 
+			"c.code, cl.cateName, cl.description, c.position, c.status, c.fileName)" + 
 			" FROM Category c"+
 			" LEFT OUTER JOIN c.cateLangs cl" +
 			" WHERE cl.language.id = :languageId" + 
@@ -30,7 +30,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Jp
 	public Category getCategoryByCode(@Param("code") String code);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.CategoryDTO(" +
-			"c.code, cl.cateName, cl.description, c.position, c.status)" + 
+			"c.code, cl.cateName, cl.description, c.position, c.status, c.fileName)" + 
 			" FROM Category c"+
 			" LEFT OUTER JOIN c.cateLangs cl" +
 			" WHERE cl.language.id = :languageId" + 
@@ -38,7 +38,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Jp
 	public List<CategoryDTO> getCategoriesDTOByStatus(@Param("status") boolean status, @Param("languageId") Integer languageId, Pageable pageable);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.CategoryDTO(" +
-			"c.code, cl.cateName, cl.description, c.position, c.status)" + 
+			"c.code, cl.cateName, cl.description, c.position, c.status, c.fileName)" + 
 			" FROM Category c"+
 			" LEFT OUTER JOIN c.cateLangs cl" +
 			" WHERE cl.language.id = :languageId" +
@@ -58,7 +58,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Jp
 	public Long countCategoriesByKeyword(@Param("keyword") String keyword, @Param("languageId") Integer languageId);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.CategoryDTO(" +
-			"c.code, cl.cateName, cl.description, c.position, c.status)" + 
+			"c.code, cl.cateName, cl.description, c.position, c.status, c.fileName)" + 
 			" FROM Category c"+
 			" LEFT OUTER JOIN c.cateLangs cl" +
 			" WHERE cl.language.id = :languageId")

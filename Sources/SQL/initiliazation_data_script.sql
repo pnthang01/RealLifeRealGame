@@ -80,7 +80,7 @@ INSERT INTO `user` VALUES
 	(1, 1, 'testacc','e10adc3949ba59abbe56e057f20f883e','testacc@gmail.com','FirstName',null,'2014-07-22',null,0,0,'CONFIRM',null);
 
 INSERT INTO `config` VALUES
-	('RESOURCES_URI', 'http://localhost:8080/resource/'),
-	('STATIC_RESOURCES_URI', 'http://localhost:8080/resource/statics/'),
+	('RESOURCES_URI', 'http://localhost:8080/resources/'),
+	('STATIC_RESOURCES_URI', 'http://localhost:8080/resources/statics/'),
 	('PAGE_SIZE', '10'),
 	('TOTAL_STATISTIC_ROWS', '5');

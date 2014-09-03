@@ -86,7 +86,7 @@ CREATE TABLE `task` (
 	`id` MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`user_id` MEDIUMINT,
 	`category_id` INT,
-	`name` NVARCHAR(50) NOT NULL,
+	`name` NVARCHAR(70) NOT NULL,
 	`description` NVARCHAR(100) NULL,
 	`start_time` DATETIME NULL,
 	`complete_time` DATETIME NOT NULL,

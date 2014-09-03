@@ -474,7 +474,12 @@ ul.sub li a:hover{
 .task_img{
 	float:left;
 	width:50px;
+	heigth:50px;
 	margin-right:10px;
+}
+.task_img img{
+	width:50px;
+	height:50px;
 }
 .task{
 	float:left;

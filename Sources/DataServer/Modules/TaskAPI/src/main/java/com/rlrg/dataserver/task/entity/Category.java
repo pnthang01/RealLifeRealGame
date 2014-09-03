@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 
 import com.rlrg.dataserver.language.entity.CategoryLanguage;
 
-
 @Entity
 @Table(name = "category")
 public class Category implements Serializable, Comparable<Category> {
@@ -29,7 +28,7 @@ public class Category implements Serializable, Comparable<Category> {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@NotNull
 	@Column(name = "code")
 	private String code;
@@ -39,10 +38,13 @@ public class Category implements Serializable, Comparable<Category> {
 
 	@Column(name = "status")
 	private boolean status;
-	
+
 	@Column(name = "tag")
 	private String tag;
-	
+
+	@Column(name = "file_name")
+	private String fileName;
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
 	private List<CategoryLanguage> cateLangs;
 
@@ -78,13 +80,13 @@ public class Category implements Serializable, Comparable<Category> {
 		this.code = code;
 	}
 
-//	public String getDescription() {
-//		return description;
-//	}
-//
-//	public void setDescription(String description) {
-//		this.description = description;
-//	}
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 	public int getPosition() {
 		return position;

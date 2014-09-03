@@ -16,22 +16,24 @@ import com.rlrg.dataserver.badge.entity.Achievement;
 public interface AchievementRepository extends JpaRepository<Achievement, Long>, JpaSpecificationExecutor<Achievement> {
 	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.AchievementDTO(" +
-				"a.id, b.id, bl.name, bl.description, a.achievedTime" +
+				"a.id, b.id, bl.name, CONCAT(cfg.value, b.fileName), bl.description, a.achievedTime" +
 				")" +
 			" FROM Achievement a INNER JOIN a.badge b" +
 			" INNER JOIN b.badgeLangs bl" +
-			" INNER JOIN a.user u" +
-			" WHERE u.username = :username AND bl.language.id = :languageId")
+			" INNER JOIN a.user u, Config cfg" +
+			" WHERE u.username = :username AND bl.language.id = :languageId" +
+			" AND cfg.key = com.rlrg.dataserver.utillities.Constants.STATIC_RESOURCES_URI_KEY")
 	public List<AchievementDTO> getUserAchievementDTOs(@Param("username") String username, 
 			@Param("languageId") Integer languageId, Pageable pageable);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.badge.dto.AchievementDTO(" +
-			"a.id, b.id, bl.name, bl.description, a.achievedTime" +
+			"a.id, b.id, bl.name, CONCAT(cfg.value, b.fileName), bl.description, a.achievedTime" +
 			")" +
 		" FROM Achievement a INNER JOIN a.badge b" +
 		" INNER JOIN b.badgeLangs bl" +
-		" INNER JOIN a.user u" +
-		" WHERE u.id = :userId AND bl.language.id = :languageId")
+		" INNER JOIN a.user u, Config cfg" +
+		" WHERE u.id = :userId AND bl.language.id = :languageId" +
+		" AND cfg.key = com.rlrg.dataserver.utillities.Constants.STATIC_RESOURCES_URI_KEY")
 	public List<AchievementDTO> getAchievementDTOs(@Param("userId") Long userId, 
 			@Param("languageId") Integer languageId, Pageable pageable);
 	

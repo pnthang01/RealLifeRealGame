@@ -59,7 +59,23 @@ public class TaskDTO {
 			Date completeTime, Date startTime, DifficultyLevel diffcultyLevel,
 			TaskStatus status, Integer point){
 		this.id = id;
-		CategoryDTO cate = new CategoryDTO(cateCode, cateName);
+		CategoryDTO cate = new CategoryDTO(cateCode, "test", cateName);
+		this.category = cate;
+		this.name = name;
+		this.description = description;
+		this.createTime = createTime;
+		this.completeTime = completeTime;
+		this.startTime = startTime;
+		this.difficultyLevel = diffcultyLevel;
+		this.status = status;
+		this.point = point;
+	}
+	
+	public TaskDTO(Long id, String cateCode, String cateName, String cateFile, String name, String description, Date createTime,
+			Date completeTime, Date startTime, DifficultyLevel diffcultyLevel,
+			TaskStatus status, Integer point){
+		this.id = id;
+		CategoryDTO cate = new CategoryDTO(cateCode, cateName, cateFile);
 		this.category = cate;
 		this.name = name;
 		this.description = description;

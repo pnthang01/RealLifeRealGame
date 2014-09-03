@@ -38,6 +38,13 @@ public class BadgeDTO {
 		this.name = name;
 		this.description = description;
 	}
+	
+	public BadgeDTO(Integer id, String name, String fileName, String description){
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.fileName = fileName;
+	}
 
 	public BadgeDTO(Integer id, String name, String description,
 			BadgeStatus status, String fileName, String eligibility) {

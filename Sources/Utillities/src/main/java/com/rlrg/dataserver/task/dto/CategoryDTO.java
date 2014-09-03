@@ -27,6 +27,9 @@ public class CategoryDTO{
 	@JsonExport(name="Status")
 	private Boolean status;
 	
+	@JsonExport(name="FileName")
+	private String fileName;
+	
 	public CategoryDTO(){
 	}
 	
@@ -34,17 +37,19 @@ public class CategoryDTO{
 		this.code = code;
 	}
 	
-	public CategoryDTO(String code, String name){
+	public CategoryDTO(String code, String name, String fileName){
 		this.code = code;
 		this.name = name;
+		this.fileName = fileName;
 	}
 	
-	public CategoryDTO(String code, String name, String description, Integer position, boolean status){
+	public CategoryDTO(String code, String name, String description, Integer position, boolean status, String fileName){
 		this.code = code;
 		this.name = name;
 		this.description = description;
 		this.position = position;
 		this.status = status;
+		this.fileName = fileName;
 	}
 	
 	public Boolean getStatus() {
@@ -85,6 +90,14 @@ public class CategoryDTO{
 
 	public void setPosition(Integer position) {
 		this.position = position;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	@Override

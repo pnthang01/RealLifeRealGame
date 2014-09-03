@@ -12,7 +12,7 @@
 				<c:forEach var="task" items="${data.list}" begin="0" end="${fn:length(data.list)}">
 					<li class="task_bg">
 						<div class="task_img">
-							<img src="<c:url value="/main/images/commen	t_author.jpg" />" alt="" />
+							<img src="<c:url value="${task.category.fileName}" />" alt="" />
 						</div>
 						<div class="task">
 							<a href="#"><c:out value="${task.name}">Không tên</c:out></a>

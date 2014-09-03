@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.profile.dto.UserDTO;
+import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.webserver.frontend.form.LoginForm;
 import com.rlrg.webserver.frontend.form.SignUpForm;
 import com.rlrg.webserver.frontend.service.CommonService;
@@ -43,6 +45,22 @@ public class CommonController {
 		}
 	}
 	
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public String logout(@CookieValue(Constants.PROFILE_TOKEN) String token, HttpServletResponse response){
+		try {
+			commonService.logout(token);
+			response.addCookie(new Cookie(Constants.PROFILE_TOKEN, null));
+			response.addCookie(new Cookie(Constants.PROFILE_FIRSTNAME, null));
+			return "redirect:/welcome";
+		} catch (RestClientException | ConvertException e) {
+			LOG.error(e.getMessage());
+			return "error";
+		} catch (Exception e) {
+			LOG.error(e.getMessage());
+			return "error";
+		}
+	}
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(@Valid LoginForm form, BindingResult bResult, HttpServletResponse response){
 		try {
@@ -54,7 +72,7 @@ public class CommonController {
 				response.addCookie(new Cookie(Constants.PROFILE_FIRSTNAME, result.getFirstName()));
 				return "redirect:/home";
 			}
-		} catch (RestClientException | IllegalStateException e) {
+		} catch (RestClientException | ConvertException e) {
 			LOG.error(e.getMessage());
 			return "error";
 		} catch (Exception e) {
@@ -87,7 +105,7 @@ public class CommonController {
 					return "signup";
 				}
 			}
-		} catch (RestClientException | IllegalStateException e) {
+		} catch (RestClientException | ConvertException e) {
 			LOG.error(e.getMessage());
 			return "error";
 		} catch (Exception e) {

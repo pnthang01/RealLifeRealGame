@@ -171,7 +171,21 @@ public class CategoryService extends BaseService<Category, CategoryDTO> implemen
 		}
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, Integer.valueOf(configService.getConfig(Constants.PAGE_SIZE_KEY)));
 		//
-		return cateRepo.getCategoriesDTOByStatus(status, DEFAULT_LANGUAGE.getId(), pageRequest);
+		List<CategoryDTO> list = cateRepo.getCategoriesDTOByStatus(status, DEFAULT_LANGUAGE.getId(), pageRequest);
+		formingResourceUri(list);
+		return list;
+	}
+	
+	private void formingResourceUri(CategoryDTO dto){
+		StringBuffer str = new StringBuffer(configService.getConfig(Constants.STATIC_RESOURCES_URI_KEY));
+		str.append(dto.getFileName());
+		dto.setFileName(str.toString());
+	}
+	
+	private void formingResourceUri(List<CategoryDTO> list){
+		for(int i = 0 ; i < list.size() ; i++){
+			formingResourceUri(list.get(i));
+		}
 	}
 
 	@Override

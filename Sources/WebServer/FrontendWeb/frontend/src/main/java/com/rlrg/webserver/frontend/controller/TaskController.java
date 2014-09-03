@@ -26,17 +26,6 @@ public class TaskController {
 	
 	@Autowired
 	private TaskService taskService;
-	
-	@RequestMapping(value = "/countCompletedTasks", method=RequestMethod.GET)
-	@ResponseBody
-	public Integer countCompletedTasks(){
-		try {
-			return 400;
-		} catch (Exception e) {
-			LOG.error(e.getMessage());
-			return null;
-		}
-	}
 
 	@RequestMapping(value = "/getAvailableTasks", method=RequestMethod.GET)
 	@ResponseBody

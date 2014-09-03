@@ -45,11 +45,12 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 	public TaskDTO getTaskById(@Param("taskId") Long taskId, @Param("languageId") Integer languageId);
 	
 	@Query("SELECT NEW com.rlrg.dataserver.task.dto.TaskDTO(" +
-			"t.id, c.code, cl.cateName, t.name, t.description, t.createTime," +
+			"t.id, c.code, cl.cateName, CONCAT(cfg.value, c.fileName), t.name, t.description, t.createTime," +
 			" t.completeTime, t.startTime, t.difficultyLevel, t.status, t.point"	+
 			")"  +
-			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl" +
-			" WHERE t.user.id = :userId AND t.status IN :statuses AND (t.completeTime BETWEEN :start AND :end)")
+			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl, Config cfg" +
+			" WHERE t.user.id = :userId AND t.status IN :statuses AND (t.completeTime BETWEEN :start AND :end)" +
+			" AND cfg.key = com.rlrg.dataserver.utillities.Constants.STATIC_RESOURCES_URI_KEY")
 	public List<TaskDTO> getTasksByTimeAndStatuses(@Param("userId") Long userId, 
 			@Param("start") Date start, @Param("end") Date end, Pageable pageable, @Param("statuses") TaskStatus... statuses);
 	

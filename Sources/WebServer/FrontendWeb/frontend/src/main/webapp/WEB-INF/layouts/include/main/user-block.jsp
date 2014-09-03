@@ -16,7 +16,7 @@
 <div>
 	<!--Start User block -->
 	<div class="btn_style lightgreen">
-		<h4>Profile</h4>
+		<h4>&nsbp</h4>
 	</div>
 	<div class="cover">
 		<img src="<c:url value="/main/images/default-cover.jpg" />" alt="" />

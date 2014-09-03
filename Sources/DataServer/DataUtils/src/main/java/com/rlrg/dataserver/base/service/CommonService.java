@@ -1,6 +1,5 @@
 package com.rlrg.dataserver.base.service;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +14,7 @@ import com.rlrg.dataserver.base.domain.UserToken;
 import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 import com.rlrg.dataserver.base.repository.CommonRepository;
+import com.rlrg.dataserver.utillities.Constants;
 import com.rlrg.dataserver.utillities.Utils;
 
 @Service
@@ -38,6 +38,11 @@ public class CommonService {
     public Map<String, UserToken> getUserTokens(){
     	return userTokens;
     }
+    
+    public void increaseTime(String token){
+    	UserToken userToken = userTokens.get(token);
+    	userToken.increaseTime(Constants.TOKEN_INCREASEMENT);
+    }
 
     /**
      * Get UserToken bases on token parameter
@@ -46,15 +51,27 @@ public class CommonService {
      * @throws UserTokenException 
      */
     public UserToken getUserToken(String token) throws UserTokenException{
-//    	UserToken userToken = userTokens.get(token);
-//    	userToken.increaseTime(Constants.TOKEN_INCREASEMENT);
-    	UserToken userToken = new UserToken(1l, "testacc", new Date().getTime()); // For testing //TODO
+    	UserToken userToken = userTokens.get(token);
+//    	UserToken userToken = new UserToken(1l, "testacc", new Date().getTime()); // For testing //TODO
     	if(null == userToken || null == userToken.getId()){
-			LOG.error("Cannot find UserToken with Token:{}", token);
-			throw new UserTokenException();
+			return null;
     	} else {
+        	userToken.increaseTime(Constants.TOKEN_INCREASEMENT);
         	return userToken;
     	}
+    }
+    
+    /**
+     * Remove token when usesr logout
+     * @param token
+     * @return
+     */
+    public UserToken deleteUserToken(String token){
+    	UserToken result = null;
+    	synchronized (userTokens) {
+			result = userTokens.remove(token);
+		}
+    	return result;
     }
 
     /**
@@ -67,7 +84,10 @@ public class CommonService {
         String token = BaseUtils.hashPassword(user.getUsername(), Utils.getCurrentTimeStamp());
         user.setToken(token);
         UserToken userTk = new UserToken();
-        userTokens.put(token, userTk.convertUser2UserToken(user));
+        synchronized (userTokens) {
+            userTokens.put(token, userTk.convertUser2UserToken(user));
+		}
+        //
         commonRepo.update(user);
         return token;
     }

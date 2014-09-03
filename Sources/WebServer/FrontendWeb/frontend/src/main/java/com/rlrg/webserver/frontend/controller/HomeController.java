@@ -25,6 +25,9 @@ public class HomeController {
 	public String home(@CookieValue(Constants.PROFILE_TOKEN) String token, 
 			@RequestParam(value="pageNumber",defaultValue="1",required=false) Integer pageNumber, ModelMap model){
 		try {
+			if(null == token || token.isEmpty()){
+				return "redirect:/welcome"; 
+			}
 			ResultList<TaskDTO> list = taskService.getAvailableTasks(token, Constants.DEFAULT_DAYS_TO_GET_TASK, pageNumber);
 			model.addAttribute("data", list);
 			return "home";

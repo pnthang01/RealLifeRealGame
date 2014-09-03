@@ -23,9 +23,9 @@ public class AchievementDTO {
 	public AchievementDTO(){
 	}
 	
-	public AchievementDTO(Long id, Integer badgeId, String badgeName, String badgeDescription, Date achievedTime){
+	public AchievementDTO(Long id, Integer badgeId, String badgeName, String badgeFileName, String badgeDescription, Date achievedTime){
 		this.id = id;
-		BadgeDTO dto = new BadgeDTO(badgeId, badgeName, badgeDescription);
+		BadgeDTO dto = new BadgeDTO(badgeId, badgeName, badgeFileName, badgeDescription);
 		this.badge = dto;
 		this.achievedTime = achievedTime;
 	}

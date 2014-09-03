@@ -19,6 +19,10 @@ public class CommonService {
 		return userReader.login(username, password);
 	}
 	
+	public void logout(String token) throws ConvertException{
+		userReader.logout(token);
+	}
+	
 	public boolean signup(SignUpForm form) throws ConvertException{
 		UserDTO dto = new UserDTO();
 		dto.setUsername(form.getUsername());
@@ -28,4 +32,5 @@ public class CommonService {
 		//
 		return userReader.signup(dto);
 	}
+	
 }

@@ -16,4 +16,5 @@ public interface Constants {
 	
 	public static final String PAGE_SIZE_KEY = "PAGE_SIZE";
 	public static final String TOTAL_STATISTIC_ROWS_KEY = "TOTAL_STATISTIC_ROWS";
+	public static final String STATIC_RESOURCES_URI_KEY = "STATIC_RESOURCES_URI";
 }

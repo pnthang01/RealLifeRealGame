@@ -34,6 +34,7 @@ public class ConfigService extends BaseService<Config, ConfigDTO> {
 		List<String> keys = new ArrayList<String>();
 		keys.add(Constants.PAGE_SIZE_KEY);
 		keys.add(Constants.TOTAL_STATISTIC_ROWS_KEY);
+		keys.add(Constants.STATIC_RESOURCES_URI_KEY);
 		//
 		Map<String, String> configs = new HashMap<String, String>();
 		List<Config> configEntity = configRepo.getConfigsByKeys(keys);

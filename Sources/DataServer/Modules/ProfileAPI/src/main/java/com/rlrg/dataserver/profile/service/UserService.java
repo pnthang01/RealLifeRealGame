@@ -179,11 +179,13 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
             if (user != null) {
             	Date lastLogin = new Date();
                 user.setLastLogin(lastLogin);
-                com.rlrg.dataserver.base.domain.User uUser = convertUserToUtilUser(user);
-                user.setToken(commonService.setUserToken(uUser));
+                if(null == user.getToken() || null == commonService.getUserToken(user.getToken())){
+                    com.rlrg.dataserver.base.domain.User uUser = convertUserToUtilUser(user);
+                    user.setToken(commonService.setUserToken(uUser));
+                }
                 //
                 logUserAction(user.getId(), BadgeCheckerConstants.LOGIN_ACTION);
-                //
+                // for badge checking
                 AbstractCheckerDTO checkerDTO = new AbstractCheckerDTO();
                 checkerDTO.setAction(BadgeCheckerConstants.LOGIN_ACTION);
                 checkerDTO.setActionDate(lastLogin);
@@ -197,6 +199,13 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
             throw new InvalidParamExeption("username or password is empty!");
         }
     }
+    
+
+	@Override
+	public void logout(String token) {
+		commonService.deleteUserToken(token);
+	}
+
     
 	@Override
 	public Boolean checkUsername(String username) { 
