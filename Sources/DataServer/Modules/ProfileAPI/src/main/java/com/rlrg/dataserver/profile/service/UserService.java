@@ -189,7 +189,7 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
                 AbstractCheckerDTO checkerDTO = new AbstractCheckerDTO();
                 checkerDTO.setAction(BadgeCheckerConstants.LOGIN_ACTION);
                 checkerDTO.setActionDate(lastLogin);
-                submitValueToBadgeChecker(BadgeCheckerConstants.PROFILE_MODULE, user.getId(), checkerDTO);
+                submitValueToBadgeChecker(BadgeCheckerConstants.PROFILE_MODULE, user.getId(), checkerDTO, null);
                 //
                 return convertObject(user);
             } else {

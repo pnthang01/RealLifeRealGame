@@ -36,8 +36,15 @@ public class TaskChecker implements IBadgeChecker{
 	
 	private IAchievementService<Achievement, AchievementDTO> achievementService;
 
+	/**
+	 * Is checking means checking user action's to give badge, otherwise reverse achievement if needed
+	 * @param userId
+	 * @param checkerDTO
+	 * @param isChecking
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
-	public void process(Long userId, AbstractCheckerDTO checkerDTO) throws Exception {
+	public void process(Long userId, AbstractCheckerDTO checkerDTO, String behaviour) throws Exception {
 		if(null == badgeService){
 			badgeService = factory.getBean("badgeService", IBadgeService.class);
 		}
@@ -50,11 +57,39 @@ public class TaskChecker implements IBadgeChecker{
 		badgeService = factory.getBean("badgeService", IBadgeService.class);
 		//
 		List<String> params = parsePropertiesToParams(checkerDTO);
-		List<Badge> avaiBadges = badgeService.getBadgeByEligibility(userId, params);
-		//
-		for(Badge b : avaiBadges){
-			checking(userId, ((TaskCheckerDTO) checkerDTO).getCategory(),  b);
+		if(BadgeCheckerConstants.CHECKING.equals(behaviour)){
+			List<Badge> avaiBadges = badgeService.getBadgeByEligibility(userId, params);
+			//
+			for(Badge b : avaiBadges){
+				checking(userId, ((TaskCheckerDTO) checkerDTO).getCategory(),  b);
+			}
+		} else if(BadgeCheckerConstants.UNCHECKING.equals(behaviour)) {
+			List<Achievement> achivements = achievementService.getAchievementsByUserId(userId);
+			//
+			for(Achievement a : achivements){
+				unchecking(userId, ((TaskCheckerDTO) checkerDTO).getCategory(),  a);
+			}
+		} else {
+			LOG.debug("NO behaviour is defined. TaskChecker is completed without changing data.");
 		}
+	}
+	
+	private void unchecking(Long userId, String cateTag, Achievement achievement) throws Exception{
+		Badge badge = achievement.getBadge();
+		JSONObject jObj = (JSONObject) JSONValue.parse(badge.getEligibility());
+		boolean isDeleted = false;
+		if(badge.getEligibility().contains((BadgeCheckerConstants.COMPLETE_TASK)) && 
+				badge.getEligibility().contains((cateTag))){
+			Long count = taskService.countTotalCompletedTaskByUserIdAndCateTag(userId, cateTag);
+			String tempTag = new StringBuilder(BadgeCheckerConstants.COMPLETE_TASK).append("_").append(cateTag).toString();
+			//
+			if(count < Long.valueOf(jObj.get(tempTag).toString())){
+				isDeleted = true;
+			}
+		}
+		//
+		if(isDeleted)
+			achievementService.deleteAchievement(achievement.getId());
 	}
 	
 	private void checking(Long userId, String cateTag, Badge avaiBadge) throws Exception{

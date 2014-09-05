@@ -30,7 +30,7 @@
 			</ul>
 		</div>
 		<div class="clear"></div>
-		<a href="#">See more >></a>
+		<a href="#">Xem thêm >></a>
 	</div>
 </div>
 <!-- End Badge block -->

@@ -36,4 +36,8 @@ public class TaskService {
 		//
 		return taskReader.createTask(dto, token);
 	}
+	
+	public String updateTaskStatus(String token, Long taskId) throws RestClientException, ConvertException{
+		return taskReader.updateTaskStatus(token, taskId);
+	}
 }

@@ -23,6 +23,7 @@ public interface BadgeCheckerConstants {
 	public static final String CAREER_TAG = "Career";
 	public static final String ART_TAG = "Art";
 	
+	//Conditions
 	public static final String THREE_DAYS_IN_A_ROW = "3Days";
 	public static final String SEVEN_DAYS_IN_A_ROW = "7Days";
 	
@@ -33,4 +34,7 @@ public interface BadgeCheckerConstants {
 	public static final String NOTCOMPLETED = "NotCompleted";
 	public static final String DELETED = "Deleted";
 
+	//Behaviour
+	public static final String CHECKING = "checking";
+	public static final String UNCHECKING = "unchecking";
 }

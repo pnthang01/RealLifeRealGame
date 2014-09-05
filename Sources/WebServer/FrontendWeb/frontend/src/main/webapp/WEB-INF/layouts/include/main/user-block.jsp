@@ -16,7 +16,7 @@
 <div>
 	<!--Start User block -->
 	<div class="btn_style lightgreen">
-		<h4>&nsbp</h4>
+		<h4> &nbsp</h4>
 	</div>
 	<div class="cover">
 		<img src="<c:url value="/main/images/default-cover.jpg" />" alt="" />
@@ -36,11 +36,11 @@
 	</div>
 	<div class="user-statistics">
 		<div id="user-statistic-task" class="user-statistic">
-			<p>Completed Tasks</p>
+			<p>N.vụ hoàn thành</p>
 			<span>0</span>
 		</div>
 		<div id="user-statistic-point" class="user-statistic">
-			<p>Points</p>
+			<p>Tổng số điểm</p>
 			<span>0</span>
 		</div>
 		<div class="clear"></div>

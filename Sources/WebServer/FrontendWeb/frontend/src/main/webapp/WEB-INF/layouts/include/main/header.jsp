@@ -8,7 +8,7 @@
 				<ul class="sub">
 <!-- 					<li><a href="#">Profile</a></li> -->
 <!-- 					<li><a href="#">Settings</a></li> -->
-					<li><a href="<c:url value="/logout.do" />">Logout</a></li>
+					<li><a href="<c:url value="/logout.do" />">Đăng xuất</a></li>
 				</ul>
 			</li>
 		</ul>

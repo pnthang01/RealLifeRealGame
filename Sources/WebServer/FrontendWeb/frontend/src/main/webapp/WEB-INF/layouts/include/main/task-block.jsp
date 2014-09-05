@@ -69,7 +69,7 @@
 			<i class="dropdown-icon"> </i>
 			<ul class="dropdown">
 				<li><a id="create-task" href="#"> Thêm nhiệm vụ</a></li>
-				<li><a href="#"> Tùy chỉnh</a></li>
+<!-- 				<li><a href="#"> Tùy chỉnh</a></li> -->
 			</ul>
 		</div>
 	</div>
@@ -95,8 +95,7 @@
 	</div>
 
 	<div class="top-search-box">
-		<input type="text" value="Tìm kiếm nhiệm vụ"
-			onfocus="this.value = '';"
+		<input type="text" value="Tìm kiếm nhiệm vụ" onfocus="this.value = '';"
 			onblur="if (this.value == '') {this.value = 'Tìm kiếm nhiệm vụ';}">
 		<input type="submit" value=" " />
 	</div>

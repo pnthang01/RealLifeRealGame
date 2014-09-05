@@ -14,12 +14,12 @@ public class MainChecker implements IMainChecker{
 	@Autowired
 	private ProfileChecker profileChecker;
 	
-	public void mainProcess(String module, Long userId, AbstractCheckerDTO props){
+	public void mainProcess(String module, Long userId, AbstractCheckerDTO props, String behaviour){
 		try {
 			if(BadgeCheckerConstants.TASK_MODULE.equals(module)){
-				taskChecker.process(userId, props);
+				taskChecker.process(userId, props, behaviour);
 			} else if (BadgeCheckerConstants.PROFILE_MODULE.equals(module)){
-				profileChecker.process(userId, props);
+				profileChecker.process(userId, props, behaviour);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -51,7 +51,7 @@ public class CommonController {
 			commonService.logout(token);
 			response.addCookie(new Cookie(Constants.PROFILE_TOKEN, null));
 			response.addCookie(new Cookie(Constants.PROFILE_FIRSTNAME, null));
-			return "redirect:/welcome";
+			return "index";
 		} catch (RestClientException | ConvertException e) {
 			LOG.error(e.getMessage());
 			return "error";

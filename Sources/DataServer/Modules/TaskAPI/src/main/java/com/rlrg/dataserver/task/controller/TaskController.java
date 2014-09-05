@@ -71,16 +71,36 @@ public class TaskController extends BaseController{
 		return result;
 	}
 	
-	@RequestMapping(value = "/updateTaskStatus", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
+	@RequestMapping(value = "/updateTaskStatusByStatus", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateTaskStatus(@RequestParam(value="taskId", required=true) Long taskId, @RequestParam(value="status", required=true) TaskStatus taskStatus,
+	public String updateTaskStatusByStatus(@RequestParam(value="taskId", required=true) Long taskId, @RequestParam(value="status", required=true) TaskStatus taskStatus,
 			@RequestParam("token") String token){
-		LOG.info("<< Starting webservice /task/updateTaskStatus with parameters: taskID={}, status={}, token{}", taskId, taskStatus, token);
+		LOG.info("<< Starting webservice /task/updateTaskStatusByStatus with parameters: taskID={}, status={}, token{}", taskId, taskStatus, token);
 		String result = null;
 		try{
 			taskService.updateTaskStatus(taskId, taskStatus, token);
 			RestObject restObject = RestObject.successBlank();
 			result = taskService.encodeBlankRestObject(restObject);
+		} catch (BaseException e) {
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = taskService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = taskService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /task/updateTaskStatusByStatus");
+		return result;
+	}
+	
+	@RequestMapping(value = "/updateTaskStatus", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateTaskStatus(@RequestParam(value="taskId", required=true) Long taskId,
+			@RequestParam("token") String token){
+		LOG.info("<< Starting webservice /task/updateTaskStatus with parameters: taskID={}, token{}", taskId, token);
+		String result = null;
+		try{
+			String newStatus = taskService.updateTaskStatus(token, taskId);
+			result = taskService.encodeRestObject(newStatus);
 		} catch (BaseException e) {
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = taskService.encodeBlankRestObject(restObject);
@@ -132,7 +152,8 @@ public class TaskController extends BaseController{
 		LOG.info("<< Starting webservice /task/getAvailableTasksByTime with parameters: " +
 				"token={}, days={}", token, days);
 		try{
-			List<TaskDTO> tasks = taskService.getTasksByTimeAndStatuses(token, days, pageNumber, TaskStatus.CREATED, TaskStatus.PROGRESSING);
+			List<TaskDTO> tasks = taskService.getTasksByTimeAndStatuses(token, days, pageNumber, 
+					TaskStatus.CREATED, TaskStatus.PROGRESSING, TaskStatus.COMPLETED, TaskStatus.NOTCOMPLETED);
 			Long total = 10l;//taskService.countTasksByKeyword(keyword); //TODO
 			//
 			result = taskService.encodeMutipleObjectsFromListV(tasks, total);

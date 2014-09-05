@@ -171,7 +171,6 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, String token) throws Exception {
 		try {
 			UserToken userToken = commonService.getUserToken(token);
-			TaskCheckerDTO checkerDTO = new TaskCheckerDTO();
 			User user = userService.getUserById(userToken.getId());
 			//
 			Task t = taskRepo.getTaskByIdAndUser(taskId, userToken.getId());
@@ -179,27 +178,83 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 				LOG.error("Cannot find entity Task with TaskId:{} and UserId:{}", taskId, userToken.getId());
 				throw new RepositoryException("Cannot find entity");
 			} 
-			t.setStatus(taskStatus);
-			if(TaskStatus.COMPLETED.equals(taskStatus)){
-				t.setPoint(t.getPoint() + Constants.DEFAULT_COMPLETED_TASK_POINTS);
-				user.setPoint(user.getPoint() + + Constants.DEFAULT_COMPLETED_TASK_POINTS);
-			} else if(TaskStatus.NOTCOMPLETED.equals(taskStatus) || TaskStatus.DELETED.equals(taskStatus)){
-				t.setPoint(t.getPoint() + Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
-				user.setPoint(user.getPoint() + + Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
-			}
-			taskRepo.save(t);
-			userService.save(user);
-			//			
-			checkerDTO.setAction(taskStatus.name());
-			checkerDTO.setCategory(t.getCategory().getTag());
-			checkerDTO.setActionDate(new Date());
-			//
-			submitValueToBadgeChecker(BadgeCheckerConstants.TASK_MODULE, userToken.getId(), checkerDTO);			
+			updateTaskStatus(t, user, taskStatus);
 		} catch(Exception e){
 			LOG.error(e.getMessage(), e);
 			throw e;
 		}
 	}
+	
+	private void updateTaskStatus(Task t, User user, TaskStatus taskStatus) throws Exception{
+		try {
+			String behaviour = null;
+			if(TaskStatus.COMPLETED.equals(taskStatus)){
+				t.setPoint(t.getPoint() + Constants.DEFAULT_COMPLETED_TASK_POINTS);
+				user.setPoint(user.getPoint() + + Constants.DEFAULT_COMPLETED_TASK_POINTS);
+				behaviour = BadgeCheckerConstants.CHECKING;
+				
+			} else if(TaskStatus.NOTCOMPLETED.equals(taskStatus) || TaskStatus.DELETED.equals(taskStatus)){
+				t.setPoint(t.getPoint() + Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
+				user.setPoint(user.getPoint() + + Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
+				behaviour = BadgeCheckerConstants.CHECKING;
+				
+			} else if((TaskStatus.PROGRESSING.equals(taskStatus) || TaskStatus.CREATED.equals(taskStatus)) 
+					&& TaskStatus.COMPLETED.equals(t.getStatus())){
+				t.setPoint(t.getPoint() - Constants.DEFAULT_COMPLETED_TASK_POINTS);
+				user.setPoint(user.getPoint() - Constants.DEFAULT_COMPLETED_TASK_POINTS);
+				behaviour = BadgeCheckerConstants.UNCHECKING;
+				
+			} else if((TaskStatus.PROGRESSING.equals(taskStatus) || TaskStatus.CREATED.equals(taskStatus)) 
+					&& (TaskStatus.NOTCOMPLETED.equals(t.getStatus()) || TaskStatus.DELETED.equals(t.getStatus()))){
+				t.setPoint(t.getPoint() - Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
+				user.setPoint(user.getPoint() - Constants.DEFAULT_NOTCOMPLETED_TASK_POINTS);
+				behaviour = BadgeCheckerConstants.UNCHECKING;
+			}
+			t.setStatus(taskStatus);
+			taskRepo.save(t);
+			userService.save(user);
+			//	
+			TaskCheckerDTO checkerDTO = new TaskCheckerDTO();
+			checkerDTO.setAction(taskStatus.name());
+			checkerDTO.setCategory(t.getCategory().getTag());
+			checkerDTO.setActionDate(new Date());
+			//
+			submitValueToBadgeChecker(BadgeCheckerConstants.TASK_MODULE, user.getId(), checkerDTO, behaviour);	
+		} catch(Exception e){
+			LOG.error(e.getMessage(), e);
+			throw e;
+		}
+	}
+	
+
+	@Override
+	public String updateTaskStatus(String token, Long taskId) throws Exception {
+		try {
+			UserToken userToken = commonService.getUserToken(token);
+			User user = userService.getUserById(userToken.getId());
+			//
+			Task t = taskRepo.getTaskByIdAndUser(taskId, userToken.getId());
+			if(null == t){
+				LOG.error("Cannot find entity Task with TaskId:{} and UserId:{}", taskId, userToken.getId());
+				throw new RepositoryException("Cannot find entity");
+			}
+			//
+			TaskStatus newStatus = null;
+			if(TaskStatus.PROGRESSING.equals(t.getStatus()) || TaskStatus.CREATED.equals(t.getStatus())){
+				newStatus = TaskStatus.COMPLETED;
+			} else if (TaskStatus.NOTCOMPLETED.equals(t.getStatus()) || TaskStatus.COMPLETED.equals(t.getStatus())){
+				newStatus = TaskStatus.PROGRESSING;
+			} else {
+				newStatus = TaskStatus.NOTCOMPLETED;
+			}
+			updateTaskStatus(t, user, newStatus);
+			return newStatus.toString();
+		} catch(Exception e){
+			LOG.error(e.getMessage(), e);
+			throw e;
+		}
+	}
+
 	
 	/**
 	 * Get task by it's id then convert it to #TaskDTO

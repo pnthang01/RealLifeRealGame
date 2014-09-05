@@ -35,7 +35,7 @@ public class UserController extends BaseController {
 		try {
 			boolean checking = userService.checkUsername(username);
 			//
-			result = userService.encodeCheckingRestObject(checking);
+			result = userService.encodeRestObject(checking);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = userService.encodeBlankRestObject(restObject);

@@ -54,4 +54,16 @@ public class TaskController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value = "/updateTaskStatus", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateTaskStatus(@CookieValue(Constants.PROFILE_TOKEN) String token, @RequestParam("id") Long taskId){
+		try {
+			String newStatus = taskService.updateTaskStatus(token, taskId);
+			return newStatus;
+		} catch (Exception e) {
+			LOG.error(e.getMessage());
+			return null;
+		}
+	}
 } 

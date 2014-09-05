@@ -40,7 +40,7 @@ public class ActionObserver implements ActionPerformedListener {
 	}
 
 	public void actionPerformed(ActionPerformedEvent event) {
-		this.mainChecker.mainProcess(moduleName, event.getUserId(), event.getProperties());
+		this.mainChecker.mainProcess(moduleName, event.getUserId(), event.getProperties(), null);
 	}	
 
 }

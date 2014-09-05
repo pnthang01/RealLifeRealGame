@@ -3,7 +3,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <div class="container">
 	<div class="logo">
-		<a href="<c:url value="/welcome"/>"><img src="<c:url value="/index/images/logo.png" />" title="logo" /></a>
+		<a href="<c:url value="/welcome"/>"><img style="height:32px;" src="<c:url value="/index/images/logo.jpg" />" title="logo" /></a>
 	</div>
 	<!--start-top-nav-->
 	<nav class="top-nav">

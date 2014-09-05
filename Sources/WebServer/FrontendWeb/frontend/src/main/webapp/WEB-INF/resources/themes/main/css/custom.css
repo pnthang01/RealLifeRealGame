@@ -59,6 +59,7 @@ header {
 }
 ul.sub{
 	border-radius:0.3em;
+	width:100px;
 }
 ul.sub li a{
 	color: #FFF;
@@ -81,6 +82,70 @@ ul.sub{
 ul.sub li a:hover{
 	text-decoration:none;
 }
+.rel_post_check{
+	float: right;
+	width: 8.3333%;
+}
+.rel_post_check a{
+	display: block;	
+}
+.checkbox {
+	position: relative;
+}
+.checkbox i {
+	cursor:pointer;
+	position: absolute;
+	bottom: -42px;
+	left: 0;
+	display: block;
+	width: 32px;
+	height: 32px;
+	outline: none;
+	border: 2px solid #DDDDDD;
+}
+
+.completed + i:after{
+	position: absolute;
+	transition: opacity 0.1s;
+	-o-transition: opacity 0.1s;
+	-ms-transition: opacity 0.1s;
+	-moz-transition: opacity 0.1s;
+	-webkit-transition: opacity 0.1s;
+	content: '';
+	background: url("../icons/check-24.png");
+	top: 3px;
+	left: 4px;
+	width: 24px;
+	height: 24px;
+	font: normal 12px/16px FontAwesome;
+	text-align: center;
+	cursor: pointer;
+	opacity: 1;
+}
+.notcompleted + i:after{
+	position: absolute;
+	transition: opacity 0.1s;
+	-o-transition: opacity 0.1s;
+	-ms-transition: opacity 0.1s;
+	-moz-transition: opacity 0.1s;
+	-webkit-transition: opacity 0.1s;
+	background: url("../icons/uncheck-24.png");
+	content: '';
+	top: 3px;
+	left: 4px;
+	width: 24px;
+	height: 24px;
+	font: normal 12px/16px FontAwesome;
+	text-align: center;
+	cursor: pointer;
+	opacity: 1;
+}
+
+.checkbox input {
+	position: absolute;
+	left: -9999px;
+}
+
 /* btn_style*/
 .btn_style.blue{
 	background: #0013ff;
@@ -496,7 +561,13 @@ ul.sub li a:hover{
 	color:#D0EDFD;
 	text-decoration:underline;
 }
-.task span{
+.title{
+	font-size:18px;
+}
+.titleCompleted{
+	text-decoration: line-through;
+}
+.time{
 	font-size:13px;'
 }
 .task p{

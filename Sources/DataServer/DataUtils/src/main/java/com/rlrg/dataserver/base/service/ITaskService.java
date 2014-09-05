@@ -19,6 +19,8 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 	
 	public void updateTaskStatus(Long taskId, TaskStatus taskStatus, String token) throws Exception;
 	
+	public String updateTaskStatus(String token, Long taskId) throws Exception;
+	
 	public TaskDTO getTaskById(Long taskId);
 	
 	public List<T> getTasksByStatus(TaskStatus status);

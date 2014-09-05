@@ -44,7 +44,7 @@ public interface AchievementRepository extends JpaRepository<Achievement, Long>,
 	public Long countTimeBadgeBeAchieved(@Param("badgeId") Integer badgeId);
 
 	@Query("SELECT a FROM Achievement a WHERE a.user.id = :userId")
-	public List<Achievement> getAchievementByUser(@Param("userId") Long userId);
+	public List<Achievement> getAchievementsByUserId(@Param("userId") Long userId);
 
 	@Query("SELECT a FROM Achievement a WHERE a.user.id = :userId AND a.badge.id = :badgeId")
 	public List<Achievement> getAchievementByUserAndBadge(

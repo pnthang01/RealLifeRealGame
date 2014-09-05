@@ -29,8 +29,8 @@ public abstract class BaseService <T, V> implements IBaseService<T, V>{
 	
 	protected abstract Class<V> getVClass();
 
-	protected void submitValueToBadgeChecker(String module, Long userId, AbstractCheckerDTO dto) {
-		ActionExecutive exe = new ActionExecutive(mainChecker, module, userId, dto);
+	protected void submitValueToBadgeChecker(String module, Long userId, AbstractCheckerDTO dto, String behaviour) {
+		ActionExecutive exe = new ActionExecutive(mainChecker, module, userId, dto, behaviour);
 		Thread newThd = new Thread(exe);
 		newThd.start();
 	}
@@ -42,7 +42,7 @@ public abstract class BaseService <T, V> implements IBaseService<T, V>{
 	 * @return
 	 * @throws ConvertException
 	 */
-	public String encodeCheckingRestObject(Boolean result) throws ConvertException{
+	public String encodeRestObject(Object result) throws ConvertException{
 		return jsonExporter.encodeSingleValueToJson(result);
 	}
 

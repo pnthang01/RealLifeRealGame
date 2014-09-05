@@ -11,7 +11,7 @@ public interface IBaseService<T, V> {
 	
 	public T revertDTOToEntity(V dto);
 	
-	public String encodeCheckingRestObject(Boolean result) throws ConvertException;
+	public String encodeRestObject(Object result) throws ConvertException;
 
 	public String encodeCountingRestObject(Long count, String controllerName) throws ConvertException;
 	

@@ -92,6 +92,11 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 	}
 
 	@Override
+	public void deleteAchievement(Long achivementId) {
+		achievementRepo.delete(achivementId);
+	}
+
+	@Override
 	public void addAchievementForUser(Long userId, Integer badgeId) throws Exception {
 		try {
 			Badge b = badgeService.findBadgeById(badgeId);
@@ -110,6 +115,12 @@ public class AchievementService extends BaseService<Achievement, AchievementDTO>
 			LOG.error(e.getMessage(), e);
 			throw e;
 		}
+	}
+
+
+	@Override
+	public List<Achievement> getAchievementsByUserId(Long userId) {
+		return achievementRepo.getAchievementsByUserId(userId);
 	}
 
 	

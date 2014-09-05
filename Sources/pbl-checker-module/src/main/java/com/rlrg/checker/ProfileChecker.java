@@ -30,7 +30,7 @@ public class ProfileChecker implements IBadgeChecker{
 	private IAchievementService<Achievement, AchievementDTO> achievementService;
 
 	@Override
-	public void process(Long userId, AbstractCheckerDTO checkerDTO) throws Exception {
+	public void process(Long userId, AbstractCheckerDTO checkerDTO, String behaviour) throws Exception {
 		if(null == badgeService){
 			badgeService = factory.getBean("badgeService", IBadgeService.class);
 		}

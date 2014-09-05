@@ -20,6 +20,11 @@ public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
 	private final String GET_AVAILABLE_TASK_BY_TIME_URL = "task/getAvailableTasksByTime?token={token}&days={days}&pageNumber={pageNumber}";
 	private final String UPDATE_TASK_URL = "task/update?restobject={restobject}";
 	private final String CREATE_TASK_URL = "task/createTask?restobject={restobject}&token={token}";
+	private final String UPDATE_TASK_STATUS_URL = "task/updateTaskStatus?token={token}&taskId={taskId}";
+	
+	public String updateTaskStatus(String token, Long taskId) throws RestClientException, ConvertException{
+		return this.postAnObjectForResult(UPDATE_TASK_STATUS_URL, MODULE_NAME, token, taskId).toString();
+	}
 	
 	public ResultList<TaskDTO> getAvailableTasksByTime(String token, Integer days, Integer pageNumber) throws RestClientException, ConvertException{
 		return this.getListOfObjects(GET_AVAILABLE_TASK_BY_TIME_URL, MODULE_NAME, token, days, pageNumber);
