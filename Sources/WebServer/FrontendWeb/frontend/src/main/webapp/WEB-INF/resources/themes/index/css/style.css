@@ -943,7 +943,7 @@ ul.twitter_footer li p {
 	float: left;
 	margin: 0.7em 0 0 1.3em;
 }
-.form-submit1 input[type="submit"] {
+.form-submit1 input[type="button"] {
 	color: #FFF;
 	font-size: 0.85em;
 	padding: 0.8em 4.8em 0.8em 2em;
@@ -959,7 +959,7 @@ ul.twitter_footer li p {
 	border: none;
 	cursor: pointer;
 }
-.form-submit1 input[type="submit"]:hover {
+.form-submit1 input[type="button"]:hover {
  	background: url(../images/submit_arrow.png)no-repeat 186px 13px #333;
 }
 .text input[type="text"], .contact_bottom-textarea textarea {

@@ -43,11 +43,18 @@ public class StartApplication{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(StartApplication.class);
 
-	
 	@Bean
 	public ObjectMapper objectMapper(){
 		return new ObjectMapper();
 	}
+	
+//	@Bean
+//	public CharacterEncodingFilter characterEncodingFilter() {
+//	    final CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+//	    characterEncodingFilter.setEncoding("UTF-8");
+//	    characterEncodingFilter.setForceEncoding(true);
+//	    return characterEncodingFilter;
+//	}
 	
 	@Bean
 	public PathMatchingResourcePatternResolver resourcePatternResolver() {
@@ -74,7 +81,6 @@ public class StartApplication{
 		return new JsonExporter();
 	}
 
-	
 	@Bean
     public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
 		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
@@ -124,5 +130,6 @@ public class StartApplication{
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
+
 
 }

@@ -8,7 +8,7 @@
 			if(valid){
 				$.ajax({
 					type : "POST",
-					headers : { 'Profile_Token' : document.cookie },
+					headers : { 'TokenCookie' : document.cookie },
 					url : $("#taskForm").attr( "action"),
 					data: $("#taskForm").serialize(),
 					success : function(response) {
@@ -74,8 +74,7 @@
 		</div>
 	</div>
 
-	<div id="create-task-form" title="Tạo nhiệm vụ mới"
-		class="create-task-form">
+	<div id="create-task-form" title="Tạo nhiệm vụ mới" class="create-task-form">
 		<form action="<c:url value="task/createNewTask" />" method="POST" id="taskForm">
 			<fieldset>
 			 	<label for="name">Tên nhiệm vụ</label>

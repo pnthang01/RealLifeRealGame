@@ -103,6 +103,16 @@ ul.twitter li{
 ul.twitter:hover{
 	background: #71B8ED;
 }
+span.label{
+    text-align: left;
+    font-family: "Open Sans",sans-serif;
+    font-size: 0.8925em;
+    color: white;
+    padding-left:5px;
+    margin-top:30px;
+    text-transform: uppercase;
+    display: block;
+}
 span.term a{
 	color: #1888A8;
 	font-weight: bold;
@@ -131,6 +141,13 @@ span.term a:hover{
 	border-right: none;
 	border-top: none;
 }
+label.error{
+	font-size:15px;
+	background-color:#cc0000;
+	color:#FFFFFF;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
 .lable input[type="text"]:hover,.lable-2 input[type="text"]:hover,input[type="Password"]:hover,#active {
 	color:#DCDCDC;
 	border-left:6px solid#E25050;
@@ -139,7 +156,7 @@ span.term a:hover{
 	padding: 14px;
 	width: 94%;
 	font-size: 1em;
-	margin: 18px 0px;
+	margin: 7px 0px;
 	border:none;
 	color: #666666;
 	cursor: pointer;
@@ -159,6 +176,7 @@ span.term a:hover{
 	border-top: none;
 }
 .submit{
+	margin-top:10px;
 	padding:5px 4px;
 	text-align: center;
 }

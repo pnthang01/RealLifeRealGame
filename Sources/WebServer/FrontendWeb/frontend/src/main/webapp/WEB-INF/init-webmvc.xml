@@ -11,6 +11,7 @@
 	<bean id="badgeReader" class="com.rlrg.utillities.service.BadgeWebServiceReader" />
 	<bean id="userReader" class="com.rlrg.utillities.service.UserWebServiceReader" />
 	<bean id="taskReader" class="com.rlrg.utillities.service.TaskWebServiceReader" />
+	<bean id="feedbackReader" class="com.rlrg.utillities.service.FeedbackWebServiceReader" />
 	<bean id="achievementReader" class="com.rlrg.utillities.service.AchievementWebServiceReader" />
 	<bean id="languageReader" class="com.rlrg.utillities.service.LanguageWebServiceReader" />
 	<bean id="permissionReader" class="com.rlrg.utillities.service.PermissionWebServiceReader" />

@@ -1,5 +1,6 @@
 package com.rlrg.utillities.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,20 +10,23 @@ import org.springframework.web.client.RestTemplate;
 
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.domain.ResultList;
+import com.rlrg.utillities.exception.BaseException;
 import com.rlrg.utillities.exception.ConvertException;
 import com.rlrg.utillities.json.JsonExporter;
 
 public abstract class BaseWebServiceReader<T>{
 	private static final Logger LOG = LoggerFactory.getLogger(BaseWebServiceReader.class);
 	
+//	private final String SERVER_URI = "http://data-rlrg1.rhcloud.com/data/";
 	private final String SERVER_URI = "http://localhost:9090/data/";
+//	private final String SERVER_URI = "http://localhost:8080/data/";
 	
 	private final RestTemplate restTemplate = new RestTemplate();
 	
 	private final JsonExporter jsonExporter = new JsonExporter();
 	
 	protected abstract Class<T> getTClass();
-
+	
 	/**
 	 * Accept part of url and their url parameters, combine that url with the uri domain to fully url
 	 * Then get a json string from the fully url and decode it to a list of class T
@@ -126,9 +130,10 @@ public abstract class BaseWebServiceReader<T>{
 	 * @param moduleName
 	 * @param params
 	 * @return
-	 * @throws ConvertException
+	 * @throws UnsupportedEncodingException 
+	 * @throws BaseException 
 	 */
-	protected T postAnObject(String url, String moduleName, Object... params) throws ConvertException{
+	protected T postAnObject(String url, String moduleName, Object... params) throws UnsupportedEncodingException, BaseException{
 		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
 		//
 		for(int i = 0; i < params.length ; i++){
@@ -151,8 +156,8 @@ public abstract class BaseWebServiceReader<T>{
 		//
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(json);
 		if(restobject.getErrorCode() == RestObject.ERROR){
-			LOG.error("Error occurs when reading data from url:{}.", finalUrl);
-			throw new ConvertException(restobject.getMsg());
+			LOG.error("Error occurs when reading data from url:{} with Error:{}.", finalUrl, restobject.getMsg());
+			throw new BaseException(restobject.getMsg());
 		}
 		if(null == restobject.getData()){
 			LOG.error("Decode json to object failed with json:{}", json);
@@ -210,6 +215,35 @@ public abstract class BaseWebServiceReader<T>{
 		RestObject restobject = jsonExporter.decodeJsonToRestObject(resultJson);
 		//
 		return restobject.getErrorCode() == RestObject.OK;
+	}
+	
+	/**
+	 * Accept part of url and an object of class T, then encode it to json.
+	 * And post this json to data server, the result will be a message from server
+	 * @param url
+	 * @param objectT
+	 * @return
+	 * @throws ConvertException
+	 */
+	protected String postAnObjectTForMessage(String url, String moduleName, T objectT) throws ConvertException{
+		String finalUrl = new StringBuilder(SERVER_URI).append(url).toString();
+		//
+		String json = jsonExporter.encodeObjectToJson(objectT);
+		if(null == json){
+			LOG.error("Encode object {} with class {} to json failed.", objectT, objectT.getClass());
+			throw new ConvertException("Error when encoding an object to json string.");
+		}
+		//
+		String resultJson = restTemplate.postForObject(finalUrl, null, String.class, json);
+		if(null == resultJson){
+			LOG.error("Received null result when reading data from url:{}.", finalUrl);
+			throw new RestClientException("Received null result from url.");
+		}
+		//TODO
+		//
+		RestObject restobject = jsonExporter.decodeJsonToRestObject(resultJson);
+		//
+		return restobject.getMsg();
 	}
 	
 	/**

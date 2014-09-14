@@ -13,6 +13,7 @@
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="<c:url value="/index/js/move-top.js" />"></script>
 <script type="text/javascript" src="<c:url value="/index/js/easing.js" />"></script>
+<script type="text/javascript" src="<c:url value="/main/js/main.js" />"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -26,13 +27,13 @@
 <!-- start-smoth-scrolling -->
 <!-- Custom Theme files -->
 <link rel="stylesheet" type="text/css" href="<c:url value="/index/css/style.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/index/css/dialog.css" />" />
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript">
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!-- webfonts -->
-<link href='http://www.google.com/fonts/#UsePlace:use/Collection:Roboto+Slab:400,300,700/Script:vietnamese' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 <!-- //webfonts -->

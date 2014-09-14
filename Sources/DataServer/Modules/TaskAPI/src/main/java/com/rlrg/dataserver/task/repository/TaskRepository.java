@@ -51,7 +51,7 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
 			" FROM Task t INNER JOIN t.category c INNER JOIN c.cateLangs cl, Config cfg" +
 			" WHERE t.user.id = :userId AND t.status IN :statuses AND (t.completeTime BETWEEN :start AND :end)" +
 			" AND cfg.key = com.rlrg.dataserver.utillities.Constants.STATIC_RESOURCES_URI_KEY")
-	public List<TaskDTO> getTasksByTimeAndStatuses(@Param("userId") Long userId, 
+	public List<TaskDTO> getTasksByRangeTimeAndStatues(@Param("userId") Long userId, 
 			@Param("start") Date start, @Param("end") Date end, Pageable pageable, @Param("statuses") TaskStatus... statuses);
 	
 	@Query("SELECT t FROM Task t WHERE t.user.id = :userId")

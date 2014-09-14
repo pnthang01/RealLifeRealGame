@@ -11,7 +11,7 @@ import com.rlrg.webserver.frontend.helper.FieldMatch;
 		@FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
 		@FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match") })
 public class SignUpForm {
-	@Pattern(regexp = "^[a-z0-9_-]{3,16}")
+	@Pattern(regexp = "^[a-zA-Z0-9_-]{3,16}")
 	private String username;
 
 	@Length(min = 2, max = 20)

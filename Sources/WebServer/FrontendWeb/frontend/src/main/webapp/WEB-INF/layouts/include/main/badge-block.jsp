@@ -4,7 +4,7 @@
 	function loadAchievements() {
 		$.ajax({
 			type : "GET",
-			headers : { 'Profile_Token' : document.cookie },
+			headers : { 'TokenCookie' : document.cookie },
 			url : "<c:url value="/achievement/getAchievements" ><c:param name="pageNumber" value="1"/> </c:url>",
 			success : function(response) {
 				var popuData = '';

@@ -1,0 +1,109 @@
+
+/***** Accordion ******/
+.accordion{
+	margin-top:2px;
+}
+.smk_accordion{
+	position: relative;
+}
+.smk_accordion .accordion_in{ 
+	position: relative;
+	z-index: 10;
+	margin-top:3px;
+	overflow: hidden;
+}
+.smk_accordion .accordion_in:first-child{
+	margin-top:0;
+}
+/* Head */
+.smk_accordion .accordion_in .acc_head{
+	position: relative;
+	background:#FFF;
+	color:#D4504F;	
+	padding:15px 20px;
+	font-size: 16px;
+	font-weight:200;
+	display: block;
+	cursor: pointer; 
+}
+.smk_accordion .accordion_in .acc_head label{
+	float:right;
+	margin-right:14px;
+}
+/* Content */
+.smk_accordion .accordion_in .acc_content{
+	background:#FFF;
+	color: #7B7E85;
+}
+.acc_content ul{
+	margin-bottom:5px;
+}
+.acc_content li a:hover{
+	color:#242424;
+}
+.smk_accordion .accordion_in .acc_head span{
+	float:left;
+}
+.acc_content li a label,.smk_accordion .accordion_in .acc_head label{
+	border:1px solid #ccc;
+	color:#666;
+	font-size:0.8em;
+	float:right;
+	padding: 4px;
+	width: 15px;
+	height: 15px;
+	text-align:center;
+	line-height: 16px;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-o-border-radius: 1em;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.smk_accordion .accordion_in .acc_head label{
+	border:1px solid #1187BB;
+	color:#D4504F;
+}
+.accordion_in.acc_active .acc_head label,.acc_content li a:hover label{
+	background:#ccc;
+	border:1px solid #ccc;
+	color:#FFF;
+}
+.smk_accordion .accordion_in h1:first-of-type,
+.smk_accordion .accordion_in h2:first-of-type,
+.smk_accordion .accordion_in h3:first-of-type,
+.smk_accordion .accordion_in h4:first-of-type,
+.smk_accordion .accordion_in h5:first-of-type,
+.smk_accordion .accordion_in h6:first-of-type
+{
+	margin-top: 5px;
+}
+/* Icon expand */
+.smk_accordion .accordion_in .acc_head .acc_icon_expand{
+	display: block;
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	margin-top: -10px;
+	background: url(../icons/plus-16.png);
+}
+.smk_accordion .accordion_in.acc_active .acc_head .acc_icon_expand{
+	background: url(../icons/minus-16.png);
+}
+
+/* JS requires */
+.smk_accordion .accordion_in.acc_active .acc_content{ 
+	display: block;
+}
+.smk_accordion .accordion_in.acc_active .acc_head{
+	color:#6f6f6f;
+	background:#FFF;
+}
+.smk_accordion.acc_with_icon .accordion_in .acc_head{
+	padding-left:40px;
+}

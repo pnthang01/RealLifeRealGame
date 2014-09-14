@@ -16,7 +16,7 @@ public class UserToken {
     	this.time = time;
     }
     
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 

@@ -13,10 +13,21 @@
 <script type="application/x-javascript">
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="<c:url value="/main/js/main.js" />" type="text/javascript"></script>
 <!--webfonts-->
-<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
 <!--//webfonts-->
+<style>
+.ui-dialog .ui-state-error {
+	padding: .3em;
+}
+
+.validateTips {
+	border: 1px solid transparent;
+	padding: 0.3em;
+}
+</style>
 </head>
 <body>
 	<div class="main">

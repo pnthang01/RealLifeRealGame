@@ -11,16 +11,14 @@
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<rlrg-version>0.0.1-SNAPSHOT</rlrg-version>
-		<spring.boot.version>0.5.0.M1</spring.boot.version>
+		<spring.boot.version>1.1.6.RELEASE</spring.boot.version>
 		<start-class>com.rlrg.dataserver.StartApplication</start-class>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<!-- <version>0.5.0.BUILD-SNAPSHOT</version> -->
-		<version>1.0.0.RC4</version>
+		<version>1.1.6.RELEASE</version>
 	</parent>
 
 	<dependencies>

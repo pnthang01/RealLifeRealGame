@@ -15,6 +15,7 @@ import com.rlrg.dataserver.base.controller.BaseController;
 import com.rlrg.dataserver.base.service.IUserService;
 import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.dataserver.profile.entity.User;
+import com.rlrg.dataserver.profile.exception.LoginException;
 import com.rlrg.utillities.domain.RestObject;
 import com.rlrg.utillities.exception.BaseException;
 
@@ -46,8 +47,28 @@ public class UserController extends BaseController {
 		LOG.info("<< End webservice /user/checkUsername");
 		return result;
     }
+	
+	@RequestMapping(value = "/getUserByToken", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
+	@ResponseBody
+    public String isUserTokenExist(@RequestParam(value="token", required=false) String token){
+		String result = null;
+		LOG.info("<< Starting webservice /user/getUserByToken with parameter: token={}", token);
+		try {
+			UserDTO dto = userService.getUserDTOByToken(token);
+			//
+			result = userService.encodeSingleObjectFromVdto(dto);		
+		} catch(BaseException e){
+			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
+			result = userService.encodeBlankRestObject(restObject);
+		} catch(Exception e){
+			RestObject restObject = RestObject.failBank(e.getMessage());
+			result = userService.encodeBlankRestObject(restObject);
+		}
+		LOG.info("<< End webservice /user/getUserByToken");
+		return result;
+    }
 
-	@RequestMapping(value = "/signup", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/signup", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
     public String signupNewUser(@RequestParam("restobject") String json){
 		String result = null;
@@ -68,7 +89,7 @@ public class UserController extends BaseController {
 		return result;
     }
     
-	@RequestMapping(value = "/updateProlile", produces = "application/json", method=RequestMethod.POST)
+	@RequestMapping(value = "/updateProlile", produces = "application/json; charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
     public String updateProfile(@RequestParam("restobject") String json){
 		String result = null;
@@ -118,6 +139,9 @@ public class UserController extends BaseController {
 			UserDTO userDTO = userService.login(username, password);
 			//
 			result = userService.encodeSingleObjectFromVdto(userDTO);
+		} catch(LoginException e){
+			RestObject restObject = RestObject.failBank(e.getErrorCode());
+			result = userService.encodeBlankRestObject(restObject);
 		} catch(BaseException e){
 			RestObject restObject = RestObject.failBank(e.getTechnicalMsg());
 			result = userService.encodeBlankRestObject(restObject);

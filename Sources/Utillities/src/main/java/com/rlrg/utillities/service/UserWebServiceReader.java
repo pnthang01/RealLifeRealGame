@@ -1,9 +1,12 @@
 package com.rlrg.utillities.service;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.profile.dto.UserDTO;
 import com.rlrg.utillities.domain.ResultList;
+import com.rlrg.utillities.exception.BaseException;
 import com.rlrg.utillities.exception.ConvertException;
 
 public class UserWebServiceReader extends BaseWebServiceReader<UserDTO> {
@@ -15,6 +18,11 @@ public class UserWebServiceReader extends BaseWebServiceReader<UserDTO> {
 	private final String LOGIN_URL = "user/login?username={username}&password={password}";
 	private final String LOGOUT_URL = "user/logout?token={token}";
 	private final String SIGNUP_URL = "user/signup?restobject={restobject}";
+	private final String GET_USET_BY_TOKEN_URL = "user/getUserByToken?token={token}";
+	
+	public UserDTO getUserByToken(String token) throws RestClientException, ConvertException{
+		return this.getAnObject(GET_USET_BY_TOKEN_URL, MODULE_NAME, token);
+	}
 	
 	public void logout(String token) throws RestClientException, ConvertException{
 		this.getForVoid(LOGOUT_URL, MODULE_NAME, token);
@@ -41,14 +49,15 @@ public class UserWebServiceReader extends BaseWebServiceReader<UserDTO> {
 	 * @param password
 	 * @return
 	 * @throws RestClientException
-	 * @throws ConvertException
+	 * @throws UnsupportedEncodingException 
+	 * @throws BaseException 
 	 */
-	public UserDTO login(String username, String password) throws RestClientException, ConvertException {
+	public UserDTO login(String username, String password) throws RestClientException, UnsupportedEncodingException, BaseException {
 		return this.postAnObject(LOGIN_URL, MODULE_NAME, username, password);
 	}
 	
-	public boolean signup(UserDTO dto) throws ConvertException{
-		return this.postAnObjectT(SIGNUP_URL, MODULE_NAME, dto);
+	public String signup(UserDTO dto) throws ConvertException{
+		return this.postAnObjectTForMessage(SIGNUP_URL, MODULE_NAME, dto);
 	}
 
 	@Override

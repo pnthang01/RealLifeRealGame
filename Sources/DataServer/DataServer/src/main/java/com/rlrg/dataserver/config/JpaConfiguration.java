@@ -124,23 +124,18 @@ public class JpaConfiguration implements EnvironmentAware {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
         lef.setJpaVendorAdapter(jpaVendorAdapter);
-        lef.setPackagesToScan(environment
-                .getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
+        lef.setPackagesToScan(environment.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
 
         Properties jpaProterties = new Properties() {
             {
                 put(PROPERTY_NAME_HIBERNATE_DIALECT,
-                        environment
-                                .getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+                        environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
                 put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL,
-                        environment
-                                .getRequiredProperty(PROPERTY_NAME_HIBERNATE_FORMAT_SQL));
+                        environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_FORMAT_SQL));
                 put(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY,
-                        environment
-                                .getRequiredProperty(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY));
+                        environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY));
                 put(PROPERTY_NAME_HIBERNATE_SHOW_SQL,
-                        environment
-                                .getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+                        environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
                 put("hibernate.connection.charSet", "UTF-8");
                 put("hibernate.connection.characterEncoding", "UTF-8");
                 put("hibernate.connection.useUnicode", true);

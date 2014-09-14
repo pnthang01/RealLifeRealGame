@@ -29,7 +29,7 @@ public interface ITaskService<T, V> extends IBaseService<T, V> {
 	
 	public List<V> getTasksByNameAndUser(String name, String token, Integer pageNumber) throws UserTokenException;
 	
-	public List<V> getTasksByTimeAndStatuses(String token, Integer days, Integer pageNumber, TaskStatus...taskStatuses) throws UserTokenException;
+	public List<V> getTasksByRangeTimeAndStatues(String token, Integer start, Integer end, Integer pageNumber, TaskStatus...taskStatuses) throws UserTokenException;
 	
 	public List<V> getTaskByCategoryAndUser(String categoryCode, String token, Integer pageNumber) throws UserTokenException;
 	

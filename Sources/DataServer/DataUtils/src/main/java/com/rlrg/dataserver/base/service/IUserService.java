@@ -7,11 +7,13 @@ import com.rlrg.dataserver.base.exception.RepositoryException;
 import com.rlrg.dataserver.base.exception.UserTokenException;
 
 public interface IUserService<T, V> extends IBaseService<T, V> {
-	public T getUserByToken(String token) throws UserTokenException;
+	public T getUserByToken(String token);
 
 	public T getUserById(Long userId) throws RepositoryException;
 
 	public T getUserByUsername(String username);
+	
+	public V getUserDTOByToken(String token);
 	
 	public Boolean checkUsername(String username);
 	
@@ -25,7 +27,7 @@ public interface IUserService<T, V> extends IBaseService<T, V> {
 
 	public V login(String username, String password) throws RepositoryException, InvalidParamExeption, Exception;
 	
-	public void logout(String token);
+	public void logout(String token) throws UserTokenException;
 
 	public void updateUserPoint(String token, Integer point) throws Exception;
 	

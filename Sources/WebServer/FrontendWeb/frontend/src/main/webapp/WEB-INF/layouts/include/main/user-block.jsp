@@ -2,7 +2,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <script type="text/javascript">
 	function loadUserData() {
-		$("#user-detail h4 a").text($.cookie('Profile_Firstname'));
+		$("#user-detail h4 a").text('${sessionScope.FirstNameSession}');
+
 		$.ajax({
 			url : "<c:url value="/user/getBasicUserStatistics"/>",
 			type : "GET",

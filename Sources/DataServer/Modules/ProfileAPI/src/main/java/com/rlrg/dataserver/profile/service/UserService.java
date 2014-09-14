@@ -55,10 +55,17 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
      * @return
      * @throws UserTokenException
      */
-    public User getUserByToken(String token) throws UserTokenException{
+    public User getUserByToken(String token){
     	UserToken userToken = commonService.getUserToken(token);
     	return userRepo.findOne(userToken.getId());
     }
+    
+
+	@Override
+	public UserDTO getUserDTOByToken(String token){
+		User user = this.getUserByToken(token);
+		return convertObject(user);
+	}
     
     /**
      * Get User by Id
@@ -193,7 +200,7 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
                 //
                 return convertObject(user);
             } else {
-                throw new LoginException("username or password is not correct!");
+                throw new LoginException();
             }
         } else {
             throw new InvalidParamExeption("username or password is empty!");
@@ -202,7 +209,10 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
     
 
 	@Override
-	public void logout(String token) {
+	public void logout(String token) throws UserTokenException {
+		User user = this.getUserByToken(token);
+		user.setLastLogin(new Date());
+		userRepo.save(user);
 		commonService.deleteUserToken(token);
 	}
 
@@ -311,5 +321,6 @@ public class UserService extends BaseService<User, UserDTO> implements IUserServ
 	public Class<UserDTO> getVClass() {
 		return UserDTO.class;
 	}
+
 
 }

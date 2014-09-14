@@ -1,9 +1,12 @@
 package com.rlrg.utillities.service;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.web.client.RestClientException;
 
 import com.rlrg.dataserver.task.dto.TaskDTO;
 import com.rlrg.utillities.domain.ResultList;
+import com.rlrg.utillities.exception.BaseException;
 import com.rlrg.utillities.exception.ConvertException;
 
 public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
@@ -17,7 +20,7 @@ public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
 	private final String GET_ALL_TASKS_BY_LEVEL_URL = "task/getAllTasksByLevel?difficultyLevel={difficultyLevel}";
 	private final String GET_ALL_TASKS_BY_POINT_URL = "task/getAllTasksByPoint?point={point}";
 	private final String SEARCH_TASKS_BY_KEYWORD_URL = "task/searchTasks?keyword={keyword}&pageNumber={pageNumber}";
-	private final String GET_AVAILABLE_TASK_BY_TIME_URL = "task/getAvailableTasksByTime?token={token}&days={days}&pageNumber={pageNumber}";
+	private final String GET_TASKS_BY_RANGE_TIME_URL = "task/getTasksByRangeTime?token={token}&start={start}&end={end}&pageNumber={pageNumber}";
 	private final String UPDATE_TASK_URL = "task/update?restobject={restobject}";
 	private final String CREATE_TASK_URL = "task/createTask?restobject={restobject}&token={token}";
 	private final String UPDATE_TASK_STATUS_URL = "task/updateTaskStatus?token={token}&taskId={taskId}";
@@ -26,8 +29,8 @@ public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
 		return this.postAnObjectForResult(UPDATE_TASK_STATUS_URL, MODULE_NAME, token, taskId).toString();
 	}
 	
-	public ResultList<TaskDTO> getAvailableTasksByTime(String token, Integer days, Integer pageNumber) throws RestClientException, ConvertException{
-		return this.getListOfObjects(GET_AVAILABLE_TASK_BY_TIME_URL, MODULE_NAME, token, days, pageNumber);
+	public ResultList<TaskDTO> getTasksByRangeTime(String token, Integer start, Integer end, Integer pageNumber) throws RestClientException, ConvertException{
+		return this.getListOfObjects(GET_TASKS_BY_RANGE_TIME_URL, MODULE_NAME, token, start, end, pageNumber);
 	}
 	
 	public ResultList<TaskDTO> getTasksByStatus(boolean status, Integer pageNumber) throws RestClientException, ConvertException{
@@ -62,7 +65,7 @@ public class TaskWebServiceReader extends BaseWebServiceReader<TaskDTO> {
 		return this.postAnObjectT(UPDATE_TASK_URL, MODULE_NAME, dto);
 	}
 	
-	public TaskDTO createTask(TaskDTO dto, String token) throws ConvertException{
+	public TaskDTO createTask(TaskDTO dto, String token) throws UnsupportedEncodingException, BaseException{
 		return this.postAnObject(CREATE_TASK_URL, MODULE_NAME, dto, token);
 	}
 

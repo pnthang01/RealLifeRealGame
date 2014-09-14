@@ -12,11 +12,11 @@
 <link href="<c:url value="/main/css/layout.css" />" rel="stylesheet" type="text/css" media="all" />
 <link href="<c:url value="/main/css/skeleton.css" />" rel="stylesheet" type="text/css" media="all" />
 <link href="<c:url value="/main/css/custom.css" />" rel="stylesheet" type="text/css" media="all" />
+<link href="<c:url value="/main/css/accordion.css" />" rel="stylesheet" type="text/css" media="all" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-<script src="<c:url value="/main/js/jquery.cookie.js" />" type="text/javascript"></script>
 <script src="<c:url value="/main/js/main.js" />" type="text/javascript"></script>
 <script src="<c:url value="/main/js/jquery.ui.datepicker-vi.js" />" type="text/javascript"></script>
 <style>

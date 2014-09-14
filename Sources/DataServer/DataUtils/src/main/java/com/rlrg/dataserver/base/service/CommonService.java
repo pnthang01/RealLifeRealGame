@@ -39,6 +39,10 @@ public class CommonService {
     	return userTokens;
     }
     
+    public boolean isUserTokenExist(String token){
+    	return userTokens.containsKey(token);
+    }
+    
     public void increaseTime(String token){
     	UserToken userToken = userTokens.get(token);
     	userToken.increaseTime(Constants.TOKEN_INCREASEMENT);
@@ -50,7 +54,7 @@ public class CommonService {
      * @return
      * @throws UserTokenException 
      */
-    public UserToken getUserToken(String token) throws UserTokenException{
+    public UserToken getUserToken(String token){
     	UserToken userToken = userTokens.get(token);
 //    	UserToken userToken = new UserToken(1l, "testacc", new Date().getTime()); // For testing //TODO
     	if(null == userToken || null == userToken.getId()){
@@ -62,7 +66,7 @@ public class CommonService {
     }
     
     /**
-     * Remove token when usesr logout
+     * Remove token when user logout
      * @param token
      * @return
      */

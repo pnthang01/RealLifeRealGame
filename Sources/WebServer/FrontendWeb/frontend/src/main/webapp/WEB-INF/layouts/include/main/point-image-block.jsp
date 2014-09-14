@@ -2,14 +2,14 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <script type="text/javascript">
 	function loadPoint() {
-		$.ajax({
-			url : "<c:url value="/point/getUserPoint"/>",
-			type : "GET",
-			success : function(response) {
-				$("#point_image").attr('alt', response.point).attr('src', response.display);
-				$("#point_title span").text(response.ranked);
-			}
-		});
+// 		$.ajax({
+// 			url : "<c:url value="/point/getUserPoint"/>",
+// 			type : "GET",
+// 			success : function(response) {
+// 				$("#point_image").attr('alt', response.point).attr('src', response.display);
+// 				$("#point_title span").text(response.ranked);
+// 			}
+// 		});
 	}
 </script>
 <img id="point_image" src="<c:url value="/main/images/pic1.jpg" />" alt="0" />

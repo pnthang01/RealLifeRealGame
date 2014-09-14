@@ -144,15 +144,16 @@ public class TaskController extends BaseController{
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/getAvailableTasksByTime", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
+	@RequestMapping(value = "/getTasksByRangeTime", produces = "application/json; charset=utf-8", method=RequestMethod.GET)
 	@ResponseBody
-	public String getAvailableTasksByTime(@RequestParam("token") String token, 
-			@RequestParam("days") Integer days,@RequestParam(value="pageNumber", required=false) Integer pageNumber){
+	public String getTasksByRangeTime(@RequestParam("token") String token, 
+			@RequestParam("start") Integer start, @RequestParam("end") Integer end,
+			@RequestParam(value="pageNumber", required=false) Integer pageNumber){
 		String result = null;
-		LOG.info("<< Starting webservice /task/getAvailableTasksByTime with parameters: " +
-				"token={}, days={}", token, days);
+		LOG.info("<< Starting webservice /task/getTasksByRangeTime with parameters: " +
+				"token={}, start={}, end={}", token, start, end);
 		try{
-			List<TaskDTO> tasks = taskService.getTasksByTimeAndStatuses(token, days, pageNumber, 
+			List<TaskDTO> tasks = taskService.getTasksByRangeTimeAndStatues(token, start, end, pageNumber, 
 					TaskStatus.CREATED, TaskStatus.PROGRESSING, TaskStatus.COMPLETED, TaskStatus.NOTCOMPLETED);
 			Long total = 10l;//taskService.countTasksByKeyword(keyword); //TODO
 			//
@@ -164,7 +165,7 @@ public class TaskController extends BaseController{
 			RestObject restObject = RestObject.failBank(e.getMessage());
 			result = taskService.encodeBlankRestObject(restObject);
 		}
-		LOG.info("<< End webservice /task/getAvailableTasksByTime");
+		LOG.info("<< End webservice /task/getTasksByRangeTime");
 		return result;
 	}
 	

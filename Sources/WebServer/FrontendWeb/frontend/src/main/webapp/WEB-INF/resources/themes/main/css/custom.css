@@ -232,7 +232,7 @@ ul.sub li a:hover{
     /* Hiding */
     max-height: 0;
     overflow: hidden;
-    z-index:1;
+    z-index:100!important;
 }
 .wrapper-dropdown-3 .dropdown li{
 	margin-bottom: 0px;
@@ -524,16 +524,14 @@ ul.sub li a:hover{
 	width:100%;
 }
 .tasks li{
-
 	padding:2%;
-	margin-top:4px;
 	margin-bottom:0px;
 }
 .task_bg{
-/* 	background: rgba(255, 255, 255, 0.18); */
 	background-color:#FFF;
 }
 .tasks li:first-child{
+	border-top: 1px solid #d5d6d8; */
 	margin-top:0;
 }
 .task_img{
@@ -598,6 +596,7 @@ ul.sub li a:hover{
 
 .create-task-form{
 	font-size: 62.5%;
+	z-index: 1000 !important ;
 }
 
 .create-task-form label,input,select{

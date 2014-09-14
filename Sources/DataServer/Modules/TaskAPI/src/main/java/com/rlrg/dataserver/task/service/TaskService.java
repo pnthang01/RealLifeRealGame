@@ -276,7 +276,8 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 	 * @throws UserTokenException 
 	 */
 	@Override
-	public List<TaskDTO> getTasksByTimeAndStatuses(String token, Integer days, Integer pageNumber, TaskStatus... taskStatuses) throws UserTokenException {
+	public List<TaskDTO> getTasksByRangeTimeAndStatues(String token, Integer start, Integer end, 
+			Integer pageNumber, TaskStatus... taskStatuses) throws UserTokenException {
 		UserToken userToken = commonService.getUserToken(token);
 		if(null == pageNumber){
 			pageNumber = 1;
@@ -285,11 +286,13 @@ public class TaskService extends BaseService<Task, TaskDTO> implements ITaskServ
 		//
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(Utils.truncateDate(calendar.getTime()));
-		Date start = calendar.getTime();
-		calendar.add(Calendar.DATE, days);
-		Date end = calendar.getTime();
 		//
-		return taskRepo.getTasksByTimeAndStatuses(userToken.getId(), start, end, pageRequest, taskStatuses);
+		calendar.add(Calendar.DATE, start);
+		Date startDate = calendar.getTime();
+		calendar.add(Calendar.DATE, end);
+		Date endEnd = calendar.getTime();
+		//
+		return taskRepo.getTasksByRangeTimeAndStatues(userToken.getId(), startDate, endEnd, pageRequest, taskStatuses);
 	}
 
 

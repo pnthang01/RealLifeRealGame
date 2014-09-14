@@ -30,7 +30,8 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/include/main/footer.jsp" />
 	</definition>
 
-	<definition name="point-image-block">
-		<put-attribute name="point-image-block" value="/WEB-INF/layouts/include/main/point-image-block.jsp" />
+	<definition name="profile" template="/WEB-INF/layouts/main-template.jsp">
+		<put-attribute name="title" value="page.title.main" />
+		<put-attribute name="header" value="/WEB-INF/layouts/include/main/header.jsp" />
 	</definition>
 </tiles-definitions>

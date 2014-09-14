@@ -10,6 +10,16 @@ public class LoginForm {
 	@Pattern(regexp = "^[a-z0-9_-]{6,18}$")
 	private String password;
 
+	private boolean rememberMe=false;
+	
+	public boolean getRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
+
 	public String getUsername() {
 		return username;
 	}
